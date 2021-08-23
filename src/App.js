@@ -13,7 +13,7 @@ import { Store } from './Store/store.js';
 
 /**
  * Main App
- * <Store> used for context, allowing childern in <MainView/> to share Store state 
+ * <Store> used for context, allowing children in <MainView/> to share Store state
  */
 function App() {
   // Toggle "dark" & "light" themes

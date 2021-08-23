@@ -51,8 +51,19 @@ class MadNetAdapter {
     // Monitor new blocks, lazy loading
     async monitorBlocks() {
         if (!this.blocksStarted) {
+            try {
             await this.cb.call(this, "wait", "Getting Blocks");
+            await this.backOffRetry("gettingBlocks", true)
             this.blocksStarted = true;
+            }
+            catch (ex) {
+                console.log(ex)
+                await this.backOffRetry("gettingBlocks")
+                if (this["gettingBlocks-attempts"] > 10) {
+                    await this.cb.call(this, "error", String("Could not fetch block"));
+                    return
+                }
+            }
         }
         try {
             if (this.blocksLocked) {
