@@ -40,19 +40,36 @@ class MadNetAdapter {
         try {
             await this.cb.call(this, "wait", "Connecting to Mad Network");
             await this.wallet.Rpc.setProvider(this.provider)
+            await this.backOffRetry("connectingToMadNetwork", true)
             this.connected = true;
             await this.cb.call(this, "success")
         }
         catch (ex) {
-            await this.cb.call(this, "error", String(ex));
+            console.log(ex)
+            await this.backOffRetry("connectingToMadNetwork")
+            if (this["connectingToMadNetwork-attempts"] > 10) {
+                await this.cb.call(this, "error", String("Could not connect to Mad Network"));
+                return
+            }
         }
     }
 
     // Monitor new blocks, lazy loading
     async monitorBlocks() {
         if (!this.blocksStarted) {
-            await this.cb.call(this, "wait", "Getting Blocks");
-            this.blocksStarted = true;
+            try {
+                await this.cb.call(this, "wait", "Getting Blocks");
+                await this.backOffRetry("gettingBlocks", true)
+                this.blocksStarted = true;
+            }
+            catch (ex) {
+                console.log(ex)
+                await this.backOffRetry("gettingBlocks")
+                if (this["gettingBlocks-attempts"] > 10) {
+                    await this.cb.call(this, "error", String("Could not fetch block"));
+                    return
+                }
+            }
         }
         try {
             if (this.blocksLocked) {
@@ -163,7 +180,7 @@ class MadNetAdapter {
             let txHeight = await this.wallet.Rpc.getTxBlockHeight(txHash);
             this.transactionHeight = txHeight;
             this.transactionRetry = 0;
-            await this.backOffRetry('viewTx, true')
+            await this.backOffRetry('viewTx', true)
             if (changeView) {
                 await this.cb.call(this, "view", "tx");
             }
