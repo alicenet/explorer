@@ -52,9 +52,9 @@ class MadNetAdapter {
     async monitorBlocks() {
         if (!this.blocksStarted) {
             try {
-            await this.cb.call(this, "wait", "Getting Blocks");
-            await this.backOffRetry("gettingBlocks", true)
-            this.blocksStarted = true;
+                await this.cb.call(this, "wait", "Getting Blocks");
+                await this.backOffRetry("gettingBlocks", true)
+                this.blocksStarted = true;
             }
             catch (ex) {
                 console.log(ex)
@@ -174,7 +174,7 @@ class MadNetAdapter {
             let txHeight = await this.wallet.Rpc.getTxBlockHeight(txHash);
             this.transactionHeight = txHeight;
             this.transactionRetry = 0;
-            await this.backOffRetry('viewTx, true')
+            await this.backOffRetry('viewTx', true)
             if (changeView) {
                 await this.cb.call(this, "view", "tx");
             }
