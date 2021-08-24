@@ -40,11 +40,17 @@ class MadNetAdapter {
         try {
             await this.cb.call(this, "wait", "Connecting to Mad Network");
             await this.wallet.Rpc.setProvider(this.provider)
+            await this.backOffRetry("connectingToMadNetwork", true)
             this.connected = true;
             await this.cb.call(this, "success")
         }
         catch (ex) {
-            await this.cb.call(this, "error", String(ex));
+            console.log(ex)
+            await this.backOffRetry("connectingToMadNetwork")
+            if (this["connectingToMadNetwork-attempts"] > 10) {
+                await this.cb.call(this, "error", String("Could not connect to Mad Network"));
+                return
+            }
         }
     }
 
