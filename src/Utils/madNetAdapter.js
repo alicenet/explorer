@@ -221,7 +221,7 @@ class MadNetAdapter {
         }
     }
 
-    async getDSExp(data, deposit, issuedAt) {
+    getDSExp(data, deposit, issuedAt) {
         try {
             let dataSize = Buffer.from(data, "hex").length;
             if (BigInt(dataSize) > BigInt(this.MaxDataStoreSize)) {
