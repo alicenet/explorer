@@ -74,9 +74,9 @@ function Settings(props) {
             <Segment>
             <Form.Field>
                 <h5>Wallet Downloads</h5>
-                        <Button onClick={() => downloadWallet('https://storage.googleapis.com/madnet-wallet/Windows/MadWallet%20Setup%200.2.0.exe')} color="blue">Windows</Button>
-                        <Button onClick={() => downloadWallet('https://storage.googleapis.com/madnet-wallet/MacOS/MadWallet-0.2.0.dmg')}color="blue">MacOS</Button>
-                        <Button onClick={() => downloadWallet('https://storage.googleapis.com/madnet-wallet/Linux/madwallet-0.2.0.zip')}color="blue">Linux</Button>
+                        <Button onClick={() => downloadWallet('https://storage.googleapis.com/madnet-wallet/Windows/MadWallet.exe')} color="blue">Windows</Button>
+                        <Button onClick={() => downloadWallet('https://storage.googleapis.com/madnet-wallet/MacOS/MadWallet.app.zip')}color="blue">MacOS</Button>
+                        <Button onClick={() => downloadWallet('https://storage.googleapis.com/madnet-wallet/Linux/MadWallet.zip')}color="blue">Linux</Button>
                     </Form.Field>
             </Segment>
         </Container>
