@@ -1,145 +1,55 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
-import { StoreContext } from "../Store/store.js";
-import MadNetAdapter from "../Utils/madNetAdapter.js";
-import { Button, Menu, Image, Grid } from 'semantic-ui-react';
+import { Menu, Image, Dropdown } from 'semantic-ui-react';
+import Logo from "../Assets/MadNetwork Logo Horizontal GRAYSCALE.png";
 
-import DataExplorer from './dataExplorer.js';
-import BlockMonitor from './blockMonitor.js';
-import BlockExplorer from './blockExplorer.js';
-import TxExplorer from './txExplorer.js';
-import Settings from './settings.js'
-import Home from './home.js';
+//TODO define where to get this
+const GITHUB_URL = 'https://github.com/madhive';
+const WHITEPAPER_URL = 'https://www.madnetwork.com/madnetwork-download-whitepaper';
+const COMMUNITY_URL = 'https://www.madnetwork.com/';
+//TODO define where to get this
+const WALLETS_PLACEHOLDER =[ 'wallet0', 'wallet1'] 
 
 function MadNet(props) {
-    // Store states
-    const { store, actions } = useContext(StoreContext);
-    // Check if madnet adapter connected
-    const connectAttempt = useRef(false);
-    // Update madnet adapter
-    const update = useRef(false)
-
-    // Add the madNetAdapter and initialize
-    const addAdapter = async (forceConnect) => {
-        if (!store.madNetAdapter ||
-            forceConnect
-        ) {
-            let madNetAdapter = new MadNetAdapter(adapterCb, store.wallet, store.settings.madnetProvider);
-            await madNetAdapter.init()
-            await actions.addMadNetAdapter(madNetAdapter)
-            update.current = false;
-        }
-    }
-
-    // Updates for when component mounts or updates
-    useEffect(() => {
-        // Attempt to setup adapter if not previously instanced
-        if (!store.madNetAdapter && !connectAttempt.current) {
-            connectAttempt.current = true;
-            addAdapter();
-        }
-        if (store.madNetAdapter &&
-            store.settings.madnetProvider !== store.madNetAdapter.provider &&
-            !update.current
-        ) {
-            update.current = true;
-            addAdapter(true);
-        }
-
-    }, [props, actions, store.madNetAdapter]) // eslint-disable-line react-hooks/exhaustive-deps
-
-
-    // Callback for the madNetAdapter to update the component
-    const adapterCb = (event, data) => {
-        props.states.setUpdateView((updateView) => ++updateView);
-        switch (event) {
-            case 'success':
-                if (data) {
-                    props.states.setNotify(data)
-                }
-                break;;
-            case 'wait':
-                props.states.setLoading(data);;
-                return;;
-            case 'error':
-                props.states.setError(data);;
-                break;;
-            case 'view':
-                props.states.history.push(data);;
-                break;;
-            default:
-                console.log(event)
-        }
-        props.states.setLoading(false);
-    }
-
-    // Render sub menu view
-    const view = (activeMadnetPanel) => {
-        if (!activeMadnetPanel) {
-            // No home currently exists, default to blocks
-            activeMadnetPanel = 'blocks'
-        }
-        switch (activeMadnetPanel) {
-            case 'home':
-                return (<Home states={props.states} />);;
-            case 'blocks':
-                return (<BlockMonitor states={props.states} />);;
-            case 'block':
-                return (<BlockExplorer states={props.states} />);;
-            case 'tx':
-                return (<TxExplorer states={props.states} />);;
-            case 'data':
-                return (<DataExplorer states={props.states} />);;
-            case 'settings':
-                return (<Settings states={props.states} />);;
-            default:
-                // Home
-                return (<></>);;
-        }
-    }
-
     return (
-        <>
-            <Grid>
-                <Grid.Row centered>
-                    <Menu pointing secondary compact>
-                        <Menu.Item
-                            as={Link}
-                            to="blocks"
-                            name="Monitor"
-                            active={props.states.location.pathname.slice(1) === 'blocks' || props.states.location.pathname.slice(1) === ''}
-                        />
-                        <Menu.Item
-                            as={Link}
-                            to="block"
-                            name="Block"
-                            active={props.states.location.pathname.slice(1) === 'block'}
-                        />
-                        <Menu.Item
-                            as={Link}
-                            to="tx"
-                            name="Tx"
-                            active={props.states.location.pathname.slice(1) === 'tx'}
-                        />
-                        <Menu.Item
-                            as={Link}
-                            to="data"
-                            name="Data"
-                            active={props.states.location.pathname.slice(1) === 'data'}
-                        />
-                        <Menu.Item
-                            as={Link}
-                            to="settings"
-                            name="Settings"
-                            active={props.states.location.pathname.slice(1) === 'settings'}
-                        />
-                    </Menu>
-                </Grid.Row>
-                <Grid.Row centered>
-                    {store.madNetAdapter.connected ? view(props.states.location.pathname.slice(1)) : props.states.location.pathname.slice(1) === 'settings' ? view(props.states.location.pathname.slice(1)) : <Button onClick={() => addAdapter(true)}>Reconnect</Button>}
-                </Grid.Row>
-            </Grid>
-        </>
+        <Menu pointing secondary fixed={'top'} style={{padding: '20px 15px', marginBottom: '5px'}}>
+            <Menu.Menu position='left'>
+                <Image className="logo click" src={Logo} style={{ height: '25px', width: '205px' }} as={Link} to="" onClick={() => props.states.history.push('/')} />
+            </Menu.Menu>
+            <Menu.Menu position='right'>
+                <Menu.Item
+                    as={Link}
+                    to="blocks"
+                    name="Monitor"
+                    active={props.states.location.pathname.slice(1) === 'blocks'}
+                />
+                <Menu.Item
+                    as={Link}
+                    to="about"
+                    name="About"
+                    active={props.states.location.pathname.slice(1) === 'about'}
+                />
+                <Dropdown item text='Wallet Download'>
+                    <Dropdown.Menu>
+                        {WALLETS_PLACEHOLDER.map(wallet => 
+                            <Dropdown.Item key={wallet}>{wallet}</Dropdown.Item>
+                        )}
+                    </Dropdown.Menu>
+                </Dropdown>
+                <Menu.Item
+                    onClick={() => window.open(GITHUB_URL, '_blank').focus()}
+                    name="Github"
+                />
+                <Menu.Item
+                    onClick={() => window.open(WHITEPAPER_URL, '_blank').focus()}
+                    name="Whitepaper"
+                />
+                <Menu.Item
+                    onClick={() => window.open(COMMUNITY_URL, '_blank').focus()}
+                    name="Community"
+                />
+            </Menu.Menu>
+        </Menu>
     )
 }
 

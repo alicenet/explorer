@@ -1,9 +1,8 @@
 import React, { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { StoreContext } from "./Store/store.js";
-import { Dimmer, Loader, Grid, Menu, Image, Button, Rail } from "semantic-ui-react";
-import Logo from "./Assets/MadNetwork Logo Horizontal GRAYSCALE.png"
+import { Dimmer, Loader, Grid, Menu } from "semantic-ui-react";
 import MainMenu from "./Components/menu.js";
+import MainContent from "./Components/mainContent.js";
 
 function MainView(props) {
     // Store component to access states
@@ -28,19 +27,20 @@ function MainView(props) {
                 </Dimmer>
             </>
         )
-    }
-    // App display
+    } // App display
     else {
         return (
             <>
-                <Grid style={{'marginTop': '5px'}} centered className="mainView">
-                    <Grid.Row >
-                        <Image className="logo click" src={Logo} size="medium" as={Link} to="" onClick={() => props.states.history.push('/')} />
-                    </Grid.Row>
+                <Grid style={{ padding: "10px 20px" }} className="mainView">
                     <Grid.Row>
                         <MainMenu
                             states={props.states}
                         />
+                    </Grid.Row>
+                </Grid>
+                <Grid centered>
+                    <Grid.Row centered>
+                        <MainContent states={props.states}/>
                     </Grid.Row>
                 </Grid>
                 <Grid centered>
@@ -68,7 +68,6 @@ function MainView(props) {
                         </Menu>
                     </Grid.Row>
                 </Grid>
-
             </>
         )
     }
