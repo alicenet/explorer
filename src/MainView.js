@@ -31,7 +31,7 @@ function MainView(props) {
     else {
         return (
             <>
-                <Grid style={{ padding: "10px 20px" }} className="mainView">
+                <Grid style={{ padding: "10px 20px", marginTop: "45px" }} className="mainView">
                     <Grid.Row>
                         <MainMenu
                             states={props.states}
