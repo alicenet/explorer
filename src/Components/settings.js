@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { StoreContext } from "../Store/store.js";
+import { AppContext } from "../AppContext/AppContext";
 import { Container, Form, Button, Segment } from "semantic-ui-react"
 import Switch from "react-switch";
 

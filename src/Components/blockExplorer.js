@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Container, Segment, Accordion, Icon, List, Divider, Grid, Form, Button, Popup } from "semantic-ui-react"
-import { StoreContext } from "../Store/store.js";
+import { AppContext } from "../AppContext/AppContext";
 import Help from './help.js';
 
 const queryString = require('query-string');

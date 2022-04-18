@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Container } from "semantic-ui-react"
-import { StoreContext } from "../Store/store.js";
+import { AppContext } from "../AppContext/AppContext";
 
 function Home(props) {
     const { store } = useContext(StoreContext);

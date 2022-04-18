@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { StoreContext } from "../Store/store.js";
+import { AppContext } from "../AppContext/AppContext";
 import { Container, Segment, Grid, Dimmer, Loader } from 'semantic-ui-react';
 
 function BlockMonitor(props) {
