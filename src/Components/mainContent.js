@@ -74,10 +74,6 @@ function MainContent(props){
 
     // Render sub menu view
     const view = (activeMadnetPanel) => {
-        if (!activeMadnetPanel) {
-            // No home currently exists, default to blocks
-            activeMadnetPanel = 'blocks'
-        }
         switch (activeMadnetPanel) {
             case 'home':
                 return (<Home states={props.states} />);;
@@ -93,7 +89,7 @@ function MainContent(props){
                 return (<Settings states={props.states} />);;
             default:
                 // Home
-                return (<></>);;
+                return (<Home states={props.states} />);;
         }
     }
 

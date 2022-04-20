@@ -3,6 +3,7 @@ import { StoreContext } from "./Store/store.js";
 import { Dimmer, Loader, Grid, Menu } from "semantic-ui-react";
 import MainMenu from "./Components/menu.js";
 import MainContent from "./Components/mainContent.js";
+import Search from "./Components/search";
 
 function MainView(props) {
     // Store component to access states
@@ -33,13 +34,12 @@ function MainView(props) {
             <>
                 <Grid style={{ padding: "10px 20px", marginTop: "45px" }} className="mainView">
                     <Grid.Row>
-                        <MainMenu
-                            states={props.states}
-                        />
+                        <MainMenu states={props.states}/>
                     </Grid.Row>
                 </Grid>
                 <Grid centered>
                     <Grid.Row centered>
+                        <Search/>
                         <MainContent states={props.states}/>
                     </Grid.Row>
                 </Grid>

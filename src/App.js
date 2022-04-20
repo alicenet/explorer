@@ -72,7 +72,8 @@ return (
           </Dimmer>
           <Errors states={propStates} />
           <Switch>
-            <Route exact path={["/blocks", "/"]} render={(props) => <MainView states={{ ...propStates, ...props }} />} />
+            <Route exact path={["/home", "/"]} render={(props) => <MainView states={{ ...propStates, ...props }} />} />
+            <Route exact path="/blocks" render={(props) => <MainView states={{ ...propStates, ...props }} />} />
             <Route exact path="/about" render={(props) => <MainView states={{ ...propStates, ...props }} />} />
             <Route exact path="/block" render={(props) => <MainView states={{ ...propStates, ...props }} />} />
             <Route exact path="/tx" render={(props) => <MainView states={{ ...propStates, ...props }} />} />
