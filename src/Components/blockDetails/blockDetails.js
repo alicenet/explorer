@@ -1,14 +1,11 @@
 import React, { useContext } from 'react';
-import { 
-    Icon, 
-    List, 
-    Divider, 
-    Grid 
-} from "semantic-ui-react"
+import { Button, Icon, Grid } from "semantic-ui-react"
 import { StoreContext } from "../../Store/store.js";
 import Help from '../help.js';
 import './blockDetails.css'
 import CollapsableCard from './collapsableCard'; 
+import TxHashList from './txHashList'; 
+import { ReactComponent as CubeIcon } from '../../Assets/cube-icon.svg';
 
 function BlockDetails({ txDrop, setTxDrop, txList, ...props }) {
     const { store } = useContext(StoreContext);
@@ -17,11 +14,16 @@ function BlockDetails({ txDrop, setTxDrop, txList, ...props }) {
         <>
             <CollapsableCard 
                 title={`Block #${store.madNetAdapter.blockInfo['BClaims']['Height']}`}
+                icon={<CubeIcon width={15} />}
             >
                 <Grid padded='vertically'>
                     <Grid.Row className="row">
                         <Grid.Column width={3}><Help type='height' />Block Height</Grid.Column>
-                        <Grid.Column width={12}>{store.madNetAdapter.blockInfo['BClaims']['Height']}</Grid.Column>
+                        <Grid.Column width={12}>
+                            {store.madNetAdapter.blockInfo['BClaims']['Height']}
+                            <Button icon><Icon name='chevron left' size='small' /></Button>
+                            <Button icon><Icon name='chevron right' size='small' /></Button>
+                        </Grid.Column>
                     </Grid.Row>
 
                     <Grid.Row className="row">
@@ -99,12 +101,9 @@ function BlockDetails({ txDrop, setTxDrop, txList, ...props }) {
 
             <CollapsableCard 
                 title="Transaction Hash List"
-                disabled
+                // disabled
             >
-                <List bulleted>
-                    <Divider />
-                    {txList()}
-                </List>
+                <TxHashList {...props} />
             </CollapsableCard>
         </>
     )

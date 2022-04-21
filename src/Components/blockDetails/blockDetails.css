@@ -2,3 +2,15 @@
     border-top: 1px solid #575555;
     background: #343333 !important;
 }
+
+.collapsableCard .ui.icon.button {
+    box-shadow: none !important;
+    margin-left: 10px;
+    padding: 1px;
+    border-radius: 0 !important;
+    background: #494949 !important;
+}
+
+.collapsableCard .ui.button .icon {
+    color: white;
+}

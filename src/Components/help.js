@@ -34,7 +34,7 @@ const content = {
 function Help(props) {
     return (
         <Popup
-            trigger={<Icon name="help circle" circular />}
+            trigger={<Icon name="question circle outline" circular />}
             content={content[props.type]}
             position='top left'
             hideOnScroll

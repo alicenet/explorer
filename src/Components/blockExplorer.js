@@ -1,9 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Container, Segment, Icon, List, Divider, Grid, Form, Button, Popup } from "semantic-ui-react"
+import { Container, Segment, Grid, Form, Button } from "semantic-ui-react"
 import { StoreContext } from "../Store/store.js";
 import BlockDetails from "./blockDetails/blockDetails";
 
 const queryString = require('query-string');
+// TODO Remove after integration
+const MOCKED_TX = [
+    '0xd1b7b6968afede3ce9465658611ac367bcd1d9384736d0da11b32770c69680e3',
+    '0xd1b7b6968afede3ce9465658611ac367bcd1d9384736d0da11b32770c69680e3',
+    '0xd1b7b6968afede3ce9465658611ac367bcd1d9384736d0da11b32770c69680e3'
+];
+
 // BlockModal display
 function BlockExplorer(props) {
     const { store } = useContext(StoreContext);
@@ -44,29 +51,32 @@ function BlockExplorer(props) {
         );
     }
 
+    const handleTxPopupClick = (e) => store.madNetAdapter.viewTransaction(e, true);
+
     // Display BlockData
-    const txList = () => {
-        if (!store.madNetAdapter.blockInfo['TxHshLst']) {
-            return (<p></p>)
-        }
-        return store.madNetAdapter.blockInfo['TxHshLst'].map((e, i) => {
-            return (
-                <List.Item key={i}>
-                    <Grid.Row>
-                        0x{e}
-                        <Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + e)} />
-                        <Popup
-                            trigger={<Icon className="click" name="external" onClick={() => store.madNetAdapter.viewTransaction(e, true)} />}
-                            content={'View Transaction'}
-                            position='top left'
-                            hideOnScroll
-                            style={{ zIndex: 9999999 }}
-                        />
-                    </Grid.Row>
-                </List.Item>
-            )
-        })
-    }
+    // const txList = () => {
+    //     if (!store.madNetAdapter.blockInfo['TxHshLst']) {
+    //         return (<p></p>)
+    //     }
+
+    //     return store.madNetAdapter.blockInfo['TxHshLst'].map((e, i) => {
+    //         return (
+    //             <List.Item key={i}>
+    //                 <Grid.Row>
+    //                     0x{e}
+    //                     <Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + e)} />
+    //                     <Popup
+    //                         trigger={<Icon className="click" name="external" onClick={() => store.madNetAdapter.viewTransaction(e, true)} />}
+    //                         content={'View Transaction'}
+    //                         position='top left'
+    //                         hideOnScroll
+    //                         style={{ zIndex: 9999999 }}
+    //                     />
+    //                 </Grid.Row>
+    //             </List.Item>
+    //         )
+    //     })
+    // }
 
     // Search for a block
     const search = () => {
@@ -105,11 +115,13 @@ function BlockExplorer(props) {
         return (
             <BlockDetails 
                 txDrop={txDrop} 
-                setTxDrop={setTxDrop} 
-                txList={txList}
-                {...props} 
+                setTxDrop={setTxDrop}
+                handleTxPopupClick={handleTxPopupClick} 
+                // txHshLst={store.madNetAdapter.blockInfo['TxHshLst']}
+                txHshLst={MOCKED_TX}
             />
         )
     }
 }
+
 export default BlockExplorer;
