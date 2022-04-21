@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { StoreContext } from "./Store/store.js";
-import { Dimmer, Loader, Grid, Menu } from "semantic-ui-react";
+import { Dimmer, Loader, Grid } from "semantic-ui-react";
 import MainMenu from "./Components/menu.js";
 import MainContent from "./Components/mainContent.js";
 import Search from "./Components/search";
+import Footer from "./Components/footer";
 
 function MainView(props) {
     // Store component to access states
@@ -43,31 +44,7 @@ function MainView(props) {
                         <MainContent states={props.states}/>
                     </Grid.Row>
                 </Grid>
-                <Grid centered>
-                    <Grid.Row>
-                        <Menu className="bottomMenu" size="small">
-                            <Menu.Item
-                                className="blue"
-                                onClick={() => window.location = "https://madnetwork.com"}
-                            >
-                                About
-                            </Menu.Item>
-                            <Menu.Item
-                                className="blue"
-                                onClick={() => window.location = "https://github.com/MadBase/"}
-                            >
-                                Github
-                            </Menu.Item>
-                            <Menu.Item
-                                className="blue"
-                                onClick={() => window.location = "https://github.com/MadBase/MadNet-Whitepaper/blob/main/madnet.pdf"}
-                            >
-                                White Paper
-                            </Menu.Item>
-
-                        </Menu>
-                    </Grid.Row>
-                </Grid>
+                <Footer/>
             </>
         )
     }
