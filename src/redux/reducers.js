@@ -3,7 +3,6 @@ import { classInstanceReducer } from 'redux-class-watcher';
 import { aliceNetAdapter } from '../adapter/alicenetadapter';
 import { aliceNetProvider } from '../config/config';
 
-
 // Generic App Reducer State
 const appSlice = createSlice({
     name: "app",
@@ -28,5 +27,7 @@ export const { incrementByAmount } = appSlice.actions
 export const appSliceReducer = appSlice.reducer;
 
 // Class instance reducers for adapter and wallet -- 
-export const [aliceNetAdapterReducer, aliceNetAdapterEqualize] = classInstanceReducer(aliceNetAdapter, "aliceNetProvider");
-export const [aliceNetWalletReducer, aliceNetWalletEqualize ] = classInstanceReducer(aliceNetAdapter.wallet, "aliceNetWallet");
+export const [aliceNetAdapterReducer, aliceNetAdapterEqualize] = classInstanceReducer(aliceNetAdapter, "aliceNetAdapter");
+export const [aliceNetWalletReducer, aliceNetWalletEqualize] = classInstanceReducer(aliceNetAdapter.wallet, "aliceNetWallet");
+
+console.log(aliceNetAdapterEqualize())
