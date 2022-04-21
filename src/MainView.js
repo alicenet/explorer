@@ -20,6 +20,17 @@ function MainView(props) {
         actions.loadSettings();
     }, [])
 
+    //TODO handle both searchs
+    const handleSearch = (blockNumber) => {
+        store.madNetAdapter.viewBlock(blockNumber)
+        props.states.history.replace(
+            {
+                pathname: 'block',
+                search: '?height=' + blockNumber
+            }
+        );
+    }
+
     // Loading if app not initialized
     if (!store || !store.wallet || !store.settings) {
         return (
@@ -40,7 +51,7 @@ function MainView(props) {
                 </Grid>
                 <Grid centered>
                     <Grid.Row centered>
-                        <Search/>
+                        <Search handleSearch={handleSearch}/>
                         <MainContent states={props.states}/>
                     </Grid.Row>
                 </Grid>

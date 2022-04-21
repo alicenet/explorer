@@ -8,7 +8,7 @@ import { Container, Dimmer, Loader } from 'semantic-ui-react';
 import './App.css';
 import copy from 'copy-to-clipboard';
 import MainView from './MainView.js';
-import Errors from "./Components/errors.js";
+import Errors from "./Components/legacy/errors.js";
 import { Store } from './Store/store.js';
 
 /**

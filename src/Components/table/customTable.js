@@ -2,7 +2,7 @@ import { Table } from "semantic-ui-react"
 import './customTable.css';
 
 function CustomTable(props){
-    const { title, Icon, headers, rows } = props;
+    const { title, Icon, headers, rows = [] } = props;
     return <Table>
                 <Table.Header fullWidth>
                     <Table.Row>
@@ -17,11 +17,9 @@ function CustomTable(props){
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
-                    {rows.map(b => 
-                        <Table.Row key={b.index}>
-                            <Table.Cell>{b.label}</Table.Cell>
-                            <Table.Cell>{b.index}</Table.Cell>
-                            <Table.Cell>{b.address}</Table.Cell>
+                    {rows.map(r => 
+                        <Table.Row key={`${r[headers[0]]} ${r[headers[0]]}`}>
+                            {headers.map(h => <Table.Cell>{r[h]}</Table.Cell>)}
                         </Table.Row>)}
                 </Table.Body>
             </Table>

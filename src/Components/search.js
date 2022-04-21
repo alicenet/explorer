@@ -92,7 +92,7 @@ function Search({ handleSearch }){
                         </Dropdown.Menu>
                     </Dropdown>
                     <input placeholder={option === options[0].value ? 'Block number' : 'Tx hash'} style={StylesInput} value={term} onChange={(e) => setTerm(e.target.value)}/>
-                    <Button style={StylesButton} onClick={() => handleSearch()}>Search</Button>
+                    <Button style={StylesButton} onClick={() => handleSearch(term)}>Search</Button>
                 </div>
             </div>
             <div style={StylesIconContainer}>
