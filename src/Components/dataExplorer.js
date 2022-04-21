@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { AppContext } from "../AppContext/AppContext";
+import { AppContext, getContextState } from "../AppContext/AppContext";
 import { Container, Button, Form, Segment, Card, Grid, Icon, Popup } from 'semantic-ui-react';
 import Switch from "react-switch";
 import Help from './help.js';
@@ -8,35 +8,36 @@ const queryString = require('query-string');
 
 function DataExplorer(props) {
     // Store states
-    const { store } = useContext(StoreContext);
+    const appContext = useContext(AppContext);
+    const { madNetAdapter } = getContextState(appContext);
 
     // Setup query parameters
     useEffect(() => {
         let params = queryString.parse(props.states.location.search);
-        if (store.madNetAdapter.dsRedirected) {
-            store.madNetAdapter.dsSearchOpts = store.madNetAdapter.dsRedirected;
-            store.madNetAdapter.dsRedirected = false;
+        if (madNetAdapter.dsRedirected) {
+            madNetAdapter.dsSearchOpts = madNetAdapter.dsRedirected;
+            madNetAdapter.dsRedirected = false;
             handleSubmit();
         } else if (params["address"]) {
             let querySearchOpts = { address: params['address'] }
             querySearchOpts['bnCurve'] = params['bnCurve'] ? true : false
             querySearchOpts['offset'] = params['offset'] ? params['offset'] : ""
 
-            store.madNetAdapter.dsSearchOpts = querySearchOpts;
+            madNetAdapter.dsSearchOpts = querySearchOpts;
             handleSubmit();
         }
 
-        if (store.madNetAdapter.dsSearchOpts) {
+        if (madNetAdapter.dsSearchOpts) {
             let setParams = ""
-            if (store.madNetAdapter.dsSearchOpts['address']) {
-                setParams += "?address=" + store.madNetAdapter.dsSearchOpts['address']
+            if (madNetAdapter.dsSearchOpts['address']) {
+                setParams += "?address=" + madNetAdapter.dsSearchOpts['address']
 
-                if (store.madNetAdapter.dsSearchOpts['bnCurve']) {
-                    setParams += "&bnCurve=" + store.madNetAdapter.dsSearchOpts['bnCurve']
+                if (madNetAdapter.dsSearchOpts['bnCurve']) {
+                    setParams += "&bnCurve=" + madNetAdapter.dsSearchOpts['bnCurve']
                 }
 
-                if (store.madNetAdapter.dsSearchOpts['offset']) {
-                    setParams += "&offset=" + store.madNetAdapter.dsSearchOpts['offset']
+                if (madNetAdapter.dsSearchOpts['offset']) {
+                    setParams += "&offset=" + madNetAdapter.dsSearchOpts['offset']
                 }
             }
             props.states.history.replace(
@@ -46,41 +47,41 @@ function DataExplorer(props) {
                 }
             )
         }
-    }, [store.madNetAdapter.dsRedirected]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [madNetAdapter.dsRedirected]); // eslint-disable-line react-hooks/exhaustive-deps
 
     // Update search params
     const handleChange = (event, e, v) => {
-        let opts = JSON.parse(JSON.stringify(store.madNetAdapter.dsSearchOpts));
+        let opts = JSON.parse(JSON.stringify(madNetAdapter.dsSearchOpts));
         if (e === "bnCurve") {
             opts[e] = event;
-            store.madNetAdapter.setDsSearchOpts(opts);
+            madNetAdapter.setDsSearchOpts(opts);
             return;
         }
         opts[e] = event.target.value;
-        store.madNetAdapter.setDsSearchOpts(opts);
+        madNetAdapter.setDsSearchOpts(opts);
     }
 
     // Handle next / previous page clicks
     const handlePage = (e) => {
-        let page = store.madNetAdapter.dsActivePage + e
+        let page = madNetAdapter.dsActivePage + e
 
-        if (store.madNetAdapter.dsActivePage > page) {
-            store.madNetAdapter.setDsView(store.madNetAdapter.dsDataStores.slice(((page - 1) * store.madNetAdapter.DataPerPage), ((((page - 1) * store.madNetAdapter.DataPerPage) + store.madNetAdapter.DataPerPage))))
+        if (madNetAdapter.dsActivePage > page) {
+            madNetAdapter.setDsView(madNetAdapter.dsDataStores.slice(((page - 1) * madNetAdapter.DataPerPage), ((((page - 1) * madNetAdapter.DataPerPage) + madNetAdapter.DataPerPage))))
         }
         /*
-        else if (store.madNetAdapter.dsActivePage < page &&
+        else if (madNetAdapter.dsActivePage < page &&
             (
 
-                (store.madNetAdapter.DataPerPage * page) === store.madNetAdapter.dsDataStores.length
+                (madNetAdapter.DataPerPage * page) === madNetAdapter.dsDataStores.length
             )
         ) {
-            store.madNetAdapter.setDsView(store.madNetAdapter.dsDataStores.slice((store.madNetAdapter.dsActivePage * store.madNetAdapter.DataPerPage), (((store.madNetAdapter.dsActivePage * store.madNetAdapter.DataPerPage) + store.madNetAdapter.DataPerPage))))
+            madNetAdapter.setDsView(madNetAdapter.dsDataStores.slice((madNetAdapter.dsActivePage * madNetAdapter.DataPerPage), (((madNetAdapter.dsActivePage * madNetAdapter.DataPerPage) + madNetAdapter.DataPerPage))))
         }
 */
         else {
-            store.madNetAdapter.getData(store.madNetAdapter.dsDataStores[store.madNetAdapter.dsDataStores.length - 1]["DSLinker"]["DSPreImage"]["Index"], page);
+            madNetAdapter.getData(madNetAdapter.dsDataStores[madNetAdapter.dsDataStores.length - 1]["DSLinker"]["DSPreImage"]["Index"], page);
         }
-        store.madNetAdapter.setDsActivePage(page);
+        madNetAdapter.setDsActivePage(page);
     }
 
     // Sumbit initial query params
@@ -88,22 +89,22 @@ function DataExplorer(props) {
         if (event) {
             event.preventDefault();
         }
-        if (store.madNetAdapter.dsSearchOpts["address"] === "") {
+        if (madNetAdapter.dsSearchOpts["address"] === "") {
             return;
         }
-        store.madNetAdapter.setDsActivePage(1)
-        store.madNetAdapter.getData(store.madNetAdapter.dsSearchOpts["offset"], 1, true);
+        madNetAdapter.setDsActivePage(1)
+        madNetAdapter.getData(madNetAdapter.dsSearchOpts["offset"], 1, true);
 
         let setParams = ""
-        if (store.madNetAdapter.dsSearchOpts['address']) {
-            setParams += "?address=" + store.madNetAdapter.dsSearchOpts['address']
+        if (madNetAdapter.dsSearchOpts['address']) {
+            setParams += "?address=" + madNetAdapter.dsSearchOpts['address']
 
-            if (store.madNetAdapter.dsSearchOpts['bnCurve']) {
-                setParams += "&bnCurve=" + store.madNetAdapter.dsSearchOpts['bnCurve']
+            if (madNetAdapter.dsSearchOpts['bnCurve']) {
+                setParams += "&bnCurve=" + madNetAdapter.dsSearchOpts['bnCurve']
             }
 
-            if (store.madNetAdapter.dsSearchOpts['offset']) {
-                setParams += "&offset=" + store.madNetAdapter.dsSearchOpts['offset']
+            if (madNetAdapter.dsSearchOpts['offset']) {
+                setParams += "&offset=" + madNetAdapter.dsSearchOpts['offset']
             }
         }
         props.states.history.replace(
@@ -118,15 +119,15 @@ function DataExplorer(props) {
 
     // View search results
     const dataView = () => {
-        if (store.madNetAdapter.dsView.length > 0) {
-            return store.madNetAdapter.dsView.map(function (e, i) {
+        if (madNetAdapter.dsView.length > 0) {
+            return madNetAdapter.dsView.map(function (e, i) {
                 return (
-                    <Segment.Group style={{maxWidth: "708.02px", minWidth:"708.02px"}}compact={true} key={i}>
+                    <Segment.Group style={{ maxWidth: "708.02px", minWidth: "708.02px" }} compact={true} key={i}>
                         <Segment className="notifySegments" textAlign="left">{<Help type='index' />}Index: 0x{e["DSLinker"]["DSPreImage"]["Index"]} <Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + e["DSLinker"]["DSPreImage"]["Index"])} /> </Segment>
                         <Segment className="notifySegments" textAlign="left">{<Help type='rawData' />}Data: 0x{e["DSLinker"]["DSPreImage"]["RawData"]} <Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + e["DSLinker"]["DSPreImage"]["RawData"])} /> </Segment>
-                        <Segment className="notifySegments" textAlign="left">{<Help type='expires' />}Expires: {store.madNetAdapter.getDSExp(e['DSLinker']['DSPreImage']['RawData'], e['DSLinker']['DSPreImage']['Deposit'], e['DSLinker']['DSPreImage']['IssuedAt'])}</Segment>
+                        <Segment className="notifySegments" textAlign="left">{<Help type='expires' />}Expires: {madNetAdapter.getDSExp(e['DSLinker']['DSPreImage']['RawData'], e['DSLinker']['DSPreImage']['Deposit'], e['DSLinker']['DSPreImage']['IssuedAt'])}</Segment>
                         <Segment className="notifySegments" textAlign="left">{<Help type='txHash' />}Transaction Hash: 0x{e["DSLinker"]["TxHash"]} <Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + e["DSLinker"]["TxHash"])} />                     <Popup
-                            trigger={<Icon className="click" name="external" onClick={() => store.madNetAdapter.viewTransaction(e["DSLinker"]["TxHash"], true)} />}
+                            trigger={<Icon className="click" name="external" onClick={() => madNetAdapter.viewTransaction(e["DSLinker"]["TxHash"], true)} />}
                             content={'View Transaction'}
                             position='top left'
                             hideOnScroll
@@ -143,7 +144,7 @@ function DataExplorer(props) {
 
     // Pagination buttons
     const paginate = () => {
-        if (store.madNetAdapter.dsDataStores.length < (store.madNetAdapter.DataPerPage + 1)) {
+        if (madNetAdapter.dsDataStores.length < (madNetAdapter.DataPerPage + 1)) {
             return (
                 <></>
             )
@@ -151,10 +152,10 @@ function DataExplorer(props) {
         else {
             return (
                 <>
-                    <Button onClick={() => handlePage(-1)} disabled={Boolean(store.madNetAdapter.dsActivePage === 1)} color="blue" icon>
+                    <Button onClick={() => handlePage(-1)} disabled={Boolean(madNetAdapter.dsActivePage === 1)} color="blue" icon>
                         <Icon name='angle left' />
                     </Button>
-                    <Button onClick={() => handlePage(1)} disabled={Boolean((store.madNetAdapter.dsActivePage * store.madNetAdapter.DataPerPage) > store.madNetAdapter.dsDataStores.length || store.madNetAdapter.dsLock)} color="blue" icon>
+                    <Button onClick={() => handlePage(1)} disabled={Boolean((madNetAdapter.dsActivePage * madNetAdapter.DataPerPage) > madNetAdapter.dsDataStores.length || madNetAdapter.dsLock)} color="blue" icon>
                         <Icon name='angle right' />
                     </Button>
                 </>
@@ -170,13 +171,13 @@ function DataExplorer(props) {
                 <Segment raised>
                     <Form fluid="true">
                         <Form.Group>
-                            <Form.Input value={store.madNetAdapter.dsSearchOpts["address"]} onChange={(event, data) => { handleChange(event, "address", data) }} label='Address' placeholder='0x...' />
-                            <Form.Input value={store.madNetAdapter.dsSearchOpts["offset"]} onChange={(event, data) => { handleChange(event, "offset", data) }} label='Offset' placeholder='0x...' />
+                            <Form.Input value={madNetAdapter.dsSearchOpts["address"]} onChange={(event, data) => { handleChange(event, "address", data) }} label='Address' placeholder='0x...' />
+                            <Form.Input value={madNetAdapter.dsSearchOpts["offset"]} onChange={(event, data) => { handleChange(event, "offset", data) }} label='Offset' placeholder='0x...' />
                         </Form.Group>
                         <Form.Field>
                             <Form.Group className="switch" inline>
                                 <label>BN Address{<Help type='bn' />}</label>
-                                <Switch value={Boolean(store.madNetAdapter.dsSearchOpts['bnCurve'])} onColor="#4aec75" height={22} width={46} offColor="#ff6464" offHandleColor="#212121" onHandleColor="#f0ece2" onChange={(event, data) => { handleChange(event, "bnCurve", data) }} checked={Boolean(store.madNetAdapter.dsSearchOpts["bnCurve"])} />
+                                <Switch value={Boolean(madNetAdapter.dsSearchOpts['bnCurve'])} onColor="#4aec75" height={22} width={46} offColor="#ff6464" offHandleColor="#212121" onHandleColor="#f0ece2" onChange={(event, data) => { handleChange(event, "bnCurve", data) }} checked={Boolean(madNetAdapter.dsSearchOpts["bnCurve"])} />
                             </Form.Group>
                         </Form.Field>
                         <Button color="blue" onClick={(event) => handleSubmit(event)}>Browse</Button>
@@ -186,7 +187,7 @@ function DataExplorer(props) {
             <Grid.Row>
                 <Container>
                     <Segment raised>
-                        {store.madNetAdapter.dsDataStores.length === 0
+                        {madNetAdapter.dsDataStores.length === 0
                             ?
                             <p>No DataStores to display!</p>
                             :

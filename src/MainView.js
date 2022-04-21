@@ -1,25 +1,19 @@
 import React, { useContext, useEffect } from "react";
-import { AppContext } from "./AppContext/AppContext.js";
+import { AppContext, actions, getContextState } from "./AppContext/AppContext.js";
 import { Dimmer, Loader, Grid, Menu } from "semantic-ui-react";
 import MainMenu from "./Components/menu.js";
 import MainContent from "./Components/mainContent.js";
 
 function MainView(props) {
     // Store component to access states
-    const { store, actions } = useContext(StoreContext);
+    const appContext = useContext(AppContext);
+    const { settings, wallet } = getContextState(appContext);
 
-    // Set theme
-    useEffect(() => {
-        props.states.themeToggle(store.settings.theme)
-    }, [store.settings])
-
-    // Load settings
-    useEffect(() => {
-        actions.loadSettings();
-    }, [])
+    console.log(appContext)
+    console.log(settings, wallet)
 
     // Loading if app not initialized
-    if (!store || !store.wallet || !store.settings) {
+    if (!wallet || !settings) {
         return (
             <>
                 <Dimmer page active={Boolean(props.states.isLoading)}>
@@ -40,7 +34,7 @@ function MainView(props) {
                 </Grid>
                 <Grid centered>
                     <Grid.Row centered>
-                        <MainContent states={props.states}/>
+                        <MainContent states={props.states} />
                     </Grid.Row>
                 </Grid>
                 <Grid centered>
