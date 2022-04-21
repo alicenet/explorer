@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Grid } from 'semantic-ui-react';
 import CallToAction from '../callToAction';
 import LatestBlocks from './latestBlocks';
-import LatestTransactions from './latestBlocks';
+import LatestTransactions from './latestTransactions';
 
 function Home() {
     
