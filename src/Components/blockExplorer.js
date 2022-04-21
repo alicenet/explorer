@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Container, Segment, Accordion, Icon, List, Divider, Grid, Form, Button, Popup } from "semantic-ui-react"
+import { Container, Segment, Icon, List, Divider, Grid, Form, Button, Popup } from "semantic-ui-react"
 import { StoreContext } from "../Store/store.js";
-import Help from './help.js';
+import BlockDetails from "./blockDetails/blockDetails";
 
 const queryString = require('query-string');
 // BlockModal display
@@ -103,45 +103,12 @@ function BlockExplorer(props) {
     }
     else {
         return (
-            <>
-                <Grid centered>
-                    <Grid.Row centered>
-                        {search()}
-                    </Grid.Row>
-                    <Grid.Row stretched centered>
-                        <Container>
-                            <Segment.Group compact={true} >
-                                <Segment className="notifySegments" textAlign="left">{<Help type='height' />}Height: {store.madNetAdapter.blockInfo['BClaims']['Height']}</Segment>
-                                <Segment className="notifySegments" textAlign="left">{<Help type='txCount' />}Transaction Count: {store.madNetAdapter.blockInfo['BClaims']['TxCount'] ? store.madNetAdapter.blockInfo['BClaims']['TxCount'] : 0}</Segment>
-                                <Segment className="notifySegments" textAlign="left">{<Help type='previousBlock' />}Previous Block: 0x{store.madNetAdapter.blockInfo['BClaims']['PrevBlock']}<Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + store.madNetAdapter.blockInfo['BClaims']['PrevBlock'])} /></Segment>
-                                <Segment className="notifySegments" textAlign="left">{<Help type='txRoot' />}Transaction Root: 0x{store.madNetAdapter.blockInfo['BClaims']['TxRoot']}<Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + store.madNetAdapter.blockInfo['BClaims']['TxRoot'])} /></Segment>
-                                <Segment className="notifySegments" textAlign="left">{<Help type='stateRoot' />}State Root: 0x{store.madNetAdapter.blockInfo['BClaims']['StateRoot']}<Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + store.madNetAdapter.blockInfo['BClaims']['StateRoot'])} /></Segment>
-                                <Segment className="notifySegments" textAlign="left">{<Help type='headerRoot' />}Header Root: 0x{store.madNetAdapter.blockInfo['BClaims']['HeaderRoot']}<Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + store.madNetAdapter.blockInfo['BClaims']['HeaderRoot'])} /></Segment>
-                                <Segment className="notifySegments" textAlign="left">{<Help type='groupSignature' />}Group Signature: 0x{store.madNetAdapter.blockInfo['SigGroup']}<Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + store.madNetAdapter.blockInfo['SigGroup'])} /></Segment>
-                                <Segment className="notifySegments" textAlign="left">
-                                    <Accordion fluid styled>
-                                        <Accordion.Title
-                                            className={store.madNetAdapter.blockInfo['TxHshLst'] && store.madNetAdapter.blockInfo['TxHshLst'].length > 0 ? "" : "disableDrop"}
-                                            active={txDrop}
-                                            onClick={() => { if (store.madNetAdapter.blockInfo['TxHshLst'] && store.madNetAdapter.blockInfo['TxHshLst'].length > 0) { setTxDrop(!txDrop) } }}
-                                        >
-                                            <Icon name='dropdown' />
-                                        Transaction Hash List
-                                    </Accordion.Title>
-                                        <Accordion.Content active={txDrop}>
-                                            <List bulleted>
-                                                <Divider />
-                                                {txList()}
-                                            </List>
-                                        </Accordion.Content>
-                                    </Accordion>
-
-                                </Segment>
-                            </Segment.Group>
-                        </Container>
-                    </Grid.Row>
-                </Grid>
-            </>
+            <BlockDetails 
+                txDrop={txDrop} 
+                setTxDrop={setTxDrop} 
+                txList={txList}
+                {...props} 
+            />
         )
     }
 }

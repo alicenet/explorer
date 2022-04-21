@@ -1,0 +1,19 @@
+.collapsableCard {
+    margin-top: 35px;
+}
+
+.collapsableCard .ui.accordionSegment { 
+    border-top: 2px solid #00FFD1;
+    background: #444444 !important;
+    padding-bottom: 0;
+}
+
+.collapsableCard .ui.accordionSegment.closed {
+    background: #343333 !important;
+}
+
+.collapsableCard .accordionTitle {
+    color: inherit !important;
+    cursor: pointer !important;
+    padding-bottom: 18px !important;
+}

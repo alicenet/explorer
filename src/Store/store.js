@@ -1,7 +1,8 @@
 import React, { createContext, Component } from 'react';
 
 // prod
-const defaultSettings = {"madnetProvider": "https://edge.mnexplore.com/v1/", "theme": "dark" }
+// TODO reverse to original provider URL
+const defaultSettings = {"madnetProvider": "https://mad.catmad.duckdns.org/v1/", "theme": "dark" }
 
 // testnet
 //const defaultSettings = {"madnetProvider": "https://testnet.edge.mnexplore.com/v1/", "theme": "dark" }
