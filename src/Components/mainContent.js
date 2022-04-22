@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react';
 import MadNetAdapter from "../Utils/madNetAdapter.js";
 import DataExplorer from './dataExplorer.js';
 import BlockMonitor from './blockMonitor.js';
-import BlockExplorer from './blockExplorer.js';
+import BlockExplorer from './blockExplorer/blockExplorer.js';
 import TxExplorer from './txExplorer.js';
 import Settings from './settings.js'
 import Home from './home.js';
@@ -28,13 +28,13 @@ function MainContent(props){
                 }
                 break;;
             case 'wait':
-                props.states.setLoading(data);;
+                props.states.setLoading(data);
                 return;;
             case 'error':
-                props.states.setError(data);;
+                props.states.setError(data);
                 break;;
             case 'view':
-                props.states.history.push(data);;
+                props.states.history.push(data);
                 break;;
             default:
                 console.log(event)
@@ -80,20 +80,20 @@ function MainContent(props){
         }
         switch (activeMadnetPanel) {
             case 'home':
-                return (<Home states={props.states} />);;
+                return (<Home states={props.states} />);
             case 'blocks':
-                return (<BlockMonitor states={props.states} />);;
+                return (<BlockMonitor states={props.states} />);
             case 'block':
-                return (<BlockExplorer states={props.states} />);;
+                return (<BlockExplorer states={props.states} />);
             case 'tx':
-                return (<TxExplorer states={props.states} />);;
+                return (<TxExplorer states={props.states} />);
             case 'data':
-                return (<DataExplorer states={props.states} />);;
+                return (<DataExplorer states={props.states} />);
             case 'settings':
-                return (<Settings states={props.states} />);;
+                return (<Settings states={props.states} />);
             default:
                 // Home
-                return (<></>);;
+                return (<></>);
         }
     }
 

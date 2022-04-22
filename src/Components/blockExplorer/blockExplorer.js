@@ -1,21 +1,27 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Container, Segment, Grid, Form, Button } from "semantic-ui-react"
-import { StoreContext } from "../Store/store.js";
-import BlockDetails from "./blockDetails/blockDetails";
+import { StoreContext } from "../../Store/store.js";
+import CollapsableCard from './collapsableCard/collapsableCard'; 
+import BlockList from './blockList/blockList'; 
+import TxHashList from './txHashList/txHashList'; 
+import { ReactComponent as CubeIcon } from '../../Assets/cube-icon.svg';
+import { ReactComponent as TxHashIcon } from '../../Assets/tx-hash-icon.svg';
 
-const queryString = require('query-string');
-// TODO Remove after integration
+// TODO Remove after state implementation
 const MOCKED_TX = [
     '0xd1b7b6968afede3ce9465658611ac367bcd1d9384736d0da11b32770c69680e3',
     '0xd1b7b6968afede3ce9465658611ac367bcd1d9384736d0da11b32770c69680e3',
     '0xd1b7b6968afede3ce9465658611ac367bcd1d9384736d0da11b32770c69680e3'
 ];
 
+const queryString = require('query-string');
+
 // BlockModal display
 function BlockExplorer(props) {
     const { store } = useContext(StoreContext);
-    let [blockNumber, setBlockNumber] = useState(false);
-    let [txDrop, setTxDrop] = useState(false);
+    const [blockNumber, setBlockNumber] = useState(false);
+    const { blockInfo = {} } = store.madNetAdapter;
+    const [txDrop, setTxDrop] = useState(false);
 
     // Setup data on mount
     useEffect(() => {
@@ -51,7 +57,7 @@ function BlockExplorer(props) {
         );
     }
 
-    const handleTxPopupClick = (e) => store.madNetAdapter.viewTransaction(e, true);
+    const handleTxView = (e) => store.madNetAdapter.viewTransaction(e, true);
 
     // Search for a block
     const search = () => {
@@ -59,7 +65,11 @@ function BlockExplorer(props) {
             <Segment raised>
                 <Form fluid="true">
                     <Form.Group>
-                        <Form.Input onChange={(event) => { handleChange(event) }} label="Block Number" placeholder={store.madNetAdapter.currentBlock ? store.madNetAdapter.currentBlock : 1} />
+                        <Form.Input 
+                            onChange={(event) => { handleChange(event) }} 
+                            label="Block Number" 
+                            placeholder={store.madNetAdapter.currentBlock ? store.madNetAdapter.currentBlock : 1} 
+                        />
                     </Form.Group>
                     <Button color="blue" onClick={(event) => handleSubmit(event)}>Find</Button>
                 </Form>
@@ -88,13 +98,29 @@ function BlockExplorer(props) {
     }
     else {
         return (
-            <BlockDetails 
-                txDrop={txDrop} 
-                setTxDrop={setTxDrop}
-                handleTxPopupClick={handleTxPopupClick} 
-                // txHshLst={store.madNetAdapter.blockInfo['TxHshLst']}
-                txHshLst={MOCKED_TX}
-            />
+            <>
+                <CollapsableCard 
+                    title={`Block #${blockInfo.BClaims.Height}`}
+                    icon={<CubeIcon />}
+                    open={true}
+                    disabled={false}
+                >
+                    <BlockList blockInfo={blockInfo} />
+                </CollapsableCard>
+
+                <CollapsableCard 
+                    title="Transaction Hash List"
+                    icon={<TxHashIcon />}
+                    open={txDrop}
+                    disabled={txDrop}
+                >
+                    <TxHashList 
+                        // txHshLst={blockInfo.TxHshLst} 
+                        txHshLst={MOCKED_TX} 
+                        handleViewTransaction={handleTxView} 
+                    />
+                </CollapsableCard>
+            </>
         )
     }
 }
