@@ -7,8 +7,8 @@ import {
 } from "semantic-ui-react"
 import './collapsableCard.css';
 
-function CollapsableCard({ children, title, disabled, icon = false, ...props }) {
-    const [isBlockOpen, toggleBlock] = useState(false);
+function CollapsableCard({ children, open = false, title, disabled, icon = false, ...props }) {
+    const [isBlockOpen, toggleBlock] = useState(open);
 
     return (
         <Container className="collapsableCard">
@@ -23,8 +23,8 @@ function CollapsableCard({ children, title, disabled, icon = false, ...props }) 
                         onClick={() => toggleBlock(isOpen => !isOpen)}
                     >
                         {icon}
-                        {title}
-                        <Icon name='dropdown' />
+                        <h3>{title}</h3>
+                        <Icon name="caret down" />
                     </Accordion.Title>
 
                     <Accordion.Content 

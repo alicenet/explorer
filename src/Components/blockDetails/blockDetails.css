@@ -1,16 +1,52 @@
 .collapsableCard .row {
     border-top: 1px solid #575555;
     background: #343333 !important;
+    padding: 18px 0 !important;
+}
+
+.collapsableCard .row .help {
+    color: #B3BBCC;
+    margin-right: 10px !important;
+}
+.collapsableCard .row .column:last-child {
+    display: flex !important;
+    justify-content: flex-start;
+}
+
+.collapsableCard .row p {
+    display: inline;
+    margin-right: 10px;
+    width: 462px;
+}
+
+.collapsableCard .row a {
+    margin-right: 10px;
 }
 
 .collapsableCard .ui.icon.button {
     box-shadow: none !important;
-    margin-left: 10px;
-    padding: 1px;
+    margin-left: 5px;
+    padding: 0 3px !important;
     border-radius: 0 !important;
     background: #494949 !important;
+    display: flex;
+    align-items: center;
+    border-radius: 2px !important;
+}
+
+.collapsableCard .ui.icon.button:first-child {
+    margin-left: 10px;
+}
+
+.collapsableCard .ui.icon.button:hover {
+    opacity: 0.7;
 }
 
 .collapsableCard .ui.button .icon {
-    color: white;
+    color: #ffffff;
+}
+
+.collapsableCard .row .icon {
+    height: auto !important;
+    padding: 0 !important;
 }

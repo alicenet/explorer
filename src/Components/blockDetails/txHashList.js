@@ -8,23 +8,23 @@ function TxHashList({ txHshLst, handleTxPopupClick, ...props }) {
         return (<p></p>);
     }
 
-    return txHshLst && txHshLst.map((e, i) => {
-        return (
-            <Grid padded='vertically'>
-                <Grid.Row className="row">
+    return <Grid padded='vertically'>
+        {txHshLst && txHshLst.map((hash, index) => {
+            return (
+                <Grid.Row key={index}>
                     <Grid.Column width={1}>Tx Hash</Grid.Column>
                     <Grid.Column width={13}>
-                        <Link to="/">0x{e}</Link>
+                        <Link to="/">0x{hash}</Link>
                         <Icon 
                             name="copy outline" 
                             className="click" 
-                            onClick={() => props.states.copyText("0x" + e)} 
+                            onClick={() => props.states.copyText("0x" + hash)} 
                         />
                     </Grid.Column>
                 </Grid.Row>
-            </Grid>
-        );
-    })
+            )
+        })}
+    </Grid>
 }
 
 export default TxHashList;

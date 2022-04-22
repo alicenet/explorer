@@ -53,31 +53,6 @@ function BlockExplorer(props) {
 
     const handleTxPopupClick = (e) => store.madNetAdapter.viewTransaction(e, true);
 
-    // Display BlockData
-    // const txList = () => {
-    //     if (!store.madNetAdapter.blockInfo['TxHshLst']) {
-    //         return (<p></p>)
-    //     }
-
-    //     return store.madNetAdapter.blockInfo['TxHshLst'].map((e, i) => {
-    //         return (
-    //             <List.Item key={i}>
-    //                 <Grid.Row>
-    //                     0x{e}
-    //                     <Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + e)} />
-    //                     <Popup
-    //                         trigger={<Icon className="click" name="external" onClick={() => store.madNetAdapter.viewTransaction(e, true)} />}
-    //                         content={'View Transaction'}
-    //                         position='top left'
-    //                         hideOnScroll
-    //                         style={{ zIndex: 9999999 }}
-    //                     />
-    //                 </Grid.Row>
-    //             </List.Item>
-    //         )
-    //     })
-    // }
-
     // Search for a block
     const search = () => {
         return (

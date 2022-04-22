@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Popup, Icon } from "semantic-ui-react";
 
 const content = {
@@ -34,7 +34,8 @@ const content = {
 function Help(props) {
     return (
         <Popup
-            trigger={<Icon name="question circle outline" circular />}
+            // TODO Remove inline styles
+            trigger={<Icon name="help circle" circular />}
             content={content[props.type]}
             position='top left'
             hideOnScroll
