@@ -4,7 +4,7 @@ import { Icon, Grid } from "semantic-ui-react";
 import { copyText } from '../../../Utils/copyText';
 import './txHashList.css';
 
-function TxHashList({ txHshLst }) {
+function TxHashList({ txHshLst, handleViewTransaction }) {
     if (!txHshLst) {
         return (<p></p>);
     }

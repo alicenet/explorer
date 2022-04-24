@@ -4,7 +4,7 @@ import { copyText } from '../../../Utils/copyText';
 import Help from '../../help.js';
 import './blockList.css'
 
-function BlockDetails({ blockInfo }) {
+function BlockDetails({ blockInfo, handleBlockNav }) {
     return (
         <Grid className="blockList" padded='vertically'>
             <Grid.Row>
@@ -16,8 +16,8 @@ function BlockDetails({ blockInfo }) {
                     {blockInfo.BClaims.Height}
                     <>
                         {/* TODO Add on click action */}
-                        <Button icon onClick={() => {}}><Icon name="chevron left" size="small" /></Button>
-                        <Button icon onClick={() => {}}><Icon name="chevron right" size="small" /></Button>
+                        <Button icon onClick={handleBlockNav}><Icon name="chevron left" size="small" /></Button>
+                        <Button icon onClick={handleBlockNav}><Icon name="chevron right" size="small" /></Button>
                     </>
                 </Grid.Column>
             </Grid.Row>

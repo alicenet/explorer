@@ -57,7 +57,11 @@ function BlockExplorer(props) {
         );
     }
 
+    // TODO define transaction handler
     const handleTxView = (e) => store.madNetAdapter.viewTransaction(e, true);
+
+    // TODO remove console log after implementation
+    const handleBlockNav = () => console.log('block nav');
 
     // Search for a block
     const search = () => {
@@ -105,7 +109,10 @@ function BlockExplorer(props) {
                     open={true}
                     disabled={false}
                 >
-                    <BlockList blockInfo={blockInfo} />
+                    <BlockList 
+                        blockInfo={blockInfo} 
+                        handleBlockNav={handleBlockNav} 
+                    />
                 </CollapsableCard>
 
                 <CollapsableCard 
