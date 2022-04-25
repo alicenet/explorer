@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from 'react';
 import CustomTable from '../table/customTable';
-import { StoreContext } from '../../Store/store.js';
 import { ReactComponent as TxIcon } from '../../Assets/tx-icon.svg';
 
 const HEADERS_TX = ["Value", "TX Index", "Owner"]

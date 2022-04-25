@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from 'react';
 import CustomTable from '../table/customTable';
-import { StoreContext } from '../../Store/store.js';
 import { ReactComponent as BlocksIcon } from '../../Assets/blocks-icon.svg';
 
 const HEADERS_BLOCKS = ["Height", "TX Count", "Group Signature"]
