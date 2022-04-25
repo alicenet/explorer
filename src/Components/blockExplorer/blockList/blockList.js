@@ -2,9 +2,9 @@ import React from 'react';
 import { Button, Icon, Grid } from "semantic-ui-react"
 import { copyText } from '../../../Utils/copyText';
 import Help from '../../help.js';
-import './blockList.css'
+import './blockList.css';
 
-function BlockDetails({ blockInfo, handleBlockNav }) {
+function BlockDetails({ height, txCount, prevBlock, txRoot, stateRoot, headerRoot, sigGroup, handleBlockNav }) {
     return (
         <Grid className="blockList" padded='vertically'>
             <Grid.Row>
@@ -13,7 +13,7 @@ function BlockDetails({ blockInfo, handleBlockNav }) {
                     <p>Block Height</p>
                 </Grid.Column>
                 <Grid.Column width={12}>
-                    {blockInfo.BClaims.Height}
+                    {height}
                     <>
                         {/* TODO Add on click action */}
                         <Button icon onClick={handleBlockNav}><Icon name="chevron left" size="small" /></Button>
@@ -28,7 +28,7 @@ function BlockDetails({ blockInfo, handleBlockNav }) {
                     <p>Transaction Count</p>
                 </Grid.Column> 
                 <Grid.Column width={12}>
-                    <p>{blockInfo.BClaims.TxCount ? blockInfo.BClaims.TxCount : 0}</p>
+                    <p>{txCount ? txCount : 0}</p>
                 </Grid.Column>
             </Grid.Row>
 
@@ -38,11 +38,11 @@ function BlockDetails({ blockInfo, handleBlockNav }) {
                     <p>Previous Block</p>
                 </Grid.Column>
                 <Grid.Column width={12}>
-                    <p>{`0x${blockInfo.BClaims.PrevBlock}`}</p>
+                    <p>{`0x${prevBlock}`}</p>
                     <Icon 
                         name="copy outline" 
                         className="click" 
-                        onClick={() => copyText("0x" + blockInfo.BClaims.PrevBlock)} 
+                        onClick={() => copyText("0x" + prevBlock)} 
                     />
                 </Grid.Column>
             </Grid.Row>
@@ -53,11 +53,11 @@ function BlockDetails({ blockInfo, handleBlockNav }) {
                     <p>Transaction Root</p>
                 </Grid.Column>
                 <Grid.Column width={12}>
-                    <p>{`0x${blockInfo.BClaims.TxRoot}`}</p>
+                    <p>{`0x${txRoot}`}</p>
                     <Icon 
                         name="copy outline" 
                         className="click" 
-                        onClick={() => copyText("0x" + blockInfo.BClaims.TxRoot)} 
+                        onClick={() => copyText("0x" + txRoot)} 
                     />
                 </Grid.Column>
             </Grid.Row>
@@ -68,11 +68,11 @@ function BlockDetails({ blockInfo, handleBlockNav }) {
                         <p>State Root</p>
                     </Grid.Column>
                 <Grid.Column width={12}>
-                    <p>{`0x${blockInfo.BClaims.StateRoot}`}</p>
+                    <p>{`0x${stateRoot}`}</p>
                     <Icon 
                         name="copy outline" 
                         className="click" 
-                        onClick={() => copyText("0x" + blockInfo.BClaims.StateRoot)} 
+                        onClick={() => copyText("0x" + stateRoot)} 
                     />
                 </Grid.Column>
             </Grid.Row>
@@ -83,11 +83,11 @@ function BlockDetails({ blockInfo, handleBlockNav }) {
                     <p>Header Root</p>
                 </Grid.Column>
                 <Grid.Column width={12}>
-                    <p>{`0x${blockInfo.BClaims.HeaderRoot}`}</p>
+                    <p>{`0x${headerRoot}`}</p>
                     <Icon 
                         name="copy outline" 
                         className="click" 
-                        onClick={() => copyText("0x" + blockInfo.BClaims.HeaderRoot)} 
+                        onClick={() => copyText("0x" + headerRoot)} 
                     />
                 </Grid.Column>
             </Grid.Row>
@@ -98,11 +98,11 @@ function BlockDetails({ blockInfo, handleBlockNav }) {
                     <p>Group Signature</p>
                 </Grid.Column>
                 <Grid.Column width={12}>
-                    <p>{`0x${blockInfo.SigGroup}`}</p>
+                    <p>{`0x${sigGroup}`}</p>
                     <Icon 
                         name="copy outline" 
                         className="click" 
-                        onClick={() => copyText("0x" + blockInfo.SigGroup)} 
+                        onClick={() => copyText("0x" + sigGroup)} 
                     />
                 </Grid.Column>
             </Grid.Row>

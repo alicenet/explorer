@@ -110,7 +110,13 @@ function BlockExplorer(props) {
                     disabled={false}
                 >
                     <BlockList 
-                        blockInfo={blockInfo} 
+                        height={blockInfo.BClaims.Height}
+                        txCount={blockInfo.BClaims.TxCount}
+                        prevBlock={blockInfo.BClaims.PrevBlock}
+                        txRoot={blockInfo.BClaims.TxRoot}
+                        stateRoot={blockInfo.BClaims.StateRoot}
+                        headerRoot={blockInfo.BClaims.HeaderRoot}
+                        sigGroup={blockInfo.SigGroup}
                         handleBlockNav={handleBlockNav} 
                     />
                 </CollapsableCard>
