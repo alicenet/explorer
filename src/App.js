@@ -8,7 +8,7 @@ import { Container, Dimmer, Loader } from 'semantic-ui-react';
 import './App.css';
 import copy from 'copy-to-clipboard';
 import MainView from './MainView.js';
-import Errors from "./Components/errors.js";
+import Errors from "./Components/legacy/errors.js";
 import { Store } from './Store/store.js';
 
 /**
@@ -72,7 +72,8 @@ return (
           </Dimmer>
           <Errors states={propStates} />
           <Switch>
-            <Route exact path={["/blocks", "/"]} render={(props) => <MainView states={{ ...propStates, ...props }} />} />
+            <Route exact path={["/home", "/"]} render={(props) => <MainView states={{ ...propStates, ...props }} />} />
+            <Route exact path="/blocks" render={(props) => <MainView states={{ ...propStates, ...props }} />} />
             <Route exact path="/about" render={(props) => <MainView states={{ ...propStates, ...props }} />} />
             <Route exact path="/block" render={(props) => <MainView states={{ ...propStates, ...props }} />} />
             <Route exact path="/tx" render={(props) => <MainView states={{ ...propStates, ...props }} />} />

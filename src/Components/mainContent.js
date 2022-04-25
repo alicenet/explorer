@@ -2,12 +2,12 @@ import React, { useContext, useRef, useEffect } from 'react';
 import { StoreContext } from "../Store/store.js";
 import { Button } from 'semantic-ui-react';
 import MadNetAdapter from "../Utils/madNetAdapter.js";
-import DataExplorer from './dataExplorer.js';
-import BlockMonitor from './blockMonitor.js';
-import BlockExplorer from './blockExplorer.js';
-import TxExplorer from './txExplorer.js';
-import Settings from './settings.js'
-import Home from './home.js';
+import DataExplorer from './legacy/dataExplorer.js';
+import BlockMonitor from './legacy/blockMonitor.js';
+import BlockExplorer from './legacy/blockExplorer.js';
+import TxExplorer from './legacy/txExplorer.js';
+import Settings from './legacy/settings.js'
+import Home from './home/home.js';
 
 function MainContent(props){
 
@@ -74,10 +74,6 @@ function MainContent(props){
 
     // Render sub menu view
     const view = (activeMadnetPanel) => {
-        if (!activeMadnetPanel) {
-            // No home currently exists, default to blocks
-            activeMadnetPanel = 'blocks'
-        }
         switch (activeMadnetPanel) {
             case 'home':
                 return (<Home states={props.states} />);;
@@ -93,7 +89,7 @@ function MainContent(props){
                 return (<Settings states={props.states} />);;
             default:
                 // Home
-                return (<></>);;
+                return (<Home states={props.states} />);;
         }
     }
 

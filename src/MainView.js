@@ -1,8 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { StoreContext } from "./Store/store.js";
-import { Dimmer, Loader, Grid, Menu } from "semantic-ui-react";
+import { Dimmer, Loader, Grid } from "semantic-ui-react";
 import MainMenu from "./Components/menu.js";
 import MainContent from "./Components/mainContent.js";
+import Search from "./Components/search";
+import Footer from "./Components/footer";
 
 function MainView(props) {
     // Store component to access states
@@ -18,6 +20,17 @@ function MainView(props) {
         actions.loadSettings();
     }, [])
 
+    //TODO handle both searchs
+    const handleSearch = (blockNumber) => {
+        store.madNetAdapter.viewBlock(blockNumber)
+        props.states.history.replace(
+            {
+                pathname: 'block',
+                search: '?height=' + blockNumber
+            }
+        );
+    }
+
     // Loading if app not initialized
     if (!store || !store.wallet || !store.settings) {
         return (
@@ -31,43 +44,18 @@ function MainView(props) {
     else {
         return (
             <>
-                <Grid style={{ padding: "10px 20px" }} className="mainView">
+                <Grid style={{ padding: "10px 20px", marginTop: "45px" }} className="mainView">
                     <Grid.Row>
-                        <MainMenu
-                            states={props.states}
-                        />
+                        <MainMenu states={props.states}/>
                     </Grid.Row>
                 </Grid>
                 <Grid centered>
                     <Grid.Row centered>
+                        <Search handleSearch={handleSearch}/>
                         <MainContent states={props.states}/>
                     </Grid.Row>
                 </Grid>
-                <Grid centered>
-                    <Grid.Row>
-                        <Menu className="bottomMenu" size="small">
-                            <Menu.Item
-                                className="blue"
-                                onClick={() => window.location = "https://madnetwork.com"}
-                            >
-                                About
-                            </Menu.Item>
-                            <Menu.Item
-                                className="blue"
-                                onClick={() => window.location = "https://github.com/MadBase/"}
-                            >
-                                Github
-                            </Menu.Item>
-                            <Menu.Item
-                                className="blue"
-                                onClick={() => window.location = "https://github.com/MadBase/MadNet-Whitepaper/blob/main/madnet.pdf"}
-                            >
-                                White Paper
-                            </Menu.Item>
-
-                        </Menu>
-                    </Grid.Row>
-                </Grid>
+                <Footer/>
             </>
         )
     }
