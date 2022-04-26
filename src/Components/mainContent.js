@@ -7,75 +7,73 @@ import BlockExplorer from './legacy/blockExplorer.js';
 import TxExplorer from './legacy/txExplorer.js';
 import Settings from './legacy/settings.js'
 import Home from './home/home.js';
+import { useHistory, useLocation } from 'react-router';
 
-function MainContent(props){
+function MainContent(props) {
+
+    const location = useLocation();
+    const history = useHistory();
 
     // Store states
-    const { store, actions } = useContext(StoreContext);
+    const appContext = useContext(AppContext);
+    const { madNetAdapter, settings, wallet } = getContextState(appContext)
+
     // Check if madnet adapter connected
     const connectAttempt = useRef(false);
-    // Update madnet adapter
-    const update = useRef(false);
 
     // Callback for the madNetAdapter to update the component
     const adapterCb = (event, data) => {
-        props.states.setUpdateView((updateView) => ++updateView);
         switch (event) {
             case 'success':
                 if (data) {
-                    props.states.setNotify(data)
+                    console.log(data)
+                    props.states.setNotify(data) // Not sure yet..
                 }
                 break;;
             case 'wait':
-                props.states.setLoading(data);;
+                actions.setLoading(appContext, data);;
                 return;;
             case 'error':
-                props.states.setError(data);;
+                actions.setError(appContext, data);;
                 break;;
             case 'view':
-                props.states.history.push(data);;
+                history.push(data);;
                 break;;
             default:
                 console.log(event)
         }
-        props.states.setLoading(false);
     }
 
-       // Updates for when component mounts or updates
-       useEffect(() => {
+    // Updates for when component mounts or updates
+    useEffect(() => {
         // Attempt to setup adapter if not previously instanced
-        if (!store.madNetAdapter && !connectAttempt.current) {
+        if (!madNetAdapter && !connectAttempt.current) {
             connectAttempt.current = true;
             addAdapter();
         }
-        if (store.madNetAdapter &&
-            store.settings.madnetProvider !== store.madNetAdapter.provider &&
-            !update.current
+        if (madNetAdapter &&
+            settings.madnetProvider !== madNetAdapter.provider
         ) {
-            update.current = true;
             addAdapter(true);
         }
 
-    }, [props, actions, store.madNetAdapter]) // eslint-disable-line react-hooks/exhaustive-deps
+    }, [props, actions, madNetAdapter]) // eslint-disable-line react-hooks/exhaustive-deps
 
 
     // Add the madNetAdapter and initialize
     const addAdapter = async (forceConnect) => {
-        if (!store.madNetAdapter ||
+        if (!madNetAdapter ||
             forceConnect
         ) {
-            let madNetAdapter = new MadNetAdapter(adapterCb, store.wallet, store.settings.madnetProvider);
-            await madNetAdapter.init()
-            await actions.addMadNetAdapter(madNetAdapter)
-            update.current = false;
+            let aliceNetAdapter = new MadNetAdapter();
+            await aliceNetAdapter.init(appContext, wallet, settings.aliceNetProvider)
+            actions.setAliceNetAdapter(appContext, aliceNetAdapter)
         }
     }
 
     // Render sub menu view
     const view = (activeMadnetPanel) => {
         switch (activeMadnetPanel) {
-            case 'home':
-                return (<Home states={props.states} />);;
             case 'blocks':
                 return (<BlockMonitor states={props.states} />);;
             case 'block':
@@ -92,7 +90,7 @@ function MainContent(props){
         }
     }
 
-    return <>{store.madNetAdapter.connected ? view(props.states.location.pathname.slice(1)) : props.states.location.pathname.slice(1) === 'settings' ? view(props.states.location.pathname.slice(1)) : <Button onClick={() => addAdapter(true)}>Reconnect</Button>}</>
+    return <>{madNetAdapter && madNetAdapter.connected ? view(location.pathname.slice(1)) : location.pathname.slice(1) === 'settings' ? view(location.pathname.slice(1)) : <Button onClick={() => addAdapter(true)}>Reconnect</Button>}</>
 }
 
 export default MainContent;

@@ -1,33 +1,36 @@
-import React, { useEffect, useContext } from 'react';
+import React from 'react';
 import CustomTable from '../table/customTable';
-import { ReactComponent as BlocksIcon } from '../../Assets/blocks-icon.svg';
+import { ReactComponent as BlocksIcon } from '../../assets/blocks-icon.svg';
+import { useSelector } from 'react-redux';
+import { aliceNetAdapter } from '../../adapter/alicenetadapter';
 
 const HEADERS_BLOCKS = ["Height", "TX Count", "Group Signature"]
 
-function LatestBlocks(){
-    // Store states
-    const { store } = useContext(StoreContext);
+function LatestBlocks() {
+    useSelector(s => s.aliceNetAdapter); // Listen to aliceNetAdapter State
 
     // Start monitor when component mounts
-    useEffect(() => {
-        if (store && store.madNetAdapter && !store.madNetAdapter.blocksStarted) {
-            store.madNetAdapter.monitorBlocks();
+    React.useEffect(() => {
+        if (aliceNetAdapter && !aliceNetAdapter.blocksStarted) {
+            aliceNetAdapter.monitorBlocks();
         }
-        return () => { if (store && store.madNetAdapter) { store.madNetAdapter.blocksReset() } }
-    }, [store.madNetAdapter]); // eslint-disable-line react-hooks/exhaustive-deps
+        return () => { if (aliceNetAdapter && aliceNetAdapter) { aliceNetAdapter.blocksReset() } }
+    }, [aliceNetAdapter]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const rows = store.madNetAdapter.blocks?.slice(0, store.madNetAdapter.blocksMaxLen).map((e, i) => {
-        return { 
-            [HEADERS_BLOCKS[0]]: e['BClaims']['Height'], 
-            [HEADERS_BLOCKS[1]]: e['BClaims']['TxCount'] ? e['BClaims']['TxCount'] : 0, 
-            [HEADERS_BLOCKS[2]]: `0x${e['SigGroup'].slice(0, 20) + "..." + e['SigGroup'].slice(e['SigGroup'].length - 20)}`}
+    const rows = aliceNetAdapter.blocks?.slice(0, aliceNetAdapter.blocksMaxLen).map((e, i) => {
+        return {
+            [HEADERS_BLOCKS[0]]: e['BClaims']['Height'],
+            [HEADERS_BLOCKS[1]]: e['BClaims']['TxCount'] ? e['BClaims']['TxCount'] : 0,
+            [HEADERS_BLOCKS[2]]: `0x${e['SigGroup'].slice(0, 20) + "..." + e['SigGroup'].slice(e['SigGroup'].length - 20)}`,
+            "key" : `0x${e['SigGroup'].slice(0, 20) + "..." + e['SigGroup'].slice(e['SigGroup'].length - 20)}`,
+        }
     })
 
-    return <CustomTable 
-            Icon={() => <BlocksIcon/>} 
-            headers={HEADERS_BLOCKS} 
-            rows={rows} 
-            title={"Latest Blocks"}/>
+    return <CustomTable
+        Icon={() => <BlocksIcon />}
+        headers={HEADERS_BLOCKS}
+        rows={rows}
+        title={"Latest Blocks"} />
 }
 
 export default LatestBlocks;

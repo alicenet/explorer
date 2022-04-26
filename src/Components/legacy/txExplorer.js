@@ -7,7 +7,8 @@ const queryString = require('query-string');
 
 function TransactionExplorer(props) {
     // Store states
-    const { store } = useContext(StoreContext);
+    const appContext = useContext(AppContext);
+    const { madNetAdapter } = getContextState(appContext);
     // Search hash
     const [txHash, setTxHash] = useState(false);
     const [rawVin, setRawVin] = useState(false);
@@ -17,11 +18,11 @@ function TransactionExplorer(props) {
     useEffect(() => {
         let params = queryString.parse(props.states.location.search);
         if (params['txHash']) {
-            store.madNetAdapter.viewTransaction(params['txHash']);
+            madNetAdapter.viewTransaction(params['txHash']);
         }
 
-        if (store.madNetAdapter.transactionHash) {
-            props.states.history.replace({ pathname: 'tx', search: "?txHash=" + store.madNetAdapter.transactionHash })
+        if (madNetAdapter.transactionHash) {
+            props.states.history.replace({ pathname: 'tx', search: "?txHash=" + madNetAdapter.transactionHash })
         }
     }, []);
 
@@ -44,7 +45,7 @@ function TransactionExplorer(props) {
             event.preventDefault()
         }
         props.states.history.replace({ pathname: 'tx', search: "?txHash=" + txHash })
-        store.madNetAdapter.viewTransaction(txHash);
+        madNetAdapter.viewTransaction(txHash);
     }
 
     // Vin objects
@@ -118,7 +119,7 @@ function TransactionExplorer(props) {
             case "ValueStore":
                 return (
                     <React.Fragment key={object['VSPreImage']['TXOutIdx']}>
-                        <Segment className="notifySegments" textAlign="left">{<Help type='value' />}Value: {object['VSPreImage']['Value'] ? store.madNetAdapter.hexToInt(object['VSPreImage']['Value']) : 0}</Segment>
+                        <Segment className="notifySegments" textAlign="left">{<Help type='value' />}Value: {object['VSPreImage']['Value'] ? madNetAdapter.hexToInt(object['VSPreImage']['Value']) : 0}</Segment>
                         <Segment className="notifySegments" textAlign="left">{<Help type='owner' />}Owner: 0x{object['VSPreImage']['Owner'].slice(4)}{isBN(object['VSPreImage']['Owner'])}<Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + object['VSPreImage']['Owner'])} /></Segment>
                         <Segment className="notifySegments" textAlign="left">{<Help type='txIndex' />}Transaction Index: {object['VSPreImage']['TXOutIdx'] ? object['VSPreImage']['TXOutIdx'] : 0}</Segment>
                     </React.Fragment>
@@ -129,15 +130,15 @@ function TransactionExplorer(props) {
                         <Segment className="notifySegments" textAlign="left">{<Help type='index' />}Index: 0x{object['DSLinker']['DSPreImage']['Index'] ? object['DSLinker']['DSPreImage']['Index'] : 0}<Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + object['DSLinker']['DSPreImage']['Index'])} /></Segment>
                         <Segment className="notifySegments" textAlign="left">{<Help type='rawData' />}Raw Data: 0x{object['DSLinker']['DSPreImage']['RawData']}<Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + object['DSLinker']['DSPreImage']['RawData'])} /></Segment>
                         <Segment className="notifySegments" textAlign="left">{<Help type='owner' />}Owner: 0x{object['DSLinker']['DSPreImage']['Owner'].slice(4)}{isBN(object['DSLinker']['DSPreImage']['Owner'])}<Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + object['DSLinker']['DSPreImage']['Owner'])} /><Popup
-                            trigger={<Icon className="click" name="external" onClick={() => { store.madNetAdapter.dsRedirected = { "address": object['DSLinker']['DSPreImage']['Owner'].slice(4), "offset": "", "bnCurve": object['DSLinker']['DSPreImage']['Owner'].slice(3, 4) === "1" ? false : true }; props.states.history.push('data') }} />}
+                            trigger={<Icon className="click" name="external" onClick={() => { madNetAdapter.dsRedirected = { "address": object['DSLinker']['DSPreImage']['Owner'].slice(4), "offset": "", "bnCurve": object['DSLinker']['DSPreImage']['Owner'].slice(3, 4) === "1" ? false : true }; props.states.history.push('data') }} />}
                             content={'View Owner Datastores'}
                             position='top left'
                             hideOnScroll
                             style={{ zIndex: 9999999 }}
                         /></Segment>
                         <Segment className="notifySegments" textAlign="left">{<Help type='epoch' />}Issued At: {object['DSLinker']['DSPreImage']['IssuedAt']}</Segment>
-                        <Segment className="notifySegments" textAlign="left">{<Help type='expires' />}Expires: {store.madNetAdapter.getDSExp(object['DSLinker']['DSPreImage']['RawData'], object['DSLinker']['DSPreImage']['Deposit'], object['DSLinker']['DSPreImage']['IssuedAt'])}</Segment>
-                        <Segment className="notifySegments" textAlign="left">{<Help type='deposit' />}Deposit: {store.madNetAdapter.hexToInt(object['DSLinker']['DSPreImage']['Deposit'])}</Segment>
+                        <Segment className="notifySegments" textAlign="left">{<Help type='expires' />}Expires: {madNetAdapter.getDSExp(object['DSLinker']['DSPreImage']['RawData'], object['DSLinker']['DSPreImage']['Deposit'], object['DSLinker']['DSPreImage']['IssuedAt'])}</Segment>
+                        <Segment className="notifySegments" textAlign="left">{<Help type='deposit' />}Deposit: {madNetAdapter.hexToInt(object['DSLinker']['DSPreImage']['Deposit'])}</Segment>
                         <Segment className="notifySegments" textAlign="left">{<Help type='txIndex' />}Transaction Index: {object['DSLinker']['DSPreImage']['TXOutIdx'] ? object['DSLinker']['DSPreImage']['TXOutIdx'] : 0}</Segment>
                         <Segment className="notifySegments" textAlign="left">{<Help type='signature' />}Signature: 0x{object['Signature']}<Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + object['Signature'])} /></Segment>
                     </React.Fragment>
@@ -167,7 +168,7 @@ function TransactionExplorer(props) {
 
     // Get txData from madnet adapter
     const getData = () => {
-        if (!store.madNetAdapter.transaction) {
+        if (!madNetAdapter.transaction) {
             return (
                 <Segment>
                     <p>No Transaction to display!</p>
@@ -184,7 +185,7 @@ function TransactionExplorer(props) {
                         </Form.Group>
                     </Grid.Row>
                     <h4>Vin</h4>
-                    {vin(store.madNetAdapter.transaction["Vin"])}
+                    {vin(madNetAdapter.transaction["Vin"])}
 
                     <Grid.Row textAlign="right">
                         <Form.Group className="txSwitch switch" inline>
@@ -193,13 +194,13 @@ function TransactionExplorer(props) {
                         </Form.Group>
                     </Grid.Row>
                     <h4>Vout</h4>
-                    {vout(store.madNetAdapter.transaction["Vout"])}
+                    {vout(madNetAdapter.transaction["Vout"])}
                 </>
             )
         }
     }
 
-    if (!store.madNetAdapter.connected) {
+    if (!madNetAdapter.connected) {
         return (
             <Dimmer page active={true}>
                 <Loader>Loading Blocks</Loader>
@@ -223,9 +224,9 @@ function TransactionExplorer(props) {
                 </Grid.Row>
                 <Grid.Row centered>
                     <Container centered="true">
-                        <h3>{store.madNetAdapter.transactionHash ? "Tx Hash: 0x" + store.madNetAdapter.transactionHash : ""} {store.madNetAdapter.transactionHash ? (<Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + store.madNetAdapter.transactionHash)} />) : (<></>)}</h3>
-                        <h4>{store.madNetAdapter.transactionHeight ? "Height: " + store.madNetAdapter.transactionHeight : ""} {store.madNetAdapter.transactionHeight ? (<Popup
-                            trigger={<Icon className="click" name="external" onClick={() => store.madNetAdapter.viewBlock(store.madNetAdapter.transactionHeight)} />}
+                        <h3>{madNetAdapter.transactionHash ? "Tx Hash: 0x" + madNetAdapter.transactionHash : ""} {madNetAdapter.transactionHash ? (<Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + madNetAdapter.transactionHash)} />) : (<></>)}</h3>
+                        <h4>{madNetAdapter.transactionHeight ? "Height: " + madNetAdapter.transactionHeight : ""} {madNetAdapter.transactionHeight ? (<Popup
+                            trigger={<Icon className="click" name="external" onClick={() => madNetAdapter.viewBlock(madNetAdapter.transactionHeight)} />}
                             content={'View Block'}
                             position='top left'
                             hideOnScroll
