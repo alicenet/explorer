@@ -8,6 +8,7 @@
     background: #444444 !important;
     padding-bottom: 0;
     transition: background 0.2s ease-in-out;
+    overflow: hidden;
 }
 
 .collapsableCard .ui.accordionSegment.borderless { 
@@ -29,7 +30,16 @@
 
 .collapsableCard .accordionTitle h3 {
     margin: 0;
-    margin-right: 15px;
+}
+
+.collapsableCard .accordionTitle .countLabel {
+    background: #121212;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    margin-left: 5px;
 }
 
 .collapsableCard .accordionTitle :first-child{
@@ -40,6 +50,7 @@
     height: auto !important;
     transform: rotate(180deg);
     transition: all 0.2s ease-in-out;
+    margin-left: 15px;
 }
 
 .collapsableCard .closed .accordionTitle .icon {
@@ -52,6 +63,14 @@
     margin-bottom: 10px;
 }
 
+.collapsableCard .collapsableCard .accordion.ui {
+    margin: 0;
+}
+
 .collapsableCard .collapsableCard .ui.accordionSegment.closed {
     background: #444444 !important;
+}
+
+.collapsableCard .collapsableCard .accordionTitle h3 {
+    margin: 0;
 }

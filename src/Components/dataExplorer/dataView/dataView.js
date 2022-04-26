@@ -1,11 +1,11 @@
 import React from 'react';
-import { Button, Segment, Icon, Grid, Popup } from 'semantic-ui-react';
+import { Button, Segment, Icon, Grid } from 'semantic-ui-react';
 import CollapsableCard from '../../common/collapsableCard/collapsableCard';
 import { copyText } from '../../../Utils/copyText';
 import Help from '../../help.js';
 import './dataView.css';
 
-function DataView({ store, paginate,  ...props }) {
+function DataView({ store, paginate }) {
     if (store.madNetAdapter.dsDataStores.length === 0) {
         return (<p>No DataStores to display!</p>);
     }
@@ -16,7 +16,7 @@ function DataView({ store, paginate,  ...props }) {
         
     return (
         <Grid className="dataView" >
-            <Grid.Column>
+            <Grid.Column className="outerColumn">
                 <Segment className="segmentContainer">
                     {store.madNetAdapter.dsView.map((e, i) => (
                         <CollapsableCard 
@@ -91,34 +91,13 @@ function DataView({ store, paginate,  ...props }) {
                                             className="click" 
                                             onClick={() => copyText("0x" + e["DSLinker"]["TxHash"])} 
                                         />
-                                    </Grid.Column>
-                                </Grid.Row>
 
-                                <Grid.Row>
-                                    <Grid.Column width={3}>
-                                        <Help type="txHash" />
-                                        <p>Transaction Hash:</p>
-                                    </Grid.Column>
-                                    <Grid.Column width={12}>
-                                        <p>0x{e["DSLinker"]["TxHash"]}</p>
-                                        <Icon 
-                                            name="copy outline" 
-                                            className="click" 
-                                            onClick={() => copyText("0x" + e["DSLinker"]["TxHash"])} 
-                                        />
-                                        <Popup
-                                            trigger={
-                                                <Icon 
-                                                    className="click" 
-                                                    name="external" 
-                                                    onClick={() => store.madNetAdapter.viewTransaction(e["DSLinker"]["TxHash"], true)} 
-                                                />
-                                            }
-                                            content={'View Transaction'}
-                                            position='top left'
-                                            hideOnScroll
-                                            style={{ zIndex: 9999999 }}
-                                        />
+                                        <Button 
+                                            className="viewOwner"
+                                            onClick={() => store.madNetAdapter.viewTransaction(e["DSLinker"]["TxHash"], true)}
+                                        >
+                                            View Owner Datastores
+                                        </Button>
                                     </Grid.Column>
                                 </Grid.Row>
                             </Grid>

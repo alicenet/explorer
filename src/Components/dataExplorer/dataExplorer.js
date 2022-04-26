@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { StoreContext } from "../../Store/store.js";
-import { Container, Button, Form, Segment, Card, Grid, Icon } from 'semantic-ui-react';
+import { Container, Button, Form, Segment, Grid, Icon } from 'semantic-ui-react';
 import Switch from "react-switch";
 import CollapsableCard from '../common/collapsableCard/collapsableCard'; 
+import { ReactComponent as FileIcon } from '../../Assets/file-icon.svg';
 import DataView from './dataView/dataView'; 
 import Help from '../help.js';
 
@@ -162,9 +163,10 @@ function DataExplorer(props) {
             <Grid.Row>
                 <CollapsableCard 
                     title="Indexes from Offset"
-                    // icon={<CubeIcon />}
+                    icon={<FileIcon />}
                     open={true}
                     disabled={false}
+                    itemsCount={4}    
                 >
                     <DataView 
                         store={store} 

@@ -7,7 +7,16 @@ import {
 } from "semantic-ui-react"
 import './collapsableCard.css';
 
-function CollapsableCard({ children, open = false, title, disabled, icon = false, borderless = false, ...props }) {
+function CollapsableCard({ 
+    children, 
+    title, 
+    itemsCount,
+    disabled = false, 
+    open = false, 
+    icon = false, 
+    borderless = false, 
+    ...props 
+}) {
     const [isBlockOpen, toggleBlock] = useState(open);
 
     return (
@@ -24,6 +33,11 @@ function CollapsableCard({ children, open = false, title, disabled, icon = false
                     >
                         {icon}
                         <h3>{title}</h3>
+                        {itemsCount && (
+                            <span className="countLabel">
+                                {itemsCount}
+                            </span>
+                        )}
                         <Icon name="caret down" />
                     </Accordion.Title>
 
