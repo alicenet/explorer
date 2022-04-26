@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation, useHistory} from "react-router-dom";
 import { Menu, Image, Dropdown } from 'semantic-ui-react';
-import Logo from "../Assets/MadNetwork Logo Horizontal GRAYSCALE.png";
+import Logo from "../assets/MadNetwork Logo Horizontal GRAYSCALE.png";
 
 //TODO define where to get this
 const GITHUB_URL = 'https://github.com/madhive';
@@ -10,7 +10,7 @@ const COMMUNITY_URL = 'https://www.madnetwork.com/';
 //TODO define where to get this
 const WALLETS_PLACEHOLDER =[ 'wallet0', 'wallet1'] 
 
-function MadNet(props) {
+function AliceNetMenu(props) {
 
     const location = useLocation();
     const history = useHistory();
@@ -57,4 +57,4 @@ function MadNet(props) {
     )
 }
 
-export default MadNet;
+export default AliceNetMenu;
