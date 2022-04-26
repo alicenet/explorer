@@ -10,6 +10,10 @@
     transition: background 0.2s ease-in-out;
 }
 
+.collapsableCard .ui.accordionSegment.borderless { 
+    border: none !important;
+}
+
 .collapsableCard .ui.accordionSegment.closed {
     background: #343333 !important;
 }
@@ -40,4 +44,14 @@
 
 .collapsableCard .closed .accordionTitle .icon {
     transform: rotate(0deg);
+}
+
+/* Collapsable Children  */
+.collapsableCard .collapsableCard {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.collapsableCard .collapsableCard .ui.accordionSegment.closed {
+    background: #444444 !important;
 }

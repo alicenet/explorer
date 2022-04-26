@@ -2,7 +2,7 @@ import React, { useContext, useRef, useEffect } from 'react';
 import { StoreContext } from "../Store/store.js";
 import { Button } from 'semantic-ui-react';
 import MadNetAdapter from "../Utils/madNetAdapter.js";
-import DataExplorer from './dataExplorer.js';
+import DataExplorer from './dataExplorer/dataExplorer.js';
 import BlockMonitor from './blockMonitor.js';
 import BlockExplorer from './blockExplorer/blockExplorer.js';
 import TxExplorer from './txExplorer.js';

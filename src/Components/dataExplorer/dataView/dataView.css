@@ -1,0 +1,57 @@
+.dataView .ui.segmentContainer {
+    background: #121212 !important;
+    border-radius: 0; 
+}
+
+.dataView .column {
+    padding-left: 0 !important;
+}
+
+.dataView .row {
+    border-top: 1px solid #575555;
+    background: #343333 !important;
+    padding: 18px 0 !important;
+}
+
+.dataView .row .help {
+    color: #B3BBCC;
+    margin-right: 10px !important;
+}
+.dataView .row .column:last-child {
+    display: flex !important;
+    justify-content: flex-start;
+}
+
+.dataView .row p {
+    display: inline;
+    margin-right: 10px;
+    width: 462px;
+}
+
+.dataView .ui.icon.button {
+    box-shadow: none !important;
+    margin-left: 5px;
+    padding: 0 3px !important;
+    border-radius: 0 !important;
+    background: #494949 !important;
+    display: flex;
+    align-items: center;
+    border-radius: 2px !important;
+}
+
+.dataView .ui.icon.button:first-child {
+    margin-left: 10px;
+}
+
+.dataView .ui.icon.button:hover {
+    opacity: 0.7;
+}
+
+.dataView .ui.button .icon {
+    color: #ffffff;
+}
+
+.dataView .row .icon {
+    height: auto !important;
+    padding: 0 !important;
+}

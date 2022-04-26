@@ -7,14 +7,14 @@ import {
 } from "semantic-ui-react"
 import './collapsableCard.css';
 
-function CollapsableCard({ children, open = false, title, disabled, icon = false, ...props }) {
+function CollapsableCard({ children, open = false, title, disabled, icon = false, borderless = false, ...props }) {
     const [isBlockOpen, toggleBlock] = useState(open);
 
     return (
         <Container className="collapsableCard">
             <Segment 
                 textAlign="left" 
-                className={`accordionSegment ${ !isBlockOpen || disabled ? 'closed' : '' }`} 
+                className={`accordionSegment ${ !isBlockOpen || disabled ? 'closed' : '' } ${ borderless ? 'borderless' : '' }`} 
             >
                 <Accordion {...props}>
                     <Accordion.Title

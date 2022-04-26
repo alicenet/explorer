@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Container, Segment, Grid, Form, Button } from "semantic-ui-react"
 import { StoreContext } from "../../Store/store.js";
-import CollapsableCard from './collapsableCard/collapsableCard'; 
+import CollapsableCard from '../common/collapsableCard/collapsableCard'; 
 import BlockList from './blockList/blockList'; 
 import TxHashList from './txHashList/txHashList'; 
 import { ReactComponent as CubeIcon } from '../../Assets/cube-icon.svg';

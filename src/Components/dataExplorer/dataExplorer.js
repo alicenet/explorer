@@ -1,8 +1,10 @@
 import React, { useContext, useEffect } from 'react';
-import { StoreContext } from "../Store/store.js";
-import { Container, Button, Form, Segment, Card, Grid, Icon, Popup } from 'semantic-ui-react';
+import { StoreContext } from "../../Store/store.js";
+import { Container, Button, Form, Segment, Card, Grid, Icon } from 'semantic-ui-react';
 import Switch from "react-switch";
-import Help from './help.js';
+import CollapsableCard from '../common/collapsableCard/collapsableCard'; 
+import DataView from './dataView/dataView'; 
+import Help from '../help.js';
 
 const queryString = require('query-string');
 
@@ -114,33 +116,6 @@ function DataExplorer(props) {
         )
     }
 
-
-
-    // View search results
-    const dataView = () => {
-        if (store.madNetAdapter.dsView.length > 0) {
-            return store.madNetAdapter.dsView.map(function (e, i) {
-                return (
-                    <Segment.Group style={{maxWidth: "708.02px", minWidth:"708.02px"}}compact={true} key={i}>
-                        <Segment className="notifySegments" textAlign="left">{<Help type='index' />}Index: 0x{e["DSLinker"]["DSPreImage"]["Index"]} <Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + e["DSLinker"]["DSPreImage"]["Index"])} /> </Segment>
-                        <Segment className="notifySegments" textAlign="left">{<Help type='rawData' />}Data: 0x{e["DSLinker"]["DSPreImage"]["RawData"]} <Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + e["DSLinker"]["DSPreImage"]["RawData"])} /> </Segment>
-                        <Segment className="notifySegments" textAlign="left">{<Help type='expires' />}Expires: {store.madNetAdapter.getDSExp(e['DSLinker']['DSPreImage']['RawData'], e['DSLinker']['DSPreImage']['Deposit'], e['DSLinker']['DSPreImage']['IssuedAt'])}</Segment>
-                        <Segment className="notifySegments" textAlign="left">{<Help type='txHash' />}Transaction Hash: 0x{e["DSLinker"]["TxHash"]} <Icon name="copy outline" className="click" onClick={() => props.states.copyText("0x" + e["DSLinker"]["TxHash"])} />                     <Popup
-                            trigger={<Icon className="click" name="external" onClick={() => store.madNetAdapter.viewTransaction(e["DSLinker"]["TxHash"], true)} />}
-                            content={'View Transaction'}
-                            position='top left'
-                            hideOnScroll
-                            style={{ zIndex: 9999999 }}
-                        /></Segment>
-                    </Segment.Group>
-                )
-            });
-        }
-        else {
-            return (<></>)
-        }
-    }
-
     // Pagination buttons
     const paginate = () => {
         if (store.madNetAdapter.dsDataStores.length < (store.madNetAdapter.DataPerPage + 1)) {
@@ -183,20 +158,20 @@ function DataExplorer(props) {
                     </Form>
                 </Segment>
             </Grid.Row>
+
             <Grid.Row>
-                <Container>
-                    <Segment raised>
-                        {store.madNetAdapter.dsDataStores.length === 0
-                            ?
-                            <p>No DataStores to display!</p>
-                            :
-                            <Card.Group centered={true}>
-                                {dataView()}
-                            </Card.Group>
-                        }
-                    </Segment>
-                    {paginate()}
-                </Container>
+                <CollapsableCard 
+                    title="Indexes from Offset"
+                    // icon={<CubeIcon />}
+                    open={true}
+                    disabled={false}
+                >
+                    <DataView 
+                        store={store} 
+                        paginate={paginate} 
+                        {...props} 
+                    />
+                </CollapsableCard>
             </Grid.Row>
         </Grid>
     )

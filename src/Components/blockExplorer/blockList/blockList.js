@@ -6,7 +6,7 @@ import './blockList.css';
 
 function BlockDetails({ height, txCount, prevBlock, txRoot, stateRoot, headerRoot, sigGroup, handleBlockNav }) {
     return (
-        <Grid className="blockList" padded='vertically'>
+        <Grid className="blockList" padded="vertically">
             <Grid.Row>
                 <Grid.Column width={3}>
                     <Help type="height" />
