@@ -1,5 +1,5 @@
-import { ReactComponent as DiscordIcon } from '../Assets/discord-icon.svg';
-import { ReactComponent as TwitterIcon } from '../Assets/twitter-icon.svg';
+import { ReactComponent as DiscordIcon } from '../assets/discord-icon.svg';
+import { ReactComponent as TwitterIcon } from '../assets/twitter-icon.svg';
 
 const StyleFooterContainer = {
     width: '100%',

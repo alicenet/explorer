@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useLocation, useHistory} from "react-router-dom";
 import { Menu, Image, Dropdown } from 'semantic-ui-react';
-import Logo from "../Assets/MadNetwork Logo Horizontal GRAYSCALE.png";
+import Logo from "../assets/MadNetwork Logo Horizontal GRAYSCALE.png";
 
 //TODO define where to get this
 const GITHUB_URL = 'https://github.com/madhive';
@@ -10,24 +10,28 @@ const COMMUNITY_URL = 'https://www.madnetwork.com/';
 //TODO define where to get this
 const WALLETS_PLACEHOLDER =[ 'wallet0', 'wallet1'] 
 
-function MadNet(props) {
+function AliceNetMenu(props) {
+
+    const location = useLocation();
+    const history = useHistory();
+
     return (
         <Menu pointing secondary fixed={'top'} style={{padding: '20px 15px', marginBottom: '5px'}}>
             <Menu.Menu position='left'>
-                <Image className="logo click" src={Logo} style={{ height: '25px', width: '205px' }} as={Link} to="" onClick={() => props.states.history.push('/')} />
+                <Image className="logo click" src={Logo} style={{ height: '25px', width: '205px' }} as={Link} to="" onClick={() => history.push('/')} />
             </Menu.Menu>
             <Menu.Menu position='right'>
                 <Menu.Item
                     as={Link}
                     to="blocks"
                     name="Monitor"
-                    active={props.states.location.pathname.slice(1) === 'blocks'}
+                    active={location.pathname.slice(1) === 'blocks'}
                 />
                 <Menu.Item
                     as={Link}
                     to="about"
                     name="About"
-                    active={props.states.location.pathname.slice(1) === 'about'}
+                    active={location.pathname.slice(1) === 'about'}
                 />
                 <Dropdown item text='Wallet Download'>
                     <Dropdown.Menu>
@@ -53,4 +57,4 @@ function MadNet(props) {
     )
 }
 
-export default MadNet;
+export default AliceNetMenu;

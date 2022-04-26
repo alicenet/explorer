@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Dropdown, Button } from 'semantic-ui-react';
-import { ReactComponent as Icon1 } from '../Assets/searchIcon1.svg';
-import { ReactComponent as Icon2 } from '../Assets/searchIcon2.svg';
-import { ReactComponent as Icon3 } from '../Assets/searchIcon3.svg';
+import { ReactComponent as Icon1 } from '../assets/searchIcon1.svg';
+import { ReactComponent as Icon2 } from '../assets/searchIcon2.svg';
+import { ReactComponent as Icon3 } from '../assets/searchIcon3.svg';
 
 const StylesIconContainer = {
     display: 'flex',
@@ -68,7 +68,7 @@ const options = [
     { key: 2, text: 'Tx', value: 2 },
   ]
 
-function Search({ handleSearch }){
+function AliceNetSearch({ handleSearch }){
     const [term, setTerm] = useState('')
     const [option, setOption] = useState(options[0].value)
 
@@ -108,4 +108,4 @@ function Search({ handleSearch }){
     </div>
 }
 
-export default Search;
+export default AliceNetSearch;
