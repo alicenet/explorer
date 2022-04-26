@@ -47,6 +47,7 @@ const StylesDropdown = {
     color: 'black',
     padding: '8px 20px',
     borderRadius: '4px 0px 0px 4px',
+    maxHeight: '19px'
 }
 
 const StylesDropdownMenu = {
@@ -87,11 +88,14 @@ function Search({ handleSearch }){
                         value={option}
                     >
                         <Dropdown.Menu style={StylesDropdownMenu}>
-                            <Dropdown.Item onClick={handleChange} value={options[0].value} style={StylesDropdownMenuItem}>Block</Dropdown.Item>
-                            <Dropdown.Item onClick={handleChange} value={options[1].value} style={StylesDropdownMenuItem}>Tx</Dropdown.Item>
+                            <Dropdown.Item onClick={handleChange} value={options[0].value} style={StylesDropdownMenuItem}>{options[0].text}</Dropdown.Item>
+                            <Dropdown.Item onClick={handleChange} value={options[1].value} style={StylesDropdownMenuItem}>{options[1].text}</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
-                    <input placeholder={option === options[0].value ? 'Block number' : 'Tx hash'} style={StylesInput} value={term} onChange={(e) => setTerm(e.target.value)}/>
+                    <input placeholder={option === options[0].value ? 'Block number' : 'Tx hash'} 
+                            style={StylesInput} 
+                            value={term} 
+                            onChange={(e) => setTerm(e.target.value)}/>
                     <Button style={StylesButton} onClick={() => handleSearch(term)}>Search</Button>
                 </div>
             </div>
