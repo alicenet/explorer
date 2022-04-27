@@ -55,7 +55,13 @@ function Test() {
     const adapterState = useSelector(state => state.aliceNetAdapter); // If normal serializeable state is to be read directly we can assign to a var 
     const dispatch = useDispatch()
 
-    const getBlock = async () => {
+    const getBlock = async (blockNum) => {
+        let block = await aliceNetAdapter.getBlock(blockNum);
+        setBlock(block);
+        console.log(block)
+    }
+
+    const getCurrentBlock = async () => {
         let block = await aliceNetAdapter.getCurrentBlock();
         setBlock(block);
         console.log(block)
@@ -70,6 +76,11 @@ function Test() {
 
     const attemptConnect = async () => {
         await aliceNetAdapter.init();
+    }
+
+    const printDataStoresForAddress = async (address, curve = 1) => {
+        let dstores = await aliceNetAdapter.getDataStoresForAddres(address, curve)
+        console.log(dstores);
     }
 
     return (
@@ -103,7 +114,12 @@ function Test() {
 
             <h4>Get Current Block</h4>
 
-            <button onClick={getBlock}>Get Block: Current: {block?.BClaims?.Height}</button>
+            <button onClick={() => getCurrentBlock()}>Get Block: Current: {block?.BClaims?.Height}</button> <br />
+            <button onClick={() => getBlock(178000)}>Get Block: 178000: {block?.BClaims?.Height}</button>
+
+            <h4>DataStores</h4>
+            <button onClick={() => printDataStoresForAddress("eeacfc737e72fdf2518fb58c0a620f783eb2515f")}>Get Datastores for address (See code)</button> <br />
+
 
         </div>
     )
