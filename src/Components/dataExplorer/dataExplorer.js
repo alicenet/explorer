@@ -117,6 +117,8 @@ function DataExplorer(props) {
         )
     }
 
+    const getDSExp = (rawData, deposit, issuedAt) => store.madNetAdapter.getDSExp(rawData, deposit, issuedAt);
+
     // Pagination buttons
     const paginate = () => {
         if (store.madNetAdapter.dsDataStores.length < (store.madNetAdapter.DataPerPage + 1)) {
@@ -169,13 +171,11 @@ function DataExplorer(props) {
                     itemsCount={store.madNetAdapter.dsView.length}    
                 >
                     <DataView 
-                        store={store} 
                         dsView={store.madNetAdapter.dsView} 
                         dsDataStores={store.madNetAdapter.dsDataStores} 
                         paginate={paginate}
                         viewTransaction={store.madNetAdapter.viewTransaction} 
-                        getDSExp={store.madNetAdapter.getDSExp} 
-                        {...props} 
+                        getDSExp={getDSExp} 
                     />
                 </CollapsableCard>
             </Grid.Row>

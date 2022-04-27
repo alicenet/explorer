@@ -4,6 +4,7 @@
 }
 
 .collapsableCard .ui.accordionSegment { 
+    border: none;
     border-top: 2px solid #00FFD1 !important;
     background: #444444 !important;
     padding-bottom: 0;

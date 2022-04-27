@@ -24,9 +24,9 @@ function DataView({ dsView, dsDataStores, paginate, viewTransaction, getDSExp })
         <Grid className="dataView" >
             <Grid.Column className="outerColumn">
                 <Segment className="segmentContainer">
-                    {dsView.map((e, i) => (
+                    {dsView.map((dataStore, i) => (
                         <CollapsableCard 
-                            title={`Index: 0x${e["DSLinker"]["DSPreImage"]["Index"]}`}
+                            title={`Index: 0x${dataStore.DSLinker.DSPreImage.Index}`}
                             open={true}
                             disabled={false}
                             key={i}
@@ -39,11 +39,11 @@ function DataView({ dsView, dsDataStores, paginate, viewTransaction, getDSExp })
                                         <p>Index:</p>
                                     </Grid.Column>
                                     <Grid.Column width={12}>
-                                        <p>0x{e["DSLinker"]["DSPreImage"]["Index"]}</p>
+                                        <p>0x{dataStore.DSLinker.DSPreImage.Index}</p>
                                         <Icon 
                                             name="copy outline" 
                                             className="click" 
-                                            onClick={() => copyText("0x" + e["DSLinker"]["DSPreImage"]["Index"])} 
+                                            onClick={() => copyText("0x" + dataStore.DSLinker.DSPreImage.Index)} 
                                         />
                                     </Grid.Column>
                                 </Grid.Row>
@@ -54,11 +54,11 @@ function DataView({ dsView, dsDataStores, paginate, viewTransaction, getDSExp })
                                         <p>Data:</p>
                                     </Grid.Column>
                                     <Grid.Column width={12}>
-                                        <p>0x{e["DSLinker"]["DSPreImage"]["RawData"]}</p>
+                                        <p>0x{dataStore.DSLinker.DSPreImage.RawData}</p>
                                         <Icon 
                                             name="copy outline" 
                                             className="click" 
-                                            onClick={() => copyText("0x" + e["DSLinker"]["DSPreImage"]["RawData"])} 
+                                            onClick={() => copyText("0x" + dataStore.DSLinker.DSPreImage.RawData)} 
                                         />
                                     </Grid.Column>
                                 </Grid.Row>
@@ -69,17 +69,11 @@ function DataView({ dsView, dsDataStores, paginate, viewTransaction, getDSExp })
                                         <p>Expires:</p>
                                     </Grid.Column>
                                     <Grid.Column width={12}>
-                                        <p>
-                                            {
-                                                getDSExp(e['DSLinker']['DSPreImage']['RawData'], 
-                                                e['DSLinker']['DSPreImage']['Deposit'], 
-                                                e['DSLinker']['DSPreImage']['IssuedAt'])
-                                            }    
-                                        </p>
+                                        <p>{getDSExp(dataStore.DSLinker.DSPreImage.RawData, dataStore.DSLinker.DSPreImage.Deposit, dataStore.DSLinker.DSPreImage.IssuedAt)}</p>
                                         <Icon 
                                             name="copy outline" 
                                             className="click" 
-                                            onClick={() => copyText("0x" + e["DSLinker"]["DSPreImage"]["RawData"])} 
+                                            onClick={() => copyText("0x" + dataStore.DSLinker.DSPreImage.RawData)} 
                                         />
                                     </Grid.Column>
                                 </Grid.Row>
@@ -90,16 +84,16 @@ function DataView({ dsView, dsDataStores, paginate, viewTransaction, getDSExp })
                                         <p>Transaction Hash:</p>
                                     </Grid.Column>
                                     <Grid.Column width={12}>
-                                        <p>0x{e["DSLinker"]["TxHash"]}</p>
+                                        <p>0x{dataStore.DSLinker.TxHash}</p>
                                         <Icon 
                                             name="copy outline" 
                                             className="click" 
-                                            onClick={() => copyText("0x" + e["DSLinker"]["TxHash"])} 
+                                            onClick={() => copyText("0x" + dataStore.DSLinker.TxHash)} 
                                         />
 
                                         <Button 
                                             className="viewOwner"
-                                            onClick={() => viewTransaction(e["DSLinker"]["TxHash"], true)}
+                                            onClick={() => viewTransaction(dataStore.DSLinker.TxHash, true)}
                                         >
                                             View Owner Datastores
                                         </Button>
