@@ -1,10 +1,6 @@
-import React, { useContext, useEffect } from "react";
-<<<<<<< HEAD
+import React, { useContext } from "react";
 import { Dimmer, Loader, Grid } from "semantic-ui-react";
-=======
-import { AppContext, actions, getContextState } from "./AppContext/AppContext.js";
-import { Dimmer, Loader, Grid, Menu } from "semantic-ui-react";
->>>>>>> state-overhaul
+import { AppContext, getContextState } from "./AppContext/AppContext.js";
 import MainMenu from "./Components/menu.js";
 import MainContent from "./Components/mainContent.js";
 import Search from "./Components/search";
@@ -49,12 +45,8 @@ function MainView(props) {
                 </Grid>
                 <Grid centered>
                     <Grid.Row centered>
-<<<<<<< HEAD
                         <Search handleSearch={handleSearch}/>
                         <MainContent states={props.states}/>
-=======
-                        <MainContent states={props.states} />
->>>>>>> state-overhaul
                     </Grid.Row>
                 </Grid>
                 <Footer/>
