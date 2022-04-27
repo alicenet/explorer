@@ -166,11 +166,15 @@ function DataExplorer(props) {
                     icon={<FileIcon />}
                     open={true}
                     disabled={false}
-                    itemsCount={4}    
+                    itemsCount={store.madNetAdapter.dsView.length}    
                 >
                     <DataView 
                         store={store} 
-                        paginate={paginate} 
+                        dsView={store.madNetAdapter.dsView} 
+                        dsDataStores={store.madNetAdapter.dsDataStores} 
+                        paginate={paginate}
+                        viewTransaction={store.madNetAdapter.viewTransaction} 
+                        getDSExp={store.madNetAdapter.getDSExp} 
                         {...props} 
                     />
                 </CollapsableCard>

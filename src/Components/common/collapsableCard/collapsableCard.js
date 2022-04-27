@@ -38,7 +38,7 @@ function CollapsableCard({
                                 {itemsCount}
                             </span>
                         )}
-                        <Icon name="caret down" />
+                        <Icon name="caret down" style={{ marginLeft: itemsCount ? '5px' : '15px' }} />
                     </Accordion.Title>
 
                     <Accordion.Content 

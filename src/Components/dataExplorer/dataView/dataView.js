@@ -5,12 +5,18 @@ import { copyText } from '../../../Utils/copyText';
 import Help from '../../help.js';
 import './dataView.css';
 
-function DataView({ store, paginate }) {
-    if (store.madNetAdapter.dsDataStores.length === 0) {
-        return (<p>No DataStores to display!</p>);
+function DataView({ dsView, dsDataStores, paginate, viewTransaction, getDSExp }) {
+    if (dsDataStores.length === 0) {
+        return (
+            <Grid padded>
+                <Grid.Row>
+                    <p>No DataStores to display!</p>
+                </Grid.Row>
+            </Grid>
+        );
     }
 
-    if (store.madNetAdapter.dsView.length <= 0) {
+    if (dsView.length <= 0) {
         return (<></>);
     }
         
@@ -18,10 +24,9 @@ function DataView({ store, paginate }) {
         <Grid className="dataView" >
             <Grid.Column className="outerColumn">
                 <Segment className="segmentContainer">
-                    {store.madNetAdapter.dsView.map((e, i) => (
+                    {dsView.map((e, i) => (
                         <CollapsableCard 
                             title={`Index: 0x${e["DSLinker"]["DSPreImage"]["Index"]}`}
-                            // icon={<CubeIcon />}
                             open={true}
                             disabled={false}
                             key={i}
@@ -66,7 +71,7 @@ function DataView({ store, paginate }) {
                                     <Grid.Column width={12}>
                                         <p>
                                             {
-                                                store.madNetAdapter.getDSExp(e['DSLinker']['DSPreImage']['RawData'], 
+                                                getDSExp(e['DSLinker']['DSPreImage']['RawData'], 
                                                 e['DSLinker']['DSPreImage']['Deposit'], 
                                                 e['DSLinker']['DSPreImage']['IssuedAt'])
                                             }    
@@ -94,7 +99,7 @@ function DataView({ store, paginate }) {
 
                                         <Button 
                                             className="viewOwner"
-                                            onClick={() => store.madNetAdapter.viewTransaction(e["DSLinker"]["TxHash"], true)}
+                                            onClick={() => viewTransaction(e["DSLinker"]["TxHash"], true)}
                                         >
                                             View Owner Datastores
                                         </Button>
