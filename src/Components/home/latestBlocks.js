@@ -12,7 +12,7 @@ function LatestBlocks() {
     // Start monitor when component mounts
     React.useEffect(() => {
         if (aliceNetAdapter && !aliceNetAdapter.blocksStarted) {
-            aliceNetAdapter.monitorBlocks();
+            aliceNetAdapter.startMonitoringBlocks();
         }
         return () => { if (aliceNetAdapter && aliceNetAdapter) { aliceNetAdapter.blocksReset() } }
     }, [aliceNetAdapter]); // eslint-disable-line react-hooks/exhaustive-deps
