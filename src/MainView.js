@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
+import { Dimmer, Loader, Grid } from "semantic-ui-react";
 import { AppContext, actions, getContextState } from "./AppContext/AppContext.js";
-import { Dimmer, Loader, Grid, Menu } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 import MainMenu from "./components/menu.js";
 import MainContent from "./components/mainContent.js";
 import Search from "./components/search";
@@ -44,6 +45,7 @@ function MainView(props) {
                 </Grid>
                 <Grid centered>
                     <Grid.Row centered>
+                        <Search handleSearch={handleSearch}/>
                         <MainContent states={props.states} />
                     </Grid.Row>
                 </Grid>
