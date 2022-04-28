@@ -1,25 +1,31 @@
 import React, { useContext, useEffect } from "react";
-import { StoreContext } from "./Store/store.js";
+import { AppContext, actions, getContextState } from "./AppContext/AppContext.js";
 import { Dimmer, Loader, Grid, Menu } from "semantic-ui-react";
-import MainMenu from "./Components/menu.js";
-import MainContent from "./Components/mainContent.js";
+import MainMenu from "./components/menu.js";
+import MainContent from "./components/mainContent.js";
+import Search from "./components/search";
+import Footer from "./components/footer";
 
 function MainView(props) {
     // Store component to access states
-    const { store, actions } = useContext(StoreContext);
+    const appContext = useContext(AppContext);
+    const { settings, wallet } = getContextState(appContext);
 
-    // Set theme
-    useEffect(() => {
-        props.states.themeToggle(store.settings.theme)
-    }, [store.settings])
+    console.log(appContext)
+    console.log(settings, wallet)
 
-    // Load settings
-    useEffect(() => {
-        actions.loadSettings();
-    }, [])
+    //TODO handle both searchs
+    const handleSearch = (blockNumber) => {
+        props.states.history.replace(
+            {
+                pathname: 'block',
+                search: '?height=' + blockNumber
+            }
+        );
+    }
 
     // Loading if app not initialized
-    if (!store || !store.wallet || !store.settings) {
+    if (!wallet || !settings) {
         return (
             <>
                 <Dimmer page active={Boolean(props.states.isLoading)}>
@@ -31,43 +37,17 @@ function MainView(props) {
     else {
         return (
             <>
-                <Grid style={{ padding: "10px 20px" }} className="mainView">
+                <Grid style={{ padding: "10px 20px", marginTop: "45px" }} className="mainView">
                     <Grid.Row>
-                        <MainMenu
-                            states={props.states}
-                        />
+                        <MainMenu states={props.states}/>
                     </Grid.Row>
                 </Grid>
                 <Grid centered>
                     <Grid.Row centered>
-                        <MainContent states={props.states}/>
+                        <MainContent states={props.states} />
                     </Grid.Row>
                 </Grid>
-                <Grid centered>
-                    <Grid.Row>
-                        <Menu className="bottomMenu" size="small">
-                            <Menu.Item
-                                className="blue"
-                                onClick={() => window.location = "https://madnetwork.com"}
-                            >
-                                About
-                            </Menu.Item>
-                            <Menu.Item
-                                className="blue"
-                                onClick={() => window.location = "https://github.com/MadBase/"}
-                            >
-                                Github
-                            </Menu.Item>
-                            <Menu.Item
-                                className="blue"
-                                onClick={() => window.location = "https://github.com/MadBase/MadNet-Whitepaper/blob/main/madnet.pdf"}
-                            >
-                                White Paper
-                            </Menu.Item>
-
-                        </Menu>
-                    </Grid.Row>
-                </Grid>
+                <Footer/>
             </>
         )
     }

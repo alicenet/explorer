@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Icon, Grid } from "semantic-ui-react";
-import { copyText } from '../../../Utils/copyText';
+import { copyText } from '../../../utils/copyText';
 import './txHashList.css';
 
 function TxHashList({ txHshLst, handleViewTransaction }) {

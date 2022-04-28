@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Icon, Grid } from "semantic-ui-react"
-import { copyText } from '../../../Utils/copyText';
+import { copyText } from '../../../utils/copyText';
 import Help from '../../help.js';
 import './blockList.css';
 
