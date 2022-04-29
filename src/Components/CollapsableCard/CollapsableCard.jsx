@@ -5,20 +5,20 @@ import {
     Accordion, 
     Icon
 } from "semantic-ui-react"
-import './collapsableCard.css';
+import styles from './CollapsableCard.module.scss';
 
 function CollapsableCard({ children, open = false, title, disabled, icon = false, ...props }) {
     const [isBlockOpen, toggleBlock] = useState(open);
 
     return (
-        <Container className="collapsableCard">
+        <Container className={styles.collapsableCard}>
             <Segment 
                 textAlign="left" 
-                className={`accordionSegment ${ !isBlockOpen || disabled ? 'closed' : '' }`} 
+                className={`${styles.accordionSegment} ${ !isBlockOpen || disabled ? styles.closed : '' }`} 
             >
                 <Accordion {...props}>
                     <Accordion.Title
-                        className="accordionTitle"
+                        className={styles.accordionTitle}
                         active={isBlockOpen && !disabled}
                         onClick={() => toggleBlock(isOpen => !isOpen)}
                     >

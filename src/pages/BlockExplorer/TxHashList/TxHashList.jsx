@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Icon, Grid } from "semantic-ui-react";
 import { copyText } from '../../../utils/copyText';
-import './txHashList.css';
+import styles from './TxHashList.module.scss';
 
 function TxHashList({ txHshLst, handleViewTransaction }) {
     if (!txHshLst) {
@@ -10,10 +10,10 @@ function TxHashList({ txHshLst, handleViewTransaction }) {
     }
 
     return (
-        <Grid className="txHashList" padded='vertically'>
+        <Grid className={styles.txHashList} padded="vertically">
             {txHshLst && txHshLst.map((hash, index) => {
                 return (
-                    <Grid.Row key={index}>
+                    <Grid.Row key={index} className={styles.row}>
                         <Grid.Column width={1}>Tx Hash</Grid.Column>
                         <Grid.Column width={13}>
                             {/* TODO add link url  */}
