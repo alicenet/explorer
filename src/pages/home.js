@@ -1,15 +1,16 @@
 import React from 'react';
 import { Container, Grid } from 'semantic-ui-react';
-import CallToAction from '../callToAction';
-import LatestBlocks from './latestBlocks';
-import LatestTransactions from './latestTransactions';
-import AliceNetSearch from "../search";
-
-function Home() {
+import CallToAction from '../components/callToAction';
+import LatestBlocks from '../components/latestBlocks';
+import LatestTransactions from '../components/latestTransactions';
+import AliceNetSearch from "../components/search";
+import { DataStoreSearch } from "../components/DataStoreSearch";
+export function Home() {
     
     return (
         <>
             <AliceNetSearch />
+            <DataStoreSearch/>
             <Container>
                 <CallToAction 
                     label="View our DataStore and experience history in the making" 
@@ -27,4 +28,3 @@ function Home() {
         </>
     )
 }
-export default Home;

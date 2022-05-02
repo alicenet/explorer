@@ -6,7 +6,7 @@ import { Container } from 'semantic-ui-react';
 import { aliceNetAdapter } from "./adapter/alicenetadapter";
 import './App.css';
 import Footer from "./components/footer";
-import Home from "./components/home/home";
+import { Home } from "./pages";
 import AliceNetMenu from "./components/menu";
 // import ErrorOverlay from "./Components/ErrorOverlay.jsx";
 // import DimmerLoader from "./Components/DimmerOverlay.jsx";

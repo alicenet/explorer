@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { Dimmer, Loader, Grid } from "semantic-ui-react";
 import { AppContext, getContextState } from "./AppContext/AppContext.js";
-import MainMenu from "./Components/menu.js";
-import MainContent from "./Components/mainContent.js";
-import Search from "./Components/search";
-import Footer from "./Components/footer";
+import MainMenu from "../Components/menu.js";
+import MainContent from "../Components/mainContent.js";
+import Search from "../Components/search";
+import Footer from "../Components/footer";
 
 function MainView(props) {
     // Store component to access states
