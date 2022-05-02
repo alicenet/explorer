@@ -1,0 +1,89 @@
+.collapsableCard {
+    margin-top: 35px;
+    user-select: none;
+
+    .accordionSegment { 
+        border: none;
+        border-top: 2px solid #00FFD1 !important;
+        background: #444444 !important;
+        padding-bottom: 0;
+        transition: background 0.2s ease-in-out;
+        overflow: hidden;
+        
+        &.closed {
+            background: #343333 !important;
+
+            .accordionTitle {
+                i {
+                    transform: rotate(0deg);
+                }
+            }
+        }
+
+        &.borderless { 
+            border: none !important;
+        }
+
+        &.disabled {
+            opacity: 0.6;
+        }
+
+        .accordionTitle {
+            color: inherit !important;
+            cursor: pointer;
+            padding-bottom: 18px !important;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+
+            h3 {
+                margin: 0 !important;
+                margin-right: 15px;
+            }
+            
+            & :first-child{
+                margin-right: 10px;
+            }
+            
+            i {
+                height: auto;
+                transform: rotate(180deg);
+                transition: all 0.2s ease-in-out;
+            }
+
+            .countLabel {
+                background: #121212;
+                border-radius: 4px;
+                font-size: 16px;
+                width: 20px;
+                height: 20px;
+                text-align: center;
+                margin-left: 5px;
+            }
+        }
+    }
+
+    /* Collapsable Children  */
+    .collapsableCard {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .collapsableCard .accordionTitle {
+        padding: 18px !important;
+    }
+
+    .collapsableCard div:first-child {
+        margin: 0;
+    }
+
+    .collapsableCard div {
+        padding: 0;
+    }
+
+    .collapsableCard .ui.accordionSegment.closed {
+        background: #444444 !important;
+    }
+}
+
+

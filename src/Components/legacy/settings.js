@@ -1,0 +1,64 @@
+import React, { useContext, useState, useEffect } from 'react';
+import { Container, Form, Button, Segment } from "semantic-ui-react"
+import Switch from "react-switch";
+
+function Settings(props) {
+    // Store states and actions to update state
+    const appContext = useContext(AppContext);
+    const { settings } = getContextState(appContext);
+
+    // Update settings state from user input
+    const handleChange = (opt, event) => {
+        if (opt === "theme") {
+            actions.toggleTheme(appContext);
+            return;
+        }
+        if (opt === "aliceNetProvider") {
+            actions.setAliceNetProvider(event.target.value);
+        }
+    }
+
+    const downloadWallet = (dl) => {
+        window.location.href = dl
+        return;
+    }
+
+    // Update Store settings
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // actions.updateSettings(settings, props.states.style);
+    }
+
+    // Reset input fields to previous saved state
+    const reset = (e) => {
+        e.preventDefault();
+        actions.resetSettings();
+    }
+
+    return (
+        <Container>
+            <Segment raised>
+                <Form>
+                    {/* <Form.Input onChange={(e) => handleChange("madnetProvider", e)} value={settings.madnetProvider || ""} fluid label="MadNet Provider" /> */}
+                    <Form.Field>
+                        <p>Dark Mode</p>
+                        <Switch onColor="#4aec75" offColor="#ff6464" offHandleColor="#212121" onHandleColor="#f0ece2" onChange={(e) => handleChange("theme", e)} checked={props.states.style === "dark"} />
+                    </Form.Field>
+                    <Button onClick={(e) => handleSubmit(e)} color="green">Save</Button>
+                    <Button onClick={(e) => reset(e)} color="red">Cancel</Button>
+                    <Button onClick={(e) => actions.resetSettings()} color="grey">Default</Button>
+                </Form>
+            </Segment>
+            <Segment>
+                <Form.Field>
+                    <h5>Wallet Downloads</h5>
+                    <Button onClick={() => downloadWallet('https://storage.googleapis.com/madnet-wallet/Windows/MadWallet.exe')} color="blue">Windows</Button>
+                    <Button onClick={() => downloadWallet('https://storage.googleapis.com/madnet-wallet/MacOS/MadWallet.app.zip')} color="blue">MacOS</Button>
+                    <Button onClick={() => downloadWallet('https://storage.googleapis.com/madnet-wallet/Linux/MadWallet.zip')} color="blue">Linux</Button>
+                </Form.Field>
+            </Segment>
+        </Container>
+    )
+
+}
+export default Settings;

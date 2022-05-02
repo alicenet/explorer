@@ -1,0 +1,21 @@
+.ui.table {
+    border-top: 0.2em solid #00FFD1;
+    background-color: #575555;
+}
+
+thead, tr, th, td {
+    background:  #343333 !important;
+    color: white !important;
+    border-bottom: 1px solid #797777 !important;
+}
+
+.title {
+    align-items: center;
+    display: flex;
+}
+
+svg {
+    margin-right: 5px;
+}
+
+
