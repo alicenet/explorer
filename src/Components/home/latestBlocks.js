@@ -1,5 +1,5 @@
 import React from 'react';
-import CustomTable from '../table/customTable';
+import { CustomTable } from '../table';
 import { ReactComponent as BlocksIcon } from '../../assets/blocks-icon.svg';
 import { useSelector } from 'react-redux';
 import { aliceNetAdapter } from '../../adapter/alicenetadapter';

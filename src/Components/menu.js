@@ -16,9 +16,9 @@ function AliceNetMenu(props) {
     const history = useHistory();
 
     return (
-        <Menu pointing secondary fixed={'top'} style={{padding: '20px 15px', marginBottom: '5px'}}>
+        <Menu pointing secondary className='px-12 py-5 mb-5'>
             <Menu.Menu position='left'>
-                <Image className="logo click" src={Logo} style={{ height: '25px', width: '205px' }} as={Link} to="" onClick={() => history.push('/')} />
+                <Image src={Logo} width='205' className='logo click m-auto' as={Link} to="" onClick={() => history.push('/')} />
             </Menu.Menu>
             <Menu.Menu position='right'>
                 <Menu.Item

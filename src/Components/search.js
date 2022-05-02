@@ -4,65 +4,6 @@ import { ReactComponent as Icon1 } from '../assets/searchIcon1.svg';
 import { ReactComponent as Icon2 } from '../assets/searchIcon2.svg';
 import { ReactComponent as Icon3 } from '../assets/searchIcon3.svg';
 
-const StylesIconContainer = {
-    display: 'flex',
-    alignItems: 'center',
-    '& > svg': {
-        margin: '0 15px'
-    }
-}
-
-const StylesSearchContainer = { 
-    backgroundColor: '#2D2D2D', 
-    padding: '30px', 
-    width: '90%',
-    borderRadius: '5px'
-}
-
-const StylesContentWrapper = { 
-    display: 'flex', 
-    alignItems: 'center' 
-}
-
-const StylesInputWrapper = { 
-    width: '100%', 
-    textAlign: 'left'
-}
-
-const StylesInput = {
-    width: '70%',
-    height: '34px',
-    border: '1px solid #383838',
-    padding: '0 10px',
-}
-
-const StylesButton = {
-    background: '#00FFD1',
-    borderRadius: '0 4px 4px 0',
-    color: '#0A0B09'
-}
-
-const StylesDropdown = {
-    background: '#DEDEDE',
-    color: 'black',
-    padding: '8px 20px',
-    borderRadius: '4px 0px 0px 4px',
-    maxHeight: '19px'
-}
-
-const StylesDropdownMenu = {
-    width: 'calc(100% - 2px)',
-    borderRadius: '0 0 4px 4px',
-}
-
-const StylesDropdownMenuItem = {
-    backgroundColor: '#2D2D2D'
-}
-
-const StylesIcon = {
-    marginRight: '10px'
-}
-
 const options = [
     { key: 1, text: 'Block', value: 1 },
     { key: 2, text: 'Tx', value: 2 },
@@ -74,35 +15,35 @@ function AliceNetSearch({ handleSearch }){
 
     const handleChange = (e, { value }) => setOption(value)
 
-    return <div style={StylesSearchContainer}>
-        <div style={StylesContentWrapper}>
-            <div style={StylesInputWrapper}>
+    return <div className='bg-darkGrey p-10 w-11/12 m-auto rounded'>
+        <div className='flex items-center'>
+            <div className='w-full text-left'>
                 <div>
-                    <h2 style={{ marginBottom: '10px' }}>Explore the Madnet blockchain</h2>
+                    <h2 className='mb-5'>Explore the Madnet blockchain</h2>
                 </div>
                 <div>
                     <Dropdown 
                         onChange={handleChange}
-                        style={StylesDropdown} 
+                        className='max-h-5 bg-lightGrey text-neutral-800 px-6 py-3 rounded rounded-tr-none rounded-br-none'
                         options={options}
                         value={option}
                     >
-                        <Dropdown.Menu style={StylesDropdownMenu}>
-                            <Dropdown.Item onClick={handleChange} value={options[0].value} style={StylesDropdownMenuItem}>{options[0].text}</Dropdown.Item>
-                            <Dropdown.Item onClick={handleChange} value={options[1].value} style={StylesDropdownMenuItem}>{options[1].text}</Dropdown.Item>
+                        <Dropdown.Menu className='rounded rounded-t-none rounded-tl-none w-[calc(100%_-_1rem)] '>
+                            <Dropdown.Item onClick={handleChange} value={options[0].value} className='bg-darkGrey'>{options[0].text}</Dropdown.Item>
+                            <Dropdown.Item onClick={handleChange} value={options[1].value} className='bg-darkGrey'>{options[1].text}</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                     <input placeholder={option === options[0].value ? 'Block number' : 'Tx hash'} 
-                            style={StylesInput} 
+                            className='w-3/4 h-px py-5 border border-solid border-darkGrey indent-2 ' 
                             value={term} 
                             onChange={(e) => setTerm(e.target.value)}/>
-                    <Button style={StylesButton} onClick={() => handleSearch(term)}>Search</Button>
+                    <Button className='bg-primary rounded rounded-l-none text-neutral-800' onClick={() => handleSearch(term)}>Search</Button>
                 </div>
             </div>
-            <div style={StylesIconContainer}>
-                <Icon1 style={StylesIcon}/>
-                <Icon2 style={StylesIcon}/>
-                <Icon3 style={StylesIcon}/>
+            <div className='flex items-center'>
+                <Icon1 className='mr-5'/>
+                <Icon2 className='mr-5'/>
+                <Icon3 className='mr-5'/>
             </div>
         </div>
     </div>

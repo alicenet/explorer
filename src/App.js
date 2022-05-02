@@ -2,16 +2,16 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Container, Header, Menu } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 import { aliceNetAdapter } from "./adapter/alicenetadapter";
 import './App.css';
-import Footer from "./Components/footer";
-import Home from "./Components/home/home";
-import AliceNetMenu from "./Components/menu";
-import AliceNetSearch from "./Components/search";
+import Footer from "./components/footer";
+import Home from "./components/home/home";
+import AliceNetMenu from "./components/menu";
 // import ErrorOverlay from "./Components/ErrorOverlay.jsx";
 // import DimmerLoader from "./Components/DimmerOverlay.jsx";
 import { aliceNetWalletEqualize } from "./redux/reducers";
+import './style/tailwind.css';
 
 function App() {
     return (
@@ -20,7 +20,6 @@ function App() {
             {/* <DimmerLoader /> */}
             <Router>
                 <AliceNetMenu />
-                <AliceNetSearch />
                 <Switch>
                     {/* <Route path="/" component={Test} /> */}
                     <Route exact path={["/blocks", "/"]} component={Home} />

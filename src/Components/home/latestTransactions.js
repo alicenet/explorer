@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import CustomTable from '../table/customTable';
+import React from 'react';
+import { CustomTable } from '../table';
 import { ReactComponent as TxIcon } from '../../assets/tx-icon.svg';
 import { useSelector } from 'react-redux';
 import { aliceNetAdapter } from '../../adapter/alicenetadapter';

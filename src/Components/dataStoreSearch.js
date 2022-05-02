@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Dropdown, Button } from "semantic-ui-react";
-import { ReactComponent as QuestionIcon } from "../Assets/question-icon.svg";
+import { ReactComponent as QuestionIcon } from "../assets/question-icon.svg";
 
 const StylesSearchContainer = {
   backgroundColor: "#2D2D2D",
@@ -91,7 +91,7 @@ const options = [{ key: 1, text: "DataStores", value: 1 }];
 
 const ADDRESS_TYPES = { BN: "BN", SecP: "SecP" };
 
-function DataStoreSearch({ handleSearch }) {
+export function DataStoreSearch({ handleSearch }) {
   const [term, setTerm] = useState("");
   const [offset, setOffset] = useState("");
   const [option, setOption] = useState(options[0].value);
@@ -170,5 +170,3 @@ function DataStoreSearch({ handleSearch }) {
     </div>
   );
 }
-
-export default DataStoreSearch;
