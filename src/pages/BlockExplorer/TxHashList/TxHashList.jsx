@@ -4,7 +4,7 @@ import { Icon, Grid } from "semantic-ui-react";
 import { copyText } from '../../../utils/copyText';
 import styles from './TxHashList.module.scss';
 
-function TxHashList({ txHshLst, handleViewTransaction }) {
+function TxHashList({ txHshLst, txViewLink = '/' }) {
     if (!txHshLst) {
         return (<p></p>);
     }
@@ -17,7 +17,7 @@ function TxHashList({ txHshLst, handleViewTransaction }) {
                         <Grid.Column width={1}>Tx Hash</Grid.Column>
                         <Grid.Column width={13}>
                             {/* TODO add link url  */}
-                            <Link to="/">0x{hash}</Link>
+                            <Link to={txViewLink}>0x{hash}</Link>
                             <Icon 
                                 name="copy outline" 
                                 className="click" 
