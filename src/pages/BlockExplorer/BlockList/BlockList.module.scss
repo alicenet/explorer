@@ -1,11 +1,11 @@
 .blockList {
     .row {
         border-top: 1px solid #575555;
-        background: #343333 !important;
+        background: #343333;
         padding: 18px 0 !important;
         
         .column:last-child {
-            display: flex !important;
+            display: flex;
             justify-content: flex-start;
         }
     
@@ -22,7 +22,7 @@
     }
 
     .button {
-        box-shadow: none !important;
+        box-shadow: none;
         margin-left: 5px;
         padding: 0 3px !important;
         border-radius: 0 !important;
