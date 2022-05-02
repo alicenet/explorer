@@ -30,7 +30,7 @@ function BlockExplorer(props) {
     }, [props.location]);
 
     // TODO remove console log after implementation
-    const handleBlockNav = () => console.log('block nav');
+    const handleBlockNav = () => {};
 
     // Conditional render
     if (!blockInfo) {
