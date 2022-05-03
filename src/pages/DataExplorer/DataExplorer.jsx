@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Grid, Container, Segment } from 'semantic-ui-react';
+import { Grid, Container, Segment, Loader, Dimmer } from 'semantic-ui-react';
 import queryString from 'query-string';
 import { aliceNetAdapter } from '../../adapter/alicenetadapter';
 import { CollapsableCard } from '../../components/CollapsableCard'; 
@@ -11,6 +11,7 @@ function DataExplorer(props) {
     useSelector(s => s.aliceNetAdapter);
 
     const [dsView, setDsView] = useState();
+    const [isLoading, setLoadingStatus] = useState(true);
 
     useEffect(() => {
         const params = props.location && queryString.parse(props.location.search);
@@ -22,6 +23,8 @@ function DataExplorer(props) {
                 const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address);
                 setDsView(dataStores);
             }
+
+            setLoadingStatus(false);
         }
         
         getDataStores();
@@ -36,7 +39,7 @@ function DataExplorer(props) {
         // TODO handle view owner datastores
     }
 
-    if (!dsView || !dsView.length) {
+    if (!isLoading && (!dsView || !dsView.length)) {
         return (
             <>
                 <Grid centered>
@@ -52,7 +55,18 @@ function DataExplorer(props) {
         );
     }
 
+    if(isLoading) {
+        return (
+            <Grid.Row>
+                <Dimmer active>
+                    <Loader>Loading</Loader>
+                </Dimmer>
+            </Grid.Row>
+        )
+    }
+
     return (
+
         <Grid stretched centered={true}>
             <Grid.Row>
                 <CollapsableCard 
