@@ -8,6 +8,7 @@ import './App.scss';
 import Footer from "./components/footer";
 import Home from "./components/home/home";
 import { BlockExplorer } from "./pages/BlockExplorer";
+import { DataExplorer } from "./pages/DataExplorer"
 import AliceNetMenu from "./components/menu";
 import AliceNetSearch from "./components/search";
 // import ErrorOverlay from "./components/ErrorOverlay.jsx";
@@ -27,10 +28,10 @@ function App() {
                     <Route exact path={["/blocks", "/"]} component={Home} />
                     <Route exact path="/test" component={Test} />
                     <Route exact path="/block" component={BlockExplorer} />
+                    <Route exact path="/data" component={DataExplorer} />
                     {/* 
                     <Route exact path="/about" render={(props) => <MainView />} />
                         <Route exact path="/tx" render={(props) => <MainView />} />
-                        <Route exact path="/data" render={(props) => <MainView />} />
                         <Route exact path="/settings" render={(props) => <MainView />} /> */}
                 </Switch>
             </Router>
