@@ -57,11 +57,11 @@ function DataExplorer(props) {
 
     if(isLoading) {
         return (
-            <Grid.Row>
+            <Grid>
                 <Dimmer active>
                     <Loader>Loading</Loader>
                 </Dimmer>
-            </Grid.Row>
+            </Grid>
         )
     }
 
