@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Segment, Grid, } from "semantic-ui-react"
+import { Container, Segment, Grid, Dimmer, Loader } from "semantic-ui-react"
 import queryString from 'query-string';
 import { useSelector } from 'react-redux';
 import { aliceNetAdapter } from '../../adapter/alicenetadapter';
@@ -13,6 +13,7 @@ function BlockExplorer(props) {
     useSelector(s => s.aliceNetAdapter); // Listen to aliceNetAdapter State
 
     const [blockInfo, setBlockInfo] = useState();
+    const [isLoading, setLoadingStatus] = useState(true);
 
     useEffect(() => {
         const params = props.location && queryString.parse(props.location.search);
@@ -24,6 +25,8 @@ function BlockExplorer(props) {
                 const block = await aliceNetAdapter.getBlock(height);
                 setBlockInfo(block);
             }
+
+            setLoadingStatus(false);
         }
         
         getBlock();
@@ -32,20 +35,28 @@ function BlockExplorer(props) {
     // TODO remove console log after implementation
     const handleBlockNav = () => {};
 
-    // Conditional render
-    if (!blockInfo) {
+    if(isLoading) {
         return (
-            <>
-                <Grid centered>
-                    <Grid.Row stretched centered>
-                        <Container>
-                            <Segment>
-                                <p>No Block to display!</p>
-                            </Segment>
-                        </Container>
-                    </Grid.Row>
-                </Grid>
-            </>
+            <Grid>
+                <Dimmer active>
+                    <Loader>Loading</Loader>
+                </Dimmer>
+            </Grid>
+        )
+    }
+
+    // Conditional render
+    if (!isLoading && !blockInfo) {
+        return (
+            <Grid centered>
+                <Grid.Row stretched centered>
+                    <Container>
+                        <Segment>
+                            <p>No Block to display!</p>
+                        </Segment>
+                    </Container>
+                </Grid.Row>
+            </Grid>
         )
     }
 
