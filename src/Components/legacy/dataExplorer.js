@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Container, Button, Form, Segment, Card, Grid, Icon, Popup } from 'semantic-ui-react';
 import Switch from "react-switch";
-import Help from './help.js';
+import Help from './help.js.js';
 
 const queryString = require('query-string');
 

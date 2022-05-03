@@ -18,6 +18,7 @@
     "react-scripts": "4.0.2",
     "react-switch": "^6.0.0",
     "redux-class-watcher": "git+https://github.com/ACatThatPrograms/redux-class-watcher.git",
+    "sass": "^1.51.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3",
     "web-vitals": "^1.1.0",

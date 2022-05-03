@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Container } from 'semantic-ui-react';
 import { aliceNetAdapter } from "./adapter/alicenetadapter";
-import './App.css';
+import './App.scss';
 import Footer from "./components/footer";
 import { Home } from "./pages";
+import { BlockExplorer } from "./pages/BlockExplorer";
+import { DataExplorer } from "./pages/dataExplorer"
 import AliceNetMenu from "./components/menu";
-// import ErrorOverlay from "./Components/ErrorOverlay.jsx";
-// import DimmerLoader from "./Components/DimmerOverlay.jsx";
+// import ErrorOverlay from "./components/ErrorOverlay.jsx";
+// import DimmerLoader from "./components/DimmerOverlay.jsx";
 import { aliceNetWalletEqualize } from "./redux/reducers";
 import './style/tailwind.css';
 
@@ -24,11 +26,11 @@ function App() {
                     {/* <Route path="/" component={Test} /> */}
                     <Route exact path={["/blocks", "/"]} component={Home} />
                     <Route exact path="/test" component={Test} />
+                    <Route exact path="/block" component={BlockExplorer} />
+                    <Route exact path="/data" component={DataExplorer} />
                     {/* 
                     <Route exact path="/about" render={(props) => <MainView />} />
-                        <Route exact path="/block" render={(props) => <MainView />} />
                         <Route exact path="/tx" render={(props) => <MainView />} />
-                        <Route exact path="/data" render={(props) => <MainView />} />
                         <Route exact path="/settings" render={(props) => <MainView />} /> */}
                 </Switch>
             </Router>
