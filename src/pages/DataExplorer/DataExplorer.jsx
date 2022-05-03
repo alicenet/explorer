@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { Grid, Container, Segment, Loader, Dimmer } from 'semantic-ui-react';
 import queryString from 'query-string';
 import { aliceNetAdapter } from '../../adapter/alicenetadapter';
@@ -8,8 +7,6 @@ import { ReactComponent as FileIcon } from '../../assets/file-icon.svg';
 import DataView from './DataView/DataView'; 
 
 function DataExplorer(props) {
-    useSelector(s => s.aliceNetAdapter);
-
     const [dsView, setDsView] = useState();
     const [isLoading, setLoadingStatus] = useState(true);
 
@@ -28,7 +25,7 @@ function DataExplorer(props) {
         }
         
         getDataStores();
-    }, []); 
+    }, [props.location]); 
 
     const getDSExp = (rawData, deposit, issuedAt) => {
         return aliceNetAdapter.getDSExp(rawData, deposit, issuedAt);

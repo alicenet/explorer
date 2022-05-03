@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Segment, Grid, Dimmer, Loader } from "semantic-ui-react"
 import queryString from 'query-string';
-import { useSelector } from 'react-redux';
 import { aliceNetAdapter } from '../../adapter/alicenetadapter';
 import { CollapsableCard } from '../../components/CollapsableCard'; 
 import { BlockList } from './BlockList'; 
@@ -10,8 +9,6 @@ import { ReactComponent as CubeIcon } from '../../assets/cube-icon.svg';
 import { ReactComponent as TxHashIcon } from '../../assets/tx-hash-icon.svg';
 
 function BlockExplorer(props) {
-    useSelector(s => s.aliceNetAdapter); // Listen to aliceNetAdapter State
-
     const [blockInfo, setBlockInfo] = useState();
     const [isLoading, setLoadingStatus] = useState(true);
 
