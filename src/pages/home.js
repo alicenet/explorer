@@ -4,13 +4,12 @@ import CallToAction from '../components/callToAction';
 import LatestBlocks from '../components/latestBlocks';
 import LatestTransactions from '../components/latestTransactions';
 import AliceNetSearch from "../components/search";
-import { DataStoreSearch } from "../components/DataStoreSearch";
+
 export function Home() {
     
     return (
         <>
             <AliceNetSearch />
-            <DataStoreSearch/>
             <Container>
                 <CallToAction 
                     label="View our DataStore and experience history in the making" 
