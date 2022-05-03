@@ -3,13 +3,13 @@ import { Button, Segment, Icon, Grid } from 'semantic-ui-react';
 import { CollapsableCard } from '../../../components/CollapsableCard';
 import { copyText } from '../../../utils/copyText';
 import { HelpTooltip } from '../../../components/HelpTooltip'; // TODO Create new help component
-import './DataView.scss';
+import styles from './DataView.module.scss';
 
-function DataView({ dsView, viewTransaction, getDSExp }) {
+function DataView({ dsView, handleViewOwner, getDSExp }) {
     return (
-        <Grid className="dataView" >
-            <Grid.Column className="outerColumn">
-                <Segment className="segmentContainer">
+        <Grid className={styles.dataView} >
+            <Grid.Column className={styles.outerColumn}>
+                <Segment className={styles.segmentContainer}>
                     {dsView.map((dataStore, i) => (
                         <CollapsableCard 
                             title={`Index: 0x${dataStore.DSLinker.DSPreImage.Index}`}
@@ -19,12 +19,12 @@ function DataView({ dsView, viewTransaction, getDSExp }) {
                             borderless
                         >
                             <Grid padded="vertically">
-                                <Grid.Row>
-                                    <Grid.Column width={3}>
+                                <Grid.Row className={styles.row}>
+                                    <Grid.Column className={styles.column} width={3}>
                                         <HelpTooltip type="index" />
                                         <p>Index:</p>
                                     </Grid.Column>
-                                    <Grid.Column width={12}>
+                                    <Grid.Column className={styles.column} width={12}>
                                         <p>0x{dataStore.DSLinker.DSPreImage.Index}</p>
                                         <Icon 
                                             name="copy outline" 
@@ -34,12 +34,12 @@ function DataView({ dsView, viewTransaction, getDSExp }) {
                                     </Grid.Column>
                                 </Grid.Row>
 
-                                <Grid.Row>
-                                    <Grid.Column width={3}>
+                                <Grid.Row className={styles.row}>
+                                    <Grid.Column className={styles.column} width={3}>
                                         <HelpTooltip type="rawData" />
                                         <p>Data:</p>
                                     </Grid.Column>
-                                    <Grid.Column width={12}>
+                                    <Grid.Column className={styles.column} width={12}>
                                         <p>0x{dataStore.DSLinker.DSPreImage.RawData}</p>
                                         <Icon 
                                             name="copy outline" 
@@ -49,12 +49,12 @@ function DataView({ dsView, viewTransaction, getDSExp }) {
                                     </Grid.Column>
                                 </Grid.Row>
 
-                                <Grid.Row>
-                                    <Grid.Column width={3}>
+                                <Grid.Row className={styles.row}>
+                                    <Grid.Column className={styles.column} width={3}>
                                         <HelpTooltip type="expires" />
                                         <p>Expires:</p>
                                     </Grid.Column>
-                                    <Grid.Column width={12}>
+                                    <Grid.Column className={styles.column} width={12}>
                                         <p>{getDSExp(dataStore.DSLinker.DSPreImage.RawData, dataStore.DSLinker.DSPreImage.Deposit, dataStore.DSLinker.DSPreImage.IssuedAt)}</p>
                                         <Icon 
                                             name="copy outline" 
@@ -64,12 +64,12 @@ function DataView({ dsView, viewTransaction, getDSExp }) {
                                     </Grid.Column>
                                 </Grid.Row>
 
-                                <Grid.Row>
-                                    <Grid.Column width={3}>
+                                <Grid.Row className={styles.row}>
+                                    <Grid.Column className={styles.column} width={3}>
                                         <HelpTooltip type="txHash" />
                                         <p>Transaction Hash:</p>
                                     </Grid.Column>
-                                    <Grid.Column width={12}>
+                                    <Grid.Column className={styles.column} width={12}>
                                         <p>0x{dataStore.DSLinker.TxHash}</p>
                                         <Icon 
                                             name="copy outline" 
@@ -78,8 +78,8 @@ function DataView({ dsView, viewTransaction, getDSExp }) {
                                         />
 
                                         <Button 
-                                            className="viewOwner"
-                                            onClick={() => viewTransaction(dataStore.DSLinker.TxHash, true)}
+                                            className={styles.viewOwner}
+                                            onClick={() => handleViewOwner(dataStore.DSLinker.TxHash)}
                                         >
                                             View Owner Datastores
                                         </Button>

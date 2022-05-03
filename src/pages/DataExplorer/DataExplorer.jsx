@@ -25,48 +25,18 @@ function DataExplorer(props) {
         }
         
         getDataStores();
-
-        // let params = queryString.parse(props.states.location.search);
-        // if (madNetAdapter.dsRedirected) {
-        //     madNetAdapter.dsSearchOpts = madNetAdapter.dsRedirected;
-        //     madNetAdapter.dsRedirected = false;
-        //     handleSubmit();
-        // } else if (params["address"]) {
-        //     let querySearchOpts = { address: params['address'] }
-        //     querySearchOpts['bnCurve'] = params['bnCurve'] ? true : false
-        //     querySearchOpts['offset'] = params['offset'] ? params['offset'] : ""
-
-        //     madNetAdapter.dsSearchOpts = querySearchOpts;
-        //     handleSubmit();
-        // }
-
-        // if (madNetAdapter.dsSearchOpts) {
-        //     let setParams = ""
-        //     if (madNetAdapter.dsSearchOpts['address']) {
-        //         setParams += "?address=" + madNetAdapter.dsSearchOpts['address']
-
-        //         if (madNetAdapter.dsSearchOpts['bnCurve']) {
-        //             setParams += "&bnCurve=" + madNetAdapter.dsSearchOpts['bnCurve']
-        //         }
-
-        //         if (madNetAdapter.dsSearchOpts['offset']) {
-        //             setParams += "&offset=" + madNetAdapter.dsSearchOpts['offset']
-        //         }
-        //     }
-        //     props.states.history.replace(
-        //         {
-        //             pathname: 'data',
-        //             search: setParams
-        //         }
-        //     )
-        // }
     }, []); 
 
     const getDSExp = (rawData, deposit, issuedAt) => {
         return aliceNetAdapter.getDSExp(rawData, deposit, issuedAt);
     }
 
-    if (!dsView) {
+    const handleViewOwner = async (txHash) => {
+        return aliceNetAdapter.viewTransaction(txHash);
+        // TODO handle view owner datastores
+    }
+
+    if (!dsView || !dsView.length) {
         return (
             <>
                 <Grid centered>
@@ -95,7 +65,7 @@ function DataExplorer(props) {
                     <DataView 
                         dsView={dsView} 
                         paginate={null}
-                        viewTransaction="/" 
+                        handleViewOwner={handleViewOwner} 
                         getDSExp={getDSExp} 
                     />
                 </CollapsableCard>
