@@ -11,12 +11,16 @@
                 background: #343333 !important;
                 padding: 18px 0 !important;
 
+                &:last-child .column {
+                    display: flex !important;
+                    justify-content: flex-start;
+                    align-items: center;
+                }
+
                 .column {
                     &:last-child {
                         display: flex !important;
                         justify-content: flex-start;
-                        padding-left: 0;
-                        align-items: center;
                     }
                     
                     p {
