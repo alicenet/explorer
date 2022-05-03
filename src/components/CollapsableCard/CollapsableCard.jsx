@@ -40,7 +40,6 @@ function CollapsableCard({
                         )}
                         <Icon name="caret down" style={{ marginLeft: itemsCount ? '5px' : '15px' }} />
                     </Accordion.Title>
-
                     <Accordion.Content 
                         active={isBlockOpen && !disabled} 
                         style={{ paddingTop: 0 }}
