@@ -1,0 +1,51 @@
+.collapsableCard {
+    margin-top: 35px;
+    user-select: none;
+
+    .accordionSegment { 
+        border-top: 2px solid #00FFD1;
+        background: #444444 !important;
+        padding-bottom: 0;
+        transition: background 0.2s ease-in-out;
+        
+        &.closed {
+            background: #343333 !important;
+
+            .accordionTitle {
+                i {
+                    transform: rotate(0deg);
+                }
+            }
+        }
+
+        &.disabled {
+            opacity: 0.6;
+        }
+
+        .accordionTitle {
+            color: inherit !important;
+            cursor: pointer;
+            padding-bottom: 18px !important;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+
+            h3 {
+                margin: 0;
+                margin-right: 15px;
+            }
+            
+            & :first-child{
+                margin-right: 10px;
+            }
+            
+            i {
+                height: auto;
+                transform: rotate(180deg);
+                transition: all 0.2s ease-in-out;
+            }
+        }
+    }
+}
+
+

@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
-import { Popup, Icon } from "semantic-ui-react";
+import React from 'react';
+import { Popup, Icon } from 'semantic-ui-react';
+import styles from './HelpTooltip.module.scss';
 
 const content = {
     index: "Index where the data is stored",
@@ -31,15 +32,18 @@ const content = {
   }
 
 // Toasty notifications
-function Help(props) {
+function HelpTooltip(props) {
     return (
-        <Popup
-            trigger={<Icon name="help circle" circular />}
-            content={content[props.type]}
-            position='top left'
-            hideOnScroll
-            style={{ zIndex: 9999999 }}
-        />
+        <div className={styles.toolTip}>
+            <Popup
+                trigger={<Icon name="help circle" circular className={styles.icon} />}
+                content={content[props.type]}
+                position='top left'
+                hideOnScroll
+                style={{ zIndex: 9999999 }}
+            />
+        </div>
     )
 }
-export default Help;
+
+export default HelpTooltip;

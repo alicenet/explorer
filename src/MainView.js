@@ -1,14 +1,11 @@
 import React, { useContext, useEffect } from "react";
-<<<<<<< HEAD
 import { Dimmer, Loader, Grid } from "semantic-ui-react";
-=======
 import { AppContext, actions, getContextState } from "./AppContext/AppContext.js";
-import { Dimmer, Loader, Grid, Menu } from "semantic-ui-react";
->>>>>>> state-overhaul
-import MainMenu from "./Components/menu.js";
-import MainContent from "./Components/mainContent.js";
-import Search from "./Components/search";
-import Footer from "./Components/footer";
+import { Menu } from "semantic-ui-react";
+import MainMenu from "./components/menu.js";
+import MainContent from "./components/mainContent.js";
+import Search from "./components/search";
+import Footer from "./components/footer";
 
 function MainView(props) {
     // Store component to access states
@@ -20,7 +17,6 @@ function MainView(props) {
 
     //TODO handle both searchs
     const handleSearch = (blockNumber) => {
-        store.madNetAdapter.viewBlock(blockNumber)
         props.states.history.replace(
             {
                 pathname: 'block',
@@ -49,12 +45,8 @@ function MainView(props) {
                 </Grid>
                 <Grid centered>
                     <Grid.Row centered>
-<<<<<<< HEAD
                         <Search handleSearch={handleSearch}/>
-                        <MainContent states={props.states}/>
-=======
                         <MainContent states={props.states} />
->>>>>>> state-overhaul
                     </Grid.Row>
                 </Grid>
                 <Footer/>
