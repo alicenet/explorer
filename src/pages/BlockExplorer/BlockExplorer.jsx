@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Container, Segment, Grid, Dimmer, Loader } from "semantic-ui-react"
 import queryString from 'query-string';
 import { aliceNetAdapter } from '../../adapter/alicenetadapter';
-import { CollapsableCard } from '../../components/CollapsableCard'; 
-import { BlockList } from './BlockList'; 
-import { TxHashList } from './TxHashList'; 
+import { CollapsableCard } from '../../components/collapsableCard'; 
+import { BlockList } from './blockList'; 
+import { TxHashList } from './txHashList'; 
 import { ReactComponent as CubeIcon } from '../../assets/cube-icon.svg';
 import { ReactComponent as TxHashIcon } from '../../assets/tx-hash-icon.svg';
 
-function BlockExplorer(props) {
+export function BlockExplorer(props) {
     const [blockInfo, setBlockInfo] = useState();
     const [isLoading, setLoadingStatus] = useState(true);
 
@@ -91,5 +91,3 @@ function BlockExplorer(props) {
         </>
     )
 }
-
-export default BlockExplorer;

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button, Segment, Icon, Grid } from 'semantic-ui-react';
-import { CollapsableCard } from '../../../components/CollapsableCard';
+import { CollapsableCard } from '../../../components/collapsableCard';
 import { copyText } from '../../../utils/copyText';
-import { HelpTooltip } from '../../../components/HelpTooltip'; // TODO Create new help component
+import { HelpTooltip } from '../../../components/helpTooltip'; // TODO Create new help component
 import styles from './DataView.module.scss';
 
-function DataView({ dsView, handleViewOwner, getDSExp }) {
+export function DataView({ dsView, handleViewOwner, getDSExp }) {
     return (
         <Grid className={styles.dataView} >
             <Grid.Column className={styles.outerColumn}>
@@ -93,5 +93,3 @@ function DataView({ dsView, handleViewOwner, getDSExp }) {
         </Grid>
     )
 }
-
-export default DataView;

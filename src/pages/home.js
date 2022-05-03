@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container, Grid } from 'semantic-ui-react';
-import CallToAction from '../components/callToAction';
-import LatestBlocks from '../components/latestBlocks';
-import LatestTransactions from '../components/latestTransactions';
-import AliceNetSearch from "../components/search";
+import { CallToAction } from '../components/CallToAction';
+import { LatestBlocks } from './LatestBlocks';
+import { LatestTransactions } from './LatestTransactions';
+import AliceNetSearch from "../components/Search";
 
 export function Home() {
     

@@ -1,1 +1,1 @@
-export { default as DataExplorer } from './DataExplorer';
+export * from './DataExplorer.jsx';

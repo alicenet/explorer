@@ -1,1 +1,1 @@
-export { default as BlockExplorer } from "./BlockExplorer";
+export * from "./BlockExplorer";

@@ -7,7 +7,7 @@ import { aliceNetAdapter } from "./adapter/alicenetadapter";
 import './App.scss';
 import Footer from "./components/footer";
 import { Home } from "./pages";
-import { BlockExplorer } from "./pages/BlockExplorer";
+import { BlockExplorer } from "./pages/blockExplorer";
 import { DataExplorer } from "./pages/dataExplorer"
 import AliceNetMenu from "./components/menu";
 // import ErrorOverlay from "./components/ErrorOverlay.jsx";

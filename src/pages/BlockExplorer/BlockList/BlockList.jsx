@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button, Icon, Grid } from "semantic-ui-react"
 import { copyText } from '../../../utils/copyText';
-import { HelpTooltip } from '../../../components/HelpTooltip'; // TODO Create new help component
+import { HelpTooltip } from '../../../components/helpTooltip'; // TODO Create new help component
 import styles from './BlockList.module.scss';
 
-function BlockDetails({ height, txCount, prevBlock, txRoot, stateRoot, headerRoot, sigGroup, handleBlockNav }) {
+export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, headerRoot, sigGroup, handleBlockNav }) {
     return (
         <Grid className={styles.blockList} padded="vertically">
             <Grid.Row className={styles.row}>
@@ -130,5 +130,3 @@ function BlockDetails({ height, txCount, prevBlock, txRoot, stateRoot, headerRoo
         </Grid>
     )
 }
-
-export default BlockDetails;

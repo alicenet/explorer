@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid, Button } from "semantic-ui-react";
 
-function CallToAction(props){
+export function CallToAction(props){
     const { label, buttonLabel, onClick} = props;
-    return <Grid centered className='mx-5'>
+    return <Grid centered className='my-16'>
                 <Grid.Row centered>
                     <h2>{label}</h2>
                 </Grid.Row>
@@ -12,5 +12,3 @@ function CallToAction(props){
                 </Grid.Row>
             </Grid>
 }
-
-export default CallToAction;

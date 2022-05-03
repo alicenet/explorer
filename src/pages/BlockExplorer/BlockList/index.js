@@ -1,1 +1,1 @@
-export { default as BlockList } from './BlockList';
+export * from './BlockList';

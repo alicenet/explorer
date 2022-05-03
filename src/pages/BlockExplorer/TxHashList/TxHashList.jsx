@@ -4,7 +4,7 @@ import { Icon, Grid } from "semantic-ui-react";
 import { copyText } from '../../../utils/copyText';
 import styles from './TxHashList.module.scss';
 
-function TxHashList({ txHshLst, txViewLink = '/' }) {
+export function TxHashList({ txHshLst, txViewLink = '/' }) {
     if (!txHshLst) {
         return (<p></p>);
     }
@@ -30,5 +30,3 @@ function TxHashList({ txHshLst, txViewLink = '/' }) {
         </Grid>
     )
 }
-
-export default TxHashList;

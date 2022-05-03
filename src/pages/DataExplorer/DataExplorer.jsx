@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Grid, Container, Segment, Loader, Dimmer } from 'semantic-ui-react';
 import queryString from 'query-string';
 import { aliceNetAdapter } from '../../adapter/alicenetadapter';
-import { CollapsableCard } from '../../components/CollapsableCard'; 
+import { CollapsableCard } from '../../components/collapsableCard'; 
 import { ReactComponent as FileIcon } from '../../assets/file-icon.svg';
-import DataView from './DataView/DataView'; 
+import { DataView } from './dataView'; 
 
-function DataExplorer(props) {
+export function DataExplorer(props) {
     const [dsView, setDsView] = useState();
     const [isLoading, setLoadingStatus] = useState(true);
 
@@ -84,4 +84,3 @@ function DataExplorer(props) {
         </Grid>
     )
 }
-export default DataExplorer;

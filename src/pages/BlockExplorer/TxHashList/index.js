@@ -1,1 +1,1 @@
-export { default as TxHashList } from './TxHashList';
+export * from './TxHashList';

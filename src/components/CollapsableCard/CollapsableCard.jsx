@@ -7,7 +7,7 @@ import {
 } from "semantic-ui-react"
 import styles from './CollapsableCard.module.scss';
 
-function CollapsableCard({ 
+export function CollapsableCard({ 
     children, 
     title, 
     itemsCount,
@@ -51,5 +51,3 @@ function CollapsableCard({
         </Container>
     )
 }
-
-export default CollapsableCard;

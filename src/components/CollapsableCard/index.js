@@ -1,1 +1,1 @@
-export { default as CollapsableCard } from './CollapsableCard'; 
+export * from './CollapsableCard.jsx'; 
