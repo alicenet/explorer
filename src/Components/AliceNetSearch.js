@@ -9,7 +9,7 @@ const options = [
     { key: 2, text: 'Tx', value: 2 },
   ]
 
-function AliceNetSearch({ handleSearch }){
+export function AliceNetSearch({ handleSearch }){
     const [term, setTerm] = useState('')
     const [option, setOption] = useState(options[0].value)
 
@@ -28,7 +28,7 @@ function AliceNetSearch({ handleSearch }){
                         options={options}
                         value={option}
                     >
-                        <Dropdown.Menu className='rounded rounded-t-none rounded-tl-none w-[calc(100%_-_1rem)] '>
+                        <Dropdown.Menu className='rounded rounded-t-none rounded-tl-none w-[calc(100%_-_1rem)]  border-darkGrey'>
                             <Dropdown.Item onClick={handleChange} value={options[0].value} className='bg-darkGrey'>{options[0].text}</Dropdown.Item>
                             <Dropdown.Item onClick={handleChange} value={options[1].value} className='bg-darkGrey'>{options[1].text}</Dropdown.Item>
                         </Dropdown.Menu>
@@ -48,5 +48,3 @@ function AliceNetSearch({ handleSearch }){
         </div>
     </div>
 }
-
-export default AliceNetSearch;

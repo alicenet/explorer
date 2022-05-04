@@ -34,7 +34,7 @@ const StyleFooterSVG = {
     cursor: 'pointer'
 }
 
-function Footer(){
+export function Footer(){
     return <div style={StyleFooterContainer}>
                 <div style={StyleFooterSection}>
                     Follow us on: 
@@ -49,5 +49,3 @@ function Footer(){
                 </div>
             </div>
 }
-
-export default Footer;

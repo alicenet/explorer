@@ -7,7 +7,7 @@ import BlockMonitor from './legacy/blockMonitor.js';
 import BlockExplorer from './legacy/blockExplorer.js';
 import TxExplorer from './legacy/txExplorer.js';
 import Settings from './legacy/settings.js'
-import Home from '../pages/home.js';
+import Home from '../pages/Home.js';
 
 function MainContent(props){
 

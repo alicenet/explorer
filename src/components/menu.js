@@ -10,7 +10,7 @@ const COMMUNITY_URL = 'https://www.madnetwork.com/';
 //TODO define where to get this
 const WALLETS_PLACEHOLDER =[ 'wallet0', 'wallet1'] 
 
-function AliceNetMenu(props) {
+export function AliceNetMenu(props) {
 
     const location = useLocation();
     const history = useHistory();
@@ -56,5 +56,3 @@ function AliceNetMenu(props) {
         </Menu>
     )
 }
-
-export default AliceNetMenu;

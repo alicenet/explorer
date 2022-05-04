@@ -3,7 +3,7 @@ import { Container, Grid } from 'semantic-ui-react';
 import { CallToAction } from '../components/CallToAction';
 import { LatestBlocks } from './LatestBlocks';
 import { LatestTransactions } from './LatestTransactions';
-import AliceNetSearch from "../components/Search";
+import { AliceNetSearch } from "../components";
 
 export function Home() {
     

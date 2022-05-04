@@ -5,11 +5,12 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Container } from 'semantic-ui-react';
 import { aliceNetAdapter } from "./adapter/alicenetadapter";
 import './App.scss';
-import Footer from "./components/footer";
+import { Footer } from "./components";
 import { Home } from "./pages";
 import { BlockExplorer } from "./pages/blockExplorer";
-import { DataExplorer } from "./pages/dataExplorer"
-import AliceNetMenu from "./components/menu";
+import { DataExplorer } from "./pages/dataExplorer";
+import { TxExplorer } from "./pages/txExplorer";
+import { AliceNetMenu } from "./components";
 // import ErrorOverlay from "./components/ErrorOverlay.jsx";
 // import DimmerLoader from "./components/DimmerOverlay.jsx";
 import { aliceNetWalletEqualize } from "./redux/reducers";
@@ -17,7 +18,7 @@ import './style/tailwind.css';
 
 function App() {
     return (
-        <Container fluid>
+        <Container fluid className='mb-32'>
             {/* <ErrorOverlay /> */}
             {/* <DimmerLoader /> */}
             <Router>
@@ -28,6 +29,7 @@ function App() {
                     <Route exact path="/test" component={Test} />
                     <Route exact path="/block" component={BlockExplorer} />
                     <Route exact path="/data" component={DataExplorer} />
+                    <Route exact path="/tx" component={TxExplorer} />
                     {/* 
                     <Route exact path="/about" render={(props) => <MainView />} />
                         <Route exact path="/tx" render={(props) => <MainView />} />
