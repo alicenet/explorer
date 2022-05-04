@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Segment, Icon, Grid } from 'semantic-ui-react';
+import { useHistory } from "react-router-dom";
 import { CollapsableCard } from '../../../components/collapsableCard';
 import { copyText } from '../../../utils/copyText';
 import { HelpTooltip } from '../../../components/helpTooltip';
@@ -85,6 +86,7 @@ export function TxViewVin({ txInfo }) {
 
 export function TxViewVout({ txInfo }) {
     const ADDRESS_TYPES = { BN: "BN", SecP: "SecP" };
+    const history = useHistory();
 
     const getDSExp = (rawData, deposit, issuedAt) => {
         return aliceNetAdapter.getDSExp(rawData, deposit, issuedAt);
@@ -120,7 +122,9 @@ export function TxViewVout({ txInfo }) {
                                         <p>Owner:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={11}>
-                                        0x{object['VSPreImage']['Owner'].slice(4)}{isBN(object['VSPreImage']['Owner'])}<Icon name="copy outline" className="click" onClick={() => copyText("0x" + object['VSPreImage']['Owner'])} />
+                                        0x{object['VSPreImage']['Owner'].slice(4)}{isBN(object['VSPreImage']['Owner'])}
+                                        <Icon name="copy outline" className="click" onClick={() => copyText("0x" + object['VSPreImage']['Owner'])} />
+                                        <Button className='bg-primary rounded text-neutral-800' onClick={() => history.push('/data')}>View Owner DataStores</Button>
                                     </Grid.Column>
                                 </Grid.Row>
 
@@ -169,6 +173,7 @@ export function TxViewVout({ txInfo }) {
                                     <Grid.Column className={styles.column} width={11}>
                                         <p>{object['DSLinker']['DSPreImage']['Owner'].slice(4)}{isBN(object['DSLinker']['DSPreImage']['Owner'])}</p>
                                         <Icon name="copy outline" className="click" onClick={() => copyText("0x" + object['DSLinker']['DSPreImage']['Owner'])} />
+                                        <Button className='bg-primary rounded text-neutral-800' onClick={() => history.push('/data')}>View Owner DataStores</Button>
                                     </Grid.Column>
                                 </Grid.Row>
 

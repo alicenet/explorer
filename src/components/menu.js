@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation, useHistory} from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import { Menu, Image, Dropdown } from 'semantic-ui-react';
 import Logo from "../assets/MadNetwork Logo Horizontal GRAYSCALE.png";
 
