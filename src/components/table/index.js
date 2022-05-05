@@ -1,1 +1,1 @@
-export * from './CustomTable.js';
+export * from './CustomTable.jsx';

@@ -1,3 +1,3 @@
-export * from './Home.js'
-export * from './LatestBlocks.js'
-export * from './LatestTransactions.js'
+export * from './Home.jsx'
+export * from './LatestBlocks.jsx'
+export * from './LatestTransactions.jsx'
