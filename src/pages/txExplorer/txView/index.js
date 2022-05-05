@@ -1,1 +1,1 @@
-export * from './TxView';
+export * from './TxView.jsx';
