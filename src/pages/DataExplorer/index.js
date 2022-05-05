@@ -1,1 +1,1 @@
-export * from './DataExplorer.jsx';
+export * from './DataExplorer';

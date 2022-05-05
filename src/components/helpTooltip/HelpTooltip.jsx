@@ -32,7 +32,7 @@ const content = {
   }
 
 // Toasty notifications
-function HelpTooltip(props) {
+export function HelpTooltip(props) {
     return (
         <div className={styles.toolTip}>
             <Popup
@@ -45,5 +45,3 @@ function HelpTooltip(props) {
         </div>
     )
 }
-
-export default HelpTooltip;

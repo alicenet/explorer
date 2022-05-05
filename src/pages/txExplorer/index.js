@@ -1,1 +1,1 @@
-export * from './TxExplorer.jsx'
+export * from './TxExplorer'

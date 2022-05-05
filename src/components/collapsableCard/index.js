@@ -1,1 +1,1 @@
-export * from './CollapsableCard.jsx'; 
+export * from './CollapsableCard'; 
