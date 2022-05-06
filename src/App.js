@@ -3,14 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Container } from 'semantic-ui-react';
 import { aliceNetAdapter } from "./adapter/alicenetadapter";
-import './App.scss';
 import { AliceNetMenu, Footer } from "./components";
 import { Home } from "./pages";
 import { BlockExplorer } from "./pages/blockExplorer";
 import { DataExplorer } from "./pages/dataExplorer";
 import { TxExplorer } from "./pages/txExplorer";
 import { aliceNetWalletEqualize } from "./redux/reducers";
-import './style/tailwind.css';
 
 function App() {
     return (
