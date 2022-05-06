@@ -1,34 +1,29 @@
-// import MainView from './MainView.js';
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Container, Header, Menu } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 import { aliceNetAdapter } from "./adapter/alicenetadapter";
-import './App.scss';
-import Footer from "./components/footer";
-import Home from "./components/home/home";
-import { BlockExplorer } from "./pages/BlockExplorer";
-import { DataExplorer } from "./pages/DataExplorer"
-import AliceNetMenu from "./components/menu";
-import AliceNetSearch from "./components/search";
-// import ErrorOverlay from "./components/ErrorOverlay.jsx";
-// import DimmerLoader from "./components/DimmerOverlay.jsx";
+import { AliceNetMenu, Footer } from "./components";
+import { Home } from "./pages";
+import { BlockExplorer } from "./pages/blockExplorer";
+import { DataExplorer } from "./pages/dataExplorer";
+import { TxExplorer } from "./pages/txExplorer";
 import { aliceNetWalletEqualize } from "./redux/reducers";
 
 function App() {
     return (
-        <Container fluid>
+        <Container fluid className='mb-32'>
             {/* <ErrorOverlay /> */}
             {/* <DimmerLoader /> */}
             <Router>
                 <AliceNetMenu />
-                <AliceNetSearch />
                 <Switch>
                     {/* <Route path="/" component={Test} /> */}
                     <Route exact path={["/blocks", "/"]} component={Home} />
                     <Route exact path="/test" component={Test} />
                     <Route exact path="/block" component={BlockExplorer} />
                     <Route exact path="/data" component={DataExplorer} />
+                    <Route exact path="/tx" component={TxExplorer} />
                     {/* 
                     <Route exact path="/about" render={(props) => <MainView />} />
                         <Route exact path="/tx" render={(props) => <MainView />} />
