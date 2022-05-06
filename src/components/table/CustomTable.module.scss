@@ -1,13 +1,14 @@
-.ui.table {
-    border-top: 0.2em solid #00FFD1;
-    background-color: #575555;
+.table {
     border-color: #797777 !important;
+    border-top: 0.2em solid #00FFD1 !important;
+    background-color: #575555!important;
 }
 
 thead, tr, th, td {
     background:  #343333 !important;
     color: white !important;
     border-bottom: 1px solid #797777 !important;
+    white-space: pre;
 }
 
 .title {

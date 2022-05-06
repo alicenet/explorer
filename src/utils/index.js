@@ -1,5 +1,1 @@
-import copy from 'copy-to-clipboard';
-
-export const copyText = (text) => {
-    copy(text, { format: 'text/plain' });
-}
+export * from './copyText';

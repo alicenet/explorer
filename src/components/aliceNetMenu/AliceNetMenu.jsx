@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, useLocation, useHistory } from "react-router-dom";
 import { Menu, Image, Dropdown } from 'semantic-ui-react';
-import Logo from "../assets/MadNetwork Logo Horizontal GRAYSCALE.png";
+import Logo from "../../assets/MadNetwork Logo Horizontal GRAYSCALE.png";
+import styles from './AliceNetMenu.module.scss';
 
 //TODO define where to get this
 const GITHUB_URL = 'https://github.com/madhive';
@@ -16,9 +17,9 @@ export function AliceNetMenu(props) {
     const history = useHistory();
 
     return (
-        <Menu pointing secondary className='px-12 py-5 mb-5'>
+        <Menu pointing secondary className={styles.menu}>
             <Menu.Menu position='left'>
-                <Image src={Logo} width='205' className='logo click m-auto' as={Link} to="" onClick={() => history.push('/')} />
+                <Image src={Logo} width='205' className={styles.image} as={Link} to="" onClick={() => history.push('/')} />
             </Menu.Menu>
             <Menu.Menu position='right'>
                 <Menu.Item
