@@ -27,8 +27,8 @@ export function LatestBlocks() {
     })
 
     return <CustomTable
-        Icon={() => <BlocksIcon />}
-        headers={HEADERS_BLOCKS}
-        rows={rows}
-        title={"Latest Blocks"} />
+            Icon={() => <BlocksIcon />}
+            headers={HEADERS_BLOCKS}
+            rows={rows}
+            title={"Latest Blocks"} />
 }
