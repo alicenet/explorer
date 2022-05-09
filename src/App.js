@@ -1,3 +1,5 @@
+import DimmerLoader from "components/DimmerOverlay";
+import ErrorOverlay from "components/ErrorOverlay";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -13,8 +15,8 @@ import { aliceNetWalletEqualize } from "./redux/reducers";
 function App() {
     return (
         <Container fluid className='mb-32'>
-            {/* <ErrorOverlay /> */}
-            {/* <DimmerLoader /> */}
+            <ErrorOverlay />
+            <DimmerLoader />
             <Router>
                 <AliceNetMenu />
                 <Switch>
@@ -24,10 +26,6 @@ function App() {
                     <Route exact path="/block" component={BlockExplorer} />
                     <Route exact path="/data" component={DataExplorer} />
                     <Route exact path="/tx" component={TxExplorer} />
-                    {/* 
-                    <Route exact path="/about" render={(props) => <MainView />} />
-                        <Route exact path="/tx" render={(props) => <MainView />} />
-                        <Route exact path="/settings" render={(props) => <MainView />} /> */}
                 </Switch>
             </Router>
             <Footer />

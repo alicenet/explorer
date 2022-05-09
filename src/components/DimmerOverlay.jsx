@@ -1,13 +1,16 @@
+import { aliceNetAdapter } from 'adapter/alicenetadapter';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Dimmer, Loader, } from 'semantic-ui-react';
-import { AppContext, getContextState } from '../AppContext/AppContext';
 
 export default function DimmerLoader() {
-    const appContext = React.useContext(AppContext);
-    const { loading } = getContextState(appContext);
+    useSelector(s => s);
+
+    const busy = aliceNetAdapter.busy || ""; // Todo: Update to support all required busy states
+
     return (
-        <Dimmer page active={!!loading}>
-            <Loader active content={loading} />
+        <Dimmer page active={!!busy}>
+            <Loader active content={busy} />
         </Dimmer>
     )
 }

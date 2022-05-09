@@ -12,17 +12,20 @@ const appSlice = createSlice({
             aliceNetProvider: aliceNetProvider,
             theme: "dark",
         },
-        counter: 0, // For testing redux state TODO: Remove
+        loading: "", // For global load dimmer
     },
     reducers: {
-        incrementByAmount: (state, action) => { // For testing redux state TODO: Remove
-            state.counter += action.payload
+        setLoading: (state, action) => { // For testing redux state TODO: Remove
+            state.loading = action.payload;
         },
+        clearLoading: (state) => {
+            state.loading = "";
+        }
     },
 })
 
 // Export Generic App Actions
-export const { incrementByAmount } = appSlice.actions
+export const { setLoading, clearLoading } = appSlice.actions
 // Export generic reducer for use in store.js
 export const appSliceReducer = appSlice.reducer;
 
