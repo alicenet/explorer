@@ -20,10 +20,17 @@ export function TxExplorer(props) {
         const getTx = async () => {
             const hash = params && params.hash;
             if (hash) {
-                setTxHash(hash);
-                const tx = await aliceNetAdapter.viewTransaction(hash);
-                setTxInfo(tx);
+                try {
+                    aliceNetAdapter.clearError();
+                    setTxHash(hash);
+                    const tx = await aliceNetAdapter.viewTransaction(hash);
+                    setTxInfo(tx);
+                } catch(error){
+                    aliceNetAdapter.error = error.message;
+                    aliceNetAdapter.busy = false;
+                }
             }
+            
 
             setLoadingStatus(false);
         }

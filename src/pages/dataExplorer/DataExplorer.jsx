@@ -17,8 +17,14 @@ export function DataExplorer(props) {
             const address = params && params.address;
 
             if (address) {
-                const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address);
-                setDsView(dataStores);
+                try {
+                    aliceNetAdapter.clearError();
+                    const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address);
+                    setDsView(dataStores);
+                } catch(error){
+                    aliceNetAdapter.error = error.message;
+                    aliceNetAdapter.busy = false;
+                }
             }
 
             setLoadingStatus(false);

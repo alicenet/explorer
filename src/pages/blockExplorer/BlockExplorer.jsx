@@ -19,8 +19,14 @@ export function BlockExplorer(props) {
             const height = params && params.height;
             
             if (height) {
-                const block = await aliceNetAdapter.getBlock(height);
-                setBlockInfo(block);
+                try {
+                    aliceNetAdapter.clearError();
+                    const block = await aliceNetAdapter.getBlock(height);
+                    setBlockInfo(block);
+                }catch(error){
+                    aliceNetAdapter.error = error.message;
+                    aliceNetAdapter.busy = false;
+                }
             }
 
             setLoadingStatus(false);

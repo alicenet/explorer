@@ -8,18 +8,8 @@ const HEADERS_TX = ["Value", "TX Index", "Owner"]
 
 export function LatestTransactions() {
     useSelector(s => s.aliceNetAdapter); // Listen to aliceNetAdapter State
-
-    // Start monitor when component mounts
-    // useEffect(() => {
-    //     if (aliceNetAdapter && !aliceNetAdapter.blocksStarted) {
-    //         aliceNetAdapter.monitorBlocks();  //TODO monitor txs
-    //     }
-    //     return () => { if (aliceNetAdapter) { aliceNetAdapter.blocksReset() } }
-    // }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
     //TODO monitor txs
     const rows = aliceNetAdapter.blocks?.slice(0, aliceNetAdapter.blocksMaxLen).map((e, i) => {
-        //TODO monitor txs
         return {
             [HEADERS_TX[0]]: e['BClaims']['Height'],
             [HEADERS_TX[1]]: e['BClaims']['TxCount'] ? e['BClaims']['TxCount'] : 0,
@@ -28,8 +18,8 @@ export function LatestTransactions() {
     })
 
     return <CustomTable
-        Icon={() => <TxIcon />}
-        headers={HEADERS_TX}
-        rows={rows}
-        title={"Latest Transactions"} />
+            Icon={() => <TxIcon />}
+            headers={HEADERS_TX}
+            rows={rows}
+            title={"Latest Transactions"} />
 }
