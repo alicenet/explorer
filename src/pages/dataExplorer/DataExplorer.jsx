@@ -19,8 +19,13 @@ export function DataExplorer(props) {
         const getDataStores = async () => {
             const { address, offset, curve } = params;
             if (address) {
-                const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address, curve, offset);
-                setDsView(dataStores);
+                try {
+                    const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address, curve, offset);
+                    setDsView(dataStores);
+                } catch(error) {
+                    console.log(error)
+                }
+                
             }
 
             setLoadingStatus(false);
@@ -37,7 +42,6 @@ export function DataExplorer(props) {
         history.push(`/tx?hash=${txHash}`);
     }
 
-    console.log(dsView)
     if ((dsView?.error) || (!isLoading && (!dsView || !dsView.length))) {
         return (
             <>
