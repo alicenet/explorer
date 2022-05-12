@@ -31,7 +31,6 @@ export function TxExplorer(props) {
         getTx();
     }, [props.location]);
 
-
     if(isLoading) {
         return (
             <Grid>
@@ -43,17 +42,22 @@ export function TxExplorer(props) {
     }
 
     // Conditional render
-    if (!isLoading && !txInfo) {
+    if (!isLoading && (!txInfo || txInfo[1].error) ) {
         return (
-            <Grid centered>
-                <Grid.Row stretched centered>
-                    <Container>
-                        <Segment>
-                            <p>No Tx to display!</p>
-                        </Segment>
-                    </Container>
-                </Grid.Row>
-            </Grid>
+            <>
+                <div className='mb-8'>
+                    <AliceNetSearch/>
+                </div>
+                <Grid centered>
+                    <Grid.Row stretched centered>
+                        <Container>
+                            <Segment>
+                                <p>No Tx to display!</p>
+                            </Segment>
+                        </Container>
+                    </Grid.Row>
+                </Grid>
+            </>
         )
     }
 
@@ -63,14 +67,14 @@ export function TxExplorer(props) {
                 <AliceNetSearch/>
             </div>
             <div className='p-10 text-left'>
-                    <div className='mb-2'>Tx Hash: {txHash}</div>
-                    <div className='flex items-center mb-2'>
-                        <div className='mr-2'>Height: {aliceNetAdapter.transactionHeight}</div>
-                        <Button className='bg-primary rounded text-neutral-800' onClick={() => history.push('/data')}>View Owner DataStores</Button>
-                    </div>
+                <div className='mb-2'>Tx Hash: {txHash}</div>
+                <div className='flex items-center mb-2'>
+                    <div className='mr-2'>Height: {aliceNetAdapter.transactionHeight}</div>
+                    <Button className='bg-primary rounded text-neutral-800' onClick={() => history.push('/data')}>View Owner DataStores</Button>
                 </div>
-                <TxViewVin txInfo={txInfo[0].Vin}/>
-                <TxViewVout txInfo={txInfo[0].Vout}/>
+            </div>
+            <TxViewVin txInfo={txInfo[0].Vin}/>
+            <TxViewVout txInfo={txInfo[0].Vout}/>
         </>
     )
 }

@@ -14,7 +14,7 @@ export function LatestBlocks() {
         if (aliceNetAdapter && !aliceNetAdapter.blocksStarted) {
             aliceNetAdapter.startMonitoringBlocks();
         }
-        return () => { if (aliceNetAdapter && aliceNetAdapter) { aliceNetAdapter.blocksReset() } }
+        //return () => { if (aliceNetAdapter) { aliceNetAdapter.blocksReset() } }
     }, [aliceNetAdapter]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const rows = aliceNetAdapter.blocks?.slice(0, aliceNetAdapter.blocksMaxLen).map((e, i) => {

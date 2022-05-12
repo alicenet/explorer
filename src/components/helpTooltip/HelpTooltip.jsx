@@ -28,7 +28,9 @@ const content = {
     consumedTxIndex: "The index of the transaction output being consumed",
     changeAddress: "Address that remaining value goes to",
     reciever: "Account that will recieve the value",
-    sender: "Account that is sending value"
+    sender: "Account that is sending value",
+    offset: "The offset of the transaction, length is 64",
+    secp: "Standards for Efficient Cryptography curve"
   }
 
 // Toasty notifications
