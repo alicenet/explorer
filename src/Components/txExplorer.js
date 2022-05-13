@@ -203,7 +203,7 @@ function TransactionExplorer(props) {
     if (!store.madNetAdapter.connected) {
         return (
             <Dimmer page active={true}>
-                <Loader>Loading Blocks</Loader>
+                <Loader>Loading Txs</Loader>
             </Dimmer>
         )
     }

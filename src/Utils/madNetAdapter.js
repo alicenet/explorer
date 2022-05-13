@@ -1,5 +1,7 @@
 const BigInt = require("big-integer");
 
+const RETRY_ATTEMPTS = 10;
+
 class MadNetAdapter {
     constructor(cb, wallet, provider) {
         this.cb = cb;
@@ -47,7 +49,7 @@ class MadNetAdapter {
         catch (ex) {
             console.log(ex)
             await this.backOffRetry("connectingToMadNetwork")
-            if (this["connectingToMadNetwork-attempts"] > 10) {
+            if (this["connectingToMadNetwork-attempts"] > RETRY_ATTEMPTS) {
                 await this.cb.call(this, "error", String("Could not connect to Mad Network"));
                 return
             }
@@ -65,7 +67,7 @@ class MadNetAdapter {
             catch (ex) {
                 console.log(ex)
                 await this.backOffRetry("gettingBlocks")
-                if (this["gettingBlocks-attempts"] > 10) {
+                if (this["gettingBlocks-attempts"] > RETRY_ATTEMPTS) {
                     await this.cb.call(this, "error", String("Could not fetch block"));
                     return
                 }
@@ -98,7 +100,7 @@ class MadNetAdapter {
             catch (ex) {
                 console.log(ex)
                 await this.backOffRetry("monitorBlocks")
-                if (this["monitorBlocks-attempts"] > 10) {
+                if (this["monitorBlocks-attempts"] > RETRY_ATTEMPTS) {
                     await this.cb.call(this, "error", String("Could not update latest block"));
                     return
                 }
@@ -135,7 +137,7 @@ class MadNetAdapter {
         }
         catch (ex) {
             await this.backOffRetry("vB");
-            if (this['vB-attempts'] > 10) {
+            if (this['vB-attempts'] > RETRY_ATTEMPTS) {
                 await this.cb.call(this, "error", String(ex));
                 return
             }
@@ -158,7 +160,7 @@ class MadNetAdapter {
         }
         catch (ex) {
             await this.backOffRetry("viewBlock")
-            if (this["viewBlock-attempts"] > 10) {
+            if (this["viewBlock-attempts"] > RETRY_ATTEMPTS) {
                 await this.cb.call(this, "error", String(ex));
                 return
             }
@@ -171,6 +173,14 @@ class MadNetAdapter {
     async viewTransaction(txHash, changeView) {
         await this.cb.call(this, "wait", "Getting Transaction");
         try {
+            if (this["viewTx-attempts"] > RETRY_ATTEMPTS) {
+                this.transactionHash = false;
+                this.transactionHeight = false;
+                this.transaction = false;
+                this["viewTx-attempts"] = 0;
+                await this.cb.call(this, "error", String('There was a problem retrieving the tx info, please verify input or try again later'));
+                return;
+            }
             this.transactionHash = txHash;
             if (txHash.indexOf('0x') >= 0) {
                 txHash = txHash.slice(2);
@@ -189,8 +199,8 @@ class MadNetAdapter {
             }
         }
         catch (ex) {
-            await this.backOffRetry('viewTx')
-            if (this["viewTx-attempts"] > 10) {
+            await this.backOffRetry('viewTx')           
+            if (this["viewTx-attempts"] > RETRY_ATTEMPTS) {
                 this.transactionHash = false;
                 this.transactionHeight = false;
                 this.transaction = false;

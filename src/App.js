@@ -67,9 +67,11 @@ return (
     <Container fluid>
       <Store>
         <Router>
-          <Dimmer page active={Boolean(isLoading)}>
+          {!Boolean(propStates.isError) &&
+            <Dimmer page active={Boolean(isLoading)}>
             <Loader>{String(isLoading)}</Loader>
-          </Dimmer>
+          </Dimmer>}
+          
           <Errors states={propStates} />
           <Switch>
             <Route exact path={["/blocks", "/"]} render={(props) => <MainView states={{ ...propStates, ...props }} />} />
