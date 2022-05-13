@@ -64,6 +64,9 @@ export function BlockExplorer(props) {
 
     return (
         <>
+            <div className='mb-8'>
+                <AliceNetSearch/>
+            </div>
             <CollapsableCard 
                 title={`Block #${blockInfo.BClaims.Height}`}
                 icon={<CubeIcon />}

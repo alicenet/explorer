@@ -24,9 +24,9 @@ export function AliceNetMenu(props) {
             <Menu.Menu position='right'>
                 <Menu.Item
                     as={Link}
-                    to="blocks"
+                    to="block"
                     name="Monitor"
-                    active={location.pathname.slice(1) === 'blocks'}
+                    active={location.pathname.slice(1) === 'block'}
                 />
                 <Menu.Item
                     as={Link}
