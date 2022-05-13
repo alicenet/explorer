@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { CustomTable } from '../components/table';
-import { ReactComponent as TxIcon } from '../assets/tx-icon.svg';
-import { aliceNetAdapter } from '../adapter/alicenetadapter';
+import { CustomTable } from 'components/table';
+import { ReactComponent as TxIcon } from 'assets/tx-icon.svg';
+import { aliceNetAdapter } from 'adapter/alicenetadapter';
 
 const HEADERS_TX = ["Value", "TX Index", "Owner"]
 

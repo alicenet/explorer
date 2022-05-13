@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Segment, Grid, Dimmer, Loader, Button } from "semantic-ui-react"
 import queryString from 'query-string';
-import { aliceNetAdapter } from '../../adapter/alicenetadapter';
-import { AliceNetSearch } from '../../components';
+import { aliceNetAdapter } from 'adapter/alicenetadapter';
+import { AliceNetSearch } from 'components';
 import { TxViewVin, TxViewVout } from './txView'; 
 import { useHistory } from "react-router-dom";
 

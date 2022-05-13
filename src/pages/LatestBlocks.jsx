@@ -1,8 +1,8 @@
 import React from 'react';
-import { CustomTable } from '../components/table';
-import { ReactComponent as BlocksIcon } from '../assets/blocks-icon.svg';
+import { CustomTable } from 'components/table';
+import { ReactComponent as BlocksIcon } from 'assets/blocks-icon.svg';
 import { useSelector } from 'react-redux';
-import { aliceNetAdapter } from '../adapter/alicenetadapter';
+import { aliceNetAdapter } from 'adapter/alicenetadapter';
 
 const HEADERS_BLOCKS = ["Height", "TX Count", "Group Signature"]
 

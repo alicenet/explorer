@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Icon, Grid } from "semantic-ui-react"
-import { copyText } from '../../../utils/copyText';
-import { HelpTooltip } from '../../../components/helpTooltip';
+import { copyText } from 'utils';
+import { HelpTooltip } from 'components';
 import styles from './BlockList.module.scss';
 
 export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, headerRoot, sigGroup, handleBlockNav }) {

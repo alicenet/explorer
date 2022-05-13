@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Container, Segment, Loader, Dimmer } from 'semantic-ui-react';
 import queryString from 'query-string';
-import { aliceNetAdapter } from '../../adapter/alicenetadapter';
-import { CollapsableCard } from '../../components/collapsableCard'; 
-import { ReactComponent as FileIcon } from '../../assets/file-icon.svg';
-import { DataView } from './dataView'; 
-import { DataStoreSearch } from '../../components';
 import { useHistory } from "react-router-dom";
+import { aliceNetAdapter } from 'adapter/alicenetadapter';
+import { CollapsableCard,  DataStoreSearch } from 'components'; 
+import { ReactComponent as FileIcon } from 'assets/file-icon.svg';
+import { DataView } from './dataView'; 
 
 export function DataExplorer(props) {
     const [dsView, setDsView] = useState();

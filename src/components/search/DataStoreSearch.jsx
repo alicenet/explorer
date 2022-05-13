@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Dropdown, Button } from "semantic-ui-react";
-import { HelpTooltip } from '../helpTooltip';
+import { HelpTooltip } from 'components';
 import styles from './DataStoreSearch.module.scss';
 import { useHistory } from "react-router-dom";
 
