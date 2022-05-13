@@ -6,10 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Container } from 'semantic-ui-react';
 import { aliceNetAdapter } from "./adapter/alicenetadapter";
 import { AliceNetMenu, Footer } from "./components";
-import { Home } from "./pages";
-import { BlockExplorer } from "./pages/blockExplorer";
-import { DataExplorer } from "./pages/dataExplorer";
-import { TxExplorer } from "./pages/txExplorer";
+import { Home, BlockExplorer, DataExplorer, TxExplorer } from "./pages";
 import { aliceNetWalletEqualize } from "./redux/reducers";
 
 function App() {
@@ -40,7 +37,7 @@ function Test() {
 
     let [block, setBlock] = React.useState({})
 
-    let walletState = useSelector(state => state.aliceNetWallet);
+    //let walletState = useSelector(state => state.aliceNetWallet);
     // Must be used to propogate UI updates from the class being watched  
     // -- State is minified as a string and serialized to represent state changes but will not be accessible as an object tree 
     // Wallet accounts won't work without connecting the serialized state to propgate UI updates

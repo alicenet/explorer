@@ -1,5 +1,5 @@
-import { ReactComponent as DiscordIcon } from '../../assets/discord-icon.svg';
-import { ReactComponent as TwitterIcon } from '../../assets/twitter-icon.svg';
+import { ReactComponent as DiscordIcon } from 'assets/discord-icon.svg';
+import { ReactComponent as TwitterIcon } from 'assets/twitter-icon.svg';
 import styles from './Footer.module.scss'; 
 
 export function Footer(){

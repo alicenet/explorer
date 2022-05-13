@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Dropdown, Button } from 'semantic-ui-react';
 import { useHistory } from "react-router-dom";
-import { ReactComponent as Icon1 } from '../../assets/searchIcon1.svg';
-import { ReactComponent as Icon2 } from '../../assets/searchIcon2.svg';
-import { ReactComponent as Icon3 } from '../../assets/searchIcon3.svg';
+import { ReactComponent as Icon1 } from 'assets/searchIcon1.svg';
+import { ReactComponent as Icon2 } from 'assets/searchIcon2.svg';
+import { ReactComponent as Icon3 } from 'assets/searchIcon3.svg';
 import styles from './AliceNetSearch.module.scss';
 
 const options = [

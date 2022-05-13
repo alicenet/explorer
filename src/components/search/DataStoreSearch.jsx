@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { Dropdown, Button } from "semantic-ui-react";
-import { ReactComponent as QuestionIcon } from "../../assets/question-icon.svg";
+import { HelpTooltip } from 'components';
 import styles from './DataStoreSearch.module.scss';
+import { useHistory } from "react-router-dom";
 
 const options = [{ key: 1, text: "DataStores", value: 1 }];
 
 const ADDRESS_TYPES = { BN: "BN", SecP: "SecP" };
 
 export function DataStoreSearch() {
+  const history = useHistory();
+
   const [term, setTerm] = useState("");
   const [offset, setOffset] = useState("");
   const [option, setOption] = useState(options[0].value);
@@ -15,7 +18,7 @@ export function DataStoreSearch() {
 
   const handleChange = (e, { value }) => setOption(value);
 
-  const handleSearch = () => {} //TODO handle search
+  const handleSearch = () => history.push(`/data?address=${term}&curve=${addressType === ADDRESS_TYPES ? 2 : 1}${offset && `&offset=${offset.padStart(64, '0')}`}`);
 
   const isBN = address => address.substring(0, 2) === ADDRESS_TYPES.BN;
 
@@ -54,17 +57,19 @@ export function DataStoreSearch() {
                     className={styles.input}
                     value={term}
                     onChange={e => setTerm(e.target.value)}
+                    placeholder='Address'
                   />
                   </div>
 
                   <div className={styles.inputSection}>
                     <div className="mr-2">Offset</div>
                     <input
-                      className='w-3/4 h-px py-5 border border-solid border-darkGrey indent-2 rounded' 
+                      className={styles.inputOffset}
                       value={offset}
                       onChange={e => setOffset(e.target.value)}
+                      placeholder='(optional)'
                     />
-                    <QuestionIcon className={styles.questionInput}/>
+                    <HelpTooltip type="offset"/>
                   </div>
                   <Button
                     className={styles.button}
@@ -80,7 +85,7 @@ export function DataStoreSearch() {
         <div className={styles.addressType}>
           <div className={styles.greenDot}/>
           <h3>This Is A {ADDRESS_TYPES[addressType]} Address</h3>
-          <QuestionIcon className={styles.question}/>
+          {addressType === ADDRESS_TYPES.BN ? <HelpTooltip type="bn"/> : <HelpTooltip type="secp"/>}
         </div>
       )}
     </div>
