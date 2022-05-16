@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import { Container, Grid } from 'semantic-ui-react';
-import { CallToAction, AliceNetSearch } from '../components';
+import { CallToAction, AliceNetSearch } from 'components';
 import { LatestBlocks } from './LatestBlocks';
 import { LatestTransactions } from './LatestTransactions';
 

@@ -1,8 +1,7 @@
 import React from 'react';
 import { Button, Segment, Icon, Grid } from 'semantic-ui-react';
-import { CollapsableCard } from '../../../components/collapsableCard';
-import { copyText } from '../../../utils/copyText';
-import { HelpTooltip } from '../../../components/helpTooltip'; // TODO Create new help component
+import { CollapsableCard, HelpTooltip } from 'components';
+import { copyText } from 'utils';
 import styles from './DataView.module.scss';
 
 export function DataView({ dsView, handleViewOwner, getDSExp }) {

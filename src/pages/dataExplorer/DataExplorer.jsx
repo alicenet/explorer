@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Container, Segment, Loader, Dimmer } from 'semantic-ui-react';
 import queryString from 'query-string';
-import { aliceNetAdapter } from '../../adapter/alicenetadapter';
-import { CollapsableCard } from '../../components/collapsableCard'; 
-import { ReactComponent as FileIcon } from '../../assets/file-icon.svg';
+import { useHistory } from "react-router-dom";
+import { aliceNetAdapter } from 'adapter/alicenetadapter';
+import { CollapsableCard,  DataStoreSearch } from 'components'; 
+import { ReactComponent as FileIcon } from 'assets/file-icon.svg';
 import { DataView } from './dataView'; 
 
 export function DataExplorer(props) {
     const [dsView, setDsView] = useState();
     const [isLoading, setLoadingStatus] = useState(true);
+    const history = useHistory();
 
     useEffect(() => {
         const params = props.location && queryString.parse(props.location.search);
 
         const getDataStores = async () => {
-            const address = params && params.address;
-
+            const { address, offset, curve } = params;
             if (address) {
-                const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address);
-                setDsView(dataStores);
+                try {
+                    const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address, curve, offset);
+                    setDsView(dataStores);
+                } catch(error) {
+                    console.log(error)
+                }
+                
             }
 
             setLoadingStatus(false);
@@ -32,13 +38,15 @@ export function DataExplorer(props) {
     }
 
     const handleViewOwner = async (txHash) => {
-        return aliceNetAdapter.viewTransaction(txHash);
-        // TODO handle view owner datastores
+        history.push(`/tx?hash=${txHash}`);
     }
 
-    if (!isLoading && (!dsView || !dsView.length)) {
+    if ((dsView?.error) || (!isLoading && (!dsView || !dsView.length))) {
         return (
             <>
+                <div className='mb-8'>
+                    <DataStoreSearch/>
+                </div>
                 <Grid centered>
                     <Grid.Row stretched centered>
                         <Container>
@@ -63,24 +71,28 @@ export function DataExplorer(props) {
     }
 
     return (
-
-        <Grid stretched centered={true}>
-            <Grid.Row>
-                <CollapsableCard 
-                    title="Indexes from Offset"
-                    icon={<FileIcon />}
-                    open={true}
-                    disabled={false}
-                    itemsCount={dsView && dsView.length}    
-                >
-                    <DataView 
-                        dsView={dsView} 
-                        paginate={null}
-                        handleViewOwner={handleViewOwner} 
-                        getDSExp={getDSExp} 
-                    />
-                </CollapsableCard>
-            </Grid.Row>
-        </Grid>
+        <>
+            <div className='mb-8'>
+                <DataStoreSearch/>
+            </div>
+            <Grid stretched centered={true}>
+                <Grid.Row>
+                    <CollapsableCard 
+                        title="Indexes from Offset"
+                        icon={<FileIcon />}
+                        open={true}
+                        disabled={false}
+                        itemsCount={dsView && dsView.length}    
+                    >
+                        <DataView 
+                            dsView={dsView} 
+                            paginate={null}
+                            handleViewOwner={handleViewOwner} 
+                            getDSExp={getDSExp} 
+                        />
+                    </CollapsableCard>
+                </Grid.Row>
+            </Grid>
+        </>
     )
 }

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Segment, Grid, Dimmer, Loader } from "semantic-ui-react"
 import queryString from 'query-string';
-import { aliceNetAdapter } from '../../adapter/alicenetadapter';
-import { CollapsableCard } from '../../components/collapsableCard'; 
+import { aliceNetAdapter } from 'adapter/alicenetadapter';
+import { CollapsableCard, AliceNetSearch } from 'components'; 
 import { BlockList } from './blockList'; 
 import { TxHashList } from './txHashList'; 
-import { ReactComponent as CubeIcon } from '../../assets/cube-icon.svg';
-import { ReactComponent as TxHashIcon } from '../../assets/tx-hash-icon.svg';
+import { ReactComponent as CubeIcon } from 'assets/cube-icon.svg';
+import { ReactComponent as TxHashIcon } from 'assets/tx-hash-icon.svg';
 
 export function BlockExplorer(props) {
     const [blockInfo, setBlockInfo] = useState();
@@ -43,17 +43,22 @@ export function BlockExplorer(props) {
     }
 
     // Conditional render
-    if (!isLoading && !blockInfo) {
+    if ((!isLoading && !blockInfo) || blockInfo.error) {
         return (
-            <Grid centered>
-                <Grid.Row stretched centered>
-                    <Container>
-                        <Segment>
-                            <p>No Block to display!</p>
-                        </Segment>
-                    </Container>
-                </Grid.Row>
-            </Grid>
+            <>
+                <div className='mb-8'>
+                    <AliceNetSearch/>
+                </div>
+                <Grid centered>
+                    <Grid.Row stretched centered>
+                        <Container>
+                            <Segment>
+                                <p>No Block to display!</p>
+                            </Segment>
+                        </Container>
+                    </Grid.Row>
+                </Grid>
+            </>
         )
     }
 

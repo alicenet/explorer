@@ -1,8 +1,8 @@
 import React from 'react';
-import { CustomTable } from '../components/table';
-import { ReactComponent as BlocksIcon } from '../assets/blocks-icon.svg';
+import { CustomTable } from 'components/table';
+import { ReactComponent as BlocksIcon } from 'assets/blocks-icon.svg';
 import { useSelector } from 'react-redux';
-import { aliceNetAdapter } from '../adapter/alicenetadapter';
+import { aliceNetAdapter } from 'adapter/alicenetadapter';
 
 const HEADERS_BLOCKS = ["Height", "TX Count", "Group Signature"]
 
@@ -14,7 +14,7 @@ export function LatestBlocks() {
         if (aliceNetAdapter && !aliceNetAdapter.blocksStarted) {
             aliceNetAdapter.startMonitoringBlocks();
         }
-        return () => { if (aliceNetAdapter && aliceNetAdapter) { aliceNetAdapter.blocksReset() } }
+        //return () => { if (aliceNetAdapter) { aliceNetAdapter.blocksReset() } }
     }, [aliceNetAdapter]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const rows = aliceNetAdapter.blocks?.slice(0, aliceNetAdapter.blocksMaxLen).map((e, i) => {
