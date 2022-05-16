@@ -6,7 +6,7 @@
         border: none;
         border-top: 2px solid #00FFD1 !important;
         background: #444444 !important;
-        padding-bottom: 0;
+        padding: 0;
         transition: background 0.2s ease-in-out;
         overflow: hidden;
         
@@ -31,7 +31,7 @@
         .accordionTitle {
             color: inherit !important;
             cursor: pointer;
-            padding-bottom: 18px !important;
+            padding: 18px !important;
             display: flex;
             align-items: center;
             justify-content: flex-start;
