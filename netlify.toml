@@ -3,4 +3,4 @@
     REACT_APP_ALICENET_RPC_ENDPOINT_LOCAL="https://mad.catmad.duckdns.org/v1/"
     REACT_APP_ALICENET_RPC_ENDPOINT_STAGING="https://testnet.edge.mnexplore.com/v1/"
     REACT_APP_ALICENET_RPC_ENDPOINT_PRODUCTION="https://edge.mnexplore.com/v1/"
-    CI=false
+    CI="FALSE"
