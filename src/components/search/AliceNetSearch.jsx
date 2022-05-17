@@ -45,16 +45,15 @@ export function AliceNetSearch() {
                         className={styles.dropdown}
                     >
                         <Dropdown.Menu className={styles.menu}>
-                            {options.map(option => {
-                                    return (<Dropdown.Item
-                                        key={`header-option-${option.value}`}
-                                        onClick={handleChange}
-                                        value={option.value}
-                                        className={styles.option}
-                                    >
-                                        {option.text}
-                                    </Dropdown.Item>);
-                                }
+                            {options.map(option =>
+                                <Dropdown.Item
+                                    key={`header-option-${option.value}`}
+                                    onClick={handleChange}
+                                    value={option.value}
+                                    className={styles.option}
+                                >
+                                    {option.text}
+                                </Dropdown.Item>
                             )}
                         </Dropdown.Menu>
                     </Dropdown>
