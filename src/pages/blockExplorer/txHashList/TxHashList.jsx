@@ -14,7 +14,7 @@ export function TxHashList({ txHshLst, txViewLink = '/' }) {
             {txHshLst && txHshLst.map((hash, index) => {
                 return (
                     <Grid.Row key={index} className={styles.row}>
-                        <Grid.Column width={1}>Tx Hash</Grid.Column>
+                        <Grid.Column width={2}>Tx Hash</Grid.Column>
                         <Grid.Column width={13}>
                             {/* TODO add link url  */}
                             <Link to={txViewLink}>0x{hash}</Link>

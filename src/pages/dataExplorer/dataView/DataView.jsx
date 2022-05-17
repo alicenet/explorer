@@ -6,7 +6,7 @@ import styles from './DataView.module.scss';
 
 export function DataView({ dsView, handleViewOwner, getDSExp }) {
     return (
-        <Grid className={styles.dataView} >
+        <div className={styles.dataView} >
             <Grid.Column className={styles.outerColumn}>
                 <Segment className={styles.segmentContainer}>
                     {dsView.map((dataStore, i) => (
@@ -89,6 +89,6 @@ export function DataView({ dsView, handleViewOwner, getDSExp }) {
                     ))}
                 </Segment>
             </Grid.Column>
-        </Grid>
+        </div>
     )
 }
