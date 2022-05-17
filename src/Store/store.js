@@ -1,11 +1,11 @@
 import React, { createContext, Component } from 'react';
 
 // prod
-const defaultSettings = {"madnetProvider": "https://edge.mnexplore.com/v1/", "theme": "dark" }
+const defaultSettings = {"madnetProvider": "https://mad.catmad.duckdns.org/v1/", "theme": "dark" }
 
 // testnet
 //const defaultSettings = {"madnetProvider": "https://testnet.edge.mnexplore.com/v1/", "theme": "dark" }
-const MadWallet = require("madwalletjs");
+const MadWallet = require("alicenetjs");
 
 export const StoreContext = createContext();
 
