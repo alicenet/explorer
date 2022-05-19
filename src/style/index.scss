@@ -17,6 +17,7 @@
 .onehundo {
  min-height: 100vh;
 }
+
 .ui.placeholder.segment {
   min-height: unset !important;
 }
@@ -46,20 +47,20 @@
 .warningMenu {
   background: #ff4c4c !important;
   width: 100vw;
-    color: #000000 !important;
-    text-align: center !important;
-    justify-content: center !important;
-    min-height: unset !important;
+  color: #000000 !important;
+  text-align: center !important;
+  justify-content: center !important;
+  min-height: unset !important;
 }
 
 .bottomMenu {
-    background: #ffffff00 !important;
-    color: #000000 !important;
-    text-align: center !important;
-    justify-content: center !important;
-    min-height: unset !important;
-    position: absolute;
-    bottom: 0;
+  background: #ffffff00 !important;
+  color: #000000 !important;
+  text-align: center !important;
+  justify-content: center !important;
+  min-height: unset !important;
+  position: absolute;
+  bottom: 0;
 }
 
 .warningPad {
@@ -129,4 +130,8 @@ i.circular.icon {
 
 .blockPad {
   margin: .25rem !important;
+}
+
+.info {
+  color: #00FFD1;
 }
