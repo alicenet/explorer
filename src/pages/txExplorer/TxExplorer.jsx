@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Segment, Grid, Dimmer, Loader, Button } from "semantic-ui-react"
+import { useHistory } from 'react-router-dom';
+import { Container, Segment, Grid, Dimmer, Loader, Button } from 'semantic-ui-react';
 import queryString from 'query-string';
 import { aliceNetAdapter } from 'adapter/alicenetadapter';
 import { AliceNetSearch } from 'components';
 import { TxViewVin, TxViewVout } from './txView'; 
-import { useHistory } from "react-router-dom";
+import { isValidHash } from 'utils';
 
 export function TxExplorer(props) {
     const [txInfo, setTxInfo] = useState();
     const [isLoading, setLoadingStatus] = useState(true);
+    const [isValid, setIsValid] = useState(true);
 
     const [txHash, setTxHash] = useState(false);
 
@@ -18,13 +20,17 @@ export function TxExplorer(props) {
         const params = props.location && queryString.parse(props.location.search);
         
         const getTx = async () => {
+
+            setIsValid(true);
             const hash = params && params.hash;
-            if (hash) {
+
+            if(isValidHash(hash)) {
                 setTxHash(hash);
                 const tx = await aliceNetAdapter.viewTransaction(hash);
                 setTxInfo(tx);
+            } else {
+                setIsValid(false);
             }
-
             setLoadingStatus(false);
         }
         
@@ -49,13 +55,22 @@ export function TxExplorer(props) {
                     <AliceNetSearch/>
                 </div>
                 <Grid centered>
-                    <Grid.Row stretched centered>
-                        <Container>
-                            <Segment>
-                                <p>No Tx to display!</p>
-                            </Segment>
-                        </Container>
-                    </Grid.Row>
+                    {isValid ? 
+                        <Grid.Row stretched centered>
+                            <Container>
+                                <Segment>
+                                    <p>No Tx to display!</p>
+                                </Segment>
+                            </Container>
+                        </Grid.Row> :
+                        <Grid.Row stretched centered>
+                            <Container>
+                                <Segment>
+                                    <p>Improper format: Please input a valid <span className='info'>TX Hash</span> or <span className='info'>Blockheight</span></p>
+                                </Segment>
+                            </Container>
+                        </Grid.Row>
+                    }    
                 </Grid>
             </>
         )
@@ -66,13 +81,17 @@ export function TxExplorer(props) {
             <div className='mb-8'>
                 <AliceNetSearch/>
             </div>
-            <div className='p-10 text-left'>
-                <div className='mb-2'>Tx Hash: {txHash}</div>
-                <div className='flex items-center mb-2'>
-                    <div className='mr-2'>Height: {aliceNetAdapter.transactionHeight}</div>
-                    <Button className='bg-primary rounded text-neutral-800' onClick={() => history.push('/data')}>View Owner DataStores</Button>
-                </div>
-            </div>
+            <Grid.Row stretched centered>
+                <Container>
+                    <div className='py-10 text-left'>
+                        <div className='mb-2'>Tx Hash: {txHash}</div>
+                        <div className='flex items-center mb-2'>
+                            <div className='mr-2'>Height: {aliceNetAdapter.transactionHeight}</div>
+                            <Button className='bg-primary rounded text-neutral-800' onClick={() => history.push('/data')}>View Owner DataStores</Button>
+                        </div>
+                    </div>
+                </Container>
+            </Grid.Row>
             <TxViewVin txInfo={txInfo[0].Vin}/>
             <TxViewVout txInfo={txInfo[0].Vout}/>
         </>
