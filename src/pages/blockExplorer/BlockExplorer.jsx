@@ -8,6 +8,7 @@ import { TxHashList } from './txHashList';
 import { ReactComponent as CubeIcon } from 'assets/cube-icon.svg';
 import { ReactComponent as TxHashIcon } from 'assets/tx-hash-icon.svg';
 import { useSelector } from 'react-redux';
+import { isValidBlockHeight } from 'utils';
 
 export function BlockExplorer(props) {
     const [blockInfo, setBlockInfo] = useState();
@@ -19,9 +20,9 @@ export function BlockExplorer(props) {
 
     const isValidHeight = (height) => {
         if(aliceNetAdapter.blocks.length > 0) { //is monitoring blocks
-            return height && /^\+?(0|[1-9]\d*)$/.test(height) && height <= aliceNetAdapter.blocks[0].BClaims.Height;
+            return isValidBlockHeight(height) && height <= aliceNetAdapter.blocks[0].BClaims.Height;
         }
-        return height && /^\+?(0|[1-9]\d*)$/.test(height);
+        return isValidBlockHeight(height);
     }
 
     useEffect(() => {
