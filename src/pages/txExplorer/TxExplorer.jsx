@@ -5,6 +5,7 @@ import queryString from 'query-string';
 import { aliceNetAdapter } from 'adapter/alicenetadapter';
 import { AliceNetSearch } from 'components';
 import { TxViewVin, TxViewVout } from './txView'; 
+import { isValidHash } from 'utils';
 
 export function TxExplorer(props) {
     const [txInfo, setTxInfo] = useState();
@@ -14,8 +15,6 @@ export function TxExplorer(props) {
     const [txHash, setTxHash] = useState(false);
 
     const history = useHistory();
-
-    const isValidHash = (hash) => hash && /^(0x)?([A-Fa-f0-9]{64})$/.test(hash);
 
     useEffect(() => {
         const params = props.location && queryString.parse(props.location.search);
