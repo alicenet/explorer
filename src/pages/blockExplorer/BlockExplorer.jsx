@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Segment, Grid, Dimmer, Loader } from "semantic-ui-react"
+import { Container, Segment, Grid, Dimmer, Loader } from 'semantic-ui-react';
 import queryString from 'query-string';
 import { aliceNetAdapter } from 'adapter/alicenetadapter';
 import { CollapsableCard, AliceNetSearch } from 'components'; 
@@ -7,20 +7,35 @@ import { BlockList } from './blockList';
 import { TxHashList } from './txHashList'; 
 import { ReactComponent as CubeIcon } from 'assets/cube-icon.svg';
 import { ReactComponent as TxHashIcon } from 'assets/tx-hash-icon.svg';
+import { useSelector } from 'react-redux';
 
 export function BlockExplorer(props) {
     const [blockInfo, setBlockInfo] = useState();
     const [isLoading, setLoadingStatus] = useState(true);
 
+    const [isValid, setIsValid] = useState(true);
+
+    useSelector(s => s.aliceNetAdapter); // Listen to aliceNetAdapter State
+
+    const isValidHeight = (height) => {
+        if(aliceNetAdapter.blocks.length > 0) { //is monitoring blocks
+            return height && /^\+?(0|[1-9]\d*)$/.test(height) && height <= aliceNetAdapter.blocks[0].BClaims.Height;
+        }
+        return height && /^\+?(0|[1-9]\d*)$/.test(height);
+    }
+
     useEffect(() => {
         const params = props.location && queryString.parse(props.location.search);
         
         const getBlock = async () => {
+            setIsValid(true);
             const height = params && params.height;
             
-            if (height) {
+            if(isValidHeight(height)) {
                 const block = await aliceNetAdapter.getBlock(height);
                 setBlockInfo(block);
+            } else {
+                setIsValid(false);
             }
 
             setLoadingStatus(false);
@@ -50,13 +65,22 @@ export function BlockExplorer(props) {
                     <AliceNetSearch/>
                 </div>
                 <Grid centered>
-                    <Grid.Row stretched centered>
-                        <Container>
-                            <Segment>
-                                <p>No Block to display!</p>
-                            </Segment>
-                        </Container>
-                    </Grid.Row>
+                    {isValid ? 
+                            <Grid.Row stretched centered>
+                                <Container>
+                                    <Segment>
+                                        <p>No Block to display!</p>
+                                    </Segment>
+                                </Container>
+                            </Grid.Row> :
+                            <Grid.Row stretched centered>
+                                <Container>
+                                    <Segment>
+                                        <p>Improper format: Please input a valid <span className='info'>Block Height</span></p>
+                                    </Segment>
+                                </Container>
+                            </Grid.Row>
+                        }    
                 </Grid>
             </>
         )
