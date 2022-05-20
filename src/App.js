@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 import { aliceNetAdapter } from "./adapter/alicenetadapter";
-import { AliceNetMenu, Footer } from "./components";
 import { BlockExplorer, DataExplorer, Home, TxExplorer } from "./pages";
 import { aliceNetWalletEqualize } from "./redux/reducers";
+import { Page } from "./components";
 
 function App() {
     return (
@@ -15,7 +15,6 @@ function App() {
             <ErrorOverlay />
             <DimmerLoader />
             <Router>
-                <AliceNetMenu />
                 <Switch>
                     <Route exact path={["/blocks", "/"]} component={Home} />
                     <Route exact path="/test" component={Test} />
@@ -24,7 +23,6 @@ function App() {
                     <Route exact path="/tx" component={TxExplorer} />
                 </Switch>
             </Router>
-            <Footer />
         </Container>
     );
 }
@@ -72,48 +70,52 @@ function Test() {
     }
 
     return (
-        <div style={{ textAlign: "left" }}>
+        <Page>
 
-            <h2>Wallet accounts</h2>
-            {aliceNetAdapter.wallet.Account.accounts.length}
+            <div style={{ textAlign: "left" }}>
 
-            <br />
-            <button onClick={() => console.log(aliceNetAdapter)}>Print Adapter Instance</button>
-            <br />
-            <button onClick={addRandomAccount}>addRandomAccount</button>
+                <h2>Wallet accounts</h2>
+                {aliceNetAdapter.wallet.Account.accounts.length}
 
-            <h2>Connection State</h2>
-            <div>Busy: {adapterState.busy}</div>
-            <div>Error: {adapterState.error}</div>
-            <div>Connected: {adapterState.connected}</div>
+                <br />
+                <button onClick={() => console.log(aliceNetAdapter)}>Print Adapter Instance</button>
+                <br />
+                <button onClick={addRandomAccount}>addRandomAccount</button>
 
-            <button onClick={attemptConnect}>attempt connect</button>
+                <h2>Connection State</h2>
+                <div>Busy: {adapterState.busy}</div>
+                <div>Error: {adapterState.error}</div>
+                <div>Connected: {adapterState.connected}</div>
 
-            <h4>Block Monitoring</h4>
+                <button onClick={attemptConnect}>attempt connect</button>
 
-            <div>BlockMonitoringEnabled: {String(aliceNetAdapter.blocksMonitoringEnabled)}</div>
+                <h4>Block Monitoring</h4>
 
-            <button onClick={() => aliceNetAdapter.startMonitoringBlocks()}>Start Monitor</button>
-            <button onClick={() => aliceNetAdapter.stopMonitoringBlocks()}>Stop Monitor</button>
-            <button onClick={() => aliceNetAdapter.resetBlockMonitor()}>Reset Monitor</button>
+                <div>BlockMonitoringEnabled: {String(aliceNetAdapter.blocksMonitoringEnabled)}</div>
 
-            {aliceNetAdapter.blocks.map(block =>
-                <div key={block["BClaims"].Height}>{block["BClaims"].Height}</div>
-            )}
+                <button onClick={() => aliceNetAdapter.startMonitoringBlocks()}>Start Monitor</button>
+                <button onClick={() => aliceNetAdapter.stopMonitoringBlocks()}>Stop Monitor</button>
+                <button onClick={() => aliceNetAdapter.resetBlockMonitor()}>Reset Monitor</button>
 
-            <h4>Get Current Block</h4>
+                {aliceNetAdapter.blocks.map(block =>
+                    <div key={block["BClaims"].Height}>{block["BClaims"].Height}</div>
+                )}
 
-            <button onClick={() => getCurrentBlock()}>Get Block: Current: {block?.BClaims?.Height}</button>
-            <br />
-            <button onClick={() => getBlock(178000)}>Get Block: 178000: {block?.BClaims?.Height}</button>
+                <h4>Get Current Block</h4>
 
-            <h4>DataStores</h4>
-            <button onClick={() => printDataStoresForAddress("eeacfc737e72fdf2518fb58c0a620f783eb2515f")}>
-                Get Datastores for address (See code)
-            </button>
-            <br />
+                <button onClick={() => getCurrentBlock()}>Get Block: Current: {block?.BClaims?.Height}</button>
+                <br />
+                <button onClick={() => getBlock(178000)}>Get Block: 178000: {block?.BClaims?.Height}</button>
 
-        </div>
+                <h4>DataStores</h4>
+                <button onClick={() => printDataStoresForAddress("eeacfc737e72fdf2518fb58c0a620f783eb2515f")}>
+                    Get Datastores for address (See code)
+                </button>
+                <br />
+
+            </div>
+
+        </Page>
     );
 
 }
