@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Dropdown } from "semantic-ui-react";
+import { Button, Checkbox, Dropdown } from "semantic-ui-react";
 import { content, HelpTooltip } from "components";
 import styles from "./DataStoreSearch.module.scss";
 import { useHistory } from "react-router-dom";
@@ -12,6 +12,7 @@ export function DataStoreSearch() {
 
     const [term, setTerm] = useState("");
     const [offset, setOffset] = useState("");
+    const [showMore, setShowMore] = useState(false);
     const [selectedOption, setSelectedOption] = useState(options[0]);
     const [addressType, setAddressType] = useState(curveTypes.SECP256K1);
 
@@ -21,7 +22,7 @@ export function DataStoreSearch() {
 
     const handleSearch = () => {
         if (term && addressType) {
-            history.push(`/data?address=${term}&curve=${addressType}${offset && `&offset=${offset.padStart(64, '0')}`}`);
+            history.push(`/data?address=${term}&curve=${addressType} ${offset && `&showMore=${showMore}`} ${offset && `&offset=${offset.padStart(64, '0')}`}`);
         }
     };
 
@@ -84,13 +85,27 @@ export function DataStoreSearch() {
                 </div>
             </div>
 
-            {addressType && term && term.length > 0 && (
-                <div className={styles.addressType}>
-                    <div className={styles.greenDot} />
-                    <h3>This is a {addressType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h3>
-                    <HelpTooltip content={addressType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp} />
+            <div className={styles.sectionContainer}>
+                <div className={styles.inputSection}>
+                    {addressType && term && term.length > 0 && (
+                        <div className={styles.addressType}>
+                            <div className={styles.greenDot} />
+                            <h3>This is a {addressType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h3>
+                            <HelpTooltip content={addressType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp} />
+                        </div>
+                    )}
                 </div>
-            )}
+                <div className={styles.inputSection}>
+                    {offset && 
+                        <div className={styles.addressType}>
+                            <Checkbox toggle className='ml-2 mr-2' checked={showMore} onClick={() => setShowMore(!showMore)}/> 
+                            <span>Show More Datastores</span>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            
         </div>
     );
 }

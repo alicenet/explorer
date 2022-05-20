@@ -135,3 +135,7 @@ i.circular.icon {
 .info {
   color: #00FFD1;
 }
+
+.ui.toggle.checkbox input:checked~label:before {
+  background-color: #00FFD1!important;
+}

@@ -9,6 +9,7 @@ import { DataView } from './dataView';
 
 export function DataExplorer(props) {
     const [dsView, setDsView] = useState();
+    const [showMore, setShowMore] = useState();
     const [isLoading, setLoadingStatus] = useState(true);
     const history = useHistory();
 
@@ -16,7 +17,8 @@ export function DataExplorer(props) {
         const params = props.location && queryString.parse(props.location.search);
 
         const getDataStores = async () => {
-            const { address, offset, curve } = params;
+            const { address, offset, curve, showMore } = params;
+            setShowMore(showMore);
             if (address) {
                 try {
                     const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address, curve, offset);
@@ -82,10 +84,10 @@ export function DataExplorer(props) {
                         icon={<FileIcon />}
                         open={true}
                         disabled={false}
-                        itemsCount={dsView && dsView.length}    
+                        itemsCount={showMore ? dsView?.length : 1}    
                     >
                         <DataView 
-                            dsView={dsView} 
+                            dsView={showMore ? dsView : dsView?.slice(0,1)} 
                             paginate={null}
                             handleViewOwner={handleViewOwner} 
                             getDSExp={getDSExp} 
