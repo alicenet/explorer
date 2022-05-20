@@ -1,6 +1,6 @@
 import DimmerLoader from "components/DimmerOverlay";
 import ErrorOverlay from "components/ErrorOverlay";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Container } from "semantic-ui-react";
@@ -11,7 +11,7 @@ import { aliceNetWalletEqualize } from "./redux/reducers";
 
 function App() {
     return (
-        <Container fluid className='mb-32'>
+        <Container fluid className="mb-32">
             <ErrorOverlay />
             <DimmerLoader />
             <Router>
@@ -31,10 +31,9 @@ function App() {
 
 export default App;
 
-
 function Test() {
 
-    let [block, setBlock] = React.useState({})
+    let [block, setBlock] = useState({});
 
     //let walletState = useSelector(state => state.aliceNetWallet);
     // Must be used to propagate UI updates from the class being watched
@@ -115,6 +114,6 @@ function Test() {
             <br />
 
         </div>
-    )
+    );
 
 }
