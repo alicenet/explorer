@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Segment, Grid, Dimmer, Loader } from "semantic-ui-react"
 import queryString from 'query-string';
+import { useHistory } from "react-router-dom";
 import { aliceNetAdapter } from 'adapter/alicenetadapter';
 import { CollapsableCard, AliceNetSearch } from 'components'; 
 import { BlockList } from './blockList'; 
@@ -11,6 +12,7 @@ import { ReactComponent as TxHashIcon } from 'assets/tx-hash-icon.svg';
 export function BlockExplorer(props) {
     const [blockInfo, setBlockInfo] = useState();
     const [isLoading, setLoadingStatus] = useState(true);
+    const history = useHistory();
 
     useEffect(() => {
         const params = props.location && queryString.parse(props.location.search);
@@ -29,8 +31,7 @@ export function BlockExplorer(props) {
         getBlock();
     }, [props.location]);
 
-    // TODO remove console log after implementation
-    const handleBlockNav = () => {};
+    const handleBlockNav = (term) => history.push(`/block?height=${term}`);
 
     if(isLoading) {
         return (
@@ -81,7 +82,8 @@ export function BlockExplorer(props) {
                     stateRoot={blockInfo.BClaims.StateRoot}
                     headerRoot={blockInfo.BClaims.HeaderRoot}
                     sigGroup={blockInfo.SigGroup}
-                    handleBlockNav={handleBlockNav} 
+                    handleBlockNavLeft={() => handleBlockNav(blockInfo.BClaims.Height-1)}
+                    handleBlockNavRight={() => handleBlockNav(blockInfo.BClaims.Height+1)}
                 />
             </CollapsableCard>
 

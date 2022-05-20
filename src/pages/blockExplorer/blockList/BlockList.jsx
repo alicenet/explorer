@@ -4,7 +4,7 @@ import { copyText } from 'utils';
 import { content, HelpTooltip } from 'components';
 import styles from './BlockList.module.scss';
 
-export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, headerRoot, sigGroup, handleBlockNav }) {
+export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, headerRoot, sigGroup, handleBlockNavLeft, handleBlockNavRight }) {
     return (
         <Grid className={styles.blockList} padded="vertically">
             <Grid.Row className={styles.row}>
@@ -15,11 +15,10 @@ export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, heade
                 <Grid.Column className={styles.column} width={12}>
                     {height}
                     <>
-                        {/* TODO Add on click action */}
                         <Button
                             className={styles.button} 
                             icon 
-                            onClick={handleBlockNav}
+                            onClick={handleBlockNavLeft}
                         >
                             <Icon 
                                 className={styles.navIcon} 
@@ -31,7 +30,7 @@ export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, heade
                         <Button 
                             className={styles.button}
                             icon 
-                            onClick={handleBlockNav}
+                            onClick={handleBlockNavRight}
                         >
                             <Icon 
                                 className={styles.navIcon} 
