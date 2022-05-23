@@ -9,7 +9,7 @@ import { DataView } from "./dataView";
 
 export function DataExplorer(props) {
     const [dsView, setDsView] = useState();
-    const [showMore, setShowMore] = useState();
+    const [showMore, setShowMore] = useState(true);
     const [isLoading, setLoadingStatus] = useState(true);
     const history = useHistory();
 
@@ -17,7 +17,9 @@ export function DataExplorer(props) {
         const params = props.location && queryString.parse(props.location.search);
         const getDataStores = async () => {
             const { address, offset, curve, showMore } = params;
-            setShowMore(showMore);
+
+            setShowMore(JSON.parse(showMore));
+
             if (address) {
                 try {
                     const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address, curve, offset);
@@ -73,6 +75,8 @@ export function DataExplorer(props) {
         );
     }
 
+    const filteredData = showMore ? dsView : dsView?.slice(0,1);
+
     return (
         <Page>
             <div className="mb-8">
@@ -85,10 +89,10 @@ export function DataExplorer(props) {
                         icon={<FileIcon />}
                         open={true}
                         disabled={false}
-                        itemsCount={showMore ? dsView?.length : 1}    
+                        itemsCount={filteredData.length}    
                     >
                         <DataView 
-                            dsView={showMore ? dsView : dsView?.slice(0,1)} 
+                            dsView={filteredData} 
                             paginate={null}
                             handleViewOwner={handleViewOwner}
                             getDSExp={getDSExp}

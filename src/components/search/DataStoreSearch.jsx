@@ -22,7 +22,7 @@ export function DataStoreSearch() {
 
     const handleSearch = () => {
         if (term && addressType) {
-            history.push(`/data?address=${term}&curve=${addressType} ${offset && `&showMore=${showMore}`} ${offset && `&offset=${offset.padStart(64, '0')}`}`);
+            history.push(`/data?address=${term}&curve=${addressType}&showMore=${offset ? showMore : true}${offset && `&offset=${offset.padStart(64, '0')}`}`);
         }
     };
 
