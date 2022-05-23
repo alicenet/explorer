@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Icon, Grid } from "semantic-ui-react"
 import { copyText } from 'utils';
-import { HelpTooltip } from 'components';
+import { content, HelpTooltip } from 'components';
 import styles from './BlockList.module.scss';
 
 export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, headerRoot, sigGroup, handleBlockNav }) {
@@ -9,7 +9,7 @@ export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, heade
         <Grid className={styles.blockList} padded="vertically">
             <Grid.Row className={styles.row}>
                 <Grid.Column className={styles.column} width={3}>
-                    <HelpTooltip type="height" />
+                    <HelpTooltip content={content.height} />
                     <p>Block Height</p>
                 </Grid.Column>
                 <Grid.Column className={styles.column} width={12}>
@@ -45,7 +45,7 @@ export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, heade
 
             <Grid.Row className={styles.row}>
                 <Grid.Column className={styles.column} width={3}>
-                    <HelpTooltip type="txCount" />
+                    <HelpTooltip content={content.txCount} />
                     <p>Transaction Count</p>
                 </Grid.Column> 
                 <Grid.Column className={styles.column} width={12}>
@@ -55,7 +55,7 @@ export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, heade
 
             <Grid.Row className={styles.row}>
                 <Grid.Column className={styles.column} width={3}>
-                    <HelpTooltip type="previousBlock" />
+                    <HelpTooltip content={content.previousBlock} />
                     <p>Previous Block</p>
                 </Grid.Column>
                 <Grid.Column className={styles.column} width={12}>
@@ -70,7 +70,7 @@ export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, heade
 
             <Grid.Row className={styles.row}>
                 <Grid.Column className={styles.column} width={3}>
-                    <HelpTooltip type="txRoot" />
+                    <HelpTooltip content={content.txRoot} />
                     <p>Transaction Root</p>
                 </Grid.Column>
                 <Grid.Column className={styles.column} width={12}>
@@ -85,7 +85,7 @@ export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, heade
 
             <Grid.Row className={styles.row}>
                 <Grid.Column className={styles.column} width={3}>
-                    <HelpTooltip type="stateRoot" />
+                    <HelpTooltip content={content.stateRoot} />
                         <p>State Root</p>
                     </Grid.Column>
                 <Grid.Column className={styles.column} width={12}>
@@ -100,7 +100,7 @@ export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, heade
 
             <Grid.Row className={styles.row}>
                 <Grid.Column className={styles.column} width={3}>
-                    <HelpTooltip type="headerRoot" />
+                    <HelpTooltip content={content.headerRoot} />
                     <p>Header Root</p>
                 </Grid.Column>
                 <Grid.Column className={styles.column} width={12}>
@@ -115,7 +115,7 @@ export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, heade
 
             <Grid.Row className={styles.row}>
                 <Grid.Column className={styles.column} width={3}>
-                    <HelpTooltip type="groupSignature" />
+                    <HelpTooltip content={content.groupSignature} />
                     <p>Group Signature</p>
                 </Grid.Column>
                 <Grid.Column className={styles.column} width={12}>

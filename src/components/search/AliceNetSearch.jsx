@@ -7,8 +7,8 @@ import { ReactComponent as Icon3 } from "assets/searchIcon3.svg";
 import styles from "./AliceNetSearch.module.scss";
 
 const options = [
-    { text: 'Block', value: 1 },
-    { text: 'Tx', value: 2 },
+    { text: 'Block', placeHolder: "Block number", value: 0 },
+    { text: 'Tx', placeHolder: "Tx hash", value: 1 },
 ];
 
 export function AliceNetSearch() {
@@ -17,7 +17,7 @@ export function AliceNetSearch() {
     const [selectedOption, setSelectedOption] = useState(options[0]);
 
     const handleChange = (e, { value }) => {
-        setSelectedOption(options[value - 1]);
+        setSelectedOption(options[value]);
     };
 
     const handleSearch = () => {
@@ -58,7 +58,7 @@ export function AliceNetSearch() {
                         </Dropdown.Menu>
                     </Dropdown>
                     <input
-                        placeholder={selectedOption.value === options[0].value ? 'Block number' : 'Tx hash'}
+                        placeholder={selectedOption.placeHolder}
                         className={styles.input}
                         value={term}
                         onChange={(e) => setTerm(e.target.value)}

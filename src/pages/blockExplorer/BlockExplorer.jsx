@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Segment, Grid, Dimmer, Loader } from 'semantic-ui-react';
 import queryString from 'query-string';
 import { aliceNetAdapter } from 'adapter/alicenetadapter';
-import { CollapsableCard, AliceNetSearch } from 'components'; 
+import { CollapsableCard, AliceNetSearch, Page } from 'components'; 
 import { BlockList } from './blockList'; 
 import { TxHashList } from './txHashList'; 
 import { ReactComponent as CubeIcon } from 'assets/cube-icon.svg';
@@ -11,7 +11,8 @@ import { useSelector } from 'react-redux';
 import { isValidBlockHeight } from 'utils';
 
 export function BlockExplorer(props) {
-    const [blockInfo, setBlockInfo] = useState();
+
+    const [blockInfo, setBlockInfo] = useState(null);
     const [isLoading, setLoadingStatus] = useState(true);
 
     const [isValid, setIsValid] = useState(true);
@@ -27,7 +28,7 @@ export function BlockExplorer(props) {
 
     useEffect(() => {
         const params = props.location && queryString.parse(props.location.search);
-        
+
         const getBlock = async () => {
             setIsValid(true);
             const height = params && params.height;
@@ -41,29 +42,28 @@ export function BlockExplorer(props) {
 
             setLoadingStatus(false);
         }
-        
+
         getBlock();
     }, [props.location]);
 
-    // TODO remove console log after implementation
-    const handleBlockNav = () => {};
-
-    if(isLoading) {
+    if (isLoading) {
         return (
-            <Grid>
-                <Dimmer active>
-                    <Loader>Loading</Loader>
-                </Dimmer>
-            </Grid>
-        )
+            <Page>
+                <Grid>
+                    <Dimmer active>
+                        <Loader>Loading</Loader>
+                    </Dimmer>
+                </Grid>
+            </Page>
+        );
     }
 
     // Conditional render
     if ((!isLoading && !blockInfo) || blockInfo.error) {
         return (
-            <>
-                <div className='mb-8'>
-                    <AliceNetSearch/>
+            <Page>
+                <div className="mb-8">
+                    <AliceNetSearch />
                 </div>
                 <Grid centered>
                     {isValid ? 
@@ -83,22 +83,22 @@ export function BlockExplorer(props) {
                             </Grid.Row>
                         }    
                 </Grid>
-            </>
-        )
+            </Page>
+        );
     }
 
     return (
-        <>
-            <div className='mb-8'>
-                <AliceNetSearch/>
+        <Page>
+            <div className="mb-8">
+                <AliceNetSearch />
             </div>
-            <CollapsableCard 
+            <CollapsableCard
                 title={`Block #${blockInfo.BClaims.Height}`}
                 icon={<CubeIcon />}
                 open={true}
                 disabled={false}
             >
-                <BlockList 
+                <BlockList
                     height={blockInfo.BClaims.Height}
                     txCount={blockInfo.BClaims.TxCount}
                     prevBlock={blockInfo.BClaims.PrevBlock}
@@ -106,21 +106,23 @@ export function BlockExplorer(props) {
                     stateRoot={blockInfo.BClaims.StateRoot}
                     headerRoot={blockInfo.BClaims.HeaderRoot}
                     sigGroup={blockInfo.SigGroup}
-                    handleBlockNav={handleBlockNav} 
+                    handleBlockNav={() => {
+                    }}
                 />
             </CollapsableCard>
 
-            <CollapsableCard 
+            <CollapsableCard
                 title="Transaction Hash List"
                 icon={<TxHashIcon />}
                 open={!blockInfo.TxHshLst.length}
                 disabled={!blockInfo.TxHshLst.length}
             >
-                <TxHashList 
-                    txHshLst={blockInfo.TxHshLst} 
-                    txViewLink="/" 
+                <TxHashList
+                    txHshLst={blockInfo.TxHshLst}
+                    txViewLink="/"
                 />
             </CollapsableCard>
-        </>
-    )
+        </Page>
+    );
+
 }
