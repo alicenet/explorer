@@ -27,6 +27,7 @@ export function TxViewVin({ txInfo }) {
                                 open={true}
                                 disabled={false}
                                 borderless
+                                key={i}
                             >
                             <Grid padded="vertically">
                                 <Grid.Row className={styles.row}>
@@ -274,6 +275,7 @@ export function TxViewVout({ txInfo }) {
                                                 open={true}
                                                 disabled={false}
                                                 borderless
+                                                key={i}
                                             >
                                                 <VoutFormatter type={Object.keys(e)[0]} object={e[Object.keys(e)[0]]} />
                                             </CollapsableCard>
@@ -295,6 +297,7 @@ export function TxViewVout({ txInfo }) {
                                                 open={true}
                                                 disabled={false}
                                                 borderless
+                                                key={i}
                                             >
                                                 <VoutFormatter type={Object.keys(e)[0]} object={e[Object.keys(e)[0]]} />
                                             </CollapsableCard>

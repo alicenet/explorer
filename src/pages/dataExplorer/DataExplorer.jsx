@@ -36,7 +36,7 @@ export function DataExplorer(props) {
         return aliceNetAdapter.getDSExp(rawData, deposit, issuedAt);
     };
 
-    const handleViewOwner = async (txHash) => {
+    const handleViewTransaction = async (txHash) => {
         history.push(`/tx?hash=${txHash}`);
     };
 
@@ -88,7 +88,7 @@ export function DataExplorer(props) {
                         <DataView
                             dsView={dsView}
                             paginate={null}
-                            handleViewOwner={handleViewOwner}
+                            handleViewTransaction={handleViewTransaction}
                             getDSExp={getDSExp}
                         />
                     </CollapsableCard>
