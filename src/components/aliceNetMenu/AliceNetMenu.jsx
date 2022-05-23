@@ -25,7 +25,7 @@ export function AliceNetMenu() {
                     width="205"
                     className={styles.image}
                     as={Link}
-                    onClick={() => history.push('/')}
+                    to={"/"}
                 />
             </Menu.Menu>
             <Menu.Menu position="right">
