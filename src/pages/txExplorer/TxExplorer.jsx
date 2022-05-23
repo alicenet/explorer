@@ -70,7 +70,7 @@ export function TxExplorer(props) {
                 <div className='mb-2'>Tx Hash: {txHash}</div>
                 <div className='flex items-center mb-2'>
                     <div className='mr-2'>Height: {aliceNetAdapter.transactionHeight}</div>
-                    <Button className='bg-primary rounded text-neutral-800' onClick={() => history.push('/data')}>View Owner DataStores</Button>
+                    <Button className="text-xs px-3 py-1 ml-2 rounded-sm tracking-wide" onClick={() => history.push('/data')}>View Block</Button>
                 </div>
             </div>
             <TxViewVin txInfo={txInfo[0].Vin}/>
