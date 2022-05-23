@@ -59,7 +59,7 @@ export function BlockExplorer(props) {
     }
 
     // Conditional render
-    if ((!isLoading && !blockInfo) || blockInfo.error) {
+    if ((!isLoading && !blockInfo) || blockInfo.error || !isValid) {
         return (
             <Page>
                 <div className="mb-8">
