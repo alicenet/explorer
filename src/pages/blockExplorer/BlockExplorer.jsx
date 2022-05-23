@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Segment, Grid, Dimmer, Loader } from "semantic-ui-react"
+import { Container, Segment, Grid, Dimmer, Loader } from 'semantic-ui-react';
 import queryString from 'query-string';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { aliceNetAdapter } from 'adapter/alicenetadapter';
 import { CollapsableCard, AliceNetSearch, Page } from 'components'; 
 import { BlockList } from './blockList'; 
@@ -14,6 +15,8 @@ export function BlockExplorer(props) {
     const [blockInfo, setBlockInfo] = useState(null);
     const [isLoading, setLoadingStatus] = useState(true);
     const history = useHistory();
+
+    useSelector(s => s.aliceNetAdapter);
 
     useEffect(() => {
         const params = props.location && queryString.parse(props.location.search);
@@ -87,6 +90,7 @@ export function BlockExplorer(props) {
                     sigGroup={blockInfo.SigGroup}
                     handleBlockNavLeft={() => handleBlockNav(blockInfo.BClaims.Height-1)}
                     handleBlockNavRight={() => handleBlockNav(blockInfo.BClaims.Height+1)}
+                    maxHeight={aliceNetAdapter.blocks[0]?.BClaims.Height}
                 />
             </CollapsableCard>
 

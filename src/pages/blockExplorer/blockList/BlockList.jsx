@@ -4,7 +4,7 @@ import { copyText } from 'utils';
 import { content, HelpTooltip } from 'components';
 import styles from './BlockList.module.scss';
 
-export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, headerRoot, sigGroup, handleBlockNavLeft, handleBlockNavRight }) {
+export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, headerRoot, sigGroup, handleBlockNavLeft, handleBlockNavRight, maxHeight = Number.MAX_VALUE}) {
     return (
         <Grid className={styles.blockList} padded="vertically">
             <Grid.Row className={styles.row}>
@@ -15,29 +15,32 @@ export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, heade
                 <Grid.Column className={styles.column} width={12}>
                     {height}
                     <>
-                        <Button
-                            className={styles.button} 
-                            icon 
-                            onClick={handleBlockNavLeft}
-                        >
-                            <Icon 
-                                className={styles.navIcon} 
-                                name="chevron left" 
-                                size="small" 
-                            />
-                        </Button>
-                        
-                        <Button 
-                            className={styles.button}
-                            icon 
-                            onClick={handleBlockNavRight}
-                        >
-                            <Icon 
-                                className={styles.navIcon} 
-                                name="chevron right" 
-                                size="small" 
-                            />
-                        </Button>
+                        {height > 1 && 
+                            <Button
+                                className={styles.button} 
+                                icon 
+                                onClick={handleBlockNavLeft}
+                            >
+                                <Icon 
+                                    className={styles.navIcon} 
+                                    name="chevron left" 
+                                    size="small" 
+                                />
+                            </Button>
+                        }
+                        {(maxHeight > height) && 
+                            <Button 
+                                className={styles.button}
+                                icon 
+                                onClick={handleBlockNavRight}
+                            >
+                                <Icon 
+                                    className={styles.navIcon} 
+                                    name="chevron right" 
+                                    size="small" 
+                                />
+                            </Button>
+                        }
                     </>
                 </Grid.Column>
             </Grid.Row>
