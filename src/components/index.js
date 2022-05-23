@@ -7,3 +7,4 @@ export * from './helpTooltip';
 export * from './table';
 export * from './DimmerOverlay';
 export * from './ErrorOverlay';
+export * from './page';

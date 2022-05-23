@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Segment, Icon, Grid } from 'semantic-ui-react';
-import { CollapsableCard, HelpTooltip } from 'components';
+import { CollapsableCard, content, HelpTooltip } from 'components';
 import { copyText } from 'utils';
 import styles from './DataView.module.scss';
 
@@ -20,7 +20,7 @@ export function DataView({ dsView, handleViewOwner, getDSExp }) {
                             <Grid padded="vertically">
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={3}>
-                                        <HelpTooltip type="index" />
+                                        <HelpTooltip content={content.index} />
                                         <p>Index:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={12}>
@@ -35,7 +35,7 @@ export function DataView({ dsView, handleViewOwner, getDSExp }) {
 
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={3}>
-                                        <HelpTooltip type="rawData" />
+                                        <HelpTooltip content={content.rawData} />
                                         <p>Data:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={12}>
@@ -50,7 +50,7 @@ export function DataView({ dsView, handleViewOwner, getDSExp }) {
 
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={3}>
-                                        <HelpTooltip type="expires" />
+                                        <HelpTooltip content={content.expires} />
                                         <p>Expires:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={12}>
@@ -65,7 +65,7 @@ export function DataView({ dsView, handleViewOwner, getDSExp }) {
 
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={3}>
-                                        <HelpTooltip type="txHash" />
+                                        <HelpTooltip content={content.txHash} />
                                         <p>Transaction Hash:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={12}>
