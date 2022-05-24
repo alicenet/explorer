@@ -36,7 +36,7 @@ export function AliceNetMenu() {
 
                 <Menu.Menu position="right">
                     <Menu.Item
-                        className="text-white"
+                        className="text-white hover:opacity-50"
                         as={Link}
                         to="block"
                         name="Monitor"
@@ -44,14 +44,14 @@ export function AliceNetMenu() {
                     />
                     <MenuDivider />
                     <Menu.Item
-                        className="text-white"
+                        className="text-white hover:opacity-50"
                         as={Link}
                         to="about"
                         name="About"
                         active={location.pathname.slice(1) === 'about'}
                     />
                     <MenuDivider />
-                    <Dropdown className="text-white" item text="Wallet Download">
+                    <Dropdown className="text-white hover:opacity-50 focus:opacity-100" item text="Wallet Download">
                         <Dropdown.Menu>
                             {WALLETS_PLACEHOLDER.map(wallet =>
                                 <Dropdown.Item key={wallet}>{wallet}</Dropdown.Item>
@@ -60,19 +60,19 @@ export function AliceNetMenu() {
                     </Dropdown>
                     <MenuDivider />
                     <Menu.Item
-                        className="text-white"
+                        className="text-white hover:opacity-50"
                         onClick={() => window.open(GITHUB_URL, '_blank').focus()}
                         name="Github"
                     />
                     <MenuDivider />
                     <Menu.Item
-                        className="text-white"
+                        className="text-white hover:opacity-50"
                         onClick={() => window.open(WHITE_PAPER_URL, '_blank').focus()}
                         name="White Paper"
                     />
                     <MenuDivider />
                     <Menu.Item
-                        className="text-white"
+                        className="text-white hover:opacity-50"
                         onClick={() => window.open(COMMUNITY_URL, '_blank').focus()}
                         name="Community"
                     />
