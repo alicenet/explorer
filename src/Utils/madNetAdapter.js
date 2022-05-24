@@ -128,7 +128,6 @@ class MadNetAdapter {
     async viewBlock(height) {
         await this.cb.call(this, "wait", "Getting Block");
         try {
-            console.log('here1')
             let blockHeader = await this.wallet.Rpc.getBlockHeader(height);
             this.blockInfo = blockHeader;
             await this.cb.call(this, "view", 'block');
@@ -138,9 +137,7 @@ class MadNetAdapter {
         }
         catch (ex) {
             await this.backOffRetry("vB");
-            console.log('here2')
             if (this['vB-attempts'] > RETRY_ATTEMPTS) {
-                console.log('here3')
                 await this.cb.call(this, "error", String(ex));
                 return
             }
