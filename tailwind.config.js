@@ -10,6 +10,8 @@ module.exports = {
                 darkgray: '#2D2D2D',
                 neongreen: '#00FFD1',
                 dropgray: '#EEEEEE',
+                tableblack: '#383737',
+                rowblack: '#343333',
             },
         },
     },
