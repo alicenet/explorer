@@ -1,7 +1,7 @@
 export const curveTypes = {
     SECP256K1: 1,
     BARRETO_NAEHRIG: 2,
-}
+};
 
 /**
  * Removes the Hex prefix

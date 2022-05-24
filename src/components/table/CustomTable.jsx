@@ -1,8 +1,8 @@
 import { Table } from "semantic-ui-react"
-import styles from './CustomTable.module.scss';
+import styles from "./CustomTable.module.scss";
 
-export function CustomTable(props) {
-    const { title, Icon, headers, rows = [], key } = props;
+export function CustomTable({ title, Icon, headers, rows = [], key }) {
+
     return (
         <Table key={key} className={styles.table}>
             <Table.Header fullWidth>
@@ -24,5 +24,6 @@ export function CustomTable(props) {
                     </Table.Row>)}
             </Table.Body>
         </Table>
-    )
+    );
+
 }

@@ -1,12 +1,10 @@
 .container{
-    width: 100%;
     background: #2D2D2D;
     height: 65px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     bottom: 0;
-    position: fixed
 }
 
 .section {
@@ -27,6 +25,5 @@
 
 .svg {
     fill:white; 
-    margin: 0 5px;
     cursor: pointer;
 }
