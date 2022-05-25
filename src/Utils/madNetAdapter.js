@@ -1,6 +1,6 @@
 const BigInt = require("big-integer");
 
-const RETRY_ATTEMPTS = 10;
+const RETRY_ATTEMPTS = 5;
 
 class MadNetAdapter {
     constructor(cb, wallet, provider) {
