@@ -3,7 +3,7 @@ import { Container, Dimmer, Grid, Loader, Segment } from "semantic-ui-react";
 import queryString from "query-string";
 import { useHistory } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { CollapsableCard, DataStoreSearch, Page } from "components";
+import { CollapsableCard, Page } from "components";
 import { ReactComponent as FileIcon } from "assets/file-icon.svg";
 import { DataView } from "./dataView";
 
@@ -43,9 +43,7 @@ export function DataExplorer(props) {
     if ((dsView?.error) || (!isLoading && (!dsView || !dsView.length))) {
         return (
             <Page>
-                <div className="mb-8">
-                    <DataStoreSearch />
-                </div>
+                <div className="mb-8" />
                 <Grid centered>
                     <Grid.Row stretched centered>
                         <Container>
@@ -73,9 +71,7 @@ export function DataExplorer(props) {
 
     return (
         <Page>
-            <div className="mb-8">
-                <DataStoreSearch />
-            </div>
+            <div className="mb-8" />
             <Grid stretched centered={true}>
                 <Grid.Row>
                     <CollapsableCard

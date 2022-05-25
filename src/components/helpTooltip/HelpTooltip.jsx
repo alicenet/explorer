@@ -1,6 +1,5 @@
-import React from 'react';
-import { Icon, Popup } from 'semantic-ui-react';
-import styles from './HelpTooltip.module.scss';
+import React from "react";
+import { Icon, Popup } from "semantic-ui-react";
 
 export const content = {
     bn: "Barreto-Naehrig curve type account address",
@@ -35,14 +34,18 @@ export const content = {
 
 // Toasty notifications
 export function HelpTooltip({ content }) {
+
     return (
-        <div className={styles.toolTip}>
+        <div>
             <Popup
-                trigger={<Icon name="help circle" circular className={styles.icon} />}
+                trigger={
+                    <Icon name="help circle" circular className="text-white" />
+                }
                 content={content}
                 position="top left"
                 hideOnScroll
             />
         </div>
-    )
+    );
+
 }
