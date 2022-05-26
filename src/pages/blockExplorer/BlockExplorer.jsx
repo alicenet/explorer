@@ -64,7 +64,7 @@ export function BlockExplorer(props) {
 
     return (
         <Page>
-            <div className="mb-8">
+            <div>
                 <AliceNetSearch />
             </div>
             <CollapsableCard

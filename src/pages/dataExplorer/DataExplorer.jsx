@@ -3,7 +3,7 @@ import { Container, Dimmer, Grid, Loader, Segment } from "semantic-ui-react";
 import queryString from "query-string";
 import { useHistory } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { CollapsableCard, DataStoreSearch, Page } from "components";
+import { AliceNetSearch, CollapsableCard, Page } from "components";
 import { ReactComponent as FileIcon } from "assets/file-icon.svg";
 import { DataView } from "./dataView";
 
@@ -48,7 +48,7 @@ export function DataExplorer(props) {
         return (
             <Page>
                 <div className="mb-8">
-                    <DataStoreSearch />
+                    <AliceNetSearch />
                 </div>
                 <Grid centered>
                     <Grid.Row stretched centered>
@@ -80,7 +80,7 @@ export function DataExplorer(props) {
     return (
         <Page>
             <div className="mb-8">
-                <DataStoreSearch />
+                <AliceNetSearch />
             </div>
             <Grid stretched centered={true}>
                 <Grid.Row>
