@@ -7,6 +7,7 @@ import { LatestTransactions } from "./LatestTransactions";
 export function Home() {
 
     return (
+
         <Page>
             <Container fluid className="flex flex-col gap-10">
                 <AliceNetSearch />
@@ -29,6 +30,7 @@ export function Home() {
                 </Container>
             </Container>
         </Page>
+
     );
 
 }

@@ -3,27 +3,50 @@ import { useSelector } from "react-redux";
 import { CustomTable } from "components";
 import { ReactComponent as TxIcon } from "assets/tx-icon.svg";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
+import { copyText } from "utils";
+import { Icon } from "semantic-ui-react";
 
-const tableHeader = ["Value", "TX Index", "Owner"];
+const headerCells = [
+    {
+        id: "value",
+        label: "Value",
+        displayCallback: ({ height }) => <span className="text-neongreen">{height}</span>,
+    },
+    {
+        id: "txIndex",
+        label: "TX Index",
+    },
+    {
+        id: "owner",
+        label: "Owner",
+        displayCallback: ({ groupSignature }) =>
+            <div
+                className="flex cursor-pointer hover:opacity-80"
+                onClick={() => copyText(groupSignature)}>
+                {`0x${groupSignature.slice(0, 15)}...`}
+                <Icon name="copy outline" />
+            </div>,
+    }
+];
 
 export function LatestTransactions() {
 
     useSelector(s => s.aliceNetAdapter); // Listen to aliceNetAdapter State
 
-    const rows = aliceNetAdapter.blocks?.slice(0, aliceNetAdapter.blocksMaxLen).map((e, i) => {
+    const rows = aliceNetAdapter.blocks?.slice(0, aliceNetAdapter.blocksMaxLen).map((row) => {
         return {
-            [tableHeader[0]]: e['BClaims']['Height'],
-            [tableHeader[1]]: e['BClaims']['TxCount'] ? e['BClaims']['TxCount'] : 0,
-            [tableHeader[2]]: `0x${e['SigGroup'].slice(0, 15) + "..."}`
+            height: row['BClaims']['Height'],
+            txCount: row['BClaims']['TxCount'] ? row['BClaims']['TxCount'] : 0,
+            groupSignature: row['SigGroup']
         }
     });
 
     return (
         <CustomTable
-            Icon={() => <TxIcon />}
-            headers={tableHeader}
+            icon={<TxIcon />}
+            headerCells={headerCells}
             rows={rows}
-            title={"Latest Transactions"}
+            title="Latest Transactions"
         />
     );
 
