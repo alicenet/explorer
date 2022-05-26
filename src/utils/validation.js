@@ -1,0 +1,1 @@
+export const isValidHash = (hash) => hash && /^(0x)?([A-Fa-f0-9]{64})$/.test(hash);
