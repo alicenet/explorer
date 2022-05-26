@@ -1,28 +1,53 @@
 import { Table } from "semantic-ui-react"
-import styles from './CustomTable.module.scss';
 
-export function CustomTable(props) {
-    const { title, Icon, headers, rows = [], key } = props;
+export function CustomTable({ title, Icon, headers, rows = [], key }) {
+
     return (
-        <Table key={key} className={styles.table}>
-            <Table.Header fullWidth>
+
+        <Table
+            padded
+            singleLine
+            key={key}
+            className="border-0 border-t-4 border-neongreen bg-tableblack text-white"
+        >
+            <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell colSpan={headers.length}>
-                        <div className={styles.title}>{Icon && <Icon />}{title}</div>
+                    <Table.HeaderCell
+                        className="bg-tableblack text-white text-xl font-semibold"
+                        colSpan={headers.length}
+                    >
+                        <div className="flex items-center gap-5">{Icon && <Icon />}{title}</div>
                     </Table.HeaderCell>
                 </Table.Row>
-            </Table.Header>
-            <Table.Header fullWidth>
                 <Table.Row>
-                    {headers.map(h => <Table.HeaderCell key={h}>{h}</Table.HeaderCell>)}
+                    {headers.map(header =>
+                        <Table.HeaderCell
+                            className="bg-rowblack text-white"
+                            key={`table-header-${header}`}
+                        >
+                            {header}
+                        </Table.HeaderCell>
+                    )}
                 </Table.Row>
             </Table.Header>
-            <Table.Body>
-                {rows.length > 0 && rows.map(r =>
-                    <Table.Row key={`${r[headers[0]]} ${r[headers[0]]}`}>
-                        {headers.map(h => <Table.Cell key={r[h]}>{r[h]}</Table.Cell>)}
-                    </Table.Row>)}
-            </Table.Body>
+            {
+                rows.length !== 0 &&
+                <Table.Body>
+                    {rows.length > 0 && rows.map(row =>
+                        <Table.Row
+                            className="text-lg bg-rowblack"
+                            key={`${row[headers[0]]} ${row[headers[0]]}`}
+                        >
+                            {headers.map(headers =>
+                                <Table.Cell className="border-t-1 border-tableblack" key={row[headers]}>
+                                    {row[headers]}
+                                </Table.Cell>
+                            )}
+                        </Table.Row>
+                    )}
+                </Table.Body>}
         </Table>
-    )
+
+    );
+
 }

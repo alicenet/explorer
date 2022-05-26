@@ -5,13 +5,17 @@ import { AliceNetMenu, Footer } from "components";
 export const Page = ({ children }) => {
 
     return (
-        <Container fluid>
-
-            <AliceNetMenu />
+        <Container className="flex flex-col justify-between min-h-screen">
 
             <Container>
 
-                {children}
+                <AliceNetMenu />
+
+                <Container fluid>
+
+                    {children}
+
+                </Container>
 
             </Container>
 

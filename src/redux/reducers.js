@@ -10,7 +10,6 @@ const appSlice = createSlice({
         activePanel: false,
         settings: {
             aliceNetProvider: aliceNetProvider,
-            theme: "dark",
         },
         loading: "", // For global load dimmer
     },

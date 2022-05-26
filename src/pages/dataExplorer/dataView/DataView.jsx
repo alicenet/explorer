@@ -77,7 +77,7 @@ export function DataView({ dsView, handleViewOwner, getDSExp }) {
                                         />
 
                                         <Button 
-                                            className={styles.viewOwner}
+                                            className="text-xs px-3 py-1 ml-2 rounded-sm tracking-wide"
                                             onClick={() => handleViewOwner(dataStore.DSLinker.TxHash)}
                                         >
                                             View Owner Datastores

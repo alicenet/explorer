@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Segment, Grid, Dimmer, Loader } from 'semantic-ui-react';
 import queryString from 'query-string';
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { aliceNetAdapter } from 'adapter/alicenetadapter';
 import { CollapsableCard, AliceNetSearch, Page } from 'components'; 
 import { BlockList } from './blockList'; 
 import { TxHashList } from './txHashList'; 
 import { ReactComponent as CubeIcon } from 'assets/cube-icon.svg';
 import { ReactComponent as TxHashIcon } from 'assets/tx-hash-icon.svg';
-import { useSelector } from 'react-redux';
 import { isValidBlockHeight } from 'utils';
 
 export function BlockExplorer(props) {
 
     const [blockInfo, setBlockInfo] = useState(null);
     const [isLoading, setLoadingStatus] = useState(true);
+    const history = useHistory();
+
+    useSelector(s => s.aliceNetAdapter);
 
     const [isValid, setIsValid] = useState(true);
 
@@ -46,7 +50,9 @@ export function BlockExplorer(props) {
         getBlock();
     }, [props.location]);
 
-    if (isLoading) {
+    const handleBlockNav = (term) => history.push(`/block?height=${term}`);
+
+    if(isLoading) {
         return (
             <Page>
                 <Grid>
@@ -89,7 +95,7 @@ export function BlockExplorer(props) {
 
     return (
         <Page>
-            <div className="mb-8">
+            <div>
                 <AliceNetSearch />
             </div>
             <CollapsableCard
@@ -106,8 +112,9 @@ export function BlockExplorer(props) {
                     stateRoot={blockInfo.BClaims.StateRoot}
                     headerRoot={blockInfo.BClaims.HeaderRoot}
                     sigGroup={blockInfo.SigGroup}
-                    handleBlockNav={() => {
-                    }}
+                    handleBlockNavLeft={() => handleBlockNav(blockInfo.BClaims.Height-1)}
+                    handleBlockNavRight={() => handleBlockNav(blockInfo.BClaims.Height+1)}
+                    maxHeight={aliceNetAdapter.blocks[0]?.BClaims.Height}
                 />
             </CollapsableCard>
 
