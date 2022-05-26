@@ -1,6 +1,9 @@
 .dataView {
+    width: 100%;
+
     .outerColumn {
         padding-left: 0 !important;
+        padding-right: 0 !important;
 
         .segmentContainer {
             background: #121212 !important;
@@ -33,16 +36,6 @@
                     i {
                         height: auto !important;
                         padding: 0 !important;
-                    }
-                    
-                    .viewOwner {
-                        background: #00FFD1;
-                        padding: 0 10px;
-                        height: 24px;
-                        margin-left: 16px;
-                        font-size: 12px;
-                        font-weight: bold;
-                        color: #0A0B09;
                     }
                 }
             }

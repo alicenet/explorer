@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Segment, Icon, Grid } from 'semantic-ui-react';
 import { useHistory } from "react-router-dom";
-import { CollapsableCard, HelpTooltip } from 'components';
+import { CollapsableCard, content, HelpTooltip } from 'components';
 import { copyText } from 'utils';
 import { aliceNetAdapter } from 'adapter/alicenetadapter';
 import styles from './TxView.module.scss';
@@ -31,7 +31,7 @@ export function TxViewVin({ txInfo }) {
                             <Grid padded="vertically">
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={4}>
-                                        <HelpTooltip type="index" />
+                                        <HelpTooltip content={content.index} />
                                         <p>Consumed Transaction:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={11}>
@@ -46,7 +46,7 @@ export function TxViewVin({ txInfo }) {
 
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={4}>
-                                        <HelpTooltip type="rawData" />
+                                        <HelpTooltip content={content.rawData} />
                                         <p>Consumed Transaction Index:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={11}>
@@ -61,7 +61,7 @@ export function TxViewVin({ txInfo }) {
 
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={4}>
-                                        <HelpTooltip type="expires" />
+                                        <HelpTooltip content={content.expires} />
                                         <p>Signature:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={11}>
@@ -102,7 +102,7 @@ export function TxViewVout({ txInfo }) {
                         <Grid padded="vertically">
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={4}>
-                                        <HelpTooltip type="value" />
+                                        <HelpTooltip content={content.value} />
                                         <p>Value:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={11}>
@@ -117,19 +117,19 @@ export function TxViewVout({ txInfo }) {
 
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={4}>
-                                        <HelpTooltip type="owner" />
+                                        <HelpTooltip content={content.owner} />
                                         <p>Owner:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={11}>
                                         0x{object['VSPreImage']['Owner'].slice(4)}{isBN(object['VSPreImage']['Owner'])}
                                         <Icon name="copy outline" className="click" onClick={() => copyText("0x" + object['VSPreImage']['Owner'])} />
-                                        <Button className='bg-primary rounded text-neutral-800' onClick={() => history.push('/data')}>View Owner DataStores</Button>
+                                        <Button className="text-xs px-3 py-1 ml-2 rounded-sm tracking-wide" onClick={() => history.push('/data')}>View Owner DataStores</Button>
                                     </Grid.Column>
                                 </Grid.Row>
 
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={4}>
-                                        <HelpTooltip type="txIndex" />
+                                        <HelpTooltip content={content.txIndex} />
                                         <p>Transaction Index:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={11}>
@@ -145,7 +145,7 @@ export function TxViewVout({ txInfo }) {
                         <Grid padded="vertically">
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={4}>
-                                        <HelpTooltip type="index" />
+                                        <HelpTooltip content={content.index} />
                                         <p>Index:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={11}>
@@ -156,7 +156,7 @@ export function TxViewVout({ txInfo }) {
 
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={4}>
-                                        <HelpTooltip type="rawData"/>
+                                        <HelpTooltip content={content.rawData} />
                                         <p>Raw Data:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={11}>
@@ -166,19 +166,19 @@ export function TxViewVout({ txInfo }) {
                                 </Grid.Row>
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={4}>
-                                        <HelpTooltip type="owner" />
+                                        <HelpTooltip content={content.owner} />
                                         <p>Owner:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={11}>
                                         <p>{object['DSLinker']['DSPreImage']['Owner'].slice(4)}{isBN(object['DSLinker']['DSPreImage']['Owner'])}</p>
                                         <Icon name="copy outline" className="click" onClick={() => copyText("0x" + object['DSLinker']['DSPreImage']['Owner'])} />
-                                        <Button className='bg-primary rounded text-neutral-800' onClick={() => history.push('/data')}>View Owner DataStores</Button>
+                                        <Button className="text-xs px-3 py-1 ml-2 rounded-sm tracking-wide" onClick={() => history.push('/data')}>View Owner DataStores</Button>
                                     </Grid.Column>
                                 </Grid.Row>
 
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={4}>
-                                        <HelpTooltip type="epoch" />
+                                        <HelpTooltip content={content.epoch} />
                                         <p>Issued At:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={11}>
@@ -188,7 +188,7 @@ export function TxViewVout({ txInfo }) {
 
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={4}>
-                                        <HelpTooltip type="epoch" />
+                                        <HelpTooltip content={content.epoch} />
                                         <p>Issued At:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={11}>
@@ -198,7 +198,7 @@ export function TxViewVout({ txInfo }) {
 
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={4}>
-                                        <HelpTooltip type="expires" />
+                                        <HelpTooltip content={content.expires} />
                                         <p>Expires:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={11}>
@@ -208,7 +208,7 @@ export function TxViewVout({ txInfo }) {
 
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={4}>
-                                        <HelpTooltip type="deposit" />
+                                        <HelpTooltip content={content.deposit} />
                                         <p>Deposit:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={11}>
@@ -218,7 +218,7 @@ export function TxViewVout({ txInfo }) {
 
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={4}>
-                                        <HelpTooltip type="txIndex" />
+                                        <HelpTooltip content={content.txIndex} />
                                         <p>Transaction Index:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={11}>
@@ -228,7 +228,7 @@ export function TxViewVout({ txInfo }) {
 
                                 <Grid.Row className={styles.row}>
                                     <Grid.Column className={styles.column} width={4}>
-                                        <HelpTooltip type="signature" />
+                                        <HelpTooltip content={content.signature} />
                                         <p>Signature:</p>
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={11}>
