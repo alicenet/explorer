@@ -4,7 +4,7 @@ import { CollapsableCard, content, HelpTooltip } from 'components';
 import { copyText } from 'utils';
 import styles from './DataView.module.scss';
 
-export function DataView({ dsView, handleViewOwner, getDSExp }) {
+export function DataView({ dsView, handleViewTransaction, getDSExp }) {
     return (
         <div className={styles.dataView} >
             <Grid.Column className={styles.outerColumn}>
@@ -78,9 +78,9 @@ export function DataView({ dsView, handleViewOwner, getDSExp }) {
 
                                         <Button 
                                             className="text-xs px-3 py-1 ml-2 rounded-sm tracking-wide"
-                                            onClick={() => handleViewOwner(dataStore.DSLinker.TxHash)}
+                                            onClick={() => handleViewTransaction(dataStore.DSLinker.TxHash)}
                                         >
-                                            View Owner Datastores
+                                            View Transaction
                                         </Button>
                                     </Grid.Column>
                                 </Grid.Row>
