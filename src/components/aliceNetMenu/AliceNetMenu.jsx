@@ -1,13 +1,11 @@
-import React from 'react';
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Container, Dropdown, Image, Menu } from 'semantic-ui-react';
+import { Container, Dropdown, Image, Menu } from "semantic-ui-react";
 import Logo from "assets/MadNetwork Logo Horizontal GRAYSCALE.png";
-import styles from './AliceNetMenu.module.scss';
 
 //TODO define where to get this
-const GITHUB_URL = 'https://github.com/madhive';
-const WHITE_PAPER_URL = 'https://www.madnetwork.com/madnetwork-download-whitepaper';
-const COMMUNITY_URL = 'https://www.madnetwork.com/';
+const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
+const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
 
 //TODO define where to get this
 const WALLETS_PLACEHOLDER = ['wallet0', 'wallet1'];
@@ -22,13 +20,13 @@ export function AliceNetMenu() {
 
         <Container fluid className="sticky top-0 bg-dark opacity-90">
 
-            <Menu pointing secondary className={styles.menu}>
+            <Menu pointing secondary className="py-5">
 
                 <Menu.Menu position="left" className="self-center">
                     <Image
                         src={Logo}
-                        width="205"
-                        className={styles.image}
+                        width="205px"
+                        style={{ filter: "invert(100%)" }}
                         as={Link}
                         to={"/"}
                     />
@@ -69,12 +67,6 @@ export function AliceNetMenu() {
                         className="text-white hover:opacity-50"
                         onClick={() => window.open(WHITE_PAPER_URL, '_blank').focus()}
                         name="White Paper"
-                    />
-                    <MenuDivider />
-                    <Menu.Item
-                        className="text-white hover:opacity-50"
-                        onClick={() => window.open(COMMUNITY_URL, '_blank').focus()}
-                        name="Community"
                     />
                 </Menu.Menu>
 

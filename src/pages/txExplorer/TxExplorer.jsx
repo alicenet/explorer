@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Button, Container, Dimmer, Grid, Loader, Segment } from 'semantic-ui-react';
-import queryString from 'query-string';
-import { aliceNetAdapter } from 'adapter/alicenetadapter';
-import { AliceNetSearch, Page } from 'components';
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { Button, Container, Dimmer, Grid, Loader, Segment } from "semantic-ui-react";
+import queryString from "query-string";
+import { aliceNetAdapter } from "adapter/alicenetadapter";
+import { AliceNetSearch, Page } from "components";
 import { TxViewVin, TxViewVout } from './txView';
-import { isValidHash } from 'utils';
+import { isValidHash } from "utils";
 
 export function TxExplorer(props) {
 

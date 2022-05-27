@@ -92,7 +92,7 @@ export function AliceNetSearch() {
                             />
                             {
                                 selectedOption.value === searchTypes.DATASTORES &&
-                                <div className="flex items-center w-1/2">
+                                <div className="flex items-center w-1/2 gap-2">
                                     <input
                                         className="px-4 bg-dark rounded-md w-full h-full focus:outline-none focus:border-neongreen"
                                         placeholder=" Offset"
