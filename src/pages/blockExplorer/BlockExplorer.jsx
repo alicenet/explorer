@@ -9,6 +9,7 @@ import { BlockList } from './blockList';
 import { TxHashList } from './txHashList'; 
 import { ReactComponent as CubeIcon } from 'assets/cube-icon.svg';
 import { ReactComponent as TxHashIcon } from 'assets/tx-hash-icon.svg';
+import { isValidBlockHeight } from 'utils';
 
 export function BlockExplorer(props) {
 
@@ -18,15 +19,29 @@ export function BlockExplorer(props) {
 
     useSelector(s => s.aliceNetAdapter);
 
+    const [isValid, setIsValid] = useState(true);
+
+    useSelector(s => s.aliceNetAdapter); // Listen to aliceNetAdapter State
+
+    const isValidHeight = (height) => {
+        if(aliceNetAdapter.blocks.length > 0) { //is monitoring blocks
+            return isValidBlockHeight(height) && height <= aliceNetAdapter.blocks[0].BClaims.Height;
+        }
+        return isValidBlockHeight(height);
+    }
+
     useEffect(() => {
         const params = props.location && queryString.parse(props.location.search);
 
         const getBlock = async () => {
+            setIsValid(true);
             const height = params && params.height;
-
-            if (height) {
+            
+            if(isValidHeight(height)) {
                 const block = await aliceNetAdapter.getBlock(height);
                 setBlockInfo(block);
+            } else {
+                setIsValid(false);
             }
 
             setLoadingStatus(false);
@@ -50,20 +65,29 @@ export function BlockExplorer(props) {
     }
 
     // Conditional render
-    if ((!isLoading && !blockInfo) || blockInfo.error) {
+    if ((!isLoading && !blockInfo) || blockInfo.error || !isValid) {
         return (
             <Page>
                 <div className="mb-8">
                     <AliceNetSearch />
                 </div>
                 <Grid centered>
-                    <Grid.Row stretched centered>
-                        <Container>
-                            <Segment>
-                                <p>No Block to display!</p>
-                            </Segment>
-                        </Container>
-                    </Grid.Row>
+                    {isValid ? 
+                            <Grid.Row stretched centered>
+                                <Container>
+                                    <Segment>
+                                        <p>No Block to display!</p>
+                                    </Segment>
+                                </Container>
+                            </Grid.Row> :
+                            <Grid.Row stretched centered>
+                                <Container>
+                                    <Segment>
+                                        <p>Improper format: Please input a valid <span className='info'>Block Height</span></p>
+                                    </Segment>
+                                </Container>
+                            </Grid.Row>
+                        }    
                 </Grid>
             </Page>
         );
