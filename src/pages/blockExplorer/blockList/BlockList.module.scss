@@ -5,6 +5,10 @@
         border-top: 1px solid #575555;
         background: #343333;
         padding: 18px 0 !important;
+
+        .column {
+            display: flex !important;
+        }
         
         .column:last-child {
             display: flex;
@@ -15,6 +19,8 @@
             display: inline;
             margin-right: 10px;
             width: 480px;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         i {
