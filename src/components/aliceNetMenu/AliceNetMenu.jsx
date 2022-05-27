@@ -4,8 +4,8 @@ import { Container, Dropdown, Image, Menu } from "semantic-ui-react";
 import Logo from "assets/MadNetwork Logo Horizontal GRAYSCALE.png";
 
 //TODO define where to get this
-const GITHUB_URL = 'https://github.com/madhive';
-const WHITE_PAPER_URL = 'https://www.madnetwork.com/madnetwork-download-whitepaper';
+const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
+const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
 
 //TODO define where to get this
 const WALLETS_PLACEHOLDER = ['wallet0', 'wallet1'];
