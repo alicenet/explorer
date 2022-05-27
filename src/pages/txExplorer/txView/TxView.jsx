@@ -1,9 +1,9 @@
-import React from 'react';
-import { Button, Segment, Icon, Grid } from 'semantic-ui-react';
+import React from "react";
+import { Button, Segment, Icon, Grid } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
-import { CollapsableCard, content, HelpTooltip } from 'components';
-import { copyText } from 'utils';
-import { aliceNetAdapter } from 'adapter/alicenetadapter';
+import { CollapsableCard, content, HelpTooltip } from "components";
+import { copyText } from "utils";
+import { aliceNetAdapter } from "adapter/alicenetadapter";
 import styles from './TxView.module.scss';
 import { ReactComponent as TreeIcon } from 'assets/tree-icon.svg';
 import { ReactComponent as ChoicesIcon } from 'assets/choices-icon.svg';

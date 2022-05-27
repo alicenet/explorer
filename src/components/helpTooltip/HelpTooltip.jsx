@@ -36,16 +36,15 @@ export const content = {
 export function HelpTooltip({ content }) {
 
     return (
-        <div>
-            <Popup
-                trigger={
-                    <Icon name="help circle" circular className="text-white" />
-                }
-                content={content}
-                position="top left"
-                hideOnScroll
-            />
-        </div>
+        <Popup
+            trigger={
+                <Icon
+                    name="question circle outline"
+                    className="m-0 h-auto px-3"
+                />
+            }
+            content={content}
+        />
     );
 
 }

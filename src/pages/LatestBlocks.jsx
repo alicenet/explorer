@@ -3,8 +3,31 @@ import { CustomTable } from "components";
 import { ReactComponent as BlocksIcon } from "assets/blocks-icon.svg";
 import { useSelector } from "react-redux";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
+import { Icon } from "semantic-ui-react";
+import { copyText } from "utils";
 
-const tableHeader = ["Height", "TX Count", "Group Signature"];
+const headerCells = [
+    {
+        id: "height",
+        label: "Height",
+        displayCallback: ({ height }) => <span className="text-neongreen">{height}</span>,
+    },
+    {
+        id: "txCount",
+        label: "TX Count",
+    },
+    {
+        id: "groupSignature",
+        label: "Group Signature",
+        displayCallback: ({ groupSignature }) =>
+            <div
+                className="flex cursor-pointer hover:opacity-80"
+                onClick={() => copyText(groupSignature)}>
+                {`0x${groupSignature.slice(0, 15)}...`}
+                <Icon name="copy outline" />
+            </div>,
+    }
+];
 
 export function LatestBlocks() {
 
@@ -16,20 +39,20 @@ export function LatestBlocks() {
         }
     }, [aliceNetAdapter]);
 
-    const rows = aliceNetAdapter.blocks?.slice(0, aliceNetAdapter.blocksMaxLen).map((e, i) => {
+    const rows = aliceNetAdapter.blocks?.slice(0, aliceNetAdapter.blocksMaxLen).map((row) => {
         return {
-            [tableHeader[0]]: e['BClaims']['Height'],
-            [tableHeader[1]]: e['BClaims']['TxCount'] ? e['BClaims']['TxCount'] : 0,
-            [tableHeader[2]]: `0x${e['SigGroup'].slice(0, 15)}...`,
+            height: row['BClaims']['Height'],
+            txCount: row['BClaims']['TxCount'] ? row['BClaims']['TxCount'] : 0,
+            groupSignature: row['SigGroup']
         }
     });
 
     return (
         <CustomTable
-            Icon={() => <BlocksIcon />}
-            headers={tableHeader}
+            icon={<BlocksIcon />}
+            headerCells={headerCells}
             rows={rows}
-            title={"Latest Blocks"}
+            title="Latest Blocks"
         />
     );
 
