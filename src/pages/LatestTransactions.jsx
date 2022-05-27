@@ -36,7 +36,7 @@ export function LatestTransactions() {
     const rows = aliceNetAdapter.blocks?.slice(0, aliceNetAdapter.blocksMaxLen).map((row) => {
         return {
             height: row['BClaims']['Height'],
-            txCount: row['BClaims']['TxCount'] ? row['BClaims']['TxCount'] : 0,
+            txIndex: row['BClaims']['TxCount'] ? row['BClaims']['TxCount'] : 0,
             groupSignature: row['SigGroup']
         }
     });
