@@ -7,7 +7,6 @@ import styles from './AliceNetMenu.module.scss';
 //TODO define where to get this
 const GITHUB_URL = 'https://github.com/madhive';
 const WHITE_PAPER_URL = 'https://www.madnetwork.com/madnetwork-download-whitepaper';
-const COMMUNITY_URL = 'https://www.madnetwork.com/';
 
 //TODO define where to get this
 const WALLETS_PLACEHOLDER = ['wallet0', 'wallet1'];
@@ -69,12 +68,6 @@ export function AliceNetMenu() {
                         className="text-white hover:opacity-50"
                         onClick={() => window.open(WHITE_PAPER_URL, '_blank').focus()}
                         name="White Paper"
-                    />
-                    <MenuDivider />
-                    <Menu.Item
-                        className="text-white hover:opacity-50"
-                        onClick={() => window.open(COMMUNITY_URL, '_blank').focus()}
-                        name="Community"
                     />
                 </Menu.Menu>
 
