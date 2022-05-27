@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Dropdown } from "semantic-ui-react";
+import { Button, Checkbox, Container, Dropdown } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import styles from "./AliceNetSearch.module.scss";
 import { classNames, curveTypes, isBN, searchTypes } from "utils";
@@ -15,6 +15,7 @@ export function AliceNetSearch() {
     const history = useHistory();
     const [term, setTerm] = useState("");
     const [offset, setOffset] = useState("");
+    const [showMore, setShowMore] = useState(false);
     const [selectedOption, setSelectedOption] = useState(options[0]);
     const [addressType, setAddressType] = useState(curveTypes.SECP256K1);
 
@@ -41,7 +42,7 @@ export function AliceNetSearch() {
                 history.push(`/tx?hash=${term}`);
                 break;
             case searchTypes.DATASTORES:
-                history.push(`/data?address=${term}&curve=${addressType}${offset && `&offset=${offset.padStart(64, '0')}`}`);
+                history.push(`/data?address=${term}&curve=${addressType}&showMore=${offset ? showMore : true}${offset && `&offset=${offset.padStart(64, '0')}`}`);
                 break;
             default:
                 alert('Invalid option');
@@ -109,13 +110,21 @@ export function AliceNetSearch() {
                         content="Search"
                     />
                 </div>
-                {addressType && term && selectedOption.value === searchTypes.DATASTORES && (
-                    <div className="flex items-center gap-3">
-                        <div className="bg-neongreen w-2 h-2 rounded-md" />
-                        <h4>This is a {addressType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h4>
-                        <HelpTooltip content={addressType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp} />
-                    </div>
-                )}
+                <div className="flex">
+                    {addressType && term && selectedOption.value === searchTypes.DATASTORES && (
+                        <div className="flex items-center gap-3 w-1/2">
+                            <div className="bg-neongreen w-2 h-2 rounded-md" />
+                            <h4>This is a {addressType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h4>
+                            <HelpTooltip content={addressType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp} />
+                        </div>
+                    )}
+                    {offset && selectedOption.value === searchTypes.DATASTORES && (
+                        <div className="flex items-center gap-3">
+                            <Checkbox toggle className='ml-2 mr-2' checked={showMore} onClick={() => setShowMore(!showMore)}/> 
+                            <span>Show More Datastores</span>
+                        </div>
+                    )}
+                </div>
             </div>
         </Container>
     );
