@@ -3,19 +3,23 @@ import { Container, Dimmer, Grid, Loader, Segment } from "semantic-ui-react";
 import queryString from "query-string";
 import { useHistory } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { CollapsableCard, Page } from "components";
+import { AliceNetSearch, CollapsableCard, Page } from "components";
 import { ReactComponent as FileIcon } from "assets/file-icon.svg";
 import { DataView } from "./dataView";
 
 export function DataExplorer(props) {
-    const [dsView, setDsView] = useState([]);
+    const [dsView, setDsView] = useState();
+    const [showMore, setShowMore] = useState(true);
     const [isLoading, setLoadingStatus] = useState(true);
     const history = useHistory();
 
     useEffect(() => {
         const params = props.location && queryString.parse(props.location.search);
         const getDataStores = async () => {
-            const { address, offset, curve } = params;
+            const { address, offset, curve, showMore } = params;
+
+            setShowMore(JSON.parse(showMore));
+
             if (address) {
                 try {
                     const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address, curve, offset);
@@ -36,14 +40,16 @@ export function DataExplorer(props) {
         return aliceNetAdapter.getDSExp(rawData, deposit, issuedAt);
     };
 
-    const handleViewOwner = async (txHash) => {
+    const handleViewTransaction = async (txHash) => {
         history.push(`/tx?hash=${txHash}`);
     };
 
     if ((dsView?.error) || (!isLoading && (!dsView || !dsView.length))) {
         return (
             <Page>
-                <div className="mb-8" />
+                <div className="mb-8">
+                    <AliceNetSearch />
+                </div>
                 <Grid centered>
                     <Grid.Row stretched centered>
                         <Container>
@@ -69,9 +75,13 @@ export function DataExplorer(props) {
         );
     }
 
+    const filteredData = showMore ? dsView : dsView?.slice(0,1);
+
     return (
         <Page>
-            <div className="mb-8" />
+            <div className="mb-8">
+                <AliceNetSearch />
+            </div>
             <Grid stretched centered={true}>
                 <Grid.Row>
                     <CollapsableCard
@@ -79,12 +89,12 @@ export function DataExplorer(props) {
                         icon={<FileIcon />}
                         open={true}
                         disabled={false}
-                        itemsCount={dsView && dsView.length}
+                        itemsCount={filteredData.length}    
                     >
-                        <DataView
-                            dsView={dsView}
+                        <DataView 
+                            dsView={filteredData} 
                             paginate={null}
-                            handleViewOwner={handleViewOwner}
+                            handleViewTransaction={handleViewTransaction}
                             getDSExp={getDSExp}
                         />
                     </CollapsableCard>
