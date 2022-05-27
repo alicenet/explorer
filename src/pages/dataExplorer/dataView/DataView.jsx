@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button, Segment, Icon, Grid } from 'semantic-ui-react';
+import React from "react";
+import { Button, Segment, Icon, Grid } from "semantic-ui-react";
 import { CollapsableCard, content, HelpTooltip } from 'components';
 import { copyText } from 'utils';
 import styles from './DataView.module.scss';

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button, Segment, Icon, Grid } from 'semantic-ui-react';
+import React from "react";
+import { Button, Segment, Icon, Grid } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { CollapsableCard, content, HelpTooltip } from 'components';
 import { copyText } from 'utils';

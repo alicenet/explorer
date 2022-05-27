@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Container, Grid } from "semantic-ui-react";
 import { AliceNetSearch, CallToAction, Page } from "components";
 import { LatestBlocks } from "./LatestBlocks";

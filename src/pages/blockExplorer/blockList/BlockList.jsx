@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Button, Icon, Grid } from "semantic-ui-react"
 import { copyText } from 'utils';
 import { content, HelpTooltip } from 'components';

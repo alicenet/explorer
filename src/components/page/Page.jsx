@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container } from 'semantic-ui-react';
+import React from "react";
+import { Container } from "semantic-ui-react";
 import { AliceNetMenu, Footer } from "components";
 
 export const Page = ({ children }) => {

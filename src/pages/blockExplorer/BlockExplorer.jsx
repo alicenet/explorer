@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Segment, Grid, Dimmer, Loader } from 'semantic-ui-react';
+import { Container, Segment, Grid, Dimmer, Loader } from "semantic-ui-react";
 import queryString from 'query-string';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';

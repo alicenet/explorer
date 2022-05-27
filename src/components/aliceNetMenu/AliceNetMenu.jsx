@@ -1,8 +1,7 @@
-import React from 'react';
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Container, Dropdown, Image, Menu } from 'semantic-ui-react';
+import { Container, Dropdown, Image, Menu } from "semantic-ui-react";
 import Logo from "assets/MadNetwork Logo Horizontal GRAYSCALE.png";
-import styles from './AliceNetMenu.module.scss';
 
 //TODO define where to get this
 const GITHUB_URL = 'https://github.com/madhive';
@@ -21,13 +20,13 @@ export function AliceNetMenu() {
 
         <Container fluid className="sticky top-0 bg-dark opacity-90">
 
-            <Menu pointing secondary className={styles.menu}>
+            <Menu pointing secondary className="py-5">
 
                 <Menu.Menu position="left" className="self-center">
                     <Image
                         src={Logo}
-                        width="205"
-                        className={styles.image}
+                        width="205px"
+                        style={{ filter: "invert(100%)" }}
                         as={Link}
                         to={"/"}
                     />
