@@ -1,16 +1,18 @@
 import React from "react";
-import { Button, Segment, Icon, Grid } from "semantic-ui-react";
-import { CollapsableCard, content, HelpTooltip } from 'components';
-import { copyText } from 'utils';
+import { Button, Grid, Icon, Segment } from "semantic-ui-react";
+import { CollapsableCard, content, HelpTooltip } from "components";
+import { copyText } from "utils";
 import styles from './DataView.module.scss';
 
 export function DataView({ dsView, handleViewTransaction, getDSExp }) {
+
     return (
-        <div className={styles.dataView} >
+
+        <div className={styles.dataView}>
             <Grid.Column className={styles.outerColumn}>
                 <Segment className={styles.segmentContainer}>
                     {dsView.map((dataStore, i) => (
-                        <CollapsableCard 
+                        <CollapsableCard
                             title={`Index: 0x${dataStore.DSLinker.DSPreImage.Index}`}
                             open={true}
                             disabled={false}
@@ -25,10 +27,10 @@ export function DataView({ dsView, handleViewTransaction, getDSExp }) {
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={12}>
                                         <p>0x{dataStore.DSLinker.DSPreImage.Index}</p>
-                                        <Icon 
-                                            name="copy outline" 
-                                            className="click" 
-                                            onClick={() => copyText("0x" + dataStore.DSLinker.DSPreImage.Index)} 
+                                        <Icon
+                                            name="copy outline"
+                                            className="click"
+                                            onClick={() => copyText("0x" + dataStore.DSLinker.DSPreImage.Index)}
                                         />
                                     </Grid.Column>
                                 </Grid.Row>
@@ -40,10 +42,10 @@ export function DataView({ dsView, handleViewTransaction, getDSExp }) {
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={12}>
                                         <p>0x{dataStore.DSLinker.DSPreImage.RawData}</p>
-                                        <Icon 
-                                            name="copy outline" 
-                                            className="click" 
-                                            onClick={() => copyText("0x" + dataStore.DSLinker.DSPreImage.RawData)} 
+                                        <Icon
+                                            name="copy outline"
+                                            className="click"
+                                            onClick={() => copyText("0x" + dataStore.DSLinker.DSPreImage.RawData)}
                                         />
                                     </Grid.Column>
                                 </Grid.Row>
@@ -55,10 +57,10 @@ export function DataView({ dsView, handleViewTransaction, getDSExp }) {
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={12}>
                                         <p>{getDSExp(dataStore.DSLinker.DSPreImage.RawData, dataStore.DSLinker.DSPreImage.Deposit, dataStore.DSLinker.DSPreImage.IssuedAt)}</p>
-                                        <Icon 
-                                            name="copy outline" 
-                                            className="click" 
-                                            onClick={() => copyText("0x" + dataStore.DSLinker.DSPreImage.RawData)} 
+                                        <Icon
+                                            name="copy outline"
+                                            className="click"
+                                            onClick={() => copyText("0x" + dataStore.DSLinker.DSPreImage.RawData)}
                                         />
                                     </Grid.Column>
                                 </Grid.Row>
@@ -70,13 +72,13 @@ export function DataView({ dsView, handleViewTransaction, getDSExp }) {
                                     </Grid.Column>
                                     <Grid.Column className={styles.column} width={12}>
                                         <p>0x{dataStore.DSLinker.TxHash}</p>
-                                        <Icon 
-                                            name="copy outline" 
-                                            className="click" 
-                                            onClick={() => copyText("0x" + dataStore.DSLinker.TxHash)} 
+                                        <Icon
+                                            name="copy outline"
+                                            className="click"
+                                            onClick={() => copyText("0x" + dataStore.DSLinker.TxHash)}
                                         />
 
-                                        <Button 
+                                        <Button
                                             className="text-xs px-3 py-1 ml-2 rounded-sm tracking-wide"
                                             onClick={() => handleViewTransaction(dataStore.DSLinker.TxHash)}
                                         >
@@ -90,5 +92,7 @@ export function DataView({ dsView, handleViewTransaction, getDSExp }) {
                 </Segment>
             </Grid.Column>
         </div>
-    )
+
+    );
+
 }

@@ -1,6 +1,6 @@
-import { aliceNetAdapter } from 'adapter/alicenetadapter';
+import { aliceNetAdapter } from "adapter/alicenetadapter";
 import React from "react";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import { Modal, Container, Divider } from "semantic-ui-react";
 
 export default function ErrorOverlay() {

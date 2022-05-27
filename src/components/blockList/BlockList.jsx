@@ -1,10 +1,11 @@
 import React from "react";
-import { Button, Icon, Grid } from "semantic-ui-react"
-import { copyText } from 'utils';
-import { content, HelpTooltip } from 'components';
+import { Button, Grid, Icon } from "semantic-ui-react"
+import { copyText } from "utils";
+import { content, HelpTooltip } from "components";
 import styles from './BlockList.module.scss';
 
 export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, headerRoot, sigGroup, handleBlockNavLeft, handleBlockNavRight, maxHeight = Number.MAX_VALUE}) {
+
     return (
         <Grid className={styles.blockList} padded="vertically">
             <Grid.Row className={styles.row}>
@@ -130,5 +131,6 @@ export function BlockList({ height, txCount, prevBlock, txRoot, stateRoot, heade
                 </Grid.Column>
             </Grid.Row>
         </Grid>
-    )
+    );
+
 }
