@@ -16,7 +16,7 @@ export function DataExplorer(props) {
     useEffect(() => {
         const params = props.location && queryString.parse(props.location.search);
         const getDataStores = async () => {
-            const { address, offset, curve, showMore } = params;
+            const { address, offset, curve, showMore } = params;
 
             setShowMore(JSON.parse(showMore));
 
@@ -75,7 +75,7 @@ export function DataExplorer(props) {
         );
     }
 
-    const filteredData = showMore ? dsView : dsView?.slice(0,1);
+    const filteredData = showMore ? dsView : dsView?.slice(0, 1);
 
     return (
         <Page>
@@ -89,10 +89,10 @@ export function DataExplorer(props) {
                         icon={<FileIcon />}
                         open={true}
                         disabled={false}
-                        itemsCount={filteredData.length}    
+                        itemsCount={filteredData.length}
                     >
-                        <DataView 
-                            dsView={filteredData} 
+                        <DataView
+                            dsView={filteredData}
                             paginate={null}
                             handleViewTransaction={handleViewTransaction}
                             getDSExp={getDSExp}

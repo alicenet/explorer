@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Segment, Grid, Dimmer, Loader } from 'semantic-ui-react';
-import queryString from 'query-string';
-import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { aliceNetAdapter } from 'adapter/alicenetadapter';
-import { CollapsableCard, AliceNetSearch, Page } from 'components'; 
-import { BlockList } from './blockList'; 
-import { TxHashList } from './txHashList'; 
+import React, { useEffect, useState } from "react";
+import { Container, Dimmer, Grid, Loader, Segment } from "semantic-ui-react";
+import queryString from "query-string";
+import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { aliceNetAdapter } from "adapter/alicenetadapter";
+import { AliceNetSearch, BlockList, CollapsableCard, Page, TxHashList } from "components";
 import { ReactComponent as CubeIcon } from 'assets/cube-icon.svg';
 import { ReactComponent as TxHashIcon } from 'assets/tx-hash-icon.svg';
-import { isValidBlockHeight } from 'utils';
+import { isValidBlockHeight } from "utils";
 
 export function BlockExplorer(props) {
 
@@ -24,7 +22,7 @@ export function BlockExplorer(props) {
     useSelector(s => s.aliceNetAdapter); // Listen to aliceNetAdapter State
 
     const isValidHeight = (height) => {
-        if(aliceNetAdapter.blocks.length > 0) { //is monitoring blocks
+        if (aliceNetAdapter.blocks.length > 0) { //is monitoring blocks
             return isValidBlockHeight(height) && height <= aliceNetAdapter.blocks[0].BClaims.Height;
         }
         return isValidBlockHeight(height);
@@ -36,8 +34,8 @@ export function BlockExplorer(props) {
         const getBlock = async () => {
             setIsValid(true);
             const height = params && params.height;
-            
-            if(isValidHeight(height)) {
+
+            if (isValidHeight(height)) {
                 const block = await aliceNetAdapter.getBlock(height);
                 setBlockInfo(block);
             } else {
@@ -52,7 +50,7 @@ export function BlockExplorer(props) {
 
     const handleBlockNav = (term) => history.push(`/block?height=${term}`);
 
-    if(isLoading) {
+    if (isLoading) {
         return (
             <Page>
                 <Grid>
@@ -72,22 +70,23 @@ export function BlockExplorer(props) {
                     <AliceNetSearch />
                 </div>
                 <Grid centered>
-                    {isValid ? 
-                            <Grid.Row stretched centered>
-                                <Container>
-                                    <Segment>
-                                        <p>No Block to display!</p>
-                                    </Segment>
-                                </Container>
-                            </Grid.Row> :
-                            <Grid.Row stretched centered>
-                                <Container>
-                                    <Segment>
-                                        <p>Improper format: Please input a valid <span className='info'>Block Height</span></p>
-                                    </Segment>
-                                </Container>
-                            </Grid.Row>
-                        }    
+                    {isValid ?
+                        <Grid.Row stretched centered>
+                            <Container>
+                                <Segment>
+                                    <p>No Block to display!</p>
+                                </Segment>
+                            </Container>
+                        </Grid.Row> :
+                        <Grid.Row stretched centered>
+                            <Container>
+                                <Segment>
+                                    <p>Improper format: Please input a valid <span className="info">Block Height</span>
+                                    </p>
+                                </Segment>
+                            </Container>
+                        </Grid.Row>
+                    }
                 </Grid>
             </Page>
         );
@@ -112,8 +111,8 @@ export function BlockExplorer(props) {
                     stateRoot={blockInfo.BClaims.StateRoot}
                     headerRoot={blockInfo.BClaims.HeaderRoot}
                     sigGroup={blockInfo.SigGroup}
-                    handleBlockNavLeft={() => handleBlockNav(blockInfo.BClaims.Height-1)}
-                    handleBlockNavRight={() => handleBlockNav(blockInfo.BClaims.Height+1)}
+                    handleBlockNavLeft={() => handleBlockNav(blockInfo.BClaims.Height - 1)}
+                    handleBlockNavRight={() => handleBlockNav(blockInfo.BClaims.Height + 1)}
                     maxHeight={aliceNetAdapter.blocks[0]?.BClaims.Height}
                 />
             </CollapsableCard>
