@@ -64,9 +64,8 @@ export function TxExplorer(props) {
                         <Grid.Row stretched centered>
                             <Container>
                                 <Segment>
-                                    <p>Improper format: Please input a valid
-                                        <span className="info">TX Hash</span> or <span
-                                            className="info">Block height</span>
+                                    <p>Improper format: Please input a valid 
+                                        <span className='info'>TX Hash</span>
                                     </p>
                                 </Segment>
                             </Container>
