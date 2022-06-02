@@ -43,6 +43,7 @@ export function HelpTooltip({ content }) {
                     className="m-0 h-auto px-3"
                 />
             }
+            basic
             content={content}
         />
     );

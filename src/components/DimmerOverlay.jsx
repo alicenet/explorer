@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Dimmer, Loader, } from "semantic-ui-react";
 
-export default function DimmerLoader() {
+export const DimmerLoader = () => {
 
     useSelector(s => s);
 

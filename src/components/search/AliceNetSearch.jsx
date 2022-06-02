@@ -7,7 +7,7 @@ import { content, HelpTooltip } from "components";
 
 const options = [
     { text: 'Transactions', placeHolder: "Transactions Hash", value: searchTypes.TRANSACTIONS },
-    { text: 'Blocks', placeHolder: "Block Number", value: searchTypes.BLOCKS },
+    { text: 'Blocks', placeHolder: "Block Height", value: searchTypes.BLOCKS },
     { text: 'DataStores', placeHolder: "Address", value: searchTypes.DATASTORES },
 ];
 
