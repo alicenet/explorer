@@ -1,9 +1,8 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Container, Dropdown, Image, Menu } from "semantic-ui-react";
 import Logo from "assets/MadNetwork Logo Horizontal GRAYSCALE.png";
 
-//TODO define where to get this
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
 
@@ -13,8 +12,6 @@ const WALLETS_PLACEHOLDER = ['wallet0', 'wallet1'];
 const MenuDivider = () => <div className="border-r border-gray-700 my-3" />;
 
 export function AliceNetMenu() {
-
-    const location = useLocation();
 
     return (
 
@@ -28,7 +25,7 @@ export function AliceNetMenu() {
                         width="205px"
                         style={{ filter: "invert(100%)" }}
                         as={Link}
-                        to={"/"}
+                        to="/"
                     />
                 </Menu.Menu>
 
@@ -36,9 +33,8 @@ export function AliceNetMenu() {
                     <Menu.Item
                         className="text-white hover:opacity-50"
                         as={Link}
-                        to="block"
+                        to="/"
                         name="Monitor"
-                        active={location.pathname.slice(1) === 'block'}
                     />
                     <MenuDivider />
                     <Menu.Item
@@ -46,7 +42,6 @@ export function AliceNetMenu() {
                         as={Link}
                         to="about"
                         name="About"
-                        active={location.pathname.slice(1) === 'about'}
                     />
                     <MenuDivider />
                     <Dropdown className="text-white hover:opacity-50 focus:opacity-100" item text="Wallet Download">
