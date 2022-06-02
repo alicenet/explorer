@@ -13,7 +13,7 @@ function App() {
             <DimmerLoader />
             <Router>
                 <Switch>
-                    <Route exact path={["/blocks", "/"]} component={Home} />
+                    <Route exact path="/" component={Home} />
                     <Route exact path="/test" component={Test} />
                     <Route exact path="/block" component={BlockExplorer} />
                     <Route exact path="/data" component={DataExplorer} />

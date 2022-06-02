@@ -4,10 +4,10 @@ import { Button, Container, Dimmer, Grid, Loader, Segment } from "semantic-ui-re
 import queryString from "query-string";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { AliceNetSearch, Page } from "components";
-import { TxViewVin, TxViewVout } from './txView';
+import { TxViewVin, TxViewVout } from "./txView";
 import { isValidHash } from "utils";
 
-export function TxExplorer(props) {
+export function TxExplorer({ location }) {
 
     const [txInfo, setTxInfo] = useState();
     const [isLoading, setLoadingStatus] = useState(true);
@@ -17,7 +17,7 @@ export function TxExplorer(props) {
     const history = useHistory();
 
     useEffect(() => {
-        const params = props.location && queryString.parse(props.location.search);
+        const params = location && queryString.parse(location.search);
         const getTx = async () => {
             setIsValid(true);
             const hash = params && params.hash;
@@ -33,21 +33,24 @@ export function TxExplorer(props) {
         }
 
         getTx();
-    }, [props.location]);
+    }, [location]);
 
     if (isLoading) {
         return (
+
             <Grid>
                 <Dimmer active>
                     <Loader>Loading</Loader>
                 </Dimmer>
             </Grid>
+
         );
     }
 
     // Conditional render
     if (!isLoading && (!txInfo || txInfo[1].error)) {
         return (
+
             <Page>
                 <div className="mb-8">
                     <AliceNetSearch />
@@ -64,7 +67,7 @@ export function TxExplorer(props) {
                         <Grid.Row stretched centered>
                             <Container>
                                 <Segment>
-                                    <p>Improper format: Please input a valid 
+                                    <p>Improper format: Please input a valid
                                         <span className='info'>TX Hash</span>
                                     </p>
                                 </Segment>
@@ -73,10 +76,12 @@ export function TxExplorer(props) {
                     }
                 </Grid>
             </Page>
+
         );
     }
 
     return (
+
         <Page>
             <div className="mb-8">
                 <AliceNetSearch />
@@ -99,6 +104,7 @@ export function TxExplorer(props) {
             <TxViewVin txInfo={txInfo[0].Vin} />
             <TxViewVout txInfo={txInfo[0].Vout} />
         </Page>
+
     );
 
 }

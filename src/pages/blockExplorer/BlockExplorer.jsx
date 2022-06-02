@@ -5,11 +5,11 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { AliceNetSearch, BlockList, CollapsableCard, Page, TxHashList } from "components";
-import { ReactComponent as CubeIcon } from 'assets/cube-icon.svg';
-import { ReactComponent as TxHashIcon } from 'assets/tx-hash-icon.svg';
+import { ReactComponent as CubeIcon } from "assets/cube-icon.svg";
+import { ReactComponent as TxHashIcon } from "assets/tx-hash-icon.svg";
 import { isValidBlockHeight } from "utils";
 
-export function BlockExplorer(props) {
+export function BlockExplorer({ location }) {
 
     const [blockInfo, setBlockInfo] = useState(null);
     const [isLoading, setLoadingStatus] = useState(true);
@@ -26,10 +26,10 @@ export function BlockExplorer(props) {
             return isValidBlockHeight(height) && height <= aliceNetAdapter.blocks[0].BClaims.Height;
         }
         return isValidBlockHeight(height);
-    }
+    };
 
     useEffect(() => {
-        const params = props.location && queryString.parse(props.location.search);
+        const params = location && queryString.parse(location.search);
 
         const getBlock = async () => {
             setIsValid(true);
@@ -46,7 +46,7 @@ export function BlockExplorer(props) {
         }
 
         getBlock();
-    }, [props.location]);
+    }, [location]);
 
     const handleBlockNav = (term) => history.push(`/block?height=${term}`);
 
@@ -65,6 +65,7 @@ export function BlockExplorer(props) {
     // Conditional render
     if ((!isLoading && !blockInfo) || blockInfo.error || !isValid) {
         return (
+
             <Page>
                 <div className="mb-8">
                     <AliceNetSearch />
@@ -93,6 +94,7 @@ export function BlockExplorer(props) {
     }
 
     return (
+
         <Page>
             <div>
                 <AliceNetSearch />
@@ -129,6 +131,7 @@ export function BlockExplorer(props) {
                 />
             </CollapsableCard>
         </Page>
+
     );
 
 }

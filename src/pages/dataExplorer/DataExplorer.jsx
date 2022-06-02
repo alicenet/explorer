@@ -7,14 +7,14 @@ import { AliceNetSearch, CollapsableCard, Page } from "components";
 import { ReactComponent as FileIcon } from "assets/file-icon.svg";
 import { DataView } from "./dataView";
 
-export function DataExplorer(props) {
+export function DataExplorer({ location }) {
     const [dsView, setDsView] = useState();
     const [showMore, setShowMore] = useState(true);
     const [isLoading, setLoadingStatus] = useState(true);
     const history = useHistory();
 
     useEffect(() => {
-        const params = props.location && queryString.parse(props.location.search);
+        const params = location && queryString.parse(location.search);
         const getDataStores = async () => {
             const { address, offset, curve, showMore } = params;
 
@@ -34,7 +34,7 @@ export function DataExplorer(props) {
         }
 
         getDataStores();
-    }, [props.location]);
+    }, [location]);
 
     const getDSExp = (rawData, deposit, issuedAt) => {
         return aliceNetAdapter.getDSExp(rawData, deposit, issuedAt);
@@ -46,6 +46,7 @@ export function DataExplorer(props) {
 
     if ((dsView?.error) || (!isLoading && (!dsView || !dsView.length))) {
         return (
+
             <Page>
                 <div className="mb-8">
                     <AliceNetSearch />
@@ -61,10 +62,12 @@ export function DataExplorer(props) {
                 </Grid>
             </Page>
         );
+
     }
 
     if (isLoading) {
         return (
+
             <Page>
                 <Grid>
                     <Dimmer active>
@@ -72,12 +75,14 @@ export function DataExplorer(props) {
                     </Dimmer>
                 </Grid>
             </Page>
+
         );
     }
 
     const filteredData = showMore ? dsView : dsView?.slice(0, 1);
 
     return (
+
         <Page>
             <div className="mb-8">
                 <AliceNetSearch />
@@ -101,6 +106,7 @@ export function DataExplorer(props) {
                 </Grid.Row>
             </Grid>
         </Page>
+
     );
 
 }
