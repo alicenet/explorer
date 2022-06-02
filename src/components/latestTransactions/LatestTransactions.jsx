@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { CustomTable } from "components";
+import { CustomTable } from "components/index";
 import { ReactComponent as TxIcon } from "assets/tx-icon.svg";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { copyText } from "utils";

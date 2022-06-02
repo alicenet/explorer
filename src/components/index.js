@@ -2,10 +2,12 @@ export * from './aliceNetMenu';
 export * from './blockList'
 export * from './callToAction';
 export * from './collapsableCard';
-export * from './DimmerOverlay';
-export * from './ErrorOverlay';
+export * from './dimmerOverlay';
+export * from './errorOverlay';
 export * from './footer';
 export * from './helpTooltip';
+export * from './latestBlocks'
+export * from './latestTransactions'
 export * from './page';
 export * from './search';
 export * from './table';

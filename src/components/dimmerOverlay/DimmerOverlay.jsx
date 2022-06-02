@@ -10,9 +10,11 @@ export const DimmerLoader = () => {
     const busy = aliceNetAdapter.busy || ""; // Todo: Update to support all required busy states
 
     return (
+
         <Dimmer page active={!!busy}>
             <Loader active content={busy} />
         </Dimmer>
+
     );
 
 }

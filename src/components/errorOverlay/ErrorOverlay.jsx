@@ -10,6 +10,7 @@ export const ErrorOverlay = () => {
     const error = aliceNetAdapter.error || ""; // Todo: Update to support all required errors
 
     return (
+
         <Modal size="tiny" open={!!error} centered onClose={() => aliceNetAdapter.clearError()}>
             <Modal.Content scrolling>
                 <Container textAlign="center" fluid>
@@ -19,6 +20,7 @@ export const ErrorOverlay = () => {
                 </Container>
             </Modal.Content>
         </Modal>
+
     );
 
 }
