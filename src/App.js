@@ -1,12 +1,10 @@
-import DimmerLoader from "components/DimmerOverlay";
-import ErrorOverlay from "components/ErrorOverlay";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { aliceNetAdapter } from "./adapter/alicenetadapter";
 import { BlockExplorer, DataExplorer, Home, TxExplorer } from "./pages";
 import { aliceNetWalletEqualize } from "./redux/reducers";
-import { Page } from "./components";
+import { DimmerLoader, ErrorOverlay, Page } from "./components";
 
 function App() {
     return (
