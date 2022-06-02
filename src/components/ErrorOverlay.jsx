@@ -1,9 +1,10 @@
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import React from "react";
 import { useSelector } from "react-redux";
-import { Modal, Container, Divider } from "semantic-ui-react";
+import { Container, Divider, Modal } from "semantic-ui-react";
 
-export default function ErrorOverlay() {
+export const ErrorOverlay = () => {
+
     useSelector(s => s);
 
     const error = aliceNetAdapter.error || ""; // Todo: Update to support all required errors
@@ -18,5 +19,6 @@ export default function ErrorOverlay() {
                 </Container>
             </Modal.Content>
         </Modal>
-    )
+    );
+
 }

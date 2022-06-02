@@ -5,12 +5,22 @@ import { useSelector } from "react-redux";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { Icon } from "semantic-ui-react";
 import { copyText } from "utils";
+import { useHistory } from "react-router-dom";
 
 const headerCells = [
     {
         id: "height",
         label: "Height",
-        displayCallback: ({ height }) => <span className="text-neongreen">{height}</span>,
+        displayCallback: ({ height, history }) => {
+            return (
+                <span
+                    className="text-neongreen cursor-pointer"
+                    onClick={() => history.push(`/block?height=${height}`)}
+                >
+                    {height}
+                </span>
+            );
+        },
     },
     {
         id: "txCount",
@@ -31,6 +41,7 @@ const headerCells = [
 
 export function LatestBlocks() {
 
+    const history = useHistory();
     useSelector(s => s.aliceNetAdapter); // Listen to aliceNetAdapter State
 
     useEffect(() => {
@@ -41,6 +52,7 @@ export function LatestBlocks() {
 
     const rows = aliceNetAdapter.blocks?.slice(0, aliceNetAdapter.blocksMaxLen).map((row) => {
         return {
+            history,
             height: row['BClaims']['Height'],
             txCount: row['BClaims']['TxCount'] ? row['BClaims']['TxCount'] : 0,
             groupSignature: row['SigGroup']

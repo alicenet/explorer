@@ -10,7 +10,8 @@ const headerCells = [
     {
         id: "value",
         label: "Value",
-        displayCallback: ({ height }) => <span className="text-neongreen">{height}</span>,
+        displayCallback: ({ height }) =>
+            <span className="text-neongreen cursor-pointer">{height}</span>,
     },
     {
         id: "txIndex",
