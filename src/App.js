@@ -15,7 +15,7 @@ function App() {
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/test" component={Test} />
-                    <Route exact path="/block" component={BlockExplorer} />
+                    <Route exact path="/block/:height" component={BlockExplorer} />
                     <Route exact path="/data" component={DataExplorer} />
                     <Route exact path="/tx" component={TxExplorer} />
                 </Switch>

@@ -11,12 +11,16 @@ const options = [
     { text: 'DataStores', placeHolder: "Address", value: searchTypes.DATASTORES },
 ];
 
-export function AliceNetSearch() {
+export function AliceNetSearch({ currentSearch = null }) {
+
     const history = useHistory();
-    const [term, setTerm] = useState("");
+
     const [offset, setOffset] = useState("");
     const [showMore, setShowMore] = useState(false);
-    const [selectedOption, setSelectedOption] = useState(options[0]);
+
+    const [term, setTerm] = useState("");
+    const [selectedOption, setSelectedOption] = useState(searchTypes.TRANSACTIONS);
+
     const [addressType, setAddressType] = useState(curveTypes.SECP256K1);
 
     useEffect(() => {
@@ -24,6 +28,11 @@ export function AliceNetSearch() {
             setAddressType(isBN(term) ? curveTypes.BARRETO_NAEHRIG : curveTypes.SECP256K1);
         }
     }, [selectedOption, term]);
+
+    useEffect(() => {
+        setTerm(currentSearch ? currentSearch.term : "");
+        setSelectedOption(currentSearch ? options.find(option => option.value === currentSearch.type) : options[0]);
+    }, [currentSearch]);
 
     const handleChange = (e, { value }) => {
         setOffset("");
@@ -36,7 +45,7 @@ export function AliceNetSearch() {
         }
         switch (selectedOption.value) {
             case searchTypes.BLOCKS:
-                history.push(`/block?height=${term}`);
+                history.push(`/block/${term}`);
                 break;
             case searchTypes.TRANSACTIONS:
                 history.push(`/tx?hash=${term}`);
@@ -115,12 +124,19 @@ export function AliceNetSearch() {
                         <div className="flex items-center gap-3 w-1/2">
                             <div className="bg-neongreen w-2 h-2 rounded-md" />
                             <h4>This is a {addressType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h4>
-                            <HelpTooltip content={addressType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp} />
+                            <HelpTooltip
+                                content={addressType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}
+                            />
                         </div>
                     )}
                     {offset && selectedOption.value === searchTypes.DATASTORES && (
                         <div className="flex items-center gap-3">
-                            <Checkbox toggle className='ml-2 mr-2' checked={showMore} onClick={() => setShowMore(!showMore)}/> 
+                            <Checkbox
+                                toggle
+                                className="ml-2 mr-2"
+                                checked={showMore}
+                                onClick={() => setShowMore(!showMore)}
+                            />
                             <span>Show More Datastores</span>
                         </div>
                     )}

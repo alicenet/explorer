@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { classInstanceReducer } from 'redux-class-watcher';
-import { aliceNetAdapter } from '../adapter/alicenetadapter';
-import { aliceNetProvider } from '../config/config';
+import { createSlice } from "@reduxjs/toolkit"
+import { classInstanceReducer } from "redux-class-watcher";
+import { aliceNetAdapter } from "adapter/alicenetadapter";
+import { aliceNetProvider } from "config/config";
+import { searchTypes } from "utils";
 
 // Generic App Reducer State
 const appSlice = createSlice({
@@ -11,14 +12,21 @@ const appSlice = createSlice({
         settings: {
             aliceNetProvider: aliceNetProvider,
         },
-        loading: "", // For global load dimmer
+        loading: false,
+        currentSearch: { type: searchTypes.TRANSACTIONS, term: null, offset: null }
     },
     reducers: {
-        setLoading: (state, action) => { // For testing redux state TODO: Remove
+        setLoading: (state, action) => {
             state.loading = action.payload;
         },
+        setCurrentSearch: (state, action) => {
+            state.currentSearch = action.payload;
+        },
         clearLoading: (state) => {
-            state.loading = "";
+            state.loading = false;
+        },
+        clearCurrentSearch: (state) => {
+            state.currentSearch = null;
         }
     },
 })

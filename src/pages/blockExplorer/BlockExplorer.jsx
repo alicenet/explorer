@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Container, Dimmer, Grid, Loader, Segment } from "semantic-ui-react";
-import queryString from "query-string";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { AliceNetSearch, BlockList, CollapsableCard, Page, TxHashList } from "components";
 import { ReactComponent as CubeIcon } from "assets/cube-icon.svg";
 import { ReactComponent as TxHashIcon } from "assets/tx-hash-icon.svg";
-import { isValidBlockHeight } from "utils";
+import { isValidBlockHeight, searchTypes } from "utils";
 
 export function BlockExplorer({ location }) {
 
     const [blockInfo, setBlockInfo] = useState(null);
     const [isLoading, setLoadingStatus] = useState(true);
+    const [isValid, setIsValid] = useState(true);
     const history = useHistory();
+    const { height } = useParams();
 
     useSelector(s => s.aliceNetAdapter);
-
-    const [isValid, setIsValid] = useState(true);
 
     const isValidHeight = (height) => {
         if (aliceNetAdapter.blocks.length > 0) { //is monitoring blocks
@@ -27,11 +26,9 @@ export function BlockExplorer({ location }) {
     };
 
     useEffect(() => {
-        const params = location && queryString.parse(location.search);
 
         const getBlock = async () => {
             setIsValid(true);
-            const height = params && params.height;
 
             if (isValidHeight(height)) {
                 const block = await aliceNetAdapter.getBlock(height);
@@ -46,7 +43,7 @@ export function BlockExplorer({ location }) {
         getBlock();
     }, [location]);
 
-    const handleBlockNav = (term) => history.push(`/block?height=${term}`);
+    const handleBlockNav = (term) => history.push(`/block/${term}`);
 
     if (isLoading) {
         return (
@@ -66,7 +63,7 @@ export function BlockExplorer({ location }) {
 
             <Page>
                 <div className="mb-8">
-                    <AliceNetSearch />
+                    <AliceNetSearch currentSearch={{ type: searchTypes.BLOCKS, term: height }} />
                 </div>
                 <Grid centered>
                     {isValid ?
@@ -95,7 +92,7 @@ export function BlockExplorer({ location }) {
 
         <Page>
             <div>
-                <AliceNetSearch />
+                <AliceNetSearch currentSearch={{ type: searchTypes.BLOCKS, term: height }} />
             </div>
             <CollapsableCard
                 title={`Block #${blockInfo.BClaims.Height}`}
