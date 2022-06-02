@@ -1,28 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Container, Dimmer, Grid, Loader, Segment } from "semantic-ui-react";
-import queryString from "query-string";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { AliceNetSearch, CollapsableCard, Page } from "components";
 import { ReactComponent as FileIcon } from "assets/file-icon.svg";
 import { DataView } from "./dataView";
 
-export function DataExplorer({ location }) {
+export function DataExplorer() {
+
     const [dsView, setDsView] = useState();
     const [showMore, setShowMore] = useState(true);
     const [isLoading, setLoadingStatus] = useState(true);
+
     const history = useHistory();
+    const { address, curveType, offset } = useParams();
 
     useEffect(() => {
-        const params = location && queryString.parse(location.search);
         const getDataStores = async () => {
-            const { address, offset, curve, showMore } = params;
-
-            setShowMore(JSON.parse(showMore));
+            setShowMore(!!offset);
 
             if (address) {
                 try {
-                    const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address, curve, offset);
+                    const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address, curveType, offset);
                     setDsView(dataStores);
                 } catch (error) {
                     console.log(error);
@@ -34,7 +33,7 @@ export function DataExplorer({ location }) {
         }
 
         getDataStores();
-    }, [location]);
+    }, [address, curveType, offset]);
 
     const getDSExp = (rawData, deposit, issuedAt) => {
         return aliceNetAdapter.getDSExp(rawData, deposit, issuedAt);

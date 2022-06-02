@@ -21,11 +21,11 @@ export function AliceNetSearch({ currentSearch = null }) {
     const [term, setTerm] = useState("");
     const [selectedOption, setSelectedOption] = useState(searchTypes.TRANSACTIONS);
 
-    const [addressType, setAddressType] = useState(curveTypes.SECP256K1);
+    const [curveType, setCurveType] = useState(curveTypes.SECP256K1);
 
     useEffect(() => {
         if (term && selectedOption.value === searchTypes.DATASTORES) {
-            setAddressType(isBN(term) ? curveTypes.BARRETO_NAEHRIG : curveTypes.SECP256K1);
+            setCurveType(isBN(term) ? curveTypes.BARRETO_NAEHRIG : curveTypes.SECP256K1);
         }
     }, [selectedOption, term]);
 
@@ -48,10 +48,10 @@ export function AliceNetSearch({ currentSearch = null }) {
                 history.push(`/block/${term}`);
                 break;
             case searchTypes.TRANSACTIONS:
-                history.push(`/tx?hash=${term}`);
+                history.push(`/tx/${term}`);
                 break;
             case searchTypes.DATASTORES:
-                history.push(`/data?address=${term}&curve=${addressType}&showMore=${offset ? showMore : true}${offset && `&offset=${offset.padStart(64, '0')}`}`);
+                history.push(`/data/${term}/${curveType}/${offset.padStart(64, '0')}`);
                 break;
             default:
                 alert('Invalid option');
@@ -120,12 +120,12 @@ export function AliceNetSearch({ currentSearch = null }) {
                     />
                 </div>
                 <div className="flex">
-                    {addressType && term && selectedOption.value === searchTypes.DATASTORES && (
+                    {curveType && term && selectedOption.value === searchTypes.DATASTORES && (
                         <div className="flex items-center gap-3 w-1/2">
                             <div className="bg-neongreen w-2 h-2 rounded-md" />
-                            <h4>This is a {addressType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h4>
+                            <h4>This is a {curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h4>
                             <HelpTooltip
-                                content={addressType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}
+                                content={curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}
                             />
                         </div>
                     )}

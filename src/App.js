@@ -16,8 +16,8 @@ function App() {
                     <Route exact path="/" component={Home} />
                     <Route exact path="/test" component={Test} />
                     <Route exact path="/block/:height" component={BlockExplorer} />
-                    <Route exact path="/data" component={DataExplorer} />
-                    <Route exact path="/tx" component={TxExplorer} />
+                    <Route exact path="/data/:address/:curveType/:offset" component={DataExplorer} />
+                    <Route exact path="/tx/:hash" component={TxExplorer} />
                 </Switch>
             </Router>
         </>

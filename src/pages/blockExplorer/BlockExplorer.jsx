@@ -8,11 +8,12 @@ import { ReactComponent as CubeIcon } from "assets/cube-icon.svg";
 import { ReactComponent as TxHashIcon } from "assets/tx-hash-icon.svg";
 import { isValidBlockHeight, searchTypes } from "utils";
 
-export function BlockExplorer({ location }) {
+export function BlockExplorer() {
 
     const [blockInfo, setBlockInfo] = useState(null);
     const [isLoading, setLoadingStatus] = useState(true);
     const [isValid, setIsValid] = useState(true);
+
     const history = useHistory();
     const { height } = useParams();
 
@@ -41,7 +42,7 @@ export function BlockExplorer({ location }) {
         }
 
         getBlock();
-    }, [location]);
+    }, [height]);
 
     const handleBlockNav = (term) => history.push(`/block/${term}`);
 

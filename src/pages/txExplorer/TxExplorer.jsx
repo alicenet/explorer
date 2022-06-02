@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Button, Container, Dimmer, Grid, Loader, Segment } from "semantic-ui-react";
-import queryString from "query-string";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { AliceNetSearch, Page } from "components";
 import { TxViewVin, TxViewVout } from "./txView";
 import { isValidHash } from "utils";
 
-export function TxExplorer({ location }) {
+export function TxExplorer() {
 
     const [txInfo, setTxInfo] = useState();
     const [isLoading, setLoadingStatus] = useState(true);
@@ -15,12 +14,11 @@ export function TxExplorer({ location }) {
     const [txHash, setTxHash] = useState(false);
 
     const history = useHistory();
+    const { hash } = useParams();
 
     useEffect(() => {
-        const params = location && queryString.parse(location.search);
         const getTx = async () => {
             setIsValid(true);
-            const hash = params && params.hash;
 
             if (isValidHash(hash)) {
                 setTxHash(hash);
@@ -33,7 +31,7 @@ export function TxExplorer({ location }) {
         }
 
         getTx();
-    }, [location]);
+    }, [hash]);
 
     if (isLoading) {
         return (
