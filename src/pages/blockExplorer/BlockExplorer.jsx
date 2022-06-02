@@ -19,8 +19,6 @@ export function BlockExplorer({ location }) {
 
     const [isValid, setIsValid] = useState(true);
 
-    useSelector(s => s.aliceNetAdapter); // Listen to aliceNetAdapter State
-
     const isValidHeight = (height) => {
         if (aliceNetAdapter.blocks.length > 0) { //is monitoring blocks
             return isValidBlockHeight(height) && height <= aliceNetAdapter.blocks[0].BClaims.Height;
