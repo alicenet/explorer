@@ -19,7 +19,7 @@ export function AliceNetSearch({ currentSearch = null }) {
     const [showMore, setShowMore] = useState(false);
 
     const [term, setTerm] = useState("");
-    const [selectedOption, setSelectedOption] = useState(searchTypes.TRANSACTIONS);
+    const [selectedOption, setSelectedOption] = useState(options[0]);
 
     const [curveType, setCurveType] = useState(curveTypes.SECP256K1);
 
@@ -30,11 +30,13 @@ export function AliceNetSearch({ currentSearch = null }) {
     }, [selectedOption, term]);
 
     useEffect(() => {
-        setTerm(currentSearch ? currentSearch.term : "");
-        setSelectedOption(currentSearch ? options.find(option => option.value === currentSearch.type) : options[0]);
-    }, [currentSearch]);
+        if (currentSearch) {
+            setSelectedOption(options.find(option => option.value === currentSearch.type));
+        }
+    }, []);
 
     const handleChange = (e, { value }) => {
+        setTerm("");
         setOffset("");
         setSelectedOption(options[value]);
     };
