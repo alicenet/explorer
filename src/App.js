@@ -7,21 +7,74 @@ import { aliceNetWalletEqualize } from "./redux/reducers";
 import { DimmerLoader, ErrorOverlay, Page } from "./components";
 
 function App() {
-    return (
-        <>
-            <ErrorOverlay />
-            <DimmerLoader />
-            <Router>
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/test" component={Test} />
-                    <Route exact path="/block/:height" component={BlockExplorer} />
-                    <Route exact path="/data/:address/:curveType/:offset" component={DataExplorer} />
-                    <Route exact path="/tx/:hash" component={TxExplorer} />
-                </Switch>
-            </Router>
-        </>
-    );
+  // Toggle "dark" & "light" themes
+  const themeToggle = (theme) => {
+    if (theme === "dark") {
+      window.setDark()
+      setStyle(theme)
+      return;
+    }
+    window.setLight()
+    setStyle(theme)
+  }
+
+  const copyText = (text) => {
+    copy(text, { format: 'text/plain' });
+  }
+
+  /**
+ * Props for childern components to update main view
+ * Refresh, Loading, Errors, Update View
+ */
+  const [isLoading, setLoading] = useState(false);
+  const [isError, setError] = useState(false);
+  const [updateView, setUpdateView] = useState(0);
+  const [activeMadnetPanel, setMadnetPanel] = useState(false);
+  const [style, setStyle] = useState("dark");
+  const madnetSetup = useRef(false);
+
+  // Object for the props to be used in childern components
+  const propStates = {
+    isLoading,
+    setLoading,
+    isError,
+    setError,
+    updateView,
+    setUpdateView,
+    themeToggle,
+    style,
+    setStyle,
+    madnetSetup,
+    activeMadnetPanel,
+    setMadnetPanel,
+    copyText
+  }
+
+  // If home is needed
+  //<Route exact path="/" render={(props) => <MainView states={{ ...propStates, ...props }} />} />
+  //<Route exact path="/blocks" render={(props) => <MainView states={{ ...propStates, ...props }} />} />
+
+return (
+    <Container fluid>
+      <Store>
+        <Router>
+          {!Boolean(propStates.isError) &&
+            <Dimmer page active={Boolean(isLoading)}>
+            <Loader>{String(isLoading)}</Loader>
+          </Dimmer>}
+          
+          <Errors states={propStates} />
+          <Switch>
+            <Route exact path={["/blocks", "/"]} render={(props) => <MainView states={{ ...propStates, ...props }} />} />
+            <Route exact path="/block" render={(props) => <MainView states={{ ...propStates, ...props }} />} />
+            <Route exact path="/tx" render={(props) => <MainView states={{ ...propStates, ...props }} />} />
+            <Route exact path="/data" render={(props) => <MainView states={{ ...propStates, ...props }} />} />
+            <Route exact path="/settings" render={(props) => <MainView states={{ ...propStates, ...props }} />} />
+          </Switch>
+        </Router>
+      </Store>
+    </Container>
+  );
 }
 
 export default App;
