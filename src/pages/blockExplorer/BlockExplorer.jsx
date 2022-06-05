@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Dimmer, Grid, Loader, Segment } from "semantic-ui-react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { AliceNetSearch, BlockList, CollapsableCard, Page, TxHashList } from "components";
@@ -13,7 +13,6 @@ export function BlockExplorer() {
     const [blockInfo, setBlockInfo] = useState(null);
     const [isLoading, setLoadingStatus] = useState(true);
 
-    const history = useHistory();
     const { height } = useParams();
 
     useSelector(s => s.aliceNetAdapter);
@@ -21,6 +20,8 @@ export function BlockExplorer() {
     const isValidHeight = (height) => {
         if (aliceNetAdapter.blocks.length > 0) { //is monitoring blocks
             return isValidBlockHeight(height) && height <= aliceNetAdapter.blocks[0].BClaims.Height;
+        } else {
+            aliceNetAdapter.startMonitoringBlocks();
         }
         return isValidBlockHeight(height);
     };
@@ -36,7 +37,6 @@ export function BlockExplorer() {
         getBlock();
     }, [height]);
 
-    const handleBlockNav = (term) => history.push(`/block/${term}`);
 
     if (isLoading) {
         return (
@@ -91,18 +91,7 @@ export function BlockExplorer() {
                         open={true}
                         disabled={false}
                     >
-                        <BlockList
-                            height={blockInfo.BClaims.Height}
-                            txCount={blockInfo.BClaims.TxCount}
-                            prevBlock={blockInfo.BClaims.PrevBlock}
-                            txRoot={blockInfo.BClaims.TxRoot}
-                            stateRoot={blockInfo.BClaims.StateRoot}
-                            headerRoot={blockInfo.BClaims.HeaderRoot}
-                            sigGroup={blockInfo.SigGroup}
-                            handleBlockNavLeft={() => handleBlockNav(blockInfo.BClaims.Height - 1)}
-                            handleBlockNavRight={() => handleBlockNav(blockInfo.BClaims.Height + 1)}
-                            maxHeight={aliceNetAdapter.blocks[0]?.BClaims.Height}
-                        />
+                        <BlockList blockInfo={blockInfo} />
                     </CollapsableCard>
 
                     <CollapsableCard
