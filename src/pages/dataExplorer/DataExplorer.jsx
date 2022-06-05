@@ -1,28 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Container, Dimmer, Grid, Loader, Segment } from "semantic-ui-react";
-import queryString from "query-string";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { AliceNetSearch, CollapsableCard, Page } from "components";
 import { ReactComponent as FileIcon } from "assets/file-icon.svg";
 import { DataView } from "./dataView";
 
-export function DataExplorer(props) {
+export function DataExplorer() {
+
     const [dsView, setDsView] = useState();
     const [showMore, setShowMore] = useState(true);
     const [isLoading, setLoadingStatus] = useState(true);
+
     const history = useHistory();
+    const { address, curveType, offset } = useParams();
 
     useEffect(() => {
-        const params = props.location && queryString.parse(props.location.search);
         const getDataStores = async () => {
-            const { address, offset, curve, showMore } = params;
-
-            setShowMore(JSON.parse(showMore));
+            setShowMore(!!offset);
 
             if (address) {
                 try {
-                    const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address, curve, offset);
+                    const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address, curveType, offset);
                     setDsView(dataStores);
                 } catch (error) {
                     console.log(error);
@@ -34,7 +33,7 @@ export function DataExplorer(props) {
         }
 
         getDataStores();
-    }, [props.location]);
+    }, [address, curveType, offset]);
 
     const getDSExp = (rawData, deposit, issuedAt) => {
         return aliceNetAdapter.getDSExp(rawData, deposit, issuedAt);
@@ -46,6 +45,7 @@ export function DataExplorer(props) {
 
     if ((dsView?.error) || (!isLoading && (!dsView || !dsView.length))) {
         return (
+
             <Page>
                 <div className="mb-8">
                     <AliceNetSearch />
@@ -61,10 +61,12 @@ export function DataExplorer(props) {
                 </Grid>
             </Page>
         );
+
     }
 
     if (isLoading) {
         return (
+
             <Page>
                 <Grid>
                     <Dimmer active>
@@ -72,12 +74,14 @@ export function DataExplorer(props) {
                     </Dimmer>
                 </Grid>
             </Page>
+
         );
     }
 
     const filteredData = showMore ? dsView : dsView?.slice(0, 1);
 
     return (
+
         <Page>
             <div className="mb-8">
                 <AliceNetSearch />
@@ -101,6 +105,7 @@ export function DataExplorer(props) {
                 </Grid.Row>
             </Grid>
         </Page>
+
     );
 
 }

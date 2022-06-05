@@ -15,7 +15,7 @@ const headerCells = [
             return (
                 <span
                     className="text-neongreen cursor-pointer"
-                    onClick={() => history.push(`/block?height=${height}`)}
+                    onClick={() => history.push(`/block/${height}`)}
                 >
                     {height}
                 </span>

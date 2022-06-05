@@ -12,6 +12,7 @@ module.exports = {
                 dropgray: '#EEEEEE',
                 tableblack: '#383737',
                 rowblack: '#343333',
+                buttonblack: '#494949',
             },
         },
     },
