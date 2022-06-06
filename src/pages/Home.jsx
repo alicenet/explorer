@@ -2,6 +2,8 @@ import React from "react";
 import { Container, Grid } from "semantic-ui-react";
 import { AliceNetSearch, CallToAction, LatestBlocks, LatestTransactions, Page } from "components";
 
+const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
+
 export function Home() {
 
     return (
@@ -13,7 +15,7 @@ export function Home() {
                     <CallToAction
                         label="Real Blockchain Business Solutions"
                         buttonLabel="Learn More"
-                        onClick={() => window.open('https://www.madnetwork.com/madnetwork-download-whitepaper')}
+                        onClick={() => window.open(WHITE_PAPER_URL, '_blank').focus()}
                     />
                     <Grid columns={2} className="m-0">
                         <Grid.Row className="py-0">
