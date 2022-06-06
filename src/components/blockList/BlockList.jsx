@@ -24,7 +24,7 @@ export function BlockList({ blockInfo }) {
 
     return (
 
-        <Grid padded="vertically" className="mx-0" columns={"equal"}>
+        <Grid padded="vertically" className="mx-0 break-words" columns={"equal"}>
 
             <Grid.Row className="px-3 bg-rowblack" columns={2}>
 
@@ -163,12 +163,12 @@ export function BlockList({ blockInfo }) {
                     <p>Group Signature</p>
                 </Grid.Column>
 
-                <Grid.Column className="p-0">
+                <Grid.Column className="p-0 pr-20">
                     <div
-                        className="flex items-start gap-5 cursor-pointer hover:opacity-80 break-all"
+                        className="flex items-start gap-5 cursor-pointer hover:opacity-80"
                         onClick={() => copyText(sigGroup)}
                     >
-                        <p>{`0x${sigGroup}`}</p>
+                        <p className="break-all">{`0x${sigGroup}`}</p>
                         <Icon name="copy outline" />
                     </div>
                 </Grid.Column>
