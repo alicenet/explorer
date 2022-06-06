@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Container, Dimmer, Grid, Loader } from "semantic-ui-react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { AliceNetSearch, BlockList, CollapsableCard, Page, TxHashList } from "components";
+import { AliceNetSearch, BlockList, CollapsableCard, InvalidInput, Page, SearchNotFound, TxHashList } from "components";
 import { ReactComponent as CubeIcon } from "assets/cube-icon.svg";
 import { ReactComponent as TxHashIcon } from "assets/tx-hash-icon.svg";
 import { isValidBlockHeight, searchTypes } from "utils";
@@ -39,7 +39,6 @@ export function BlockExplorer() {
         getBlock();
     }, [height]);
 
-
     if (isLoading) {
         return (
             <Page>
@@ -66,28 +65,23 @@ export function BlockExplorer() {
 
                 {
                     !blockInfo &&
-                    <Container>
-                        <Grid centered>
-                            <Grid.Row stretched centered>
-                                <Container>
-                                    <p>No Block to display!</p>
-                                </Container>
-                            </Grid.Row>
-                        </Grid>
-                    </Container>
+                    <SearchNotFound />
                 }
 
                 {
                     blockInfo && blockInfo.error &&
-                    <Container>
-                        <Grid centered>
-                            <Grid.Row stretched centered>
-                                <Container>
-                                    <p>Improper Format!</p>
-                                </Container>
-                            </Grid.Row>
-                        </Grid>
-                    </Container>
+                    <InvalidInput
+                        term={height}
+                        suggestion={
+                            aliceNetAdapter.blocks[0]?.BClaims.Height &&
+                            <Link
+                                className="hover:text-neongreen hover:opacity-80"
+                                to={`/block/${aliceNetAdapter.blocks[0]?.BClaims.Height}`}
+                            >
+                                {`Block Number (${aliceNetAdapter.blocks[0]?.BClaims.Height})`}
+                            </Link>
+                        }
+                    />
                 }
 
                 {

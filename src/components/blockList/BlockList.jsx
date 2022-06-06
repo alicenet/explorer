@@ -74,7 +74,7 @@ export function BlockList({ blockInfo }) {
                     <p>Transaction Count</p>
                 </Grid.Column>
 
-                <Grid.Column className="flex items-start gap-5">
+                <Grid.Column className="flex items-center gap-5 p-0">
                     <p>{txCount ? txCount : 0}</p>
                 </Grid.Column>
 
@@ -87,7 +87,7 @@ export function BlockList({ blockInfo }) {
                     <p>Previous Block</p>
                 </Grid.Column>
 
-                <Grid.Column>
+                <Grid.Column className="p-0">
                     <div
                         className="flex items-start gap-5 cursor-pointer hover:opacity-80"
                         onClick={() => copyText(prevBlock)}
@@ -106,7 +106,7 @@ export function BlockList({ blockInfo }) {
                     <p>Transaction Root</p>
                 </Grid.Column>
 
-                <Grid.Column>
+                <Grid.Column className="p-0">
                     <div
                         className="flex items-start gap-5 cursor-pointer hover:opacity-80"
                         onClick={() => copyText(txRoot)}
@@ -125,7 +125,7 @@ export function BlockList({ blockInfo }) {
                     <p>State Root</p>
                 </Grid.Column>
 
-                <Grid.Column>
+                <Grid.Column className="p-0">
                     <div
                         className="flex items-start gap-5 cursor-pointer hover:opacity-80"
                         onClick={() => copyText(stateRoot)}
@@ -144,7 +144,7 @@ export function BlockList({ blockInfo }) {
                     <p>Header Root</p>
                 </Grid.Column>
 
-                <Grid.Column>
+                <Grid.Column className="p-0">
                     <div
                         className="flex items-start gap-5 cursor-pointer hover:opacity-80"
                         onClick={() => copyText(headerRoot)}
@@ -163,7 +163,7 @@ export function BlockList({ blockInfo }) {
                     <p>Group Signature</p>
                 </Grid.Column>
 
-                <Grid.Column>
+                <Grid.Column className="p-0">
                     <div
                         className="flex items-start gap-5 cursor-pointer hover:opacity-80 break-all"
                         onClick={() => copyText(sigGroup)}

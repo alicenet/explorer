@@ -9,6 +9,8 @@ module.exports = {
                 cleargray: '#DEDEDE',
                 darkgray: '#2D2D2D',
                 neongreen: '#00FFD1',
+                neonred: '#FF006B',
+                deeppurple: '#3E3036',
                 dropgray: '#EEEEEE',
                 tableblack: '#383737',
                 rowblack: '#343333',
