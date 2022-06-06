@@ -24,16 +24,16 @@ export function BlockList({ blockInfo }) {
 
     return (
 
-        <Grid padded="vertically" columns={"equal"}>
+        <Grid padded="vertically" className="mx-0" columns={"equal"}>
 
             <Grid.Row className="px-3 bg-rowblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.height} />
                     <p>Block Height</p>
                 </Grid.Column>
 
-                <Grid.Column className="flex items-center gap-5">
+                <Grid.Column className="flex items-center gap-5 p-0">
                     {height}
                     <>
                         {height > 1 &&
@@ -69,7 +69,7 @@ export function BlockList({ blockInfo }) {
 
             <Grid.Row className="px-3 bg-rowblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.txCount} />
                     <p>Transaction Count</p>
                 </Grid.Column>
@@ -82,7 +82,7 @@ export function BlockList({ blockInfo }) {
 
             <Grid.Row className="px-3 bg-rowblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.previousBlock} />
                     <p>Previous Block</p>
                 </Grid.Column>
@@ -101,7 +101,7 @@ export function BlockList({ blockInfo }) {
 
             <Grid.Row className="px-3 bg-rowblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.txRoot} />
                     <p>Transaction Root</p>
                 </Grid.Column>
@@ -120,7 +120,7 @@ export function BlockList({ blockInfo }) {
 
             <Grid.Row className="px-3 bg-rowblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.stateRoot} />
                     <p>State Root</p>
                 </Grid.Column>
@@ -139,7 +139,7 @@ export function BlockList({ blockInfo }) {
 
             <Grid.Row className="px-3 bg-rowblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.headerRoot} />
                     <p>Header Root</p>
                 </Grid.Column>
@@ -158,7 +158,7 @@ export function BlockList({ blockInfo }) {
 
             <Grid.Row className="px-3 bg-rowblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.groupSignature} />
                     <p>Group Signature</p>
                 </Grid.Column>

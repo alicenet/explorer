@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Dimmer, Grid, Loader, Segment } from "semantic-ui-react";
+import { Container, Dimmer, Grid, Loader } from "semantic-ui-react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
@@ -31,6 +31,8 @@ export function BlockExplorer() {
             if (isValidHeight(height)) {
                 const block = await aliceNetAdapter.getBlock(height);
                 setBlockInfo(block);
+            } else {
+                setBlockInfo({ error: "Invalid height" });
             }
             setLoadingStatus(false);
         }
@@ -53,38 +55,43 @@ export function BlockExplorer() {
     return (
 
         <Page>
-            <div>
-                <AliceNetSearch currentSearch={{ type: searchTypes.BLOCKS }} />
-            </div>
 
-            {
-                !blockInfo &&
-                <Grid centered>
-                    <Grid.Row stretched centered>
-                        <Container>
-                            <p>No Block to display!</p>
-                        </Container>
-                    </Grid.Row>
-                </Grid>
-            }
+            <Container className="flex flex-col gap-10">
 
-            {
-                blockInfo && blockInfo.error &&
-                <Grid centered>
-                    <Grid.Row stretched centered>
-                        <Container>
-                            <Segment>
-                                <p>Improper format: Please input a valid <span className="info">Block Height</span>
-                                </p>
-                            </Segment>
-                        </Container>
-                    </Grid.Row>
-                </Grid>
-            }
+                <Container>
 
-            {
-                blockInfo && !blockInfo.error &&
-                <>
+                    <AliceNetSearch currentSearch={{ type: searchTypes.BLOCKS }} />
+
+                </Container>
+
+                {
+                    !blockInfo &&
+                    <Container>
+                        <Grid centered>
+                            <Grid.Row stretched centered>
+                                <Container>
+                                    <p>No Block to display!</p>
+                                </Container>
+                            </Grid.Row>
+                        </Grid>
+                    </Container>
+                }
+
+                {
+                    blockInfo && blockInfo.error &&
+                    <Container>
+                        <Grid centered>
+                            <Grid.Row stretched centered>
+                                <Container>
+                                    <p>Improper Format!</p>
+                                </Container>
+                            </Grid.Row>
+                        </Grid>
+                    </Container>
+                }
+
+                {
+                    blockInfo && !blockInfo.error &&
                     <CollapsableCard
                         title={`Block #${blockInfo.BClaims.Height}`}
                         icon={<CubeIcon />}
@@ -93,7 +100,10 @@ export function BlockExplorer() {
                     >
                         <BlockList blockInfo={blockInfo} />
                     </CollapsableCard>
+                }
 
+                {
+                    blockInfo && !blockInfo.error &&
                     <CollapsableCard
                         title="Transaction Hash List"
                         icon={<TxHashIcon />}
@@ -105,8 +115,10 @@ export function BlockExplorer() {
                             txViewLink="/"
                         />
                     </CollapsableCard>
-                </>
-            }
+                }
+
+            </Container>
+
         </Page>
 
     );
