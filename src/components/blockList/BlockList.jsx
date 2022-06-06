@@ -24,16 +24,16 @@ export function BlockList({ blockInfo }) {
 
     return (
 
-        <Grid padded="vertically" columns={"equal"}>
+        <Grid padded="vertically" className="mx-0" columns={"equal"}>
 
             <Grid.Row className="px-3 bg-rowblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.height} />
                     <p>Block Height</p>
                 </Grid.Column>
 
-                <Grid.Column className="flex items-center gap-5">
+                <Grid.Column className="flex items-center gap-5 p-0">
                     {height}
                     <>
                         {height > 1 &&
@@ -69,12 +69,12 @@ export function BlockList({ blockInfo }) {
 
             <Grid.Row className="px-3 bg-rowblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.txCount} />
                     <p>Transaction Count</p>
                 </Grid.Column>
 
-                <Grid.Column className="flex items-start gap-5">
+                <Grid.Column className="flex items-center gap-5 p-0">
                     <p>{txCount ? txCount : 0}</p>
                 </Grid.Column>
 
@@ -82,12 +82,12 @@ export function BlockList({ blockInfo }) {
 
             <Grid.Row className="px-3 bg-rowblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.previousBlock} />
                     <p>Previous Block</p>
                 </Grid.Column>
 
-                <Grid.Column>
+                <Grid.Column className="p-0">
                     <div
                         className="flex items-start gap-5 cursor-pointer hover:opacity-80"
                         onClick={() => copyText(prevBlock)}
@@ -101,12 +101,12 @@ export function BlockList({ blockInfo }) {
 
             <Grid.Row className="px-3 bg-rowblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.txRoot} />
                     <p>Transaction Root</p>
                 </Grid.Column>
 
-                <Grid.Column>
+                <Grid.Column className="p-0">
                     <div
                         className="flex items-start gap-5 cursor-pointer hover:opacity-80"
                         onClick={() => copyText(txRoot)}
@@ -120,12 +120,12 @@ export function BlockList({ blockInfo }) {
 
             <Grid.Row className="px-3 bg-rowblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.stateRoot} />
                     <p>State Root</p>
                 </Grid.Column>
 
-                <Grid.Column>
+                <Grid.Column className="p-0">
                     <div
                         className="flex items-start gap-5 cursor-pointer hover:opacity-80"
                         onClick={() => copyText(stateRoot)}
@@ -139,12 +139,12 @@ export function BlockList({ blockInfo }) {
 
             <Grid.Row className="px-3 bg-rowblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.headerRoot} />
                     <p>Header Root</p>
                 </Grid.Column>
 
-                <Grid.Column>
+                <Grid.Column className="p-0">
                     <div
                         className="flex items-start gap-5 cursor-pointer hover:opacity-80"
                         onClick={() => copyText(headerRoot)}
@@ -158,12 +158,12 @@ export function BlockList({ blockInfo }) {
 
             <Grid.Row className="px-3 bg-rowblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.groupSignature} />
                     <p>Group Signature</p>
                 </Grid.Column>
 
-                <Grid.Column>
+                <Grid.Column className="p-0">
                     <div
                         className="flex items-start gap-5 cursor-pointer hover:opacity-80 break-all"
                         onClick={() => copyText(sigGroup)}
