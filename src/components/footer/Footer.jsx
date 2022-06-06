@@ -3,6 +3,8 @@ import { ReactComponent as TwitterIcon } from "assets/twitter-icon.svg";
 import { Container } from "semantic-ui-react";
 import React from "react";
 
+const ALICENET_URL = process.env.REACT_APP_ALICENET_HOME;
+
 const MenuDivider = () => <div className="border-r border-gray-700 my-1" />;
 
 export function Footer() {
@@ -23,7 +25,7 @@ export function Footer() {
 
                 <span
                     className="cursor-pointer hover:opacity-50"
-                    onClick={() => window.location = "https://madnetwork.com"}
+                    onClick={() => window.open(ALICENET_URL, '_blank').focus()}
                 >
                     About
                 </span>
@@ -32,7 +34,7 @@ export function Footer() {
 
                 <span
                     className="cursor-pointer hover:opacity-50"
-                    onClick={() => window.location = "https://madnetwork.com"}
+                    onClick={() => window.open(ALICENET_URL, '_blank').focus()}
                 >
                     Legal
                 </span>
@@ -41,7 +43,7 @@ export function Footer() {
 
                 <span
                     className="cursor-pointer hover:opacity-50"
-                    onClick={() => window.location = "https://madnetwork.com"}
+                    onClick={() => window.open(ALICENET_URL, '_blank').focus()}
                 >
                     Terms of service
                 </span>
