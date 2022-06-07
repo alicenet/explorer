@@ -40,7 +40,7 @@ export function HelpTooltip({ content }) {
             trigger={
                 <Icon
                     name="question circle outline"
-                    className="m-0 h-auto px-3"
+                    className="m-0 h-auto"
                 />
             }
             basic
