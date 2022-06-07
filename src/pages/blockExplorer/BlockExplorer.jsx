@@ -89,20 +89,16 @@ export function BlockExplorer() {
                     <CollapsableCard
                         title={`Block #${blockInfo.BClaims.Height}`}
                         icon={<CubeIcon />}
-                        open={true}
-                        disabled={false}
                     >
                         <BlockList blockInfo={blockInfo} />
                     </CollapsableCard>
                 }
 
                 {
-                    blockInfo && !blockInfo.error &&
+                    blockInfo && !blockInfo.error && blockInfo.TxHshLst.length > 0 &&
                     <CollapsableCard
                         title="Transaction Hash List"
                         icon={<TxHashIcon />}
-                        open={!blockInfo.TxHshLst.length}
-                        disabled={!blockInfo.TxHshLst.length}
                     >
                         <TxHashList
                             txHshLst={blockInfo.TxHshLst}
