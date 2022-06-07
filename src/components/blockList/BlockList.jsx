@@ -35,7 +35,7 @@ export function BlockList({ blockInfo }) {
 
                 <Grid.Column className="flex items-center gap-5 p-0">
                     {height}
-                    <>
+                    <div className="flex gap-2">
                         {height > 1 &&
                         <Button
                             icon
@@ -62,7 +62,7 @@ export function BlockList({ blockInfo }) {
                             />
                         </Button>
                         }
-                    </>
+                    </div>
                 </Grid.Column>
 
             </Grid.Row>
