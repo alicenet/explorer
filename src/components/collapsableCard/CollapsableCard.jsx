@@ -6,12 +6,11 @@ export function CollapsableCard({
     title,
     itemsCount,
     disabled = false,
-    open = false,
     icon = false,
     borderless = false,
     ...props
 }) {
-    const [isBlockOpen, toggleBlock] = useState(open);
+    const [isBlockOpen, toggleBlock] = useState(true);
 
     return (
 
@@ -27,11 +26,11 @@ export function CollapsableCard({
                     {icon}
                     <h3>{title}</h3>
                     {itemsCount && (
-                        <span>
+                        <span className="bg-black rounded-md px-2">
                             {itemsCount}
                         </span>
                     )}
-                    <Icon className="m-0 h-auto px-3" name={`caret ${isBlockOpen ? 'down' : 'up'}`} />
+                    <Icon className="m-0 h-auto" name={`caret ${isBlockOpen ? 'down' : 'up'}`} />
                 </Accordion.Title>
 
                 <Accordion.Content className="p-0" active={isBlockOpen && !disabled}>
