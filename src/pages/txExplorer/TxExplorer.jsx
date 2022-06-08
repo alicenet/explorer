@@ -1,105 +1,122 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import { Button, Container, Dimmer, Grid, Loader, Segment } from "semantic-ui-react";
+import { Link, useHistory, useParams } from "react-router-dom";
+import { Button, Container, Dimmer, Grid, Icon, Loader, Popup } from "semantic-ui-react";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { AliceNetSearch, Page, TxViewVin, TxViewVout } from "components";
-import { isValidHash } from "utils";
+import { AliceNetSearch, InvalidInput, Page, SearchNotFound, TxViewVin, TxViewVout } from "components";
+import { copyText, isValidHash, searchTypes } from "utils";
 
 export function TxExplorer() {
 
     const [txInfo, setTxInfo] = useState();
     const [isLoading, setLoadingStatus] = useState(true);
-    const [isValid, setIsValid] = useState(true);
-    const [txHash, setTxHash] = useState(false);
 
     const history = useHistory();
     const { hash } = useParams();
 
     useEffect(() => {
         const getTx = async () => {
-            setIsValid(true);
-
             if (isValidHash(hash)) {
-                setTxHash(hash);
                 const tx = await aliceNetAdapter.viewTransaction(hash);
                 setTxInfo(tx);
             } else {
-                setIsValid(false);
+                setTxInfo({ error: "Invalid hash" });
             }
             setLoadingStatus(false);
         }
-
         getTx();
     }, [hash]);
 
     if (isLoading) {
         return (
-
-            <Grid>
-                <Dimmer active>
-                    <Loader>Loading</Loader>
-                </Dimmer>
-            </Grid>
-
-        );
-    }
-
-    // Conditional render
-    if (!isLoading && (!txInfo || txInfo[1].error)) {
-        return (
-
             <Page>
-                <div className="mb-8">
-                    <AliceNetSearch />
-                </div>
-                <Grid centered>
-                    {isValid ?
-                        <Grid.Row stretched centered>
-                            <Container>
-                                <Segment>
-                                    <p>No Tx to display!</p>
-                                </Segment>
-                            </Container>
-                        </Grid.Row> :
-                        <Grid.Row stretched centered>
-                            <Container>
-                                <Segment>
-                                    <p>Improper format: Please input a valid
-                                        <span className='info'>TX Hash</span>
-                                    </p>
-                                </Segment>
-                            </Container>
-                        </Grid.Row>
-                    }
+                <Grid>
+                    <Dimmer active>
+                        <Loader>Loading</Loader>
+                    </Dimmer>
                 </Grid>
             </Page>
-
         );
     }
 
     return (
 
         <Page>
-            <div className="mb-8">
-                <AliceNetSearch />
-            </div>
-            <Grid.Row stretched centered>
+
+            <Container className="flex flex-col gap-10">
+
                 <Container>
-                    <div className="py-10 text-left">
-                        <div className="mb-2">Tx Hash: {txHash}</div>
-                        <div className="flex items-center mb-2">
-                            <div className="mr-2">Height: {aliceNetAdapter.transactionHeight}</div>
-                            <Button
-                                className="text-xs px-3 py-1 ml-2 rounded-sm tracking-wide"
-                                onClick={() => history.push('/data')}
-                                content="View Block"
-                            />
-                        </div>
-                    </div>
+
+                    <AliceNetSearch currentSearch={{ type: searchTypes.TRANSACTIONS }} />
+
                 </Container>
-            </Grid.Row>
-            <TxViewVin txInfo={txInfo[0].Vin} />
-            <TxViewVout txInfo={txInfo[0].Vout} />
+
+                {
+                    !txInfo &&
+                    <SearchNotFound />
+                }
+
+                {
+                    txInfo && txInfo.error &&
+                    <InvalidInput
+                        term={hash}
+                        suggestion={
+                            <Link className="hover:text-neongreen hover:opacity-80" to="/">
+                                Going back to Block Monitor
+                            </Link>
+                        }
+                    />
+                }
+
+                {
+                    txInfo && !txInfo.error &&
+                    <Container className="flex flex-col gap-10">
+
+                        <Container className="flex flex-col gap-3">
+
+                            <Container className="flex flex-row text-left gap-3">
+                                <span className="font-bold">Tx Hash:</span>
+                                <div className="flex items-start gap-3">
+                                    <p className="break-all">{`0x${hash}`}</p>
+                                    <Popup
+                                        trigger={
+                                            <Icon
+                                                name="copy outline"
+                                                className="cursor-pointer hover:opacity-80"
+                                                onClick={() => copyText(hash)}
+                                            />
+                                        }
+                                        basic
+                                        content="Copy Hash"
+                                    />
+                                </div>
+                            </Container>
+
+                            <Container className="flex flex-row gap-3 items-center justify-start">
+
+                                <div className="flex flex-row text-left gap-3">
+                                    <span className="font-bold">Height:</span>
+                                    <span className="">{aliceNetAdapter.transactionHeight}</span>
+                                </div>
+
+                                <Button
+                                    className="rounded-sm py-1 text-sm"
+                                    onClick={() => history.push(`/block/${aliceNetAdapter.transactionHeight}`)}
+                                    content="View Block"
+                                />
+
+                            </Container>
+
+                        </Container>
+
+                        <TxViewVin txInfo={txInfo[0].Vin} />
+
+                        <TxViewVout txInfo={txInfo[0].Vout} />
+
+                    </Container>
+                }
+
+            </Container>
+
         </Page>
 
     );
