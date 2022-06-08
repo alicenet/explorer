@@ -14,7 +14,7 @@ export function CollapsableCard({
 
     return (
 
-        <Container className="border-0 border-t-4 border-neongreen rounded-md bg-tableblack text-white">
+        <Container className="border-0 border-t-2 border-neongreen rounded-md bg-tableblack text-white">
 
             <Accordion className="text-left" {...props}>
 

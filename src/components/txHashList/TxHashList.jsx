@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Grid, Icon } from "semantic-ui-react";
+import { Grid, Icon, Popup } from "semantic-ui-react";
 import { copyText } from "utils";
 
 export function TxHashList({ txHshLst }) {
@@ -11,7 +11,7 @@ export function TxHashList({ txHshLst }) {
 
             {txHshLst && txHshLst.map((hash, index) =>
 
-                <Grid.Row key={`row-hash-${index}`} className="px-6 bg-rowblack" columns={2}>
+                <Grid.Row key={`row-hash-${index}`} className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
                     <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                         Tx Hash
@@ -22,7 +22,17 @@ export function TxHashList({ txHshLst }) {
                             <Link className="text-neongreen hover:text-neongreen hover:opacity-80" to={`/tx/${hash}`}>
                                 {`0x${hash}`}
                             </Link>
-                            <Icon name="copy outline" onClick={() => copyText(hash)} />
+                            <Popup
+                            trigger={
+                                <Icon
+                                    name="copy outline"
+                                    className="cursor-pointer hover:opacity-80"
+                                    onClick={() => copyText(hash)}
+                                />
+                            }
+                            basic
+                            content="Copy Hash"
+                        />
                         </div>
                     </Grid.Column>
 
