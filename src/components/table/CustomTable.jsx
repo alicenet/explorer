@@ -24,8 +24,11 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
 
                 <Table.Row>
                     {headerCells.map(header =>
-                        <Table.HeaderCell className="bg-rowblack text-white" key={`table-header-${header.id}`}>
-                            <>{header.label}</>
+                        <Table.HeaderCell
+                            className="bg-rowblack text-white border-t-1 border-tableblack"
+                            key={`table-header-${header.id}`}
+                        >
+                            {header.label}
                         </Table.HeaderCell>
                     )}
                 </Table.Row>
@@ -40,9 +43,8 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                             {headerCells.map((headerCell) =>
 
                                 <Table.Cell className="border-t-1 border-tableblack" key={`row-${headerCell.id}`}>
-                                    <>{headerCell?.displayCallback ? headerCell.displayCallback(row, rowIndex) : row[headerCell.id]}</>
+                                    {headerCell?.displayCallback ? headerCell.displayCallback(row, rowIndex) : row[headerCell.id]}
                                 </Table.Cell>
-
                             )}
                         </Table.Row>
                     )
