@@ -14,3 +14,4 @@ export * from './search';
 export * from './searchNotFound';
 export * from './table';
 export * from './txHashList';
+export * from './txView';

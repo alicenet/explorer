@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Grid, Icon } from "semantic-ui-react"
+import { Button, Grid, Icon, Popup } from "semantic-ui-react"
 import { content, HelpTooltip } from "components";
 import { useHistory } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
@@ -26,7 +26,7 @@ export function BlockList({ blockInfo }) {
 
         <Grid padded="vertically" className="mx-0 break-words" columns={"equal"}>
 
-            <Grid.Row className="px-6 bg-rowblack" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
                 <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.height} />
@@ -67,7 +67,7 @@ export function BlockList({ blockInfo }) {
 
             </Grid.Row>
 
-            <Grid.Row className="px-6 bg-rowblack" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
                 <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.txCount} />
@@ -80,7 +80,7 @@ export function BlockList({ blockInfo }) {
 
             </Grid.Row>
 
-            <Grid.Row className="px-6 bg-rowblack" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
                 <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.previousBlock} />
@@ -88,18 +88,25 @@ export function BlockList({ blockInfo }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div
-                        className="flex items-start gap-5 cursor-pointer hover:opacity-80"
-                        onClick={() => copyText(prevBlock)}
-                    >
+                    <div className="flex items-start gap-5">
                         <p>{`0x${prevBlock}`}</p>
-                        <Icon name="copy outline" />
+                        <Popup
+                            trigger={
+                                <Icon
+                                    name="copy outline"
+                                    className="cursor-pointer hover:opacity-80"
+                                    onClick={() => copyText(prevBlock)}
+                                />
+                            }
+                            basic
+                            content="Copy Hash"
+                        />
                     </div>
                 </Grid.Column>
 
             </Grid.Row>
 
-            <Grid.Row className="px-6 bg-rowblack" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
                 <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.txRoot} />
@@ -107,18 +114,25 @@ export function BlockList({ blockInfo }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div
-                        className="flex items-start gap-5 cursor-pointer hover:opacity-80"
-                        onClick={() => copyText(txRoot)}
-                    >
+                    <div className="flex items-start gap-5">
                         <p>{`0x${txRoot}`}</p>
-                        <Icon name="copy outline" />
+                        <Popup
+                            trigger={
+                                <Icon
+                                    name="copy outline"
+                                    className="cursor-pointer hover:opacity-80"
+                                    onClick={() => copyText(txRoot)}
+                                />
+                            }
+                            basic
+                            content="Copy Hash"
+                        />
                     </div>
                 </Grid.Column>
 
             </Grid.Row>
 
-            <Grid.Row className="px-6 bg-rowblack" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
                 <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.stateRoot} />
@@ -126,18 +140,25 @@ export function BlockList({ blockInfo }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div
-                        className="flex items-start gap-5 cursor-pointer hover:opacity-80"
-                        onClick={() => copyText(stateRoot)}
-                    >
+                    <div className="flex items-start gap-5">
                         <p>{`0x${stateRoot}`}</p>
-                        <Icon name="copy outline" />
+                        <Popup
+                            trigger={
+                                <Icon
+                                    name="copy outline"
+                                    className="cursor-pointer hover:opacity-80"
+                                    onClick={() => copyText(stateRoot)}
+                                />
+                            }
+                            basic
+                            content="Copy Hash"
+                        />
                     </div>
                 </Grid.Column>
 
             </Grid.Row>
 
-            <Grid.Row className="px-6 bg-rowblack" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
                 <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.headerRoot} />
@@ -145,18 +166,25 @@ export function BlockList({ blockInfo }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div
-                        className="flex items-start gap-5 cursor-pointer hover:opacity-80"
-                        onClick={() => copyText(headerRoot)}
-                    >
+                    <div className="flex items-start gap-5">
                         <p>{`0x${headerRoot}`}</p>
-                        <Icon name="copy outline" />
+                        <Popup
+                            trigger={
+                                <Icon
+                                    name="copy outline"
+                                    className="cursor-pointer hover:opacity-80"
+                                    onClick={() => copyText(headerRoot)}
+                                />
+                            }
+                            basic
+                            content="Copy Hash"
+                        />
                     </div>
                 </Grid.Column>
 
             </Grid.Row>
 
-            <Grid.Row className="px-6 bg-rowblack" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
                 <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                     <HelpTooltip content={content.groupSignature} />
@@ -164,12 +192,19 @@ export function BlockList({ blockInfo }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0 pr-20">
-                    <div
-                        className="flex items-start gap-5 cursor-pointer hover:opacity-80"
-                        onClick={() => copyText(sigGroup)}
-                    >
+                    <div className="flex items-start gap-5">
                         <p className="break-all">{`0x${sigGroup}`}</p>
-                        <Icon name="copy outline" />
+                        <Popup
+                            trigger={
+                                <Icon
+                                    name="copy outline"
+                                    className="cursor-pointer hover:opacity-80"
+                                    onClick={() => copyText(sigGroup)}
+                                />
+                            }
+                            basic
+                            content="Copy Signature"
+                        />
                     </div>
                 </Grid.Column>
 

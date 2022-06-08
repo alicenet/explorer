@@ -8,7 +8,7 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
             padded
             singleLine
             key={key}
-            className="border-0 border-t-4 border-neongreen bg-tableblack text-white"
+            className="border-0 border-t-2 border-neongreen bg-tableblack text-white"
         >
             <Table.Header>
 

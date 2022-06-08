@@ -12,7 +12,7 @@ module.exports = {
                 neonred: '#FF006B',
                 deeppurple: '#3E3036',
                 dropgray: '#EEEEEE',
-                tableblack: '#383737',
+                tableblack: '#444444',
                 rowblack: '#343333',
                 buttonblack: '#494949',
             },

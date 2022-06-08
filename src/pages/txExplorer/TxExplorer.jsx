@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Button, Container, Dimmer, Grid, Loader, Segment } from "semantic-ui-react";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { AliceNetSearch, Page } from "components";
-import { TxViewVin, TxViewVout } from "./txView";
+import { AliceNetSearch, Page, TxViewVin, TxViewVout } from "components";
 import { isValidHash } from "utils";
 
 export function TxExplorer() {
