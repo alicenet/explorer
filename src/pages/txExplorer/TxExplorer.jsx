@@ -110,7 +110,7 @@ export function TxExplorer() {
                         </Container>
 
                         <CollapsableCard
-                            title="Vin"
+                            title="Vins"
                             icon={<TreeIcon />}
                             itemsCount={txInfo[0].Vin.length}
                         >
