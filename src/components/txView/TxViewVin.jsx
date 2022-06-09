@@ -1,84 +1,104 @@
 import React from "react";
-import { Grid, Icon, Segment } from "semantic-ui-react";
+import { Container, Grid, Icon, Popup } from "semantic-ui-react";
 import { CollapsableCard, content, HelpTooltip } from "components";
 import { copyText } from "utils";
-import styles from "./TxViewVin.module.scss";
-import { ReactComponent as TreeIcon } from "assets/tree-icon.svg";
 
 export function TxViewVin({ txInfo }) {
 
     return (
 
-        <Grid className={styles.txView}>
-            <Grid.Column className={styles.outerColumn}>
-                <Segment className={styles.segmentContainer}>
-                    <CollapsableCard
-                        title={'Vin'}
-                        open={true}
-                        disabled={false}
-                        icon={<TreeIcon />}
-                    >
-                        {txInfo.map((tx, i) =>
-                            <CollapsableCard
-                                title={`Vin ${i}`}
-                                open={true}
-                                disabled={false}
-                                borderless
-                                key={i}
-                            >
-                                <Grid padded="vertically">
+        <Container className="bg-black p-4">
 
-                                    <Grid.Row className={styles.row}>
-                                        <Grid.Column className={styles.column} width={4}>
-                                            <HelpTooltip content={content.index} />
-                                            <p>Consumed Transaction:</p>
-                                        </Grid.Column>
-                                        <Grid.Column className={styles.column} width={11}>
-                                            <p>0x{tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}</p>
+            {txInfo.map((tx, i) =>
+
+                <CollapsableCard title={`Vin ${i}`} open={true} borderless>
+
+                    <Grid padded="vertically" className="mx-0 break-words" columns={"equal"}>
+
+                        <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
+
+                            <Grid.Column className="flex items-center gap-5 p-0" width={4}>
+                                <HelpTooltip content={content.consumedTx} />
+                                <p>Consumed Transaction</p>
+                            </Grid.Column>
+
+                            <Grid.Column className="p-0">
+                                <div className="flex items-start gap-5">
+                                    <p>{`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}</p>
+                                    <Popup
+                                        trigger={
                                             <Icon
                                                 name="copy outline"
-                                                className="click"
-                                                onClick={() => copyText("0x" + tx['TXInLinker']['TXInPreImage']['ConsumedTxHash'])}
+                                                className="cursor-pointer hover:opacity-80"
+                                                onClick={() => copyText(tx['TXInLinker']['TXInPreImage']['ConsumedTxHash'])}
                                             />
-                                        </Grid.Column>
-                                    </Grid.Row>
+                                        }
+                                        basic
+                                        content="Copy Hash"
+                                    />
+                                </div>
+                            </Grid.Column>
 
-                                    <Grid.Row className={styles.row}>
-                                        <Grid.Column className={styles.column} width={4}>
-                                            <HelpTooltip content={content.rawData} />
-                                            <p>Consumed Transaction Index:</p>
-                                        </Grid.Column>
-                                        <Grid.Column className={styles.column} width={11}>
-                                            <p>0x{tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx'] ? tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx'] : 0}</p>
+                        </Grid.Row>
+
+                        <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
+
+                            <Grid.Column className="flex items-center gap-5 p-0" width={4}>
+                                <HelpTooltip content={content.consumedTxIndex} />
+                                <p>Consumed Transaction Index</p>
+                            </Grid.Column>
+
+                            <Grid.Column className="p-0">
+                                <div className="flex items-start gap-5">
+                                    <p>{`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx'] ?? 0}`}</p>
+                                    <Popup
+                                        trigger={
                                             <Icon
                                                 name="copy outline"
-                                                className="click"
-                                                onClick={() => copyText("0x" + tx.DSLinker.DSPreImage.RawData)}
+                                                className="cursor-pointer hover:opacity-80"
+                                                onClick={() => copyText(tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx'] ?? 0)}
                                             />
-                                        </Grid.Column>
-                                    </Grid.Row>
+                                        }
+                                        basic
+                                        content="Copy Hash"
+                                    />
+                                </div>
+                            </Grid.Column>
 
-                                    <Grid.Row className={styles.row}>
-                                        <Grid.Column className={styles.column} width={4}>
-                                            <HelpTooltip content={content.expires} />
-                                            <p>Signature:</p>
-                                        </Grid.Column>
-                                        <Grid.Column className={styles.column} width={11}>
-                                            <p>0x{tx['Signature']}</p>
+                        </Grid.Row>
+
+                        <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
+
+                            <Grid.Column className="flex items-center gap-5 p-0" width={4}>
+                                <HelpTooltip content={content.signature} />
+                                <p>Signature</p>
+                            </Grid.Column>
+
+                            <Grid.Column className="p-0 pr-20">
+                                <div className="flex items-start gap-5">
+                                    <p className="break-all">{`0x${tx['Signature']}`}</p>
+                                    <Popup
+                                        trigger={
                                             <Icon
                                                 name="copy outline"
-                                                className="click"
-                                                onClick={() => copyText("0x" + tx['Signature'])}
+                                                className="cursor-pointer hover:opacity-80"
+                                                onClick={() => copyText(tx['Signature'])}
                                             />
-                                        </Grid.Column>
-                                    </Grid.Row>
+                                        }
+                                        basic
+                                        content="Copy Signature"
+                                    />
+                                </div>
+                            </Grid.Column>
 
-                                </Grid>
-                            </CollapsableCard>)}
-                    </CollapsableCard>
-                </Segment>
-            </Grid.Column>
-        </Grid>
+                        </Grid.Row>
+
+                    </Grid>
+
+                </CollapsableCard>
+            )}
+
+        </Container>
 
     );
 

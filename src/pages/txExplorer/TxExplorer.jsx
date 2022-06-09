@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { Button, Container, Dimmer, Grid, Icon, Loader, Popup } from "semantic-ui-react";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { AliceNetSearch, InvalidInput, Page, SearchNotFound, TxViewVin, TxViewVout } from "components";
+import { AliceNetSearch, CollapsableCard, InvalidInput, Page, SearchNotFound, TxViewVin, TxViewVout } from "components";
 import { copyText, isValidHash, searchTypes } from "utils";
+import { ReactComponent as TreeIcon } from "assets/tree-icon.svg";
 
 export function TxExplorer() {
 
@@ -108,7 +109,13 @@ export function TxExplorer() {
 
                         </Container>
 
-                        <TxViewVin txInfo={txInfo[0].Vin} />
+                        <CollapsableCard
+                            title="Vin"
+                            icon={<TreeIcon />}
+                            itemsCount={txInfo[0].Vin.length}
+                        >
+                            <TxViewVin txInfo={txInfo[0].Vin} />
+                        </CollapsableCard>
 
                         <TxViewVout txInfo={txInfo[0].Vout} />
 
