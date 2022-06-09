@@ -1,1 +1,2 @@
-export * from './TxView';
+export * from './TxViewVin';
+export * from './TxViewVout';
