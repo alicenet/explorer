@@ -119,7 +119,13 @@ export function TxExplorer() {
                             <TxViewVin txInfo={txInfo[0].Vin} />
                         </CollapsableCard>
 
-                        <TxViewVout txInfo={txInfo[0].Vout} />
+                        <CollapsableCard
+                            title="Vouts"
+                            icon={<ChoicesIcon />}
+                            itemsCount={txInfo[0].Vout.length}
+                        >
+                            <TxViewVout txInfo={txInfo[0].Vout} />
+                        </CollapsableCard>
 
                     </Container>
                 }
