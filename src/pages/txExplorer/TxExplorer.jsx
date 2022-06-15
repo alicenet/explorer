@@ -4,11 +4,13 @@ import { Button, Container, Dimmer, Grid, Icon, Loader, Popup } from "semantic-u
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { AliceNetSearch, CollapsableCard, InvalidInput, Page, SearchNotFound, TxViewVin, TxViewVout } from "components";
 import { copyText, isValidHash, searchTypes } from "utils";
+
 import { ReactComponent as TreeIcon } from "assets/tree-icon.svg";
+import { ReactComponent as ChoicesIcon } from "assets/choices-icon.svg";
 
 export function TxExplorer() {
 
-    const [txInfo, setTxInfo] = useState();
+    const [txInfo, setTxInfo] = useState(null);
     const [isLoading, setLoadingStatus] = useState(true);
 
     const history = useHistory();
@@ -52,7 +54,7 @@ export function TxExplorer() {
                 </Container>
 
                 {
-                    !txInfo &&
+                    (!txInfo || txInfo[0] === undefined) &&
                     <SearchNotFound />
                 }
 
@@ -69,7 +71,7 @@ export function TxExplorer() {
                 }
 
                 {
-                    txInfo && !txInfo.error &&
+                    txInfo && !txInfo.error && !txInfo[0] === undefined &&
                     <Container className="flex flex-col gap-10">
 
                         <Container className="flex flex-col gap-3">
