@@ -9,9 +9,9 @@ export function TxViewVin({ txInfo }) {
 
         <Container className="bg-black p-4 flex flex-col gap-4">
 
-            {txInfo.map((tx, i) =>
+            {txInfo.map((tx, index) =>
 
-                <CollapsableCard title={`Vin ${i}`} open={true} borderless>
+                <CollapsableCard title={`Vin ${index + 1}`} open={true} borderless>
 
                     <Grid padded="vertically" className="mx-0 break-words" columns={"equal"}>
 
