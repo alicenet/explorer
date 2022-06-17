@@ -3,6 +3,7 @@ import { Container } from "semantic-ui-react";
 import { CollapsableCard, TxViewDataStore, TxViewValueStore, } from "components";
 import { ReactComponent as DataStoreIcon } from "assets/datastore-icon.svg";
 import { ReactComponent as ValueStoreIcon } from "assets/valuestore-icon.svg";
+import { aliceNetAdapter } from "adapter/alicenetadapter";
 
 export function TxViewVout({ txInfo }) {
 
@@ -23,7 +24,8 @@ export function TxViewVout({ txInfo }) {
                 >
                     {dataStores.map((dataStore, index) => (
                             <CollapsableCard
-                                title={`DataStore ${index + 1}`}
+                                classNames="bg-black"
+                                title={`DataStore 0x${dataStore['DataStore']['DSLinker']['DSPreImage']['Index']}`}
                                 borderless
                                 key={`collapsable-tx-vout-ds-${index}`}
                             >
@@ -44,7 +46,7 @@ export function TxViewVout({ txInfo }) {
                 >
                     {valueStores.map((valueStore, index) => (
                             <CollapsableCard
-                                title={`ValueStore ${index + 1}`}
+                                title={`ValueStore ${aliceNetAdapter.hexToInt(valueStore['ValueStore']['VSPreImage']['Value'])}`}
                                 borderless
                                 key={`collapsable-tx-vout-vs-${index}`}
                             >

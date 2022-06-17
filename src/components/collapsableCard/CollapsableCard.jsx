@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Accordion, Container, Icon } from "semantic-ui-react";
-import { classNames } from "utils";
+import { classNames as csx } from "utils";
 
 export function CollapsableCard({
     children,
@@ -8,6 +8,7 @@ export function CollapsableCard({
     itemsCount,
     icon = false,
     borderless = false,
+    classNames = '',
     ...props
 }) {
     const [isBlockOpen, toggleBlock] = useState(true);
@@ -16,9 +17,10 @@ export function CollapsableCard({
 
         <Container
             className={
-                classNames(
+                csx(
                     "border-0 rounded-md bg-tableblack text-white",
-                    { "border-t-2 border-neongreen": !borderless }
+                    { "border-t-2 border-neongreen": !borderless },
+                    classNames
                 )
             }
         >
@@ -27,7 +29,12 @@ export function CollapsableCard({
 
                 <Accordion.Title
                     active={isBlockOpen}
-                    className="flex flex-row items-center text-white cursor-pointer gap-3 p-6"
+                    className={
+                        csx(
+                            "flex flex-row items-center text-white cursor-pointer gap-3 p-6",
+                            classNames
+                        )
+                    }
                     onClick={() => toggleBlock(isOpen => !isOpen)}
                 >
                     {icon}
