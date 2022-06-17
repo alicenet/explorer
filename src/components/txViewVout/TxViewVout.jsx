@@ -6,8 +6,8 @@ import { ReactComponent as ValueStoreIcon } from "assets/valuestore-icon.svg";
 
 export function TxViewVout({ txInfo }) {
 
-    const valueStores = txInfo.filter(tx => tx.ValueStore);
     const dataStores = txInfo.filter(tx => tx.DataStore);
+    const valueStores = txInfo.filter(tx => tx.ValueStore);
 
     return (
 
@@ -25,14 +25,15 @@ export function TxViewVout({ txInfo }) {
                             <CollapsableCard
                                 title={`DataStore ${index + 1}`}
                                 borderless
+                                key={`collapsable-tx-vout-ds-${index}`}
                             >
-                                <TxViewDataStore dataStore={dataStore} />
+                                <TxViewDataStore dataStore={dataStore?.DataStore} />
                             </CollapsableCard>
                         )
                     )}
                 </CollapsableCard>
             }
-            {console.log({ valueStores })}
+
             {
                 valueStores.length > 0 &&
                 <CollapsableCard
@@ -45,8 +46,9 @@ export function TxViewVout({ txInfo }) {
                             <CollapsableCard
                                 title={`ValueStore ${index + 1}`}
                                 borderless
+                                key={`collapsable-tx-vout-vs-${index}`}
                             >
-                                <TxViewValueStore valueStore={valueStore} />
+                                <TxViewValueStore valueStore={valueStore?.ValueStore} />
                             </CollapsableCard>
                         )
                     )}

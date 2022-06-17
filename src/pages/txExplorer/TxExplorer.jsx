@@ -71,7 +71,7 @@ export function TxExplorer() {
                 }
 
                 {
-                    txInfo && !txInfo.error && !txInfo[0] === undefined &&
+                    txInfo && !txInfo.error && txInfo[0] !== undefined &&
                     <Container className="flex flex-col gap-10">
 
                         <Container className="flex flex-col gap-3">

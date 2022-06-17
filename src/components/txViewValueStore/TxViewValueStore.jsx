@@ -7,8 +7,6 @@ import { aliceNetAdapter } from "adapter/alicenetadapter";
 
 export function TxViewValueStore({ valueStore }) {
 
-    console.log({valueStore});
-
     const ADDRESS_TYPES = { BN: "BN", SecP: "SecP" };
     const history = useHistory();
 

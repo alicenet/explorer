@@ -11,7 +11,7 @@ export function TxViewVin({ txInfo }) {
 
             {txInfo.map((tx, index) =>
 
-                <CollapsableCard title={`Vin ${index + 1}`} open={true} borderless>
+                <CollapsableCard title={`Vin ${index + 1}`} open={true} borderless key={`collapsable-tx-vin-${index}`}>
 
                     <Grid padded="vertically" className="mx-0 break-words" columns={"equal"}>
 
