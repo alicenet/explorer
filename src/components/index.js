@@ -14,5 +14,7 @@ export * from './search';
 export * from './searchNotFound';
 export * from './table';
 export * from './txHashList';
+export * from './txViewDataStore';
+export * from './txViewValueStore';
 export * from './txViewVin';
 export * from './txViewVout';
