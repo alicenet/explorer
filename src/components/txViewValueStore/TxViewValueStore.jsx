@@ -61,9 +61,10 @@ export function TxViewValueStore({ valueStore }) {
                             content="Copy Address"
                         />
                         <Button
-                            className="text-xs px-3 py-1 ml-2 rounded-sm tracking-wide"
+                            className="text-xs px-3 py-1 ml-2 rounded-sm"
                             onClick={() => history.push('/data')}
-                        >View Owner DataStores
+                        >
+                            View Owner DataStores
                         </Button>
                     </div>
                 </Grid.Column>
