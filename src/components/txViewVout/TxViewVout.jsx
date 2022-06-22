@@ -12,7 +12,7 @@ export function TxViewVout({ txInfo }) {
 
     return (
 
-        <Container className="bg-black p-4 flex flex-col gap-4">
+        <Container className="bg-headerblack p-4 flex flex-col gap-4">
 
             {
                 dataStores.length > 0 &&
@@ -26,7 +26,7 @@ export function TxViewVout({ txInfo }) {
 
                         {dataStores.map((dataStore, index) => (
                                 <CollapsableCard
-                                    classNames="bg-black rounded-t-md"
+                                    classNames="bg-headerblack rounded-t-md"
                                     borderless
                                     key={`collapsable-tx-vout-ds-${index}`}
                                     title={`DataStore 0x${dataStore['DataStore']['DSLinker']['DSPreImage']['Index']}`}
@@ -53,7 +53,7 @@ export function TxViewVout({ txInfo }) {
 
                         {valueStores.map((valueStore, index) => (
                                 <CollapsableCard
-                                    classNames="bg-black rounded-t-md"
+                                    classNames="bg-headerblack rounded-t-md"
                                     borderless
                                     key={`collapsable-tx-vout-vs-${index}`}
                                     title={`ValueStore ${aliceNetAdapter.hexToInt(valueStore['ValueStore']['VSPreImage']['Value'])}`}

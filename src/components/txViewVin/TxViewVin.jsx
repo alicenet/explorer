@@ -7,7 +7,7 @@ export function TxViewVin({ txInfo }) {
 
     return (
 
-        <Container className="bg-black p-4 flex flex-col gap-4">
+        <Container className="bg-headerblack p-4 flex flex-col gap-4">
 
             {txInfo.map((tx, index) =>
 
