@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Grid, Icon } from "semantic-ui-react";
+import { Button, Grid, Icon, Popup } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { content, HelpTooltip } from "components";
 import { copyText } from "utils";
@@ -7,52 +7,96 @@ import { aliceNetAdapter } from "adapter/alicenetadapter";
 
 export function TxViewValueStore({ valueStore }) {
 
-    const ADDRESS_TYPES = { BN: "BN", SecP: "SecP" };
     const history = useHistory();
-
-    const isBN = address => address.substring(0, 2) === ADDRESS_TYPES.BN;
 
     return (
 
-        <Grid padded="vertically">
-            <Grid.Row>
-                <Grid.Column width={4}>
+        <Grid padded="vertically" className="mx-0 break-words" columns={"equal"}>
+
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
+
+                <Grid.Column className="flex items-center gap-5 p-0" width={4}>
                     <HelpTooltip content={content.value} />
-                    <p>Value:</p>
+                    <p>Value</p>
                 </Grid.Column>
-                <Grid.Column width={11}>
-                    <p>{valueStore['VSPreImage']['Value'] ? aliceNetAdapter.hexToInt(valueStore['VSPreImage']['Value']) : 0}</p>
-                    <Icon
-                        name="copy outline"
-                        className="click"
-                        onClick={() => copyText("0x" + valueStore['TXInLinker']['TXInPreImage']['ConsumedTxHash'])}
-                    />
+
+                <Grid.Column className="p-0">
+                    <div className="flex items-start gap-5">
+                        <p>{aliceNetAdapter.hexToInt(valueStore['VSPreImage']['Value'])}</p>
+                        <Popup
+                            trigger={
+                                <Icon
+                                    name="copy outline"
+                                    className="cursor-pointer hover:opacity-80"
+                                    onClick={() => copyText(valueStore['VSPreImage']['Value'])}
+                                />
+                            }
+                            basic
+                            content="Copy Value"
+                        />
+                    </div>
                 </Grid.Column>
+
             </Grid.Row>
 
-            <Grid.Row>
-                <Grid.Column width={4}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
+
+                <Grid.Column className="flex items-center gap-5 p-0" width={4}>
                     <HelpTooltip content={content.owner} />
-                    <p>Owner:</p>
+                    <p>Owner</p>
                 </Grid.Column>
-                <Grid.Column width={11}>
-                    0x{valueStore['VSPreImage']['Owner'].slice(4)}{isBN(valueStore['VSPreImage']['Owner'])}
-                    <Icon name="copy outline" className="click"
-                          onClick={() => copyText("0x" + valueStore['VSPreImage']['Owner'])} />
-                    <Button className="text-xs px-3 py-1 ml-2 rounded-sm tracking-wide"
-                            onClick={() => history.push('/data')}>View Owner DataStores</Button>
+
+                <Grid.Column className="p-0">
+                    <div className="flex items-start gap-5">
+                        <p>{`0x${valueStore['VSPreImage']['Owner']}`}</p>
+                        <Popup
+                            trigger={
+                                <Icon
+                                    name="copy outline"
+                                    className="cursor-pointer hover:opacity-80"
+                                    onClick={() => copyText(`0x${valueStore['VSPreImage']['Owner']}`)}
+                                />
+                            }
+                            basic
+                            content="Copy Address"
+                        />
+                        <Button
+                            className="text-xs px-3 py-1 ml-2 rounded-sm"
+                            onClick={() => history.push('/data')}
+                        >
+                            View Owner DataStores
+                        </Button>
+                    </div>
                 </Grid.Column>
+
             </Grid.Row>
 
-            <Grid.Row>
-                <Grid.Column width={4}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
+
+                <Grid.Column className="flex items-center gap-5 p-0" width={4}>
                     <HelpTooltip content={content.txIndex} />
-                    <p>Transaction Index:</p>
+                    <p>Transaction Index</p>
                 </Grid.Column>
-                <Grid.Column width={11}>
-                    <p>{valueStore['VSPreImage']['TXOutIdx'] ? valueStore['VSPreImage']['TXOutIdx'] : 0}</p>
+
+                <Grid.Column className="p-0 pr-20">
+                    <div className="flex items-start gap-5">
+                        <p className="break-all">{valueStore['VSPreImage']['TXOutIdx']}</p>
+                        <Popup
+                            trigger={
+                                <Icon
+                                    name="copy outline"
+                                    className="cursor-pointer hover:opacity-80"
+                                    onClick={() => copyText(valueStore['VSPreImage']['TXOutIdx'])}
+                                />
+                            }
+                            basic
+                            content="Copy Index"
+                        />
+                    </div>
                 </Grid.Column>
+
             </Grid.Row>
+
         </Grid>
 
     );
