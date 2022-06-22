@@ -54,7 +54,7 @@ export function TxExplorer() {
                 </Container>
 
                 {
-                    (!txInfo || txInfo[0] === undefined) &&
+                    !txInfo &&
                     <SearchNotFound />
                 }
 

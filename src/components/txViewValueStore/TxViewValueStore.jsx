@@ -15,13 +15,13 @@ export function TxViewValueStore({ valueStore }) {
 
             <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={4}>
+                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                     <HelpTooltip content={content.value} />
                     <p>Value</p>
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-5">
+                    <div className="flex items-start gap-3">
                         <p>{aliceNetAdapter.hexToInt(valueStore['VSPreImage']['Value'])}</p>
                         <Popup
                             trigger={
@@ -41,13 +41,13 @@ export function TxViewValueStore({ valueStore }) {
 
             <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={4}>
+                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                     <HelpTooltip content={content.owner} />
                     <p>Owner</p>
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-5">
+                    <div className="flex items-start gap-3">
                         <p>{`0x${valueStore['VSPreImage']['Owner']}`}</p>
                         <Popup
                             trigger={
@@ -73,13 +73,13 @@ export function TxViewValueStore({ valueStore }) {
 
             <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={4}>
+                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                     <HelpTooltip content={content.txIndex} />
                     <p>Transaction Index</p>
                 </Grid.Column>
 
                 <Grid.Column className="p-0 pr-20">
-                    <div className="flex items-start gap-5">
+                    <div className="flex items-start gap-3">
                         <p className="break-all">{valueStore['VSPreImage']['TXOutIdx']}</p>
                         <Popup
                             trigger={

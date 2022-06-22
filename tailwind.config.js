@@ -15,6 +15,7 @@ module.exports = {
                 tableblack: '#444444',
                 rowblack: '#343333',
                 buttonblack: '#494949',
+                headerblack: '#171717'
             },
         },
     },

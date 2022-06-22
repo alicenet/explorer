@@ -19,7 +19,7 @@ export function InvalidInput({ term, suggestion }) {
                 <h3 className="text-2xl">Invalid Input</h3>
             </Container>
 
-            <Container className="flex flex-col">
+            <Container className="flex flex-col break-all">
                 <span>
                     The search data you entered was: <span className="font-bold">{term}</span>
                 </span>
