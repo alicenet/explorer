@@ -15,13 +15,13 @@ export function TxViewDataStore({ dataStore }) {
 
             <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={4}>
+                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                     <HelpTooltip content={content.index} />
                     <p>Index</p>
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-5">
+                    <div className="flex items-start gap-3">
                         <p>{`0x${dataStore['DSLinker']['DSPreImage']['Index']}`}</p>
                         <Popup
                             trigger={
@@ -41,13 +41,13 @@ export function TxViewDataStore({ dataStore }) {
 
             <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={4}>
+                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                     <HelpTooltip content={content.rawData} />
                     <p>Raw Data</p>
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-5">
+                    <div className="flex items-start gap-3">
                         <p>{`0x${dataStore['DSLinker']['DSPreImage']['RawData']}`}</p>
                         <Popup
                             trigger={
@@ -67,13 +67,13 @@ export function TxViewDataStore({ dataStore }) {
 
             <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={4}>
+                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                     <HelpTooltip content={content.owner} />
                     <p>Owner</p>
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-5">
+                    <div className="flex items-start gap-3">
                         <p>{`0x${dataStore['DSLinker']['DSPreImage']['Owner']}`}</p>
                         <Popup
                             trigger={
@@ -99,13 +99,13 @@ export function TxViewDataStore({ dataStore }) {
 
             <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={4}>
+                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                     <HelpTooltip content={content.epoch} />
                     <p>Issued At</p>
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-5">
+                    <div className="flex items-start gap-3">
                         <p>{dataStore['DSLinker']['DSPreImage']['IssuedAt']}</p>
                         <Popup
                             trigger={
@@ -125,13 +125,13 @@ export function TxViewDataStore({ dataStore }) {
 
             <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={4}>
+                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                     <HelpTooltip content={content.expires} />
                     <p>Expires</p>
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-5">
+                    <div className="flex items-start gap-3">
                         <p>
                             {
                                 aliceNetAdapter.getDSExp(
@@ -165,13 +165,13 @@ export function TxViewDataStore({ dataStore }) {
 
             <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={4}>
+                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                     <HelpTooltip content={content.deposit} />
                     <p>Expires</p>
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-5">
+                    <div className="flex items-start gap-3">
                         <p>{aliceNetAdapter.hexToInt(dataStore['DSLinker']['DSPreImage']['Deposit'])}</p>
                         <Popup
                             trigger={
@@ -191,13 +191,13 @@ export function TxViewDataStore({ dataStore }) {
 
             <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={4}>
+                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                     <HelpTooltip content={content.txIndex} />
                     <p>Transaction Index</p>
                 </Grid.Column>
 
                 <Grid.Column className="p-0 pr-20">
-                    <div className="flex items-start gap-5">
+                    <div className="flex items-start gap-3">
                         <p className="break-all">{dataStore['DSLinker']['DSPreImage']['TXOutIdx']}</p>
                         <Popup
                             trigger={
@@ -217,13 +217,13 @@ export function TxViewDataStore({ dataStore }) {
 
             <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={4}>
+                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                     <HelpTooltip content={content.signature} />
                     <p>Signature</p>
                 </Grid.Column>
 
                 <Grid.Column className="p-0 pr-20">
-                    <div className="flex items-start gap-5">
+                    <div className="flex items-start gap-3">
                         <p className="break-all">{`0x${dataStore['Signature']}`}</p>
                         <Popup
                             trigger={

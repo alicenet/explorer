@@ -88,7 +88,7 @@ export function BlockList({ blockInfo }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-5">
+                    <div className="flex items-start gap-3">
                         <p>{`0x${prevBlock}`}</p>
                         <Popup
                             trigger={
@@ -114,7 +114,7 @@ export function BlockList({ blockInfo }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-5">
+                    <div className="flex items-start gap-3">
                         <p>{`0x${txRoot}`}</p>
                         <Popup
                             trigger={
@@ -140,7 +140,7 @@ export function BlockList({ blockInfo }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-5">
+                    <div className="flex items-start gap-3">
                         <p>{`0x${stateRoot}`}</p>
                         <Popup
                             trigger={
@@ -166,7 +166,7 @@ export function BlockList({ blockInfo }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-5">
+                    <div className="flex items-start gap-3">
                         <p>{`0x${headerRoot}`}</p>
                         <Popup
                             trigger={
@@ -192,7 +192,7 @@ export function BlockList({ blockInfo }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0 pr-20">
-                    <div className="flex items-start gap-5">
+                    <div className="flex items-start gap-3">
                         <p className="break-all">{`0x${sigGroup}`}</p>
                         <Popup
                             trigger={

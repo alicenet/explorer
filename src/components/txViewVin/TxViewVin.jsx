@@ -17,13 +17,13 @@ export function TxViewVin({ txInfo }) {
 
                         <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
-                            <Grid.Column className="flex items-center gap-5 p-0" width={4}>
+                            <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                                 <HelpTooltip content={content.consumedTx} />
                                 <p>Consumed Transaction</p>
                             </Grid.Column>
 
                             <Grid.Column className="p-0">
-                                <div className="flex items-start gap-5">
+                                <div className="flex items-start gap-3">
                                     <p>{`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}</p>
                                     <Popup
                                         trigger={
@@ -43,13 +43,13 @@ export function TxViewVin({ txInfo }) {
 
                         <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
-                            <Grid.Column className="flex items-center gap-5 p-0" width={4}>
+                            <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                                 <HelpTooltip content={content.consumedTxIndex} />
                                 <p>Consumed Transaction Index</p>
                             </Grid.Column>
 
                             <Grid.Column className="p-0">
-                                <div className="flex items-start gap-5">
+                                <div className="flex items-start gap-3">
                                     <p>{`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx'] ?? 0}`}</p>
                                     <Popup
                                         trigger={
@@ -69,13 +69,13 @@ export function TxViewVin({ txInfo }) {
 
                         <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
 
-                            <Grid.Column className="flex items-center gap-5 p-0" width={4}>
+                            <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                                 <HelpTooltip content={content.signature} />
                                 <p>Signature</p>
                             </Grid.Column>
 
                             <Grid.Column className="p-0 pr-20">
-                                <div className="flex items-start gap-5">
+                                <div className="flex items-start gap-3">
                                     <p className="break-all">{`0x${tx['Signature']}`}</p>
                                     <Popup
                                         trigger={
