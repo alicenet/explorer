@@ -1,72 +1,37 @@
 import React, { useEffect, useState } from "react";
-import { Container, Dimmer, Grid, Loader, Segment } from "semantic-ui-react";
-import { useHistory, useParams } from "react-router-dom";
+import { Container, Dimmer, Grid, Loader } from "semantic-ui-react";
+import { useParams } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { AliceNetSearch, CollapsableCard, Page } from "components";
+import { AliceNetSearch, CollapsableCard, DataView, InvalidInput, Page, SearchNotFound } from "components";
 import { ReactComponent as FileIcon } from "assets/file-icon.svg";
-import { DataView } from "./dataView";
+import { curveTypes, searchTypes } from "utils";
 
 export function DataExplorer() {
 
-    const [dsView, setDsView] = useState();
-    const [showMore, setShowMore] = useState(true);
-    const [isLoading, setLoadingStatus] = useState(true);
+    const [datastoreInfo, setDatastoreInfo] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const history = useHistory();
-    const { address, curveType, offset } = useParams();
+    const { address, offset } = useParams();
 
     useEffect(() => {
         const getDataStores = async () => {
-            setShowMore(!!offset);
-
             if (address) {
-                try {
-                    const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address, curveType, offset);
-                    setDsView(dataStores);
-                } catch (error) {
-                    console.log(error);
-                }
-
+                const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address, curveTypes.SECP256K1, offset);
+                setDatastoreInfo(dataStores);
+            } else {
+                setDatastoreInfo({ error: "Invalid address" });
             }
-
-            setLoadingStatus(false);
+            setIsLoading(false);
         }
-
         getDataStores();
-    }, [address, curveType, offset]);
+    }, [address, offset]);
 
     const getDSExp = (rawData, deposit, issuedAt) => {
         return aliceNetAdapter.getDSExp(rawData, deposit, issuedAt);
     };
 
-    const handleViewTransaction = async (txHash) => {
-        history.push(`/tx?hash=${txHash}`);
-    };
-
-    if ((dsView?.error) || (!isLoading && (!dsView || !dsView.length))) {
-        return (
-
-            <Page>
-                <div className="mb-8">
-                    <AliceNetSearch />
-                </div>
-                <Grid centered>
-                    <Grid.Row stretched centered>
-                        <Container>
-                            <Segment>
-                                <p>No DataStores to display!</p>
-                            </Segment>
-                        </Container>
-                    </Grid.Row>
-                </Grid>
-            </Page>
-        );
-
-    }
-
     if (isLoading) {
         return (
-
             <Page>
                 <Grid>
                     <Dimmer active>
@@ -74,36 +39,48 @@ export function DataExplorer() {
                     </Dimmer>
                 </Grid>
             </Page>
-
         );
     }
-
-    const filteredData = showMore ? dsView : dsView?.slice(0, 1);
 
     return (
 
         <Page>
-            <div className="mb-8">
-                <AliceNetSearch />
-            </div>
-            <Grid stretched centered={true}>
-                <Grid.Row>
+
+            <Container className="flex flex-col gap-10">
+
+                <Container>
+
+                    <AliceNetSearch currentSearch={{ type: searchTypes.DATASTORES }} />
+
+                </Container>
+
+                {
+                    datastoreInfo.length === 0 &&
+                    <SearchNotFound term={address} />
+                }
+
+                {
+                    (!datastoreInfo || datastoreInfo.error) &&
+                    <InvalidInput term={address} />
+                }
+
+                {
+                    datastoreInfo && !datastoreInfo.error && datastoreInfo.length > 0 &&
                     <CollapsableCard
                         title="Indexes from Offset"
                         icon={<FileIcon />}
-                        open={true}
-                        disabled={false}
-                        itemsCount={filteredData.length}
+                        itemsCount={datastoreInfo.length}
                     >
                         <DataView
-                            dsView={filteredData}
+                            dsView={datastoreInfo}
                             paginate={null}
-                            handleViewTransaction={handleViewTransaction}
                             getDSExp={getDSExp}
                         />
                     </CollapsableCard>
-                </Grid.Row>
-            </Grid>
+                }
+
+            </Container>
+
         </Page>
 
     );

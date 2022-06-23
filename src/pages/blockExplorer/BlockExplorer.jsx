@@ -11,7 +11,7 @@ import { isValidBlockHeight, searchTypes } from "utils";
 export function BlockExplorer() {
 
     const [blockInfo, setBlockInfo] = useState(null);
-    const [isLoading, setLoadingStatus] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
     const { height } = useParams();
 
@@ -34,7 +34,7 @@ export function BlockExplorer() {
             } else {
                 setBlockInfo({ error: "Invalid height" });
             }
-            setLoadingStatus(false);
+            setIsLoading(false);
         }
         getBlock();
     }, [height]);
