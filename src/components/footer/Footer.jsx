@@ -16,15 +16,15 @@ export function Footer() {
             <div className="flex gap-5">
 
                 <span>Follow us on:</span>
-                <TwitterIcon className={`w-5 cursor-pointer hover:opacity-50 fill-current text-white`} />
-                <DiscordIcon className={`w-5 cursor-pointer hover:opacity-50 fill-current text-white`} />
+                <TwitterIcon className={`w-5 cursor-pointer hover:text-neongreen fill-current text-white`} />
+                <DiscordIcon className={`w-5 cursor-pointer hover:text-neongreen fill-current text-white`} />
 
             </div>
 
             <div className="flex gap-3">
 
                 <span
-                    className="cursor-pointer hover:opacity-50"
+                    className="cursor-pointer hover:text-neongreen"
                     onClick={() => window.open(ALICENET_URL, '_blank').focus()}
                 >
                     About
@@ -33,7 +33,7 @@ export function Footer() {
                 <MenuDivider />
 
                 <span
-                    className="cursor-pointer hover:opacity-50"
+                    className="cursor-pointer hover:text-neongreen"
                     onClick={() => window.open(ALICENET_URL, '_blank').focus()}
                 >
                     Legal
@@ -42,7 +42,7 @@ export function Footer() {
                 <MenuDivider />
 
                 <span
-                    className="cursor-pointer hover:opacity-50"
+                    className="cursor-pointer hover:text-neongreen"
                     onClick={() => window.open(ALICENET_URL, '_blank').focus()}
                 >
                     Terms of service

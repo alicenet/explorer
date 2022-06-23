@@ -6,9 +6,6 @@ import Logo from "assets/MadNetwork Logo Horizontal GRAYSCALE.png";
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
 
-//TODO define where to get this
-const WALLETS_PLACEHOLDER = ['wallet0', 'wallet1'];
-
 const MenuDivider = () => <div className="border-r border-gray-700 my-3" />;
 
 export function AliceNetMenu() {
@@ -31,34 +28,34 @@ export function AliceNetMenu() {
 
                 <Menu.Menu position="right">
                     <Menu.Item
-                        className="text-white hover:opacity-50"
+                        className="text-white hover:text-neongreen"
                         as={Link}
                         to="/"
                         name="Monitor"
                     />
                     <MenuDivider />
                     <Menu.Item
-                        className="text-white hover:opacity-50"
+                        className="text-white hover:text-neongreen"
                         as={Link}
                         to="/about"
                         name="About"
                     />
                     <MenuDivider />
                     <Menu.Item
-                        className="text-white hover:opacity-50"
+                        className="text-white hover:text-neongreen"
                         as={Link}
                         to="/"
                         name="Wallet Download"
                     />
                     <MenuDivider />
                     <Menu.Item
-                        className="text-white hover:opacity-50"
+                        className="text-white hover:text-neongreen"
                         onClick={() => window.open(GITHUB_URL, '_blank').focus()}
                         name="Github"
                     />
                     <MenuDivider />
                     <Menu.Item
-                        className="text-white hover:opacity-50"
+                        className="text-white hover:text-neongreen"
                         onClick={() => window.open(WHITE_PAPER_URL, '_blank').focus()}
                         name="White Paper"
                     />
