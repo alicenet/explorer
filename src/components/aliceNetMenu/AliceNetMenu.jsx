@@ -1,13 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Container, Dropdown, Image, Menu } from "semantic-ui-react";
+import { Container, Image, Menu } from "semantic-ui-react";
 import Logo from "assets/MadNetwork Logo Horizontal GRAYSCALE.png";
 
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
-
-//TODO define where to get this
-const WALLETS_PLACEHOLDER = ['wallet0', 'wallet1'];
 
 const MenuDivider = () => <div className="border-r border-gray-700 my-3" />;
 
@@ -31,35 +28,34 @@ export function AliceNetMenu() {
 
                 <Menu.Menu position="right">
                     <Menu.Item
-                        className="text-white hover:opacity-50"
+                        className="text-white hover:text-neongreen"
                         as={Link}
                         to="/"
                         name="Monitor"
                     />
                     <MenuDivider />
                     <Menu.Item
-                        className="text-white hover:opacity-50"
+                        className="text-white hover:text-neongreen"
                         as={Link}
-                        to="about"
+                        to="/about"
                         name="About"
                     />
                     <MenuDivider />
-                    <Dropdown className="text-white hover:opacity-50 focus:opacity-100" item text="Wallet Download">
-                        <Dropdown.Menu>
-                            {WALLETS_PLACEHOLDER.map(wallet =>
-                                <Dropdown.Item key={wallet}>{wallet}</Dropdown.Item>
-                            )}
-                        </Dropdown.Menu>
-                    </Dropdown>
+                    <Menu.Item
+                        className="text-white hover:text-neongreen"
+                        as={Link}
+                        to="/"
+                        name="Wallet Download"
+                    />
                     <MenuDivider />
                     <Menu.Item
-                        className="text-white hover:opacity-50"
+                        className="text-white hover:text-neongreen"
                         onClick={() => window.open(GITHUB_URL, '_blank').focus()}
                         name="Github"
                     />
                     <MenuDivider />
                     <Menu.Item
-                        className="text-white hover:opacity-50"
+                        className="text-white hover:text-neongreen"
                         onClick={() => window.open(WHITE_PAPER_URL, '_blank').focus()}
                         name="White Paper"
                     />
