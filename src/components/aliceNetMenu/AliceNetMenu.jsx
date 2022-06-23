@@ -47,6 +47,7 @@ export function AliceNetMenu() {
                     <Menu.Item
                         className="text-white hover:opacity-50"
                         as={Link}
+                        to="/"
                         name="Wallet Download"
                     />
                     <MenuDivider />

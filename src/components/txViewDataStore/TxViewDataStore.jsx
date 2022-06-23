@@ -88,10 +88,11 @@ export function TxViewDataStore({ dataStore }) {
                         />
                         <Button
                             className="text-xs px-3 py-1 ml-2 rounded-sm"
-                            onClick={() => history.push('/data')}
-                        >
-                            View Owner DataStores
-                        </Button>
+                            onClick={() =>
+                                history.push(`/data/${dataStore['DSLinker']['DSPreImage']['Owner']}/1/0`)
+                            }
+                            content="View Owner DataStores"
+                        />
                     </div>
                 </Grid.Column>
 
