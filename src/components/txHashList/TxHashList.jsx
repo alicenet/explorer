@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Grid, Icon, Popup } from "semantic-ui-react";
-import { copyText } from "utils";
+import { classNames, copyText } from "utils";
 
 export function TxHashList({ txHshLst }) {
 
@@ -11,7 +11,14 @@ export function TxHashList({ txHshLst }) {
 
             {txHshLst && txHshLst.map((hash, index) =>
 
-                <Grid.Row key={`row-hash-${index}`} className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
+                <Grid.Row
+                    key={`row-hash-${index}`}
+                    className={classNames(
+                        "px-6 bg-rowblack border-0 border-t border-tableblack",
+                        { 'rounded-b-md': index + 1 === txHshLst.length }
+                    )}
+                    columns={2}
+                >
 
                     <Grid.Column className="flex items-center gap-5 p-0" width={3}>
                         Tx Hash

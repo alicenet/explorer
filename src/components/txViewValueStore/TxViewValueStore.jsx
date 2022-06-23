@@ -71,7 +71,7 @@ export function TxViewValueStore({ valueStore }) {
 
             </Grid.Row>
 
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack rounded-b-md" columns={2}>
 
                 <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                     <HelpTooltip content={content.txIndex} />
