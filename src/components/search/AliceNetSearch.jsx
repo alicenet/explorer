@@ -53,7 +53,7 @@ export function AliceNetSearch({ currentSearch = null }) {
                 history.push(`/tx/${term}`);
                 break;
             case searchTypes.DATASTORES:
-                history.push(`/data/${term}/${curveType}/${offset.padStart(64, '0')}`);
+                history.push(`/data/${term}/${offset}`);
                 break;
             default:
                 alert('Invalid option');
@@ -129,17 +129,6 @@ export function AliceNetSearch({ currentSearch = null }) {
                             <HelpTooltip
                                 content={curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}
                             />
-                        </div>
-                    )}
-                    {offset && selectedOption.value === searchTypes.DATASTORES && (
-                        <div className="flex items-center gap-3">
-                            <Checkbox
-                                toggle
-                                className="ml-2 mr-2"
-                                checked={showMore}
-                                onClick={() => setShowMore(!showMore)}
-                            />
-                            <span>Show More Datastores</span>
                         </div>
                     )}
                 </div>
