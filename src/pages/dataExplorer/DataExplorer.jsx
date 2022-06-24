@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Container, Dimmer, Grid, Loader } from "semantic-ui-react";
 import { useParams } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { AliceNetSearch, CollapsableCard, DataView, InvalidInput, Page, SearchNotFound } from "components";
+import { AliceNetSearch, CollapsableCard, DatastoreView, InvalidInput, Page, SearchNotFound } from "components";
 import { ReactComponent as FileIcon } from "assets/file-icon.svg";
-import { curveTypes, searchTypes } from "utils";
+import { searchTypes } from "utils";
 
 export function DataExplorer() {
 
@@ -16,7 +16,7 @@ export function DataExplorer() {
     useEffect(() => {
         const getDataStores = async () => {
             if (address) {
-                const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address, curveTypes.SECP256K1, offset);
+                const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address);
                 setDatastoreInfo(dataStores);
             } else {
                 setDatastoreInfo({ error: "Invalid address" });
@@ -26,9 +26,6 @@ export function DataExplorer() {
         getDataStores();
     }, [address, offset]);
 
-    const getDSExp = (rawData, deposit, issuedAt) => {
-        return aliceNetAdapter.getDSExp(rawData, deposit, issuedAt);
-    };
 
     if (isLoading) {
         return (
@@ -71,11 +68,7 @@ export function DataExplorer() {
                         icon={<FileIcon />}
                         itemsCount={datastoreInfo.length}
                     >
-                        <DataView
-                            dsView={datastoreInfo}
-                            paginate={null}
-                            getDSExp={getDSExp}
-                        />
+                        <DatastoreView datastoreInfo={datastoreInfo} />
                     </CollapsableCard>
                 }
 
