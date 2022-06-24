@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { AliceNetSearch, CollapsableCard, DataView, InvalidInput, Page, SearchNotFound } from "components";
 import { ReactComponent as FileIcon } from "assets/file-icon.svg";
-import { curveTypes, searchTypes } from "utils";
+import { searchTypes } from "utils";
 
 export function DataExplorer() {
 
@@ -16,7 +16,7 @@ export function DataExplorer() {
     useEffect(() => {
         const getDataStores = async () => {
             if (address) {
-                const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address, curveTypes.SECP256K1, offset);
+                const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address);
                 setDatastoreInfo(dataStores);
             } else {
                 setDatastoreInfo({ error: "Invalid address" });
