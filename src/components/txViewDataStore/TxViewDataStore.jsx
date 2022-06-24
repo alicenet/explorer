@@ -89,7 +89,7 @@ export function TxViewDataStore({ dataStore }) {
                         <Button
                             className="text-xs px-3 py-1 ml-2 rounded-sm"
                             onClick={() =>
-                                history.push(`/data/${dataStore['DSLinker']['DSPreImage']['Owner']}`)
+                                history.push(`/data/${dataStore['DSLinker']['DSPreImage']['Owner'].substr(4)}`)
                             }
                             content="View Owner DataStores"
                         />

@@ -2,7 +2,7 @@ export * from './aliceNetMenu';
 export * from './blockList'
 export * from './callToAction';
 export * from './collapsableCard';
-export * from './dataView';
+export * from './datastoreView';
 export * from './dimmerOverlay';
 export * from './errorOverlay';
 export * from './footer';

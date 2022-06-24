@@ -60,6 +60,13 @@ export function TxViewValueStore({ valueStore }) {
                             basic
                             content="Copy Address"
                         />
+                        <Button
+                            className="text-xs px-3 py-1 ml-2 rounded-sm"
+                            onClick={() =>
+                                history.push(`/data/${valueStore['VSPreImage']['Owner'].substr(4)}`)
+                            }
+                            content="View Owner DataStores"
+                        />
                     </div>
                 </Grid.Column>
 
