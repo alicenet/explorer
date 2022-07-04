@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { Button, Checkbox, Container, Dropdown } from "semantic-ui-react";
+import { Button, Container, Dropdown } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
-import styles from "./AliceNetSearch.module.scss";
 import { classNames, curveTypes, isBN, searchTypes } from "utils";
 import { content, HelpTooltip } from "components";
 
@@ -62,12 +61,17 @@ export function AliceNetSearch({ currentSearch = null }) {
 
     return (
         <Container className="flex flex-col text-left bg-darkgray rounded-md px-8 py-10 gap-3">
+
             <div>
                 <h3 className="m-0 text-2xl font-light">Explore the AliceNet blockchain</h3>
             </div>
+
             <div className="flex flex-col justify-between gap-2">
+
                 <div className="flex flex-row justify-between gap-5">
+
                     <div className="flex flex-row w-full">
+
                         <Dropdown
                             className={classNames(
                                 "flex justify-center items-center text-black bg-cleargray rounded-md w-1/6 rounded-r-none font-bold",
@@ -75,9 +79,7 @@ export function AliceNetSearch({ currentSearch = null }) {
                             )}
                             text={selectedOption.text}
                         >
-                            <Dropdown.Menu
-                                className={classNames('bg-dropgray', styles.dropdownMenu)}
-                            >
+                            <Dropdown.Menu className="bg-dropgray w-full">
                                 {options.map(option =>
                                     <Dropdown.Item
                                         key={`header-option-${option.value}`}
@@ -90,6 +92,7 @@ export function AliceNetSearch({ currentSearch = null }) {
                                 )}
                             </Dropdown.Menu>
                         </Dropdown>
+
                         <div className="flex flex-row w-full gap-3">
                             <input
                                 className={classNames(
@@ -114,13 +117,17 @@ export function AliceNetSearch({ currentSearch = null }) {
                                 </div>
                             }
                         </div>
+
                     </div>
+
                     <Button
                         className="text-black bg-neongreen m-0 w-40 text-xl py-2"
                         onClick={() => handleSearch(term)}
                         content="Search"
                     />
+
                 </div>
+
                 <div className="flex">
                     {curveType && term && selectedOption.value === searchTypes.DATASTORES && (
                         <div className="flex items-center gap-3 w-1/2">
@@ -132,7 +139,9 @@ export function AliceNetSearch({ currentSearch = null }) {
                         </div>
                     )}
                 </div>
+
             </div>
+
         </Container>
     );
 }
