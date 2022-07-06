@@ -5,6 +5,7 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
     return (
 
         <Table
+            unstackable
             padded
             singleLine
             key={key}

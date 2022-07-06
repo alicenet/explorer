@@ -17,7 +17,7 @@ export function Home() {
                         buttonLabel="Learn More"
                         onClick={() => window.open(WHITE_PAPER_URL, '_blank').focus()}
                     />
-                    <Grid columns={2} className="m-0">
+                    <Grid stackable columns={2} className="m-0">
                         <Grid.Row className="py-0">
                             <Grid.Column className="pl-0">
                                 <LatestBlocks />
