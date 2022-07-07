@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import { AliceNetSearch, CallToAction, LatestBlocks, LatestTransactions, Page } from "components";
 
 const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
@@ -9,9 +9,9 @@ export function Home() {
     return (
 
         <Page>
-            <Container fluid className="flex flex-col gap-10">
+            <div className="flex flex-col gap-10">
                 <AliceNetSearch />
-                <Container fluid className="flex flex-col gap-10">
+                <div className="flex flex-col gap-10">
                     <CallToAction
                         label="Real Blockchain Business Solutions"
                         buttonLabel="Learn More"
@@ -27,8 +27,8 @@ export function Home() {
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
-                </Container>
-            </Container>
+                </div>
+            </div>
         </Page>
 
     );
