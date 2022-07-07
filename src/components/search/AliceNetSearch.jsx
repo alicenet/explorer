@@ -72,10 +72,7 @@ export function AliceNetSearch({ currentSearch = null }) {
                     <div className="flex flex-row w-full">
 
                         <Dropdown
-                            className={classNames(
-                                "flex justify-center items-center text-black bg-cleargray rounded-md w-1/6 rounded-r-none font-bold",
-                                { "w-1/6": selectedOption.value !== searchTypes.DATASTORES }
-                            )}
+                            className="flex justify-center items-center text-black bg-cleargray rounded-md rounded-r-none font-bold flex-shrink-0 min-w-9"
                             text={selectedOption.text}
                         >
                             <Dropdown.Menu className="bg-dropgray w-full">

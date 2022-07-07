@@ -17,6 +17,9 @@ module.exports = {
                 buttonblack: '#494949',
                 headerblack: '#171717'
             },
+            minWidth: {
+                '9': '9em'
+            }
         },
     },
     variants: {
