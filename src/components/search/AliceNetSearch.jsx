@@ -15,7 +15,6 @@ export function AliceNetSearch({ currentSearch = null }) {
     const history = useHistory();
 
     const [offset, setOffset] = useState("");
-    const [showMore, setShowMore] = useState(false);
 
     const [term, setTerm] = useState("");
     const [selectedOption, setSelectedOption] = useState(options[0]);
@@ -60,7 +59,7 @@ export function AliceNetSearch({ currentSearch = null }) {
     };
 
     return (
-        <Container className="flex flex-col text-left bg-darkgray rounded-md px-8 py-10 gap-3">
+        <Container fluid className="flex flex-col text-left bg-darkgray rounded-md px-8 py-10 gap-3">
 
             <div>
                 <h3 className="m-0 text-2xl font-light">Explore the AliceNet blockchain</h3>
@@ -73,10 +72,7 @@ export function AliceNetSearch({ currentSearch = null }) {
                     <div className="flex flex-row w-full">
 
                         <Dropdown
-                            className={classNames(
-                                "flex justify-center items-center text-black bg-cleargray rounded-md w-1/6 rounded-r-none font-bold",
-                                { "w-1/6": selectedOption.value !== searchTypes.DATASTORES }
-                            )}
+                            className="flex justify-center items-center text-black bg-cleargray rounded-md rounded-r-none font-bold flex-shrink-0 min-w-9"
                             text={selectedOption.text}
                         >
                             <Dropdown.Menu className="bg-dropgray w-full">

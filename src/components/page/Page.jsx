@@ -5,9 +5,9 @@ import { AliceNetMenu, Footer } from "components";
 export const Page = ({ children }) => {
 
     return (
-        <Container className="flex flex-col justify-between min-h-screen">
+        <div className="flex flex-col justify-between min-h-screen max-w-screen-lg mx-auto">
 
-            <Container>
+            <Container fluid>
 
                 <AliceNetMenu />
 
@@ -21,6 +21,6 @@ export const Page = ({ children }) => {
 
             <Footer />
 
-        </Container>
+        </div>
     );
 };
