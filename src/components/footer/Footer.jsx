@@ -1,7 +1,7 @@
-import { ReactComponent as DiscordIcon } from "assets/discord-icon.svg";
-import { ReactComponent as TwitterIcon } from "assets/twitter-icon.svg";
 import React from "react";
 import { Container } from "semantic-ui-react";
+import { ReactComponent as DiscordIcon } from "assets/discord-icon.svg";
+import { ReactComponent as TwitterIcon } from "assets/twitter-icon.svg";
 
 const ALICENET_URL = process.env.REACT_APP_ALICENET_HOME;
 
