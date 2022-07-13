@@ -1,4 +1,3 @@
-export * from './aliceNetMenu';
 export * from './blockList'
 export * from './callToAction';
 export * from './collapsableCard';
@@ -6,6 +5,7 @@ export * from './datastoreView';
 export * from './dimmerOverlay';
 export * from './errorOverlay';
 export * from './footer';
+export * from './header';
 export * from './helpTooltip';
 export * from './invalidInput';
 export * from './latestBlocks'
