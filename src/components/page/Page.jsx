@@ -1,5 +1,5 @@
 import React from "react";
-import { AliceNetMenu, Footer } from "components";
+import { Header, Footer } from "components";
 
 export const Page = ({ children }) => {
 
@@ -8,7 +8,7 @@ export const Page = ({ children }) => {
 
             <div>
 
-                <AliceNetMenu />
+                <Header />
 
                 <div>
 

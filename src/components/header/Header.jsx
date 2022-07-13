@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, Grid } from "semantic-ui-react";
-import { AliceNetMenuMobile } from "./AliceNetMenuMobile";
-import { AliceNetMenuDesktop } from "./AliceNetMenuDesktop";
+import { HeaderMobile } from "./HeaderMobile";
+import { HeaderDesktop } from "./HeaderDesktop";
 
-export function AliceNetMenu() {
+export function Header() {
 
     return (
 
@@ -15,7 +15,7 @@ export function AliceNetMenu() {
 
                     <Grid.Column>
 
-                        <AliceNetMenuMobile />
+                        <HeaderMobile />
 
                     </Grid.Column>
 
@@ -25,7 +25,7 @@ export function AliceNetMenu() {
 
                     <Grid.Column>
 
-                        <AliceNetMenuDesktop />
+                        <HeaderDesktop />
 
                     </Grid.Column>
 

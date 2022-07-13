@@ -8,7 +8,7 @@ const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
 
 const MenuDivider = () => <div className="border-r border-gray-700 my-3" />;
 
-export function AliceNetMenuDesktop() {
+export function HeaderDesktop() {
 
     return (
 
