@@ -5,11 +5,16 @@ import Logo from "assets/MadNetwork Logo Horizontal GRAYSCALE.png";
 
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
+const MADHIVE_URL = process.env.REACT_APP_MADHIVE_URL;
+
+const WALLET_LINUX_URL = process.env.REACT_APP_WALLET_LINUX_URL;
+const WALLET_MAC_URL = process.env.REACT_APP_WALLET_MAC_URL;
+const WALLET_WINDOWS_URL = process.env.REACT_APP_WALLET_WINDOWS_URL;
 
 export function HeaderMobile() {
 
     const [open, setOpen] = useState(false);
-    const [activeTab, setActiveTab] = useState("monitor");
+    const [walletMenuOpen, setWalletMenuOpen] = useState(false);
 
     return (
 
@@ -55,17 +60,43 @@ export function HeaderMobile() {
 
                             <Menu.Item
                                 className="text-white text-2xl"
-                                as={Link}
-                                to="/about"
+                                onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
                                 name="About"
                             />
 
                             <Menu.Item
-                                className="text-white text-2xl"
-                                as={Link}
-                                to="/"
+                                className="text-white text-2xl flex flex-row-reverse justify-end gap-2"
+                                position="left"
+                                icon={<Icon className="m-0" name={`${walletMenuOpen ? "angle up" : "angle down"}`} />}
                                 name="Wallet Download"
+                                onClick={() => setWalletMenuOpen(prevState => !prevState)}
                             />
+
+                            <Menu.Item className={`px-5 ${walletMenuOpen ? "" : "invisible hidden"}`}>
+
+                                <Menu text vertical>
+
+                                    <Menu.Item
+                                        className="text-white text-xl"
+                                        onClick={() => window.open(WALLET_LINUX_URL, '_blank').focus()}
+                                        name="Linux"
+                                    />
+
+                                    <Menu.Item
+                                        className="text-white text-xl"
+                                        onClick={() => window.open(WALLET_MAC_URL, '_blank').focus()}
+                                        content="iOS"
+                                    />
+
+                                    <Menu.Item
+                                        className="text-white text-xl"
+                                        onClick={() => window.open(WALLET_WINDOWS_URL, '_blank').focus()}
+                                        name="Windows"
+                                    />
+
+                                </Menu>
+
+                            </Menu.Item>
 
                             <Menu.Item
                                 className="text-white text-2xl"
