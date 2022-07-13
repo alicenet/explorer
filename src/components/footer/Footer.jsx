@@ -3,7 +3,7 @@ import { Container } from "semantic-ui-react";
 import { ReactComponent as DiscordIcon } from "assets/discord-icon.svg";
 import { ReactComponent as TwitterIcon } from "assets/twitter-icon.svg";
 
-const ALICENET_URL = process.env.REACT_APP_ALICENET_HOME;
+const MADHIVE_URL = process.env.REACT_APP_MADHIVE_URL;
 
 const MenuDivider = () => <div className="border-r border-gray-700 my-1" />;
 
@@ -25,7 +25,7 @@ export function Footer() {
 
                 <span
                     className="cursor-pointer hover:text-neongreen"
-                    onClick={() => window.open(ALICENET_URL, '_blank').focus()}
+                    onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
                 >
                     About
                 </span>
@@ -34,7 +34,7 @@ export function Footer() {
 
                 <span
                     className="cursor-pointer hover:text-neongreen"
-                    onClick={() => window.open(ALICENET_URL, '_blank').focus()}
+                    onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
                 >
                     Legal
                 </span>
@@ -43,7 +43,7 @@ export function Footer() {
 
                 <span
                     className="cursor-pointer hover:text-neongreen"
-                    onClick={() => window.open(ALICENET_URL, '_blank').focus()}
+                    onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
                 >
                     Terms of service
                 </span>
