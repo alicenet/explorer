@@ -9,9 +9,9 @@ export function Header() {
 
         <Container fluid className="sticky top-0 bg-dark opacity-90">
 
-            <Grid>
+            <Grid className="my-0">
 
-                <Grid.Row only="mobile">
+                <Grid.Row only="mobile" className="py-0">
 
                     <Grid.Column>
 
@@ -21,7 +21,7 @@ export function Header() {
 
                 </Grid.Row>
 
-                <Grid.Row only="computer tablet">
+                <Grid.Row only="computer tablet" className="py-0">
 
                     <Grid.Column>
 
