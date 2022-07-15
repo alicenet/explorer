@@ -1,1 +1,1 @@
-export * from './AliceNetSearch';
+export * from './SearchBar';

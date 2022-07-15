@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Button, Container, Dropdown } from "semantic-ui-react";
+import React, { useEffect, useState } from "react";
+import { Button, Container, Dropdown, Icon } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { classNames, curveTypes, isBN, searchTypes } from "utils";
 import { content, HelpTooltip } from "components";
@@ -10,7 +10,7 @@ const options = [
     { text: 'DataStores', placeHolder: "Address", value: searchTypes.DATASTORES },
 ];
 
-export function AliceNetSearch({ currentSearch = null }) {
+export function SearchBar({ currentSearch = null }) {
 
     const history = useHistory();
 
@@ -62,17 +62,18 @@ export function AliceNetSearch({ currentSearch = null }) {
         <Container fluid className="flex flex-col text-left bg-darkgray rounded-md px-8 py-10 gap-3">
 
             <div>
-                <h3 className="m-0 text-2xl font-light">Explore the AliceNet blockchain</h3>
+                <h3 className="m-0 text-2xl font-light">Explore the <span className="mobile:hidden">AliceNet </span>blockchain
+                </h3>
             </div>
 
             <div className="flex flex-col justify-between gap-2">
 
-                <div className="flex flex-row justify-between gap-5">
+                <div className="flex flex-row mobile:flex-col justify-between gap-5">
 
-                    <div className="flex flex-row w-full">
+                    <div className="flex flex-row mobile:flex-col w-full mobile:gap-5">
 
                         <Dropdown
-                            className="flex justify-center items-center text-black bg-cleargray rounded-md rounded-r-none font-bold flex-shrink-0 min-w-9"
+                            className="flex justify-center items-center text-black bg-cleargray rounded-md rounded-r-none font-bold flex-shrink-0 min-w-9 mobile:py-2 mobile:rounded-md mobile:text-xl"
                             text={selectedOption.text}
                         >
                             <Dropdown.Menu className="bg-dropgray w-full">
@@ -81,7 +82,7 @@ export function AliceNetSearch({ currentSearch = null }) {
                                         key={`header-option-${option.value}`}
                                         onClick={handleChange}
                                         value={option.value}
-                                        className="text-black font-bold"
+                                        className="text-black font-bold mobile:text-xl"
                                     >
                                         {option.text}
                                     </Dropdown.Item>
@@ -89,12 +90,12 @@ export function AliceNetSearch({ currentSearch = null }) {
                             </Dropdown.Menu>
                         </Dropdown>
 
-                        <div className="flex flex-row w-full gap-3">
+                        <div className="flex flex-row mobile:flex-col w-full gap-3">
                             <input
                                 className={classNames(
-                                    "px-4 bg-dark rounded-l-none rounded-md focus:outline-none focus:border-neongreen",
+                                    "px-4 bg-dark rounded-l-none rounded-md focus:outline-none focus:border-neongreen mobile:py-3 mobile:rounded-md  mobile:text-xl",
                                     { "w-full": selectedOption.value !== searchTypes.DATASTORES },
-                                    { "w-1/2": selectedOption.value === searchTypes.DATASTORES }
+                                    { "w-1/2 mobile:w-full": selectedOption.value === searchTypes.DATASTORES }
                                 )}
                                 placeholder={` ${selectedOption.placeHolder}`}
                                 value={term}
@@ -102,9 +103,9 @@ export function AliceNetSearch({ currentSearch = null }) {
                             />
                             {
                                 selectedOption.value === searchTypes.DATASTORES &&
-                                <div className="flex items-center w-1/2 gap-2">
+                                <div className="flex items-center w-1/2 gap-2 mobile:w-full">
                                     <input
-                                        className="px-4 bg-dark rounded-md w-full h-full focus:outline-none focus:border-neongreen"
+                                        className="px-4 bg-dark rounded-md w-full h-full focus:outline-none focus:border-neongreen mobile:py-3 mobile:text-xl"
                                         placeholder=" Offset"
                                         value={offset}
                                         onChange={e => setOffset(e.target.value)}
@@ -117,7 +118,7 @@ export function AliceNetSearch({ currentSearch = null }) {
                     </div>
 
                     <Button
-                        className="text-black bg-neongreen m-0 w-40 text-xl py-2"
+                        className="text-black bg-neongreen m-0 w-40 text-xl py-2 mobile:w-full"
                         onClick={() => handleSearch(term)}
                         content="Search"
                     />
@@ -126,8 +127,8 @@ export function AliceNetSearch({ currentSearch = null }) {
 
                 <div className="flex">
                     {curveType && term && selectedOption.value === searchTypes.DATASTORES && (
-                        <div className="flex items-center gap-3 w-1/2">
-                            <div className="bg-neongreen w-2 h-2 rounded-md" />
+                        <div className="flex items-center gap-3 w-1/2 mobile:w-full">
+                            <Icon name="circle" size="mini" className="text-neongreen m-0 h-auto" />
                             <h4>This is a {curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h4>
                             <HelpTooltip
                                 content={curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}

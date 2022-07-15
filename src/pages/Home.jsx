@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
-import { AliceNetSearch, CallToAction, LatestBlocks, LatestTransactions, Page } from "components";
+import { SearchBar, CallToAction, LatestBlocks, LatestTransactions, Page } from "components";
 
 const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
 
@@ -10,7 +10,7 @@ export function Home() {
 
         <Page>
             <div className="flex flex-col gap-10">
-                <AliceNetSearch />
+                <SearchBar />
                 <div className="flex flex-col gap-10">
                     <CallToAction
                         label="Real Blockchain Business Solutions"
