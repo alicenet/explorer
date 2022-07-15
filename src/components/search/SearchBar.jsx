@@ -59,7 +59,7 @@ export function SearchBar({ currentSearch = null }) {
     };
 
     return (
-        <Container fluid className="flex flex-col text-left bg-darkgray rounded-md px-8 py-10 gap-3">
+        <div className="flex flex-col text-left bg-darkgray rounded-md px-8 py-10 gap-3">
 
             <div>
                 <h3 className="m-0 text-2xl font-light">Explore the <span className="mobile:hidden">AliceNet </span>blockchain
@@ -139,6 +139,6 @@ export function SearchBar({ currentSearch = null }) {
 
             </div>
 
-        </Container>
+        </div>
     );
 }
