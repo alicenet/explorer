@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Button, Container, Dropdown } from "semantic-ui-react";
+import React, { useEffect, useState } from "react";
+import { Button, Container, Dropdown, Icon } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { classNames, curveTypes, isBN, searchTypes } from "utils";
 import { content, HelpTooltip } from "components";
@@ -10,7 +10,7 @@ const options = [
     { text: 'DataStores', placeHolder: "Address", value: searchTypes.DATASTORES },
 ];
 
-export function AliceNetSearch({ currentSearch = null }) {
+export function SearchBar({ currentSearch = null }) {
 
     const history = useHistory();
 
@@ -127,8 +127,8 @@ export function AliceNetSearch({ currentSearch = null }) {
 
                 <div className="flex">
                     {curveType && term && selectedOption.value === searchTypes.DATASTORES && (
-                        <div className="flex items-center gap-3 w-1/2">
-                            <div className="bg-neongreen w-2 h-2 rounded-md" />
+                        <div className="flex items-center gap-3 w-1/2 mobile:w-full">
+                            <Icon name="circle" size="mini" className="text-neongreen m-0 h-auto" />
                             <h4>This is a {curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h4>
                             <HelpTooltip
                                 content={curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}

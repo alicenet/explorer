@@ -11,7 +11,12 @@ const headerCells = [
         id: "value",
         label: "Value",
         displayCallback: ({ height }) =>
-            <span className="text-neongreen cursor-pointer">{height}</span>,
+            <span
+                style={{ textUnderlineOffset: "0.3em" }}
+                className="text-neongreen cursor-pointer hover:underline"
+            >
+                {height}
+            </span>
     },
     {
         id: "txIndex",
