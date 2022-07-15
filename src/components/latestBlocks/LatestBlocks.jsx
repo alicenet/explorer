@@ -11,16 +11,14 @@ const headerCells = [
     {
         id: "height",
         label: "Height",
-        displayCallback: ({ height, history }) => {
-            return (
-                <span
-                    className="text-neongreen cursor-pointer"
-                    onClick={() => history.push(`/block/${height}`)}
-                >
-                    {height}
-                </span>
-            );
-        },
+        displayCallback: ({ height, history }) =>
+            <span
+                style={{ textUnderlineOffset: "0.3em" }}
+                className="text-neongreen cursor-pointer hover:underline"
+                onClick={() => history.push(`/block/${height}`)}
+            >
+                {height}
+            </span>
     },
     {
         id: "txCount",

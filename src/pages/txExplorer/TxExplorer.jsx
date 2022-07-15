@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { Button, Container, Dimmer, Grid, Icon, Loader, Popup } from "semantic-ui-react";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { AliceNetSearch, CollapsableCard, InvalidInput, Page, SearchNotFound, TxViewVin, TxViewVout } from "components";
+import { SearchBar, CollapsableCard, InvalidInput, Page, SearchNotFound, TxViewVin, TxViewVout } from "components";
 import { copyText, isValidHash, searchTypes } from "utils";
 
 import { ReactComponent as TreeIcon } from "assets/tree-icon.svg";
@@ -49,7 +49,7 @@ export function TxExplorer() {
 
                 <Container>
 
-                    <AliceNetSearch currentSearch={{ type: searchTypes.TRANSACTIONS }} />
+                    <SearchBar currentSearch={{ type: searchTypes.TRANSACTIONS }} />
 
                 </Container>
 

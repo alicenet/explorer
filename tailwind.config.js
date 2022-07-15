@@ -21,6 +21,11 @@ module.exports = {
                 '9': '9em'
             }
         },
+        screens: {
+            'mobile': { 'max': '767px' },
+            'tablet': { 'min': '768px', 'max': '992px' },
+            'computer': { 'min': '993px' },
+        },
     },
     variants: {
         extend: {},

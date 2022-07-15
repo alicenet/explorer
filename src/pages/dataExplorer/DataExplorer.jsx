@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Dimmer, Grid, Loader } from "semantic-ui-react";
 import { useParams } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { AliceNetSearch, CollapsableCard, DatastoreView, InvalidInput, Page, SearchNotFound } from "components";
+import { SearchBar, CollapsableCard, DatastoreView, InvalidInput, Page, SearchNotFound } from "components";
 import { ReactComponent as FileIcon } from "assets/file-icon.svg";
 import { searchTypes } from "utils";
 
@@ -47,7 +47,7 @@ export function DataExplorer() {
 
                 <Container>
 
-                    <AliceNetSearch currentSearch={{ type: searchTypes.DATASTORES }} />
+                    <SearchBar currentSearch={{ type: searchTypes.DATASTORES }} />
 
                 </Container>
 

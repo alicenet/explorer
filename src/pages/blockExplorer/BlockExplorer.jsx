@@ -3,7 +3,7 @@ import { Container, Dimmer, Grid, Loader } from "semantic-ui-react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { AliceNetSearch, BlockList, CollapsableCard, InvalidInput, Page, SearchNotFound, TxHashList } from "components";
+import { SearchBar, BlockList, CollapsableCard, InvalidInput, Page, SearchNotFound, TxHashList } from "components";
 import { ReactComponent as CubeIcon } from "assets/cube-icon.svg";
 import { ReactComponent as TxHashIcon } from "assets/tx-hash-icon.svg";
 import { isValidBlockHeight, searchTypes } from "utils";
@@ -59,7 +59,7 @@ export function BlockExplorer() {
 
                 <Container>
 
-                    <AliceNetSearch currentSearch={{ type: searchTypes.BLOCKS }} />
+                    <SearchBar currentSearch={{ type: searchTypes.BLOCKS }} />
 
                 </Container>
 
