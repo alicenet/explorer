@@ -1,10 +1,8 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
-import { SearchBar, CallToAction, LatestBlocks, LatestTransactions, Page } from "components";
+import { CallToAction, LatestBlocks, LatestTransactions, Page, SearchBar } from "components";
 
-const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
-
-export function Home() {
+export const Home = () => {
 
     return (
 
@@ -12,11 +10,7 @@ export function Home() {
             <div className="flex flex-col gap-10">
                 <SearchBar />
                 <div className="flex flex-col gap-10">
-                    <CallToAction
-                        label="Real Blockchain Business Solutions"
-                        buttonLabel="Learn More"
-                        onClick={() => window.open(WHITE_PAPER_URL, '_blank').focus()}
-                    />
+                    <CallToAction />
                     <Grid stackable columns={2} className="m-0">
                         <Grid.Row className="py-0">
                             <Grid.Column className="pl-0">
