@@ -11,17 +11,17 @@ export function Footer() {
 
     return (
 
-        <Container fluid className="flex justify-between py-10">
+        <Container fluid className="flex justify-between py-10 mobile:flex-col mobile:text-2xl mobile:gap-5">
 
             <div className="flex gap-5">
 
                 <span>Follow us on:</span>
-                <TwitterIcon className={`w-5 cursor-pointer hover:text-neongreen fill-current text-white`} />
-                <DiscordIcon className={`w-5 cursor-pointer hover:text-neongreen fill-current text-white`} />
+                <TwitterIcon className="w-5 cursor-pointer hover:text-neongreen fill-current text-white mobile:w-8" />
+                <DiscordIcon className="w-5 cursor-pointer hover:text-neongreen fill-current text-white mobile:w-8" />
 
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 mobile:flex-col mobile:text-left mobile:gap-1">
 
                 <span
                     className="cursor-pointer hover:text-neongreen"
@@ -50,7 +50,7 @@ export function Footer() {
 
                 <MenuDivider />
 
-                <span className="text-lightgray">AliceNet Inc © {new Date().getFullYear()}</span>
+                <span className="text-lightgray mobile:text-xl">AliceNet Inc © {new Date().getFullYear()}</span>
 
             </div>
 

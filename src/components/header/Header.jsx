@@ -7,7 +7,7 @@ export function Header() {
 
     return (
 
-        <Container fluid className="sticky top-0 bg-dark opacity-90" style={{ margin: "0px !important" }}>
+        <Container fluid className="sticky top-0 bg-dark opacity-90 mobile:px-5">
 
             <Grid className="my-0">
 
