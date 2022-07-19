@@ -19,10 +19,7 @@ export function HeaderMobile() {
     const [showWalletOptions, setShowWalletOptions] = useState(false);
 
     useEffect(() => {
-        const duration = walletMenuOpen ? "100" : "0";
-        setTimeout(() => {
-            setShowWalletOptions(walletMenuOpen);
-        }, duration);
+        setShowWalletOptions(walletMenuOpen);
     }, [walletMenuOpen]);
 
     return (
@@ -61,7 +58,6 @@ export function HeaderMobile() {
                         <Menu text vertical className="flex items gap-5">
 
                             <Menu.Item
-                                style={{ textDecoration: "underline #00FFD1", textUnderlineOffset: "0.3em" }}
                                 className="text-white text-2xl"
                                 as={Link}
                                 to="/"
@@ -86,7 +82,7 @@ export function HeaderMobile() {
                                 walletMenuOpen &&
                                 <Menu.Item className={
                                     classNames(
-                                        "px-5 transition-opacity duration-100 delay-100 py-0 my-0",
+                                        "px-5 transition-opacity py-0 my-0",
                                         { "opacity-100": showWalletOptions },
                                         { "opacity-0": !showWalletOptions },
                                     )
