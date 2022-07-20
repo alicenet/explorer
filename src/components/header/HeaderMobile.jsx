@@ -40,8 +40,8 @@ export function HeaderMobile() {
 
                 <Modal
                     closeIcon
-                    size="fullscreen bg-dark"
-                    className="h-19/20"
+                    size="fullscreen"
+                    className="bg-dark h-19/20"
                     onClose={() => setOpen(false)}
                     onOpen={() => setOpen(true)}
                     open={open}

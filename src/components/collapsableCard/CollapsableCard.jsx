@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Accordion, Container, Icon } from "semantic-ui-react";
+import { Accordion, Icon } from "semantic-ui-react";
 import { classNames as csx } from "utils";
 
 export function CollapsableCard({
@@ -15,7 +15,7 @@ export function CollapsableCard({
 
     return (
 
-        <Container
+        <div
             className={
                 csx(
                     "border-0 rounded-md bg-tableblack text-white",
@@ -53,7 +53,7 @@ export function CollapsableCard({
 
             </Accordion>
 
-        </Container>
+        </div>
 
     );
 }
