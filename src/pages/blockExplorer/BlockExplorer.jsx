@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Container, Dimmer, Grid, Loader } from "semantic-ui-react";
+import { Dimmer, Grid, Loader } from "semantic-ui-react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { SearchBar, BlockList, CollapsableCard, InvalidInput, Page, SearchNotFound, TxHashList } from "components";
+import { BlockList, CollapsableCard, InvalidInput, Page, SearchBar, SearchNotFound, TxHashList } from "components";
 import { ReactComponent as CubeIcon } from "assets/cube-icon.svg";
 import { ReactComponent as TxHashIcon } from "assets/tx-hash-icon.svg";
 import { isValidBlockHeight, searchTypes } from "utils";
@@ -55,13 +55,9 @@ export function BlockExplorer() {
 
         <Page>
 
-            <Container className="flex flex-col gap-10">
+            <div className="flex flex-col gap-10">
 
-                <Container>
-
-                    <SearchBar currentSearch={{ type: searchTypes.BLOCKS }} />
-
-                </Container>
+                <SearchBar currentSearch={{ type: searchTypes.BLOCKS }} />
 
                 {
                     !blockInfo &&
@@ -107,7 +103,7 @@ export function BlockExplorer() {
                     </CollapsableCard>
                 }
 
-            </Container>
+            </div>
 
         </Page>
 
