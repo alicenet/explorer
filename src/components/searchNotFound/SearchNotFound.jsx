@@ -16,7 +16,7 @@ export function SearchNotFound({ term }) {
                     <Icon className="m-0 h-auto" name="warning circle" />
                     <h2>OOPS!</h2>
                 </Container>
-                <h3 className="text-2xl">Invalid Input</h3>
+                <h3 className="text-2xl">No Data Found</h3>
             </Container>
 
             <Container className="flex flex-col">
@@ -24,17 +24,14 @@ export function SearchNotFound({ term }) {
                     The search data you entered was: <span className="font-bold">{term}</span>
                 </span>
                 <span>
-                    Sorry! This is an invalid search entry.
+                    Sorry! There is no data associated with this search!
                 </span>
             </Container>
 
 
             <Container className="flex flex-col">
                 <span>
-                    Instead please try:
-                </span>
-                <span className="text-neongreen">
-                    Block | Transaction | DataStores
+                    Please double check your entry or try different search parameters
                 </span>
             </Container>
 

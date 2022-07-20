@@ -13,10 +13,14 @@ export function DataExplorer() {
 
     const { address, offset } = useParams();
 
+    console.log(address, offset)
+
     useEffect(() => {
         const getDataStores = async () => {
             if (address) {
+                console.log(address)
                 const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address);
+                console.log(dataStores)
                 setDatastoreInfo(dataStores);
             } else {
                 setDatastoreInfo({ error: "Invalid address" });
@@ -26,6 +30,7 @@ export function DataExplorer() {
         getDataStores();
     }, [address, offset]);
 
+    console.log("info", datastoreInfo)
 
     if (isLoading) {
         return (
@@ -56,10 +61,10 @@ export function DataExplorer() {
                     <SearchNotFound term={address} />
                 }
 
-                {
+                {/* {
                     (!datastoreInfo || datastoreInfo.error) &&
                     <InvalidInput term={address} />
-                }
+                } */}
 
                 {
                     datastoreInfo && !datastoreInfo.error && datastoreInfo.length > 0 &&
