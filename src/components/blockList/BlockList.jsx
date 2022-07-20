@@ -94,7 +94,7 @@ export function BlockList({ blockInfo }) {
                             trigger={
                                 <Icon
                                     name="copy outline"
-                                    className="cursor-pointer hover:opacity-80"
+                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
                                     onClick={() => copyText(prevBlock)}
                                 />
                             }
@@ -120,7 +120,7 @@ export function BlockList({ blockInfo }) {
                             trigger={
                                 <Icon
                                     name="copy outline"
-                                    className="cursor-pointer hover:opacity-80"
+                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
                                     onClick={() => copyText(txRoot)}
                                 />
                             }
@@ -146,7 +146,7 @@ export function BlockList({ blockInfo }) {
                             trigger={
                                 <Icon
                                     name="copy outline"
-                                    className="cursor-pointer hover:opacity-80"
+                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
                                     onClick={() => copyText(stateRoot)}
                                 />
                             }
@@ -172,7 +172,7 @@ export function BlockList({ blockInfo }) {
                             trigger={
                                 <Icon
                                     name="copy outline"
-                                    className="cursor-pointer hover:opacity-80"
+                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
                                     onClick={() => copyText(headerRoot)}
                                 />
                             }
@@ -198,7 +198,7 @@ export function BlockList({ blockInfo }) {
                             trigger={
                                 <Icon
                                     name="copy outline"
-                                    className="cursor-pointer hover:opacity-80"
+                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
                                     onClick={() => copyText(sigGroup)}
                                 />
                             }
