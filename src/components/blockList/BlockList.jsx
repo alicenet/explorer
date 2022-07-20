@@ -24,11 +24,11 @@ export function BlockList({ blockInfo }) {
 
     return (
 
-        <Grid padded="vertically" className="mx-0 break-words" columns={"equal"}>
+        <Grid padded="vertically" className="mx-0 break-words" columns={"equal"} stackable>
 
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" mobile={1} computer={3}>
                     <HelpTooltip content={content.height} />
                     <p>Block Height</p>
                 </Grid.Column>
@@ -67,9 +67,9 @@ export function BlockList({ blockInfo }) {
 
             </Grid.Row>
 
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" mobile={1} computer={3}>
                     <HelpTooltip content={content.txCount} />
                     <p>Transaction Count</p>
                 </Grid.Column>
@@ -80,9 +80,9 @@ export function BlockList({ blockInfo }) {
 
             </Grid.Row>
 
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" mobile={1} computer={3}>
                     <HelpTooltip content={content.previousBlock} />
                     <p>Previous Block</p>
                 </Grid.Column>
@@ -106,9 +106,9 @@ export function BlockList({ blockInfo }) {
 
             </Grid.Row>
 
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" mobile={1} computer={3}>
                     <HelpTooltip content={content.txRoot} />
                     <p>Transaction Root</p>
                 </Grid.Column>
@@ -132,9 +132,9 @@ export function BlockList({ blockInfo }) {
 
             </Grid.Row>
 
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" mobile={1} computer={3}>
                     <HelpTooltip content={content.stateRoot} />
                     <p>State Root</p>
                 </Grid.Column>
@@ -158,9 +158,9 @@ export function BlockList({ blockInfo }) {
 
             </Grid.Row>
 
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" mobile={1} computer={3}>
                     <HelpTooltip content={content.headerRoot} />
                     <p>Header Root</p>
                 </Grid.Column>
@@ -184,9 +184,9 @@ export function BlockList({ blockInfo }) {
 
             </Grid.Row>
 
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack rounded-b-md" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack rounded-b-md mobile:p-2" columns={2}>
 
-                <Grid.Column className="flex items-center gap-5 p-0" width={3}>
+                <Grid.Column className="flex items-center gap-5 p-0" mobile={1} computer={3}>
                     <HelpTooltip content={content.groupSignature} />
                     <p>Group Signature</p>
                 </Grid.Column>

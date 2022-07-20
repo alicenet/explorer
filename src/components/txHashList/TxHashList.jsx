@@ -7,7 +7,7 @@ export function TxHashList({ txHshLst }) {
 
     return (
 
-        <Grid padded="vertically" className="mx-0" columns={"equal"}>
+        <Grid padded="vertically" className="mx-0 break-words" columns={"equal"} stackable>
 
             {txHshLst && txHshLst.map((hash, index) =>
 
