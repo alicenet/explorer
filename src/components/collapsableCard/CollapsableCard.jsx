@@ -29,7 +29,7 @@ export function CollapsableCard({
 
                 <Accordion.Title
                     active={isBlockOpen}
-                    className={classNames}
+                    className={csx("p-0", classNames)}
                     onClick={() => toggleBlock(isOpen => !isOpen)}
                 >
                     <div className="flex text-white cursor-pointer gap-3 p-6 mobile:justify-between">
