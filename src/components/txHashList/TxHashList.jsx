@@ -7,7 +7,7 @@ export function TxHashList({ txHshLst }) {
 
     return (
 
-        <Grid padded="vertically" className="mx-0 break-words" columns={"equal"}>
+        <Grid padded="vertically" className="mx-0" columns={"equal"}>
 
             {txHshLst && txHshLst.map((hash, index) =>
 
@@ -26,7 +26,7 @@ export function TxHashList({ txHshLst }) {
 
                     <Grid.Column className="p-0">
                         <div className="flex items-start gap-5 cursor-pointer hover:opacity-80">
-                            <Link className="text-neongreen hover:text-neongreen hover:opacity-80" to={`/tx/${hash}`}>
+                            <Link className="text-neongreen break-all hover:text-neongreen hover:opacity-80" to={`/tx/${hash}`}>
                                 {`0x${hash}`}
                             </Link>
                             <Popup

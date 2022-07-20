@@ -35,7 +35,7 @@ export function BlockList({ blockInfo }) {
 
                 <Grid.Column className="flex items-center gap-5 p-0">
                     {height}
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 mobile:hidden">
                         {height > 1 &&
                         <Button
                             icon
@@ -89,7 +89,7 @@ export function BlockList({ blockInfo }) {
 
                 <Grid.Column className="p-0">
                     <div className="flex items-start gap-3">
-                        <p>{`0x${prevBlock}`}</p>
+                        <p className="break-all">{`0x${prevBlock}`}</p>
                         <Popup
                             trigger={
                                 <Icon
@@ -115,7 +115,7 @@ export function BlockList({ blockInfo }) {
 
                 <Grid.Column className="p-0">
                     <div className="flex items-start gap-3">
-                        <p>{`0x${txRoot}`}</p>
+                        <p className="break-all">{`0x${txRoot}`}</p>
                         <Popup
                             trigger={
                                 <Icon
@@ -141,7 +141,7 @@ export function BlockList({ blockInfo }) {
 
                 <Grid.Column className="p-0">
                     <div className="flex items-start gap-3">
-                        <p>{`0x${stateRoot}`}</p>
+                        <p className="break-all">{`0x${stateRoot}`}</p>
                         <Popup
                             trigger={
                                 <Icon
@@ -167,7 +167,7 @@ export function BlockList({ blockInfo }) {
 
                 <Grid.Column className="p-0">
                     <div className="flex items-start gap-3">
-                        <p>{`0x${headerRoot}`}</p>
+                        <p className="break-all">{`0x${headerRoot}`}</p>
                         <Popup
                             trigger={
                                 <Icon
@@ -191,7 +191,7 @@ export function BlockList({ blockInfo }) {
                     <p>Group Signature</p>
                 </Grid.Column>
 
-                <Grid.Column className="p-0 pr-20">
+                <Grid.Column className="p-0 pr-20 mobile:pr-0">
                     <div className="flex items-start gap-3">
                         <p className="break-all">{`0x${sigGroup}`}</p>
                         <Popup
