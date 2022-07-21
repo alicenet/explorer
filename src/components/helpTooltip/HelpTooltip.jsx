@@ -2,12 +2,12 @@ import React from "react";
 import { Icon, Popup } from "semantic-ui-react";
 
 export const content = {
-    bn: "Barreto-Naehrig curve type account address",
+    bn: "will be interpretted as a Barreto-Naehrig curve address",
     changeAddress: "Address that remaining value goes to",
     consumedTx: "Transaction hash of the transaction being consumed",
     consumedTxIndex: "The index of the transaction output being consumed",
     dataStore: "Stores data at a specified index",
-    deposit: "The storage rent assigned to this data",
+    deposit: "The storage cost assigned to this data",
     duration: "How many epochs the DataStore should persist",
     epoch: "The Epoch in which the data was written",
     expires: "The Epoch in which the data expires",
@@ -20,7 +20,7 @@ export const content = {
     previousBlock: "The hash of the previous block's BClaims",
     rawData: "The hex representation of the stored data",
     receiver: "Account that will receive the value",
-    secp: "Standards for Efficient Cryptography curve",
+    secp: "will be interpretted as a SECP256k1 curve address",
     sender: "Account that is sending value",
     signature: "The signature of the object",
     stateRoot: "The root hash of the state tree",

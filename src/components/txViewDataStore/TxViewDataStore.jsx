@@ -168,7 +168,7 @@ export function TxViewDataStore({ dataStore }) {
 
                 <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                     <HelpTooltip content={content.deposit} />
-                    <p>Expires</p>
+                    <p>Deposit</p>
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
