@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { Button, Container, Dimmer, Grid, Icon, Loader, Popup } from "semantic-ui-react";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { SearchBar, CollapsableCard, InvalidInput, Page, SearchNotFound, TxViewVin, TxViewVout } from "components";
+import { CollapsableCard, InvalidInput, Page, SearchBar, SearchNotFound, TxViewVin, TxViewVout } from "components";
 import { copyText, isValidHash, searchTypes } from "utils";
 
 import { ReactComponent as TreeIcon } from "assets/tree-icon.svg";
@@ -45,13 +45,9 @@ export function TxExplorer() {
 
         <Page>
 
-            <Container className="flex flex-col gap-10">
+            <div className="flex flex-col gap-10">
 
-                <Container>
-
-                    <SearchBar currentSearch={{ type: searchTypes.TRANSACTIONS }} />
-
-                </Container>
+                <SearchBar currentSearch={{ type: searchTypes.TRANSACTIONS }} />
 
                 {
                     !txInfo &&
@@ -71,11 +67,11 @@ export function TxExplorer() {
                 }
                 {
                     txInfo && !txInfo.error && txInfo[0] !== undefined &&
-                    <Container className="flex flex-col gap-10">
+                    <div className="flex flex-col gap-10">
 
-                        <Container className="flex flex-col gap-3">
+                        <div className="flex flex-col gap-3">
 
-                            <Container className="flex flex-row text-left gap-3">
+                            <div className="flex flex-row text-left gap-3">
                                 <span className="font-bold">Tx Hash:</span>
                                 <div className="flex items-start gap-3">
                                     <p className="break-all">{`0x${hash}`}</p>
@@ -91,9 +87,9 @@ export function TxExplorer() {
                                         content="Copy Hash"
                                     />
                                 </div>
-                            </Container>
+                            </div>
 
-                            <Container className="flex flex-row gap-3 items-center justify-start">
+                            <div className="flex flex-row gap-3 items-center justify-start">
 
                                 <div className="flex flex-row text-left gap-3">
                                     <span className="font-bold">Height:</span>
@@ -106,9 +102,9 @@ export function TxExplorer() {
                                     content="View Block"
                                 />
 
-                            </Container>
+                            </div>
 
-                        </Container>
+                        </div>
 
                         <CollapsableCard
                             title="Vins"
@@ -126,10 +122,10 @@ export function TxExplorer() {
                             <TxViewVout txInfo={txInfo[0].Vout} />
                         </CollapsableCard>
 
-                    </Container>
+                    </div>
                 }
 
-            </Container>
+            </div>
 
         </Page>
 

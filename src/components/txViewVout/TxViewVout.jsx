@@ -1,5 +1,4 @@
 import React from "react";
-import { Container } from "semantic-ui-react";
 import { CollapsableCard, TxViewDataStore, TxViewValueStore, } from "components";
 import { ReactComponent as DataStoreIcon } from "assets/datastore-icon.svg";
 import { ReactComponent as ValueStoreIcon } from "assets/valuestore-icon.svg";
@@ -12,7 +11,7 @@ export function TxViewVout({ txInfo }) {
 
     return (
 
-        <Container className="bg-headerblack p-4 flex flex-col gap-4 rounded-b-md">
+        <div className="bg-headerblack p-4 flex flex-col gap-4 rounded-b-md">
 
             {
                 dataStores.length > 0 &&
@@ -22,7 +21,7 @@ export function TxViewVout({ txInfo }) {
                     itemsCount={dataStores.length}
                     icon={<DataStoreIcon />}
                 >
-                    <Container className="bg-tableblack p-4 pt-0 flex flex-col gap-3 rounded-b-md">
+                    <div className="bg-tableblack p-4 pt-0 flex flex-col gap-3 rounded-b-md">
 
                         {dataStores.map((dataStore, index) => (
                                 <CollapsableCard
@@ -36,7 +35,7 @@ export function TxViewVout({ txInfo }) {
                             )
                         )}
 
-                    </Container>
+                    </div>
 
                 </CollapsableCard>
             }
@@ -49,7 +48,7 @@ export function TxViewVout({ txInfo }) {
                     itemsCount={valueStores.length}
                     icon={<ValueStoreIcon />}
                 >
-                    <Container className="bg-tableblack p-4 pt-0 flex flex-col gap-3 rounded-b-md">
+                    <div className="bg-tableblack p-4 pt-0 flex flex-col gap-3 rounded-b-md">
 
                         {valueStores.map((valueStore, index) => (
                                 <CollapsableCard
@@ -63,12 +62,12 @@ export function TxViewVout({ txInfo }) {
                             )
                         )}
 
-                    </Container>
+                    </div>
 
                 </CollapsableCard>
             }
 
-        </Container>
+        </div>
     );
 
 }

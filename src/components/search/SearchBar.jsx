@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Dropdown, Icon } from "semantic-ui-react";
+import { Button, Container, Dropdown, Icon } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { classNames, curveTypes, isBN, searchTypes } from "utils";
 import { content, HelpTooltip } from "components";
@@ -129,7 +129,7 @@ export function SearchBar({ currentSearch = null }) {
                     {curveType && term && selectedOption.value === searchTypes.DATASTORES && (
                         <div className="flex items-center gap-3 w-1/2 mobile:w-full">
                             <Icon name="circle" size="mini" className="text-neongreen m-0 h-auto" />
-                            <h4>This {curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h4>
+                            <h4>This is a {curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h4>
                             <HelpTooltip
                                 content={curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}
                             />
