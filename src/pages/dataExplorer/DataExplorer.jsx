@@ -26,6 +26,7 @@ export function DataExplorer() {
         getDataStores();
     }, [address, offset]);
 
+
     if (isLoading) {
         return (
             <Page>
