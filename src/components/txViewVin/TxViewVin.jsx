@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid, Icon, Popup } from "semantic-ui-react";
+import { Grid, Icon, Popup } from "semantic-ui-react";
 import { CollapsableCard, content, HelpTooltip } from "components";
 import { copyText } from "utils";
 
@@ -7,7 +7,7 @@ export function TxViewVin({ txInfo }) {
 
     return (
 
-        <Container className="bg-headerblack p-4 flex flex-col gap-4 rounded-b-md">
+        <div className="bg-headerblack p-4 flex flex-col gap-4 rounded-b-md">
 
             {txInfo.map((tx, index) =>
 
@@ -67,7 +67,8 @@ export function TxViewVin({ txInfo }) {
 
                         </Grid.Row>
 
-                        <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack rounded-b-md" columns={2}>
+                        <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack rounded-b-md"
+                                  columns={2}>
 
                             <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                                 <HelpTooltip content={content.signature} />
@@ -98,7 +99,7 @@ export function TxViewVin({ txInfo }) {
                 </CollapsableCard>
             )}
 
-        </Container>
+        </div>
 
     );
 
