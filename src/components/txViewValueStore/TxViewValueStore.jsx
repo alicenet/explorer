@@ -47,21 +47,23 @@ export function TxViewValueStore({ valueStore }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-3">
-                        <p className="break-all">{`0x${valueStore['VSPreImage']['Owner']}`}</p>
-                        <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                    onClick={() => copyText(`0x${valueStore['VSPreImage']['Owner']}`)}
-                                />
-                            }
-                            basic
-                            content="Copy Address"
-                        />
+                    <div className="flex items-start gap-3 mobile:flex-col mobile:gap-5">
+                        <div className="flex flex-row items-start gap-3">
+                            <p className="break-all">{`0x${valueStore['VSPreImage']['Owner']}`}</p>
+                            <Popup
+                                trigger={
+                                    <Icon
+                                        name="copy outline"
+                                        className="cursor-pointer hover:opacity-80 mobile:hidden"
+                                        onClick={() => copyText(`0x${valueStore['VSPreImage']['Owner']}`)}
+                                    />
+                                }
+                                basic
+                                content="Copy Address"
+                            />
+                        </div>
                         <Button
-                            className="text-xs px-3 py-1 ml-2 rounded-sm"
+                            className="text-xs px-3 py-1 ml-2 rounded-sm mobile:w-full mobile:m-0 mobile:text-base"
                             onClick={() =>
                                 history.push(`/data/${valueStore['VSPreImage']['Owner'].substr(4)}`)
                             }

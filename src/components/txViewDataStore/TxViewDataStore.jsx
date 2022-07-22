@@ -73,21 +73,23 @@ export function TxViewDataStore({ dataStore }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-3">
-                        <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['Owner']}`}</p>
-                        <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                    onClick={() => copyText(`0x${dataStore['DSLinker']['DSPreImage']['Owner']}`)}
-                                />
-                            }
-                            basic
-                            content="Copy Address"
-                        />
+                    <div className="flex items-start gap-3 mobile:flex-col mobile:gap-5">
+                        <div className="flex flex-row items-start gap-3">
+                            <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['Owner']}`}</p>
+                            <Popup
+                                trigger={
+                                    <Icon
+                                        name="copy outline"
+                                        className="cursor-pointer hover:opacity-80 mobile:hidden"
+                                        onClick={() => copyText(`0x${dataStore['DSLinker']['DSPreImage']['Owner']}`)}
+                                    />
+                                }
+                                basic
+                                content="Copy Address"
+                            />
+                        </div>
                         <Button
-                            className="text-xs px-3 py-1 ml-2 rounded-sm"
+                            className="text-xs px-3 py-1 ml-2 rounded-sm mobile:w-full mobile:m-0 mobile:text-base"
                             onClick={() =>
                                 history.push(`/data/${dataStore['DSLinker']['DSPreImage']['Owner'].substr(4)}`)
                             }
