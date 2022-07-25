@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+
+#root {
+  text-align: center;
+  max-height: 100vh !important;
+  min-height: 100vh !important;
+  min-width: 100vw !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  box-sizing: content-box;
+  background-color: #212121;
+  color: white;
+}
+
+*:not(i) {
+  font-family: 'Ubuntu Mono', monospace !important;
+}
+
+body > iframe[style*="2147483647"]:not([id="webpack-dev-server-client-overlay"]) {
+  display: none;
+}
