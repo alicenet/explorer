@@ -69,9 +69,9 @@ export function TxExplorer() {
                     txInfo && !txInfo.error && txInfo[0] !== undefined &&
                     <div className="flex flex-col gap-10">
 
-                        <div className="flex flex-col gap-3">
+                        <div className="flex flex-col px-3 gap-3 mobile:text-xl mobile:gap-6">
 
-                            <div className="flex flex-row text-left gap-3">
+                            <div className="flex flex-row text-left gap-3 mobile:flex-col">
                                 <span className="font-bold">Tx Hash:</span>
                                 <div className="flex items-start gap-3">
                                     <p className="break-all">{`0x${hash}`}</p>
@@ -79,7 +79,7 @@ export function TxExplorer() {
                                         trigger={
                                             <Icon
                                                 name="copy outline"
-                                                className="cursor-pointer hover:opacity-80"
+                                                className="cursor-pointer hover:opacity-80 mobile:hidden"
                                                 onClick={() => copyText(hash)}
                                             />
                                         }
@@ -89,15 +89,15 @@ export function TxExplorer() {
                                 </div>
                             </div>
 
-                            <div className="flex flex-row gap-3 items-center justify-start">
+                            <div className="flex items-start gap-3 mobile:flex-col mobile:gap-6">
 
-                                <div className="flex flex-row text-left gap-3">
+                                <div className="flex flex-row text-left gap-3 mobile:flex-col">
                                     <span className="font-bold">Height:</span>
                                     <span className="">{aliceNetAdapter.transactionHeight}</span>
                                 </div>
 
                                 <Button
-                                    className="rounded-sm py-1 text-sm"
+                                    className="py-1 rounded-md mobile:w-full mobile:m-0 mobile:py-2 mobile:text-xl"
                                     onClick={() => history.push(`/block/${aliceNetAdapter.transactionHeight}`)}
                                     content="View Block"
                                 />
