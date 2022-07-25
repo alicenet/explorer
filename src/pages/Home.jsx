@@ -13,10 +13,10 @@ export const Home = () => {
                     <CallToAction />
                     <Grid stackable columns={2} className="m-0">
                         <Grid.Row className="py-0">
-                            <Grid.Column className="pl-0">
+                            <Grid.Column className="pl-0 no-padding-x">
                                 <LatestBlocks />
                             </Grid.Column>
-                            <Grid.Column className="pr-0">
+                            <Grid.Column className="pr-0 no-padding-x">
                                 <LatestTransactions />
                             </Grid.Column>
                         </Grid.Row>

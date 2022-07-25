@@ -29,22 +29,21 @@ export function CollapsableCard({
 
                 <Accordion.Title
                     active={isBlockOpen}
-                    className={
-                        csx(
-                            "flex flex-row items-center text-white cursor-pointer gap-3 p-6",
-                            classNames
-                        )
-                    }
+                    className={csx("break-all p-0", classNames)}
                     onClick={() => toggleBlock(isOpen => !isOpen)}
                 >
-                    {icon}
-                    <h3>{title}</h3>
-                    {itemsCount && (
-                        <span className="bg-black rounded-md px-2">
+                    <div className="flex text-white cursor-pointer gap-3 p-6 mobile:justify-between">
+                        <div className="flex items-center gap-3">
+                            {icon}
+                            <h3>{title}</h3>
+                            {itemsCount && (
+                                <span className="bg-black rounded-md px-2">
                             {itemsCount}
                         </span>
-                    )}
-                    <Icon className="m-0 h-auto" name={`caret ${isBlockOpen ? 'down' : 'up'}`} />
+                            )}
+                        </div>
+                        <Icon className="m-0 h-auto" name={`caret ${isBlockOpen ? 'down' : 'up'}`} />
+                    </div>
                 </Accordion.Title>
 
                 <Accordion.Content className="p-0" active={isBlockOpen}>

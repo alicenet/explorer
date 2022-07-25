@@ -1,23 +1,38 @@
 import React from "react";
-import { Button, Grid } from "semantic-ui-react";
-
-const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
+import { Grid, Header } from "semantic-ui-react";
+import { useSelector } from "react-redux";
+import { aliceNetAdapter } from "adapter/alicenetadapter";
 
 export const CallToAction = () => {
 
+    useSelector(s => s.aliceNetAdapter);
+
+    if (aliceNetAdapter.blocks.length === 0) {
+        return null;
+    }
+
     return (
 
-        <Grid centered className="gap-3 m-0 mobile:hidden">
+        <Grid centered className="gap-3 m-0">
+
             <Grid.Row className="p-0">
-                <h3 className="text-3xl">Real Blockchain Business Solutions</h3>
+
+                <Header className="text-2xl text-white">
+
+                    The Current Epoch is&nbsp;
+
+                    <span className="text-neongreen">
+                        {Math.floor(aliceNetAdapter.blocks[0].BClaims.Height / 1024)}
+                    </span>
+
+                    <Header.Subheader className="text-white text-xl">
+                        {`${1024 - Math.floor(aliceNetAdapter.blocks[0].BClaims.Height % 1024)} Blocks Remain`}
+                    </Header.Subheader>
+
+                </Header>
+
             </Grid.Row>
-            <Grid.Row className="p-0">
-                <Button
-                    className="text-black bg-neongreen m-0 w-60 text-xl py-2"
-                    onClick={() => window.open(WHITE_PAPER_URL, '_blank').focus()}
-                    content="Learn More"
-                />
-            </Grid.Row>
+
         </Grid>
 
     );
