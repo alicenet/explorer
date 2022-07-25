@@ -11,9 +11,9 @@ export function TxViewValueStore({ valueStore }) {
 
     return (
 
-        <Grid padded="vertically" className="mx-0 break-words" columns={"equal"}>
+        <Grid padded="vertically" className="mx-0 break-words" columns={"equal"} stackable>
 
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
 
                 <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                     <HelpTooltip content={content.value} />
@@ -27,7 +27,7 @@ export function TxViewValueStore({ valueStore }) {
                             trigger={
                                 <Icon
                                     name="copy outline"
-                                    className="cursor-pointer hover:opacity-80"
+                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
                                     onClick={() => copyText(valueStore['VSPreImage']['Value'])}
                                 />
                             }
@@ -39,7 +39,7 @@ export function TxViewValueStore({ valueStore }) {
 
             </Grid.Row>
 
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
 
                 <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                     <HelpTooltip content={content.owner} />
@@ -47,21 +47,23 @@ export function TxViewValueStore({ valueStore }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-3">
-                        <p>{`0x${valueStore['VSPreImage']['Owner']}`}</p>
-                        <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80"
-                                    onClick={() => copyText(`0x${valueStore['VSPreImage']['Owner']}`)}
-                                />
-                            }
-                            basic
-                            content="Copy Address"
-                        />
+                    <div className="flex items-start gap-3 mobile:flex-col mobile:gap-5">
+                        <div className="flex flex-row items-start gap-3">
+                            <p className="break-all">{`0x${valueStore['VSPreImage']['Owner']}`}</p>
+                            <Popup
+                                trigger={
+                                    <Icon
+                                        name="copy outline"
+                                        className="cursor-pointer hover:opacity-80 mobile:hidden"
+                                        onClick={() => copyText(`0x${valueStore['VSPreImage']['Owner']}`)}
+                                    />
+                                }
+                                basic
+                                content="Copy Address"
+                            />
+                        </div>
                         <Button
-                            className="text-xs px-3 py-1 ml-2 rounded-sm"
+                            className="text-xs px-3 py-1 ml-2 rounded-sm mobile:w-full mobile:m-0 mobile:text-base"
                             onClick={() =>
                                 history.push(`/data/${valueStore['VSPreImage']['Owner'].substr(4)}`)
                             }
@@ -72,7 +74,7 @@ export function TxViewValueStore({ valueStore }) {
 
             </Grid.Row>
 
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack rounded-b-md" columns={2}>
+            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2 rounded-b-md" columns={2}>
 
                 <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                     <HelpTooltip content={content.txIndex} />
@@ -86,7 +88,7 @@ export function TxViewValueStore({ valueStore }) {
                             trigger={
                                 <Icon
                                     name="copy outline"
-                                    className="cursor-pointer hover:opacity-80"
+                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
                                     onClick={() => copyText(valueStore['VSPreImage']['TXOutIdx'])}
                                 />
                             }
