@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Container, Dimmer, Grid, Loader } from "semantic-ui-react";
+import { Dimmer, Grid, Loader } from "semantic-ui-react";
 import { useParams } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { SearchBar, CollapsableCard, DatastoreView, InvalidInput, Page, SearchNotFound } from "components";
+import { CollapsableCard, DatastoreView, InvalidInput, Page, SearchBar, SearchNotFound } from "components";
 import { ReactComponent as FileIcon } from "assets/file-icon.svg";
 import { searchTypes } from "utils";
 
@@ -43,13 +43,9 @@ export function DataExplorer() {
 
         <Page>
 
-            <Container className="flex flex-col gap-10">
+            <div className="flex flex-col gap-10">
 
-                <Container>
-
-                    <SearchBar currentSearch={{ type: searchTypes.DATASTORES }} />
-
-                </Container>
+                <SearchBar currentSearch={{ type: searchTypes.DATASTORES }} />
 
                 {
                     datastoreInfo.length === 0 &&
@@ -72,7 +68,7 @@ export function DataExplorer() {
                     </CollapsableCard>
                 }
 
-            </Container>
+            </div>
 
         </Page>
 
