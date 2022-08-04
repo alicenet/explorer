@@ -100,6 +100,7 @@ export function BlockList({ blockInfo }) {
                             }
                             basic
                             content="Copy Hash"
+                            position="top center"
                         />
                     </div>
                 </Grid.Column>
@@ -126,6 +127,7 @@ export function BlockList({ blockInfo }) {
                             }
                             basic
                             content="Copy Hash"
+                            position="top center"
                         />
                     </div>
                 </Grid.Column>
@@ -152,6 +154,7 @@ export function BlockList({ blockInfo }) {
                             }
                             basic
                             content="Copy Hash"
+                            position="top center"
                         />
                     </div>
                 </Grid.Column>
@@ -178,6 +181,7 @@ export function BlockList({ blockInfo }) {
                             }
                             basic
                             content="Copy Hash"
+                            position="top center"
                         />
                     </div>
                 </Grid.Column>
@@ -204,6 +208,7 @@ export function BlockList({ blockInfo }) {
                             }
                             basic
                             content="Copy Signature"
+                            position="top center"
                         />
                     </div>
                 </Grid.Column>

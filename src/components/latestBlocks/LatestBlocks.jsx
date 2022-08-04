@@ -3,39 +3,49 @@ import { CustomTable } from "components";
 import { ReactComponent as BlocksIcon } from "assets/blocks-icon.svg";
 import { useSelector } from "react-redux";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { Icon } from "semantic-ui-react";
+import { Icon, Popup } from "semantic-ui-react";
 import { copyText } from "utils";
 import { useHistory } from "react-router-dom";
 
-const headerCells = [
-    {
-        id: "height",
-        label: "Height",
-        displayCallback: ({ height, history }) =>
-            <span
-                style={{ textUnderlineOffset: "0.3em" }}
-                className="text-neongreen cursor-pointer hover:underline"
-                onClick={() => history.push(`/block/${height}`)}
-            >
+const headerCells =
+    [
+        {
+            id: "height",
+            label: "Height",
+            displayCallback: ({ height, history }) =>
+                <span
+                    style={{ textUnderlineOffset: "0.3em" }}
+                    className="text-neongreen cursor-pointer hover:underline"
+                    onClick={() => history.push(`/block/${height}`)}
+                >
                 {height}
             </span>
-    },
-    {
-        id: "txCount",
-        label: "TX Count",
-    },
-    {
-        id: "groupSignature",
-        label: "Group Signature",
-        displayCallback: ({ groupSignature }) =>
-            <div
-                className="flex cursor-pointer hover:opacity-80"
-                onClick={() => copyText(groupSignature)}>
-                {`0x${groupSignature.slice(0, 15)}...`}
-                <Icon name="copy outline" />
-            </div>,
-    }
-];
+        },
+        {
+            id: "txCount",
+            label: "TX Count",
+        },
+        {
+            id: "groupSignature",
+            label: "Group Signature",
+            displayCallback: ({ groupSignature }) =>
+                <div
+                    className="flex cursor-pointer hover:opacity-80"
+                    onClick={() => copyText(groupSignature)}
+                >
+                    {`0x${groupSignature.slice(0, 15)}...`}
+                    <Popup
+                        position="top center"
+                        trigger={
+                            <Icon name="copy outline" />
+                        }
+                        basic
+                        content="Copy Hash"
+                    />
+                </div>
+        }
+    ]
+;
 
 export function LatestBlocks() {
 
