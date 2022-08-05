@@ -29,18 +29,21 @@ const headerCells =
             id: "groupSignature",
             label: "Group Signature",
             displayCallback: ({ groupSignature }) =>
-                <div
-                    className="flex cursor-pointer hover:opacity-80"
-                    onClick={() => copyText(groupSignature)}
-                >
-                    {`0x${groupSignature.slice(0, 15)}...`}
+                <div className="flex items-start gap-3">
+                    <p className="break-all">
+                        {`0x${groupSignature.slice(0, 15)}...`}
+                    </p>
                     <Popup
-                        position="top center"
                         trigger={
-                            <Icon name="copy outline" />
+                            <Icon
+                                name="copy outline"
+                                className="cursor-pointer hover:opacity-80 mobile:hidden"
+                                onClick={() => copyText(groupSignature)}
+                            />
                         }
                         basic
                         content="Copy Hash"
+                        position="top center"
                     />
                 </div>
         }
