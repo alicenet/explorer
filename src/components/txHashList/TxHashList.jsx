@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Grid, Icon, Popup } from "semantic-ui-react";
-import { classNames, copyText } from "utils";
+import { Grid } from "semantic-ui-react";
+import { classNames } from "utils";
+import { CopyTooltip } from "components";
 
 export function TxHashList({ txHshLst }) {
 
@@ -25,23 +26,12 @@ export function TxHashList({ txHshLst }) {
                     </Grid.Column>
 
                     <Grid.Column className="p-0">
-                        <div className="flex items-start gap-5 cursor-pointer hover:opacity-80">
+                        <CopyTooltip value={hash} content="Copy Hash">
                             <Link className="text-neongreen break-all hover:text-neongreen hover:opacity-80"
                                   to={`/tx/${hash}`}>
                                 {`0x${hash}`}
                             </Link>
-                            <Popup
-                                trigger={
-                                    <Icon
-                                        name="copy outline"
-                                        className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                        onClick={() => copyText(hash)}
-                                    />
-                                }
-                                basic
-                                content="Copy Hash"
-                            />
-                        </div>
+                        </CopyTooltip>
                     </Grid.Column>
 
                 </Grid.Row>
