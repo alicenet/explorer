@@ -1,6 +1,7 @@
 export * from './blockList'
 export * from './callToAction';
 export * from './collapsableCard';
+export * from './copyTooltip';
 export * from './datastoreView';
 export * from './dimmerOverlay';
 export * from './errorOverlay';
