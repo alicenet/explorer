@@ -26,9 +26,7 @@ const headerCells =
             label: "Owner",
             displayCallback: ({ groupSignature }) =>
                 <CopyTooltip value={groupSignature} content="Copy Hash">
-                    <p className="break-all">
-                        {`0x${groupSignature.slice(0, 15)}...`}
-                    </p>
+                    <p className="break-all">{`0x${groupSignature.slice(0, 15)}...`}</p>
                 </CopyTooltip>
         }
     ];

@@ -1,9 +1,8 @@
 import React from "react";
-import { Button, Grid, Icon, Popup } from "semantic-ui-react"
-import { content, HelpTooltip } from "components";
+import { Button, Grid, Icon } from "semantic-ui-react"
+import { content, CopyTooltip, HelpTooltip } from "components";
 import { useHistory } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { copyText } from "utils";
 
 export function BlockList({ blockInfo }) {
 
@@ -88,21 +87,9 @@ export function BlockList({ blockInfo }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-3">
+                    <CopyTooltip value={prevBlock} content="Copy Hash">
                         <p className="break-all">{`0x${prevBlock}`}</p>
-                        <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                    onClick={() => copyText(prevBlock)}
-                                />
-                            }
-                            basic
-                            content="Copy Hash"
-                            position="top center"
-                        />
-                    </div>
+                    </CopyTooltip>
                 </Grid.Column>
 
             </Grid.Row>
@@ -115,21 +102,9 @@ export function BlockList({ blockInfo }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-3">
+                    <CopyTooltip value={txRoot} content="Copy Hash">
                         <p className="break-all">{`0x${txRoot}`}</p>
-                        <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                    onClick={() => copyText(txRoot)}
-                                />
-                            }
-                            basic
-                            content="Copy Hash"
-                            position="top center"
-                        />
-                    </div>
+                    </CopyTooltip>
                 </Grid.Column>
 
             </Grid.Row>
@@ -142,21 +117,9 @@ export function BlockList({ blockInfo }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-3">
+                    <CopyTooltip value={stateRoot} content="Copy Hash">
                         <p className="break-all">{`0x${stateRoot}`}</p>
-                        <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                    onClick={() => copyText(stateRoot)}
-                                />
-                            }
-                            basic
-                            content="Copy Hash"
-                            position="top center"
-                        />
-                    </div>
+                    </CopyTooltip>
                 </Grid.Column>
 
             </Grid.Row>
@@ -169,21 +132,9 @@ export function BlockList({ blockInfo }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-3">
+                    <CopyTooltip value={headerRoot} content="Copy Hash">
                         <p className="break-all">{`0x${headerRoot}`}</p>
-                        <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                    onClick={() => copyText(headerRoot)}
-                                />
-                            }
-                            basic
-                            content="Copy Hash"
-                            position="top center"
-                        />
-                    </div>
+                    </CopyTooltip>
                 </Grid.Column>
 
             </Grid.Row>
@@ -196,21 +147,9 @@ export function BlockList({ blockInfo }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0 pr-20 mobile:pr-0">
-                    <div className="flex items-start gap-3">
+                    <CopyTooltip value={sigGroup} content="Copy Signature">
                         <p className="break-all">{`0x${sigGroup}`}</p>
-                        <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                    onClick={() => copyText(sigGroup)}
-                                />
-                            }
-                            basic
-                            content="Copy Signature"
-                            position="top center"
-                        />
-                    </div>
+                    </CopyTooltip>
                 </Grid.Column>
 
             </Grid.Row>
