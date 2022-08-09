@@ -27,8 +27,10 @@ export function TxHashList({ txHshLst }) {
 
                     <Grid.Column className="p-0">
                         <CopyTooltip value={hash} content="Copy Hash">
-                            <Link className="text-neongreen break-all hover:text-neongreen hover:opacity-80"
-                                  to={`/tx/${hash}`}>
+                            <Link
+                                className="text-neongreen break-all hover:text-neongreen hover:opacity-80"
+                                to={`/tx/${hash}`}
+                            >
                                 {`0x${hash}`}
                             </Link>
                         </CopyTooltip>

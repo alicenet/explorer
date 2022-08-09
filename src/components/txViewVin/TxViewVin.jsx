@@ -1,7 +1,6 @@
 import React from "react";
-import { Grid, Icon, Popup } from "semantic-ui-react";
-import { CollapsableCard, content, HelpTooltip } from "components";
-import { copyText } from "utils";
+import { Grid } from "semantic-ui-react";
+import { CollapsableCard, content, CopyTooltip, HelpTooltip } from "components";
 
 export function TxViewVin({ txInfo }) {
 
@@ -15,7 +14,10 @@ export function TxViewVin({ txInfo }) {
 
                     <Grid padded="vertically" className="mx-0 break-words" columns={"equal"} stackable>
 
-                        <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
+                        <Grid.Row
+                            className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2"
+                            columns={2}
+                        >
 
                             <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                                 <HelpTooltip content={content.consumedTx} />
@@ -23,25 +25,20 @@ export function TxViewVin({ txInfo }) {
                             </Grid.Column>
 
                             <Grid.Column className="p-0">
-                                <div className="flex items-start gap-3">
+                                <CopyTooltip
+                                    value={tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}
+                                    content="Copy Hash"
+                                >
                                     <p className="break-all">{`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}</p>
-                                    <Popup
-                                        trigger={
-                                            <Icon
-                                                name="copy outline"
-                                                className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                                onClick={() => copyText(tx['TXInLinker']['TXInPreImage']['ConsumedTxHash'])}
-                                            />
-                                        }
-                                        basic
-                                        content="Copy Hash"
-                                    />
-                                </div>
+                                </CopyTooltip>
                             </Grid.Column>
 
                         </Grid.Row>
 
-                        <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
+                        <Grid.Row
+                            className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2"
+                            columns={2}
+                        >
 
                             <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                                 <HelpTooltip content={content.consumedTxIndex} />
@@ -49,25 +46,20 @@ export function TxViewVin({ txInfo }) {
                             </Grid.Column>
 
                             <Grid.Column className="p-0">
-                                <div className="flex items-start gap-3">
-                                    <p className="break-all">{`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx'] ?? 0}`}</p>
-                                    <Popup
-                                        trigger={
-                                            <Icon
-                                                name="copy outline"
-                                                className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                                onClick={() => copyText(tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx'] ?? 0)}
-                                            />
-                                        }
-                                        basic
-                                        content="Copy Hash"
-                                    />
-                                </div>
+                                <CopyTooltip
+                                    value={tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx']}
+                                    content="Copy Value"
+                                >
+                                    <p className="break-all">{tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx']}</p>
+                                </CopyTooltip>
                             </Grid.Column>
 
                         </Grid.Row>
 
-                        <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack rounded-b-md mobile:p-2" columns={2}>
+                        <Grid.Row
+                            className="px-6 bg-rowblack border-0 border-t border-tableblack rounded-b-md mobile:p-2"
+                            columns={2}
+                        >
 
                             <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                                 <HelpTooltip content={content.signature} />
@@ -75,20 +67,9 @@ export function TxViewVin({ txInfo }) {
                             </Grid.Column>
 
                             <Grid.Column className="p-0 pr-20">
-                                <div className="flex items-start gap-3">
+                                <CopyTooltip value={tx['Signature']} content="Copy Hash">
                                     <p className="break-all">{`0x${tx['Signature']}`}</p>
-                                    <Popup
-                                        trigger={
-                                            <Icon
-                                                name="copy outline"
-                                                className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                                onClick={() => copyText(tx['Signature'])}
-                                            />
-                                        }
-                                        basic
-                                        content="Copy Signature"
-                                    />
-                                </div>
+                                </CopyTooltip>
                             </Grid.Column>
 
                         </Grid.Row>
