@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { Button, Container, Dimmer, Grid, Icon, Loader, Popup } from "semantic-ui-react";
+import { Button, Dimmer, Grid, Loader } from "semantic-ui-react";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { CollapsableCard, InvalidInput, Page, SearchBar, SearchNotFound, TxViewVin, TxViewVout } from "components";
-import { copyText, isValidHash, searchTypes } from "utils";
+import {
+    CollapsableCard,
+    CopyTooltip,
+    InvalidInput,
+    Page,
+    SearchBar,
+    SearchNotFound,
+    TxViewVin,
+    TxViewVout
+} from "components";
+import { isValidHash, searchTypes } from "utils";
 
 import { ReactComponent as TreeIcon } from "assets/tree-icon.svg";
 import { ReactComponent as ChoicesIcon } from "assets/choices-icon.svg";
@@ -73,20 +82,9 @@ export function TxExplorer() {
 
                             <div className="flex flex-row text-left gap-3 mobile:flex-col">
                                 <span className="font-bold">Tx Hash:</span>
-                                <div className="flex items-start gap-3">
+                                <CopyTooltip value={hash} content="Copy Hash">
                                     <p className="break-all">{`0x${hash}`}</p>
-                                    <Popup
-                                        trigger={
-                                            <Icon
-                                                name="copy outline"
-                                                className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                                onClick={() => copyText(hash)}
-                                            />
-                                        }
-                                        basic
-                                        content="Copy Hash"
-                                    />
-                                </div>
+                                </CopyTooltip>
                             </div>
 
                             <div className="flex items-start gap-3 mobile:flex-col mobile:gap-6">

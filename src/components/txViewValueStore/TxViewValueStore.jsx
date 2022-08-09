@@ -1,8 +1,7 @@
 import React from "react";
-import { Button, Grid, Icon, Popup } from "semantic-ui-react";
+import { Button, Grid } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
-import { content, HelpTooltip } from "components";
-import { copyText } from "utils";
+import { content, CopyTooltip, HelpTooltip } from "components";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 
 export function TxViewValueStore({ valueStore }) {
@@ -21,20 +20,12 @@ export function TxViewValueStore({ valueStore }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-3">
-                        <p>{aliceNetAdapter.hexToInt(valueStore['VSPreImage']['Value'])}</p>
-                        <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                    onClick={() => copyText(valueStore['VSPreImage']['Value'])}
-                                />
-                            }
-                            basic
-                            content="Copy Value"
-                        />
-                    </div>
+                    <CopyTooltip
+                        value={aliceNetAdapter.hexToInt(valueStore['VSPreImage']['Value'])}
+                        content="Copy Value"
+                    >
+                        <p className="break-all">{aliceNetAdapter.hexToInt(valueStore['VSPreImage']['Value'])}</p>
+                    </CopyTooltip>
                 </Grid.Column>
 
             </Grid.Row>
@@ -48,20 +39,10 @@ export function TxViewValueStore({ valueStore }) {
 
                 <Grid.Column className="p-0">
                     <div className="flex items-start gap-3 mobile:flex-col mobile:gap-5">
-                        <div className="flex flex-row items-start gap-3">
+                        <CopyTooltip value={valueStore['VSPreImage']['Owner']} content="Copy Address">
                             <p className="break-all">{`0x${valueStore['VSPreImage']['Owner']}`}</p>
-                            <Popup
-                                trigger={
-                                    <Icon
-                                        name="copy outline"
-                                        className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                        onClick={() => copyText(`0x${valueStore['VSPreImage']['Owner']}`)}
-                                    />
-                                }
-                                basic
-                                content="Copy Address"
-                            />
-                        </div>
+                        </CopyTooltip>
+
                         <Button
                             className="text-xs px-3 py-1 ml-2 rounded-sm mobile:w-full mobile:m-0 mobile:text-base"
                             onClick={() =>
@@ -82,20 +63,9 @@ export function TxViewValueStore({ valueStore }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0 pr-20">
-                    <div className="flex items-start gap-3">
+                    <CopyTooltip value={valueStore['VSPreImage']['TXOutIdx']} content="Copy Index">
                         <p className="break-all">{valueStore['VSPreImage']['TXOutIdx']}</p>
-                        <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                    onClick={() => copyText(valueStore['VSPreImage']['TXOutIdx'])}
-                                />
-                            }
-                            basic
-                            content="Copy Index"
-                        />
-                    </div>
+                    </CopyTooltip>
                 </Grid.Column>
 
             </Grid.Row>

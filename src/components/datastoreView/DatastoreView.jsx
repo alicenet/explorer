@@ -1,7 +1,6 @@
 import React from "react";
-import { Grid, Icon, Popup } from "semantic-ui-react";
-import { CollapsableCard, content, HelpTooltip } from "components";
-import { copyText } from "utils";
+import { Grid } from "semantic-ui-react";
+import { CollapsableCard, content, CopyTooltip, HelpTooltip } from "components";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { Link } from "react-router-dom";
 
@@ -21,7 +20,10 @@ export function DatastoreView({ datastoreInfo }) {
 
                     <Grid padded="vertically" className="mx-0 break-words" columns={"equal"} stackable>
 
-                        <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
+                        <Grid.Row
+                            className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2"
+                            columns={2}
+                        >
 
                             <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                                 <HelpTooltip content={content.index} />
@@ -29,25 +31,17 @@ export function DatastoreView({ datastoreInfo }) {
                             </Grid.Column>
 
                             <Grid.Column className="p-0">
-                                <div className="flex items-start gap-3">
-                                    <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['Index']}`}</p>
-                                    <Popup
-                                        trigger={
-                                            <Icon
-                                                name="copy outline"
-                                                className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                                onClick={() => copyText(dataStore['DSLinker']['DSPreImage']['Index'])}
-                                            />
-                                        }
-                                        basic
-                                        content="Copy Index"
-                                    />
-                                </div>
+                                <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['Index']} content="Copy Index">
+                                    <p className="break-all">{dataStore['DSLinker']['DSPreImage']['Index']}</p>
+                                </CopyTooltip>
                             </Grid.Column>
 
                         </Grid.Row>
 
-                        <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
+                        <Grid.Row
+                            className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2"
+                            columns={2}
+                        >
 
                             <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                                 <HelpTooltip content={content.rawData} />
@@ -55,25 +49,20 @@ export function DatastoreView({ datastoreInfo }) {
                             </Grid.Column>
 
                             <Grid.Column className="p-0">
-                                <div className="flex items-start gap-3">
+                                <CopyTooltip
+                                    value={dataStore['DSLinker']['DSPreImage']['RawData']}
+                                    content="Copy Value"
+                                >
                                     <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['RawData']}`}</p>
-                                    <Popup
-                                        trigger={
-                                            <Icon
-                                                name="copy outline"
-                                                className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                                onClick={() => copyText(dataStore['DSLinker']['DSPreImage']['RawData'])}
-                                            />
-                                        }
-                                        basic
-                                        content="Copy Value"
-                                    />
-                                </div>
+                                </CopyTooltip>
                             </Grid.Column>
 
                         </Grid.Row>
 
-                        <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
+                        <Grid.Row
+                            className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2"
+                            columns={2}
+                        >
 
                             <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                                 <HelpTooltip content={content.expires} />
@@ -81,24 +70,20 @@ export function DatastoreView({ datastoreInfo }) {
                             </Grid.Column>
 
                             <Grid.Column className="p-0">
-                                <div className="flex items-start gap-3">
+                                <CopyTooltip
+                                    value={aliceNetAdapter.getDSExp(
+                                        dataStore['DSLinker']['DSPreImage']['RawData'],
+                                        dataStore['DSLinker']['DSPreImage']['Deposit'],
+                                        dataStore['DSLinker']['DSPreImage']['IssuedAt']
+                                    )}
+                                    content="Copy Value"
+                                >
                                     <p>{aliceNetAdapter.getDSExp(
                                         dataStore['DSLinker']['DSPreImage']['RawData'],
                                         dataStore['DSLinker']['DSPreImage']['Deposit'],
                                         dataStore['DSLinker']['DSPreImage']['IssuedAt']
                                     )}</p>
-                                    <Popup
-                                        trigger={
-                                            <Icon
-                                                name="copy outline"
-                                                className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                                onClick={() => copyText(dataStore['DSLinker']['DSPreImage']['RawData'])}
-                                            />
-                                        }
-                                        basic
-                                        content="Copy Value"
-                                    />
-                                </div>
+                                </CopyTooltip>
                             </Grid.Column>
 
                         </Grid.Row>
@@ -115,23 +100,14 @@ export function DatastoreView({ datastoreInfo }) {
                             </Grid.Column>
 
                             <Grid.Column className="p-0">
-                                <div className="flex items-start gap-5 cursor-pointer hover:opacity-80">
-                                    <Link className="text-neongreen hover:text-neongreen hover:opacity-80 break-all"
-                                          to={`/tx/${dataStore['DSLinker']['TxHash']}`}>
+                                <CopyTooltip value={dataStore['DSLinker']['TxHash']} content="Copy Hash">
+                                    <Link
+                                        className="text-neongreen hover:text-neongreen hover:opacity-80 break-all"
+                                        to={`/tx/${dataStore['DSLinker']['TxHash']}`}
+                                    >
                                         {`0x${dataStore['DSLinker']['TxHash']}`}
                                     </Link>
-                                    <Popup
-                                        trigger={
-                                            <Icon
-                                                name="copy outline"
-                                                className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                                onClick={() => copyText(dataStore['DSLinker']['TxHash'])}
-                                            />
-                                        }
-                                        basic
-                                        content="Copy Hash"
-                                    />
-                                </div>
+                                </CopyTooltip>
                             </Grid.Column>
 
                         </Grid.Row>
