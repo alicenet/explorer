@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
-import { CustomTable } from "components";
+import { CopyTooltip, CustomTable } from "components";
 import { ReactComponent as BlocksIcon } from "assets/blocks-icon.svg";
 import { useSelector } from "react-redux";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { Icon, Popup } from "semantic-ui-react";
-import { copyText } from "utils";
 import { useHistory } from "react-router-dom";
 
 const headerCells =
@@ -29,20 +27,9 @@ const headerCells =
             id: "groupSignature",
             label: "Group Signature",
             displayCallback: ({ groupSignature }) =>
-                <div
-                    className="flex cursor-pointer hover:opacity-80"
-                    onClick={() => copyText(groupSignature)}
-                >
-                    {`0x${groupSignature.slice(0, 15)}...`}
-                    <Popup
-                        position="top center"
-                        trigger={
-                            <Icon name="copy outline" />
-                        }
-                        basic
-                        content="Copy Hash"
-                    />
-                </div>
+                <CopyTooltip value={groupSignature} content="Copy Hash">
+                    <p className="break-all">{`0x${groupSignature.slice(0, 15)}...`}</p>
+                </CopyTooltip>
         }
     ]
 ;

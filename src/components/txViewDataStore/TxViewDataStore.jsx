@@ -1,8 +1,7 @@
 import React from "react";
-import { Button, Grid, Icon, Popup } from "semantic-ui-react";
+import { Button, Grid } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
-import { content, HelpTooltip } from "components";
-import { copyText } from "utils";
+import { content, CopyTooltip, HelpTooltip } from "components";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 
 export function TxViewDataStore({ dataStore }) {
@@ -21,20 +20,9 @@ export function TxViewDataStore({ dataStore }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-3">
+                    <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['Index']} content="Copy Value">
                         <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['Index']}`}</p>
-                        <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                    onClick={() => copyText(`0x${dataStore['DSLinker']['DSPreImage']['Index']}`)}
-                                />
-                            }
-                            basic
-                            content="Copy Value"
-                        />
-                    </div>
+                    </CopyTooltip>
                 </Grid.Column>
 
             </Grid.Row>
@@ -47,20 +35,9 @@ export function TxViewDataStore({ dataStore }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-3">
+                    <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['RawData']} content="Copy Data">
                         <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['RawData']}`}</p>
-                        <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                    onClick={() => copyText(`0x${dataStore['DSLinker']['DSPreImage']['RawData']}`)}
-                                />
-                            }
-                            basic
-                            content="Copy Data"
-                        />
-                    </div>
+                    </CopyTooltip>
                 </Grid.Column>
 
             </Grid.Row>
@@ -74,20 +51,10 @@ export function TxViewDataStore({ dataStore }) {
 
                 <Grid.Column className="p-0">
                     <div className="flex items-start gap-3 mobile:flex-col mobile:gap-5">
-                        <div className="flex flex-row items-start gap-3">
+                        <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['Owner']} content="Copy Address">
                             <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['Owner']}`}</p>
-                            <Popup
-                                trigger={
-                                    <Icon
-                                        name="copy outline"
-                                        className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                        onClick={() => copyText(`0x${dataStore['DSLinker']['DSPreImage']['Owner']}`)}
-                                    />
-                                }
-                                basic
-                                content="Copy Address"
-                            />
-                        </div>
+                        </CopyTooltip>
+
                         <Button
                             className="text-xs px-3 py-1 ml-2 rounded-sm mobile:w-full mobile:m-0 mobile:text-base"
                             onClick={() =>
@@ -108,20 +75,9 @@ export function TxViewDataStore({ dataStore }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-3">
-                        <p>{dataStore['DSLinker']['DSPreImage']['IssuedAt']}</p>
-                        <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                    onClick={() => copyText(dataStore['DSLinker']['DSPreImage']['IssuedAt'])}
-                                />
-                            }
-                            basic
-                            content="Copy Value"
-                        />
-                    </div>
+                    <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['IssuedAt']} content="Copy Value">
+                        <p className="break-all">{dataStore['DSLinker']['DSPreImage']['IssuedAt']}</p>
+                    </CopyTooltip>
                 </Grid.Column>
 
             </Grid.Row>
@@ -134,8 +90,17 @@ export function TxViewDataStore({ dataStore }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-3">
-                        <p>
+                    <CopyTooltip
+                        value={
+                            aliceNetAdapter.getDSExp(
+                                dataStore['DSLinker']['DSPreImage']['RawData'],
+                                dataStore['DSLinker']['DSPreImage']['Deposit'],
+                                dataStore['DSLinker']['DSPreImage']['IssuedAt']
+                            )
+                        }
+                        content="Copy Value"
+                    >
+                        <p className="break-all">
                             {
                                 aliceNetAdapter.getDSExp(
                                     dataStore['DSLinker']['DSPreImage']['RawData'],
@@ -144,24 +109,7 @@ export function TxViewDataStore({ dataStore }) {
                                 )
                             }
                         </p>
-                        <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                    onClick={() => copyText(
-                                        aliceNetAdapter.getDSExp(
-                                            dataStore['DSLinker']['DSPreImage']['RawData'],
-                                            dataStore['DSLinker']['DSPreImage']['Deposit'],
-                                            dataStore['DSLinker']['DSPreImage']['IssuedAt']
-                                        )
-                                    )}
-                                />
-                            }
-                            basic
-                            content="Copy Value"
-                        />
-                    </div>
+                    </CopyTooltip>
                 </Grid.Column>
 
             </Grid.Row>
@@ -174,20 +122,12 @@ export function TxViewDataStore({ dataStore }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0">
-                    <div className="flex items-start gap-3">
-                        <p>{aliceNetAdapter.hexToInt(dataStore['DSLinker']['DSPreImage']['Deposit'])}</p>
-                        <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                    onClick={() => copyText(aliceNetAdapter.hexToInt(dataStore['DSLinker']['DSPreImage']['Deposit']))}
-                                />
-                            }
-                            basic
-                            content="Copy Value"
-                        />
-                    </div>
+                    <CopyTooltip
+                        value={aliceNetAdapter.hexToInt(dataStore['DSLinker']['DSPreImage']['Deposit'])}
+                        content="Copy Value"
+                    >
+                        <p className="break-all">{aliceNetAdapter.hexToInt(dataStore['DSLinker']['DSPreImage']['Deposit'])}</p>
+                    </CopyTooltip>
                 </Grid.Column>
 
             </Grid.Row>
@@ -200,25 +140,17 @@ export function TxViewDataStore({ dataStore }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0 pr-20">
-                    <div className="flex items-start gap-3">
+                    <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['TXOutIdx']} content="Copy Index">
                         <p className="break-all">{dataStore['DSLinker']['DSPreImage']['TXOutIdx']}</p>
-                        <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                    onClick={() => copyText(dataStore['DSLinker']['DSPreImage']['TXOutIdx'])}
-                                />
-                            }
-                            basic
-                            content="Copy Index"
-                        />
-                    </div>
+                    </CopyTooltip>
                 </Grid.Column>
 
             </Grid.Row>
 
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2 rounded-b-md" columns={2}>
+            <Grid.Row
+                className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2 rounded-b-md"
+                columns={2}
+            >
 
                 <Grid.Column className="flex items-center gap-3 p-0" width={4}>
                     <HelpTooltip content={content.signature} />
@@ -226,20 +158,9 @@ export function TxViewDataStore({ dataStore }) {
                 </Grid.Column>
 
                 <Grid.Column className="p-0 pr-20">
-                    <div className="flex items-start gap-3">
+                    <CopyTooltip value={dataStore['Signature']} content="Copy Signature">
                         <p className="break-all">{`0x${dataStore['Signature']}`}</p>
-                        <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80 mobile:hidden"
-                                    onClick={() => copyText(dataStore['Signature'])}
-                                />
-                            }
-                            basic
-                            content="Copy Signature"
-                        />
-                    </div>
+                    </CopyTooltip>
                 </Grid.Column>
 
             </Grid.Row>
