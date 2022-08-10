@@ -44,7 +44,7 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                             {headerCells.map((headerCell) =>
 
                                 <Table.Cell className="border-t-1 border-tableblack" key={`row-${headerCell.id}`}>
-                                    {headerCell?.displayCallback ? headerCell.displayCallback(row, rowIndex) : row[headerCell.id]}
+                                    {headerCell?.displayCallback ? headerCell.displayCallback(row) : row[headerCell.id]}
                                 </Table.Cell>
                             )}
                         </Table.Row>
