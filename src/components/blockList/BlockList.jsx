@@ -1,9 +1,8 @@
 import React from "react";
 import { Button, Grid, Icon } from "semantic-ui-react"
-import { content, CopyTooltip } from "components";
+import { content, CopyTooltip, TwoColumnsRow } from "components";
 import { useHistory } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { TwoColumnsRow } from "./TwoColumnsRow";
 
 export function BlockList({ blockInfo }) {
 
@@ -63,7 +62,6 @@ export function BlockList({ blockInfo }) {
                 <p>{txCount ? txCount : 0}</p>
             </TwoColumnsRow>
 
-
             <TwoColumnsRow title="Previous Block" tooltipContent={content.previousBlock}>
                 <CopyTooltip value={prevBlock} content="Copy Hash">
                     <p className="break-all">{`0x${prevBlock}`}</p>
@@ -75,7 +73,6 @@ export function BlockList({ blockInfo }) {
                     <p className="break-all">{`0x${txRoot}`}</p>
                 </CopyTooltip>
             </TwoColumnsRow>
-
 
             <TwoColumnsRow title="State Root" tooltipContent={content.stateRoot}>
                 <CopyTooltip value={stateRoot} content="Copy Hash">

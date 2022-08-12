@@ -15,6 +15,7 @@ export * from './page';
 export * from './search';
 export * from './searchNotFound';
 export * from './table';
+export * from './twoColumnsRow';
 export * from './txHashList';
 export * from './txViewDataStore';
 export * from './txViewValueStore';

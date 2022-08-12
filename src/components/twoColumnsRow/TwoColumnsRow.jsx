@@ -3,7 +3,7 @@ import { Grid } from "semantic-ui-react"
 import { HelpTooltip } from "components";
 import { classNames } from "utils";
 
-export function TwoColumnsRow({ title, tooltipContent, children, lastRow = false }) {
+export function TwoColumnsRow({ title, tooltipContent, children, width = 3, lastRow = false }) {
 
     return (
 
@@ -16,7 +16,7 @@ export function TwoColumnsRow({ title, tooltipContent, children, lastRow = false
             columns={2}
         >
 
-            <Grid.Column className="flex items-center gap-5 p-0" mobile={1} computer={3}>
+            <Grid.Column className="flex items-center gap-3 p-0" mobile={1} computer={width}>
                 <HelpTooltip content={tooltipContent} />
                 <p>{title}</p>
             </Grid.Column>
