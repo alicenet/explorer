@@ -1,8 +1,11 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
+import { useHistory } from "react-router-dom";
 import { CollapsableCard, content, CopyTooltip, HelpTooltip } from "components";
 
 export function TxViewVin({ txInfo }) {
+
+    const history = useHistory();
 
     return (
 
@@ -29,7 +32,7 @@ export function TxViewVin({ txInfo }) {
                                     value={tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}
                                     content="Copy Hash"
                                 >
-                                    <p className="break-all">{`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}</p>
+                                    <p className="break-all text-neongreen cursor-pointer hover:opacity-80" onClick={() => history.push(`/tx/0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`)}>{`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}</p>
                                 </CopyTooltip>
                             </Grid.Column>
 
