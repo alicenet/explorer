@@ -47,6 +47,7 @@ export function TxViewVin({ txInfo }) {
                     </Grid>
 
                 </CollapsableCard>
+
             )}
 
         </div>

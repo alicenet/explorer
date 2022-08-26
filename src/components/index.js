@@ -2,6 +2,7 @@ export * from './blockList'
 export * from './callToAction';
 export * from './collapsableCard';
 export * from './copyTooltip';
+export * from './customTable';
 export * from './datastoreView';
 export * from './dimmerOverlay';
 export * from './errorOverlay';
@@ -14,7 +15,6 @@ export * from './latestTransactions'
 export * from './page';
 export * from './search';
 export * from './searchNotFound';
-export * from './table';
 export * from './twoColumnsRow';
 export * from './txHashList';
 export * from './txViewDataStore';

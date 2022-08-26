@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container, Dropdown, Icon } from "semantic-ui-react";
+import { Button, Dropdown, Icon } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { classNames, curveTypes, isBN, searchTypes } from "utils";
 import { content, HelpTooltip } from "components";
