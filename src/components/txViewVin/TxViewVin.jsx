@@ -32,7 +32,7 @@ export function TxViewVin({ txInfo }) {
                                     value={tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}
                                     content="Copy Hash"
                                 >
-                                    <p className="break-all text-neongreen cursor-pointer hover:opacity-80" onClick={() => history.push(`/tx/0x${tx['TXInLinker']}`)}>{`0x${tx['TXInLinker']}`}</p>
+                                    <p className="break-all text-neongreen cursor-pointer hover:opacity-80" onClick={() => history.push(`/tx/0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`)}>{`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}</p>
                                 </CopyTooltip>
                             </Grid.Column>
 
