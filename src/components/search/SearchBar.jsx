@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Dropdown, Icon } from "semantic-ui-react";
+import { Dropdown, Icon } from "semantic-ui-react";
+import { Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { classNames, curveTypes, isBN, searchTypes } from "utils";
 import { content, HelpTooltip } from "components";
@@ -118,10 +119,12 @@ export function SearchBar({ currentSearch = null }) {
                     </div>
 
                     <Button
-                        className="text-black bg-neongreen m-0 w-40 text-xl py-2 mobile:w-full"
+                        variant={"contained"}
+                        className="w-40 mobile:w-full"
                         onClick={() => handleSearch(term)}
-                        content="Search"
-                    />
+                    >
+                        Search
+                    </Button>
 
                 </div>
 
