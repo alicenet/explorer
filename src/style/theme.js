@@ -13,7 +13,7 @@ export const theme = createTheme({
     typography: {
         fontFamily: 'Ubuntu Mono',
         button: {
-            fontSize: '1rem',
+            fontSize: '1.15rem',
             textTransform: 'none',
             fontWeight: 600,
         },
