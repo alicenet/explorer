@@ -19,7 +19,7 @@ export function TxViewVin({ txInfo }) {
                                 value={tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}
                                 content="Copy Hash"
                             >
-                                <p className="break-all">{`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}</p>
+                                <p className="break-all text-neongreen">{`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}</p>
                             </CopyTooltip>
                         </TwoColumnsRow>
 
