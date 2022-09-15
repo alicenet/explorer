@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Grid } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
+import { Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { content, CopyTooltip, TwoColumnsRow } from "components";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
@@ -25,18 +26,21 @@ export function TxViewDataStore({ dataStore }) {
             </TwoColumnsRow>
 
             <TwoColumnsRow title="Owner" tooltipContent={content.owner} width={4}>
-                <div className="flex items-start gap-3 mobile:flex-col mobile:gap-5">
+                <div className="flex items-center gap-3 mobile:flex-col mobile:gap-5">
                     <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['Owner']} content="Copy Address">
                         <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['Owner']}`}</p>
                     </CopyTooltip>
 
                     <Button
-                        className="text-xs px-3 py-1 ml-2 rounded-sm mobile:w-full mobile:m-0 mobile:text-base"
+                        size={"small"}
+                        variant={"contained"}
+                        className="px-3 py-0 ml-2 mobile:w-full mobile:m-0 mobile:text-base rounded-sm"
                         onClick={() =>
                             history.push(`/data/${dataStore['DSLinker']['DSPreImage']['Owner'].substr(4)}`)
                         }
-                        content="View Owner DataStores"
-                    />
+                    >
+                        View Owner DataStores
+                    </Button>
                 </div>
             </TwoColumnsRow>
 
