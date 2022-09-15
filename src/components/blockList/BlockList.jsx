@@ -1,8 +1,27 @@
 import React from "react";
-import { Button, Grid, Icon } from "semantic-ui-react"
+import { Grid, Icon } from "semantic-ui-react";
+import { IconButton } from "@mui/material";
 import { content, CopyTooltip, TwoColumnsRow } from "components";
 import { useHistory } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
+
+const NavigationChevron = ({ height, direction }) => {
+    const history = useHistory();
+    const handleBlockNav = (term) => history.push(`/block/${term}`);
+    return (
+        <IconButton
+            size={"small"}
+            className="bg-buttonblack rounded-md text-white hover:opacity-80"
+            onClick={() => handleBlockNav(height)}
+        >
+            <Icon
+                className="m-0 p-0"
+                name={`chevron ${direction}`}
+                size="small"
+            />
+        </IconButton>
+    );
+}
 
 export function BlockList({ blockInfo }) {
 
@@ -16,9 +35,6 @@ export function BlockList({ blockInfo }) {
         HeaderRoot: headerRoot
     } = BClaims;
 
-    const history = useHistory();
-    const handleBlockNav = (term) => history.push(`/block/${term}`);
-
     const maxHeight = aliceNetAdapter.blocks[0]?.BClaims.Height;
 
     return (
@@ -28,32 +44,8 @@ export function BlockList({ blockInfo }) {
             <TwoColumnsRow title="Block Height" tooltipContent={content.height}>
                 {height}
                 <div className="flex gap-2 mobile:hidden">
-                    {height > 1 &&
-                    <Button
-                        icon
-                        className="flex items-center bg-buttonblack text-white px-1 py-2 m-0 hover:opacity-80"
-                        onClick={() => handleBlockNav(height - 1)}
-                    >
-                        <Icon
-                            className="m-0 p-0"
-                            name="chevron left"
-                            size="small"
-                        />
-                    </Button>
-                    }
-                    {(maxHeight > height) &&
-                    <Button
-                        icon
-                        className="flex items-center bg-buttonblack text-white px-1 py-2 m-0 hover:opacity-80"
-                        onClick={() => handleBlockNav(height + 1)}
-                    >
-                        <Icon
-                            className="m-0 p-0"
-                            name="chevron right"
-                            size="small"
-                        />
-                    </Button>
-                    }
+                    {height > 1 && <NavigationChevron height={height - 1} direction="left" />}
+                    {(maxHeight > height) && <NavigationChevron height={height + 1} direction="right" />}
                 </div>
 
             </TwoColumnsRow>
