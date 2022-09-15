@@ -1,4 +1,5 @@
-import { Button, Container, Icon } from "semantic-ui-react";
+import { Container, Icon } from "semantic-ui-react";
+import { Button } from "@mui/material";
 import React from "react";
 import { useHistory } from "react-router-dom";
 
@@ -40,11 +41,15 @@ export function SearchNotFound({ term }) {
 
 
             <Container>
+
                 <Button
-                    className="bg-neongreen px-10"
-                    content="Back to Monitor"
+                    variant={"contained"}
+                    className="px-8"
                     onClick={() => history.push('/')}
-                />
+                >
+                    Back to Monitor
+                </Button>
+
             </Container>
 
         </Container>
