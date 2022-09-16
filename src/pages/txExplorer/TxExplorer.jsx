@@ -96,7 +96,6 @@ export function TxExplorer() {
                                 </div>
 
                                 <Button
-                                    color={"secondary"}
                                     size={"small"}
                                     variant={"contained"}
                                     className="py-0 px-6 text-base mobile:w-full mobile:m-0 mobile:py-2 mobile:text-xl"

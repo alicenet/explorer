@@ -120,7 +120,6 @@ export function SearchBar({ currentSearch = null }) {
 
                     <Button
                         variant={"contained"}
-                        color={"secondary"}
                         className="w-40 mobile:w-full text-xl mobile:py-2"
                         onClick={() => handleSearch(term)}
                     >
