@@ -38,7 +38,7 @@ export function HelpTooltip({ content }) {
 
     return (
 
-        <Tooltip title={content} arrow>
+        <Tooltip title={content} arrow placement={"top"}>
             <div>
                 <Icon
                     name="question circle outline"
