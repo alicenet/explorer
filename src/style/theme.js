@@ -22,4 +22,14 @@ export const theme = createTheme({
     shape: {
         borderRadius: 4,
     },
+    components: {
+        MuiTooltip: {
+            styleOverrides: {
+                tooltip: {
+                    padding: '10px',
+                    fontSize: '0.75rem',
+                },
+            }
+        }
+    }
 });
