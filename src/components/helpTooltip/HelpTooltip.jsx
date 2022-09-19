@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon } from "semantic-ui-react";
+import { HelpOutline } from '@mui/icons-material';
 import { Tooltip } from "@mui/material";
 
 export const content = {
@@ -40,10 +40,7 @@ export function HelpTooltip({ content }) {
 
         <Tooltip title={content} arrow placement={"top"}>
             <div>
-                <Icon
-                    name="question circle outline"
-                    className="m-0 h-auto"
-                />
+                <HelpOutlineIcon fontSize={"small"} />
             </div>
         </Tooltip>
 

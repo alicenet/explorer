@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Dropdown, Icon } from "semantic-ui-react";
+import { Dropdown } from "semantic-ui-react";
 import { Button, TextField } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { classNames, curveTypes, isBN, searchTypes } from "utils";
 import { content, HelpTooltip } from "components";
+import { FiberManualRecord } from '@mui/icons-material';
 
 const options = [
     { text: 'Transactions', placeHolder: "Transactions Hash", value: searchTypes.TRANSACTIONS },
@@ -110,7 +111,10 @@ export function SearchBar({ currentSearch = null }) {
                                 selectedOption.value === searchTypes.DATASTORES &&
                                 <div className="flex items-center w-1/2 gap-2 mobile:w-full">
                                     <TextField
-                                        inputProps={{ placeholder: "Offset", className: "text-white py-3 mobile:text-xl" }}
+                                        inputProps={{
+                                            placeholder: "Offset",
+                                            className: "text-white py-3 mobile:text-xl"
+                                        }}
                                         variant={"outlined"}
                                         className="bg-dark w-full"
                                         value={offset}
@@ -136,7 +140,7 @@ export function SearchBar({ currentSearch = null }) {
                 <div className="flex">
                     {curveType && term && selectedOption.value === searchTypes.DATASTORES && (
                         <div className="flex items-center gap-3 w-1/2 mobile:w-full">
-                            <Icon name="circle" size="mini" className="text-neongreen m-0 h-auto" />
+                            <FiberManualRecord className="text-neongreen w-3" />
                             <h4>This is a {curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h4>
                             <HelpTooltip
                                 content={curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}

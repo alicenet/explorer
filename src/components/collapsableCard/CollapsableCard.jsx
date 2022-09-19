@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Accordion, Icon } from "semantic-ui-react";
+import { Accordion } from "semantic-ui-react";
 import { classNames as csx } from "utils";
+import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
 
 export function CollapsableCard({
     children,
@@ -42,7 +43,7 @@ export function CollapsableCard({
                         </span>
                             )}
                         </div>
-                        <Icon className="m-0 h-auto" name={`caret ${isBlockOpen ? 'down' : 'up'}`} />
+                        {isBlockOpen ? <ArrowDropDown /> : <ArrowDropUp />}
                     </div>
                 </Accordion.Title>
 

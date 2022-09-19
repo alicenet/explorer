@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Icon, Image, Menu, Modal } from "semantic-ui-react";
+import { Image, Menu, Modal } from "semantic-ui-react";
+import { ArrowDropDown, ArrowDropUp, Menu as Icon } from '@mui/icons-material';
 import Logo from "assets/MadNetwork Logo Horizontal GRAYSCALE.png";
 import { classNames } from "utils";
 
@@ -46,11 +47,7 @@ export function HeaderMobile() {
                     onOpen={() => setOpen(true)}
                     open={open}
                     trigger={
-                        <Icon
-                            name="bars"
-                            size="large"
-                            className="cursor-pointer hover:opacity-80"
-                        />
+                        <Icon fontSize={"large"} className="cursor-pointer hover:opacity-80" />
                     }
                 >
                     <div className="px-10 my-5">
@@ -71,9 +68,13 @@ export function HeaderMobile() {
                             />
 
                             <Menu.Item
-                                className="text-white text-2xl flex flex-row-reverse justify-end gap-2"
+                                className="text-white text-2xl flex flex-row-reverse justify-end gap-2 items-center"
                                 position="left"
-                                icon={<Icon className="m-0" name={`${walletMenuOpen ? "angle up" : "angle down"}`} />}
+                                icon={
+                                    walletMenuOpen ?
+                                        <ArrowDropDown className="text-3xl" /> :
+                                        <ArrowDropUp className="text-3xl" />
+                                }
                                 name="Wallet Download"
                                 onClick={() => setWalletMenuOpen(prevState => !prevState)}
                             />

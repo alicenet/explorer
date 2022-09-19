@@ -1,7 +1,8 @@
-import { Container, Icon } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 import { Button } from "@mui/material";
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { Error } from "@mui/icons-material";
 
 export function InvalidInput({ term, suggestion }) {
 
@@ -14,7 +15,7 @@ export function InvalidInput({ term, suggestion }) {
 
             <Container className="flex flex-col font-bold text-left">
                 <Container className="flex flex-row items-center gap-3 text-5xl">
-                    <Icon className="m-0 h-auto" name="warning circle" />
+                    <Error className="text-5xl" />
                     <h2>OOPS!</h2>
                 </Container>
                 <h3 className="text-2xl">Invalid Input</h3>

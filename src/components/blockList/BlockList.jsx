@@ -1,9 +1,10 @@
 import React from "react";
-import { Grid, Icon } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import { IconButton } from "@mui/material";
 import { content, CopyTooltip, TwoColumnsRow } from "components";
 import { useHistory } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 
 const NavigationChevron = ({ height, direction }) => {
     const history = useHistory();
@@ -11,14 +12,10 @@ const NavigationChevron = ({ height, direction }) => {
     return (
         <IconButton
             size={"small"}
-            className="bg-buttonblack rounded-md text-white hover:opacity-80"
+            className="bg-buttonblack rounded-md text-white hover:opacity-80 w-6 p-0"
             onClick={() => handleBlockNav(height)}
         >
-            <Icon
-                className="m-0 p-0"
-                name={`chevron ${direction}`}
-                size="small"
-            />
+            {direction === "left" ? <ChevronLeft /> : <ChevronRight />}
         </IconButton>
     );
 }
