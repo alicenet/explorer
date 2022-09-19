@@ -40,7 +40,7 @@ export function HelpTooltip({ content }) {
 
         <Tooltip title={content} arrow placement={"top"}>
             <div>
-                <HelpOutlineIcon fontSize={"small"} />
+                <HelpOutline fontSize={"small"} />
             </div>
         </Tooltip>
 
