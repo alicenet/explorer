@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown, Icon } from "semantic-ui-react";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { classNames, curveTypes, isBN, searchTypes } from "utils";
 import { content, HelpTooltip } from "components";
@@ -91,23 +91,28 @@ export function SearchBar({ currentSearch = null }) {
                             </Dropdown.Menu>
                         </Dropdown>
 
-                        <div className="flex flex-row mobile:flex-col w-full gap-3">
-                            <input
+                        <div className="flex flex-row items-center mobile:flex-col w-full gap-3">
+                            <TextField
+                                inputProps={{
+                                    placeholder: `${selectedOption.placeHolder}`,
+                                    className: "text-white py-3 mobile:text-xl"
+                                }}
+                                variant={"outlined"}
                                 className={classNames(
-                                    "px-4 bg-dark rounded-l-none rounded-md focus:outline-none focus:border-neongreen mobile:py-3 mobile:rounded-md  mobile:text-xl",
+                                    "bg-dark mobile:text-xl",
                                     { "w-full": selectedOption.value !== searchTypes.DATASTORES },
                                     { "w-1/2 mobile:w-full": selectedOption.value === searchTypes.DATASTORES }
                                 )}
-                                placeholder={` ${selectedOption.placeHolder}`}
                                 value={term}
                                 onChange={(e) => setTerm(e.target.value)}
                             />
                             {
                                 selectedOption.value === searchTypes.DATASTORES &&
                                 <div className="flex items-center w-1/2 gap-2 mobile:w-full">
-                                    <input
-                                        className="px-4 bg-dark rounded-md w-full h-full focus:outline-none focus:border-neongreen mobile:py-3 mobile:text-xl"
-                                        placeholder=" Offset"
+                                    <TextField
+                                        inputProps={{ placeholder: "Offset", className: "text-white py-3 mobile:text-xl" }}
+                                        variant={"outlined"}
+                                        className="bg-dark w-full"
                                         value={offset}
                                         onChange={e => setOffset(e.target.value)}
                                     />

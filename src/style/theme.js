@@ -30,6 +30,46 @@ export const theme = createTheme({
                     fontSize: '0.75rem',
                 },
             }
-        }
-    }
+        },
+    },
+    props: {
+        MuiButton: {
+            size: 'small',
+        },
+        MuiButtonGroup: {
+            size: 'small',
+        },
+        MuiCheckbox: {
+            size: 'small',
+        },
+        MuiFab: {
+            size: 'small',
+        },
+        MuiFormControl: {
+            margin: 'dense',
+            size: 'small',
+        },
+        MuiFormHelperText: {
+            margin: 'dense',
+        },
+        MuiIconButton: {
+            size: 'small',
+        },
+        MuiInputBase: {
+            margin: 'dense',
+        },
+        MuiInputLabel: {
+            margin: 'dense',
+        },
+        MuiRadio: {
+            size: 'small',
+        },
+        MuiSwitch: {
+            size: 'small',
+        },
+        MuiTextField: {
+            margin: 'dense',
+            size: 'small',
+        },
+    },
 });
