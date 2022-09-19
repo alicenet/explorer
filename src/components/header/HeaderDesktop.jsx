@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Dropdown, Image, Menu } from "semantic-ui-react";
+import { Link, useHistory } from "react-router-dom";
+import { Dropdown, Menu } from "semantic-ui-react";
 import Logo from "assets/MadNetwork Logo Horizontal GRAYSCALE.png";
+import Image from "mui-image";
 
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
@@ -13,6 +14,7 @@ const WALLET_WINDOWS_URL = process.env.REACT_APP_WALLET_WINDOWS_URL;
 const MenuDivider = () => <div className="border-r border-gray-700 my-3" />;
 
 export function HeaderDesktop() {
+    const history = useHistory();
 
     return (
 
@@ -20,11 +22,12 @@ export function HeaderDesktop() {
 
             <Menu.Menu position="left" className="self-center">
                 <Image
+                    duration={0}
+                    onClick={() => history.push(`/`)}
+                    className="cursor-pointer"
                     src={Logo}
                     width="205px"
                     style={{ filter: "invert(100%)" }}
-                    as={Link}
-                    to="/"
                 />
             </Menu.Menu>
 

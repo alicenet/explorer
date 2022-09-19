@@ -12,7 +12,7 @@ export const Home = () => {
                 <div className="flex flex-col gap-10">
                     <CallToAction />
 
-                    <Grid container spacing={2}>
+                    <Grid container spacing={3}>
                         <Grid item sm={12} md={6} className="w-full">
                             <LatestBlocks />
                         </Grid>

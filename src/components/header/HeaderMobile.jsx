@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Image, Menu, Modal } from "semantic-ui-react";
+import { Link, useHistory } from "react-router-dom";
+import { Menu, Modal } from "semantic-ui-react";
 import { ArrowDropDown, ArrowDropUp, Menu as Icon } from '@mui/icons-material';
 import Logo from "assets/MadNetwork Logo Horizontal GRAYSCALE.png";
 import { classNames } from "utils";
+import Image from "mui-image";
 
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
-const MADHIVE_URL = process.env.REACT_APP_MADHIVE_URL;
 
 const WALLET_LINUX_URL = process.env.REACT_APP_WALLET_LINUX_URL;
 const WALLET_MAC_URL = process.env.REACT_APP_WALLET_MAC_URL;
@@ -18,6 +18,7 @@ export function HeaderMobile() {
     const [open, setOpen] = useState(false);
     const [walletMenuOpen, setWalletMenuOpen] = useState(false);
     const [showWalletOptions, setShowWalletOptions] = useState(false);
+    const history = useHistory();
 
     useEffect(() => {
         setShowWalletOptions(walletMenuOpen);
@@ -29,11 +30,12 @@ export function HeaderMobile() {
 
             <Menu.Menu position="left" className="self-center">
                 <Image
+                    duration={0}
+                    onClick={() => history.push(`/`)}
+                    className="cursor-pointer"
                     src={Logo}
                     width="175px"
                     style={{ filter: "invert(100%)" }}
-                    as={Link}
-                    to="/"
                 />
             </Menu.Menu>
 
@@ -63,7 +65,8 @@ export function HeaderMobile() {
 
                             <Menu.Item
                                 className="text-white text-2xl"
-                                onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
+                                as={Link}
+                                to="/about"
                                 name="About"
                             />
 
