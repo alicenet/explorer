@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Dropdown } from "semantic-ui-react";
-import { Button, TextField } from "@mui/material";
+import { Button, FormControl, MenuItem, Select, TextField } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { classNames, curveTypes, isBN, searchTypes } from "utils";
 import { content, HelpTooltip } from "components";
@@ -35,10 +34,10 @@ export function SearchBar({ currentSearch = null }) {
         }
     }, []);
 
-    const handleChange = (e, { value }) => {
+    const handleChange = (e) => {
         setTerm("");
         setOffset("");
-        setSelectedOption(options[value]);
+        setSelectedOption(options[e.target.value]);
     };
 
     const handleSearch = () => {
@@ -74,23 +73,24 @@ export function SearchBar({ currentSearch = null }) {
 
                     <div className="flex flex-row mobile:flex-col w-full mobile:gap-5">
 
-                        <Dropdown
-                            className="flex justify-center items-center text-black bg-cleargray rounded-md rounded-r-none font-bold flex-shrink-0 min-w-9 mobile:py-2 mobile:rounded-md mobile:text-xl"
-                            text={selectedOption.text}
-                        >
-                            <Dropdown.Menu className="bg-dropgray w-full">
+                        <FormControl variant="outlined" className="flex-shrink-0 text-center">
+                            <Select
+                                className="bg-cleargray rounded-md rounded-r-none font-bold min-w-9 mobile:rounded-md mobile:text-xl"
+                                labelId="search-type-selection"
+                                id="search-type-selection"
+                                value={selectedOption.value}
+                                onChange={handleChange}
+                                inputProps={{className: "py-3"}}
+                            >
                                 {options.map(option =>
-                                    <Dropdown.Item
+                                    <MenuItem
                                         key={`header-option-${option.value}`}
-                                        onClick={handleChange}
                                         value={option.value}
-                                        className="text-black font-bold mobile:text-xl"
-                                    >
-                                        {option.text}
-                                    </Dropdown.Item>
+                                        className="font-bold mobile:text-xl"
+                                    >{option.text}</MenuItem>
                                 )}
-                            </Dropdown.Menu>
-                        </Dropdown>
+                            </Select>
+                        </FormControl>
 
                         <div className="flex flex-row items-center mobile:flex-col w-full gap-3">
                             <TextField
