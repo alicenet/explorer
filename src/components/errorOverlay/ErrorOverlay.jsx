@@ -1,7 +1,7 @@
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import React from "react";
 import { useSelector } from "react-redux";
-import { Container, Divider, Modal } from "semantic-ui-react";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 
 export const ErrorOverlay = () => {
 
@@ -11,15 +11,21 @@ export const ErrorOverlay = () => {
 
     return (
 
-        <Modal size="tiny" open={!!error} centered onClose={() => aliceNetAdapter.clearError()}>
-            <Modal.Content scrolling>
-                <Container textAlign="center" fluid>
-                    <h2 className="b">Error!</h2>
-                    <Divider />
+        <Dialog open={!!error}>
+            <DialogTitle className="text-white text-2xl">
+                Error!
+            </DialogTitle>
+            <DialogContent dividers>
+                <DialogContentText className="text-white">
                     {error}
-                </Container>
-            </Modal.Content>
-        </Modal>
+                </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+                <Button variant={"contained"} onClick={() => document.location.reload(true)}>
+                    Try Again
+                </Button>
+            </DialogActions>
+        </Dialog>
 
     );
 
