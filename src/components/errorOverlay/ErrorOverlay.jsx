@@ -21,7 +21,7 @@ export const ErrorOverlay = () => {
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button variant={"contained"} onClick={() => document.location.reload(true)}>
+                <Button autoFocus variant={"contained"} onClick={() => document.location.reload(true)}>
                     Try Again
                 </Button>
             </DialogActions>

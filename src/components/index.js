@@ -10,8 +10,9 @@ export * from './footer';
 export * from './header';
 export * from './helpTooltip';
 export * from './invalidInput';
-export * from './latestBlocks'
-export * from './latestTransactions'
+export * from './latestBlocks';
+export * from './latestTransactions';
+export * from './loadingBackdrop';
 export * from './page';
 export * from './search';
 export * from './searchNotFound';
