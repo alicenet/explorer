@@ -100,7 +100,7 @@ export function SearchBar({ currentSearch = null }) {
                                 }}
                                 variant={"outlined"}
                                 className={classNames(
-                                    "bg-dark mobile:text-xl",
+                                    "bg-dark mobile:text-xl rounded-md rounded-l-none mobile:rounded-l-md",
                                     { "w-full": selectedOption.value !== searchTypes.DATASTORES },
                                     { "w-1/2 mobile:w-full": selectedOption.value === searchTypes.DATASTORES }
                                 )}
@@ -116,7 +116,7 @@ export function SearchBar({ currentSearch = null }) {
                                             className: "text-white py-3 mobile:text-xl"
                                         }}
                                         variant={"outlined"}
-                                        className="bg-dark w-full"
+                                        className="bg-dark w-full rounded-md"
                                         value={offset}
                                         onChange={e => setOffset(e.target.value)}
                                     />
