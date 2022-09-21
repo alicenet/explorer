@@ -23,7 +23,7 @@ export const StatusOverlay = () => {
 
     return (
         <>
-            <Backdrop open={busy} sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+            <Backdrop open={!!busy} sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
                 <Box display={"flex"} flexDirection={"column"} alignItems={"center"} gap={3}>
                     <Typography className="text-2xl">{busy}</Typography>
                     <CircularProgress />

@@ -26,7 +26,7 @@ export function TxViewDataStore({ dataStore }) {
             </TwoColumnsRow>
 
             <TwoColumnsRow title="Owner" tooltipContent={content.owner} width={4}>
-                <div className="flex items-center gap-3 mobile:flex-col mobile:gap-5">
+                <div className="flex items-start gap-3 mobile:flex-col mobile:gap-5 mobile:w-full">
                     <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['Owner']} content="Copy Address">
                         <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['Owner']}`}</p>
                     </CopyTooltip>
@@ -34,7 +34,7 @@ export function TxViewDataStore({ dataStore }) {
                     <Button
                         size={"small"}
                         variant={"contained"}
-                        className="px-3 py-0 ml-2 mobile:w-full mobile:m-0 mobile:text-base rounded-sm"
+                        className="px-3 py-0 ml-2 mobile:py-1 mobile:w-full mobile:m-0 mobile:text-base rounded-sm"
                         onClick={() =>
                             history.push(`/data/${dataStore['DSLinker']['DSPreImage']['Owner'].substr(4)}`)
                         }

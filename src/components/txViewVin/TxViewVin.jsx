@@ -1,6 +1,6 @@
 import React from "react";
-import { Grid } from "semantic-ui-react";
 import { CollapsableCard, content, CopyTooltip, TwoColumnsRow } from "components";
+import { Grid } from "@mui/material";
 
 export function TxViewVin({ txInfo }) {
 
@@ -12,7 +12,7 @@ export function TxViewVin({ txInfo }) {
 
                 <CollapsableCard title={`Vin ${index + 1}`} open={true} borderless key={`collapsable-tx-vin-${index}`}>
 
-                    <Grid padded="vertically" className="mx-0 break-words" columns={"equal"} stackable>
+                    <Grid container className="break-words">
 
                         <TwoColumnsRow title="Consumed Transaction" tooltipContent={content.consumedTx} width={4}>
                             <CopyTooltip
@@ -47,7 +47,6 @@ export function TxViewVin({ txInfo }) {
                     </Grid>
 
                 </CollapsableCard>
-
             )}
 
         </div>

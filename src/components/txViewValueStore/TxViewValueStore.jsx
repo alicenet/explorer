@@ -23,7 +23,7 @@ export function TxViewValueStore({ valueStore }) {
             </TwoColumnsRow>
 
             <TwoColumnsRow title="Owner" tooltipContent={content.owner} width={4}>
-                <div className="flex items-center gap-3 mobile:flex-col mobile:gap-5">
+                <div className="flex items-start gap-3 mobile:flex-col mobile:gap-5 mobile:w-full">
                     <CopyTooltip value={valueStore['VSPreImage']['Owner']} content="Copy Address">
                         <p className="break-all">{`0x${valueStore['VSPreImage']['Owner']}`}</p>
                     </CopyTooltip>
@@ -31,7 +31,7 @@ export function TxViewValueStore({ valueStore }) {
                     <Button
                         size={"small"}
                         variant={"contained"}
-                        className="px-3 py-0 ml-2 mobile:w-full mobile:m-0 mobile:text-base rounded-sm"
+                        className="px-3 py-0 ml-2 mobile:py-1 mobile:w-full mobile:m-0 mobile:text-base rounded-sm"
                         onClick={() =>
                             history.push(`/data/${valueStore['VSPreImage']['Owner'].substr(4)}`)
                         }
