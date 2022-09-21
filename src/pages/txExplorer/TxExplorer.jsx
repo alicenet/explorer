@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { Dimmer, Grid, Loader } from "semantic-ui-react";
 import { Button } from "@mui/material";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import {
@@ -40,15 +39,7 @@ export function TxExplorer() {
     }, [hash]);
 
     if (isLoading) {
-        return (
-            <Page>
-                <Grid>
-                    <Dimmer active>
-                        <Loader>Loading</Loader>
-                    </Dimmer>
-                </Grid>
-            </Page>
-        );
+        return null;
     }
 
     return (

@@ -48,9 +48,7 @@ export function BlockExplorer() {
     }, [height]);
 
     if (isLoading) {
-        return (
-            <LoadingBackdrop isLoading={isLoading} />
-        );
+        return null;
     }
 
     return (

@@ -1,15 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { BlockExplorer, DataExplorer, Home, Test, TxExplorer, About } from "pages";
-import { DimmerLoader, ErrorOverlay } from "components";
+import { About, BlockExplorer, DataExplorer, Home, Test, TxExplorer } from "pages";
+import { StatusOverlay } from "components";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "./style/theme";
 
 function App() {
     return (
         <ThemeProvider theme={theme}>
-            <ErrorOverlay />
-            <DimmerLoader />
+            <StatusOverlay />
             <Router>
                 <Switch>
                     <Route exact path="/" component={Home} />
