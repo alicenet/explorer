@@ -19,7 +19,6 @@ export const Home = () => {
                             <LatestTransactions />
                         </Grid>
                     </Grid>
-
                 </div>
             </div>
         </Page>

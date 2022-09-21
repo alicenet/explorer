@@ -6,7 +6,9 @@ import { ThemeProvider } from "@emotion/react";
 import { theme } from "./style/theme";
 
 function App() {
+
     return (
+
         <ThemeProvider theme={theme}>
             <StatusOverlay />
             <Router>
@@ -20,6 +22,7 @@ function App() {
                 </Switch>
             </Router>
         </ThemeProvider>
+
     );
 }
 
