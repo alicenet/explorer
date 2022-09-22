@@ -12,7 +12,7 @@ export function TxViewValueStore({ valueStore }) {
 
         <Grid>
 
-            <TwoColumnsRow title="Value" tooltipContent={content.value} width={4}>
+            <TwoColumnsRow title="Value" tooltipContent={content.value}>
                 <CopyTooltip
                     value={aliceNetAdapter.hexToInt(valueStore['VSPreImage']['Value'])}
                     content="Copy Value"
@@ -21,7 +21,7 @@ export function TxViewValueStore({ valueStore }) {
                 </CopyTooltip>
             </TwoColumnsRow>
 
-            <TwoColumnsRow title="Owner" tooltipContent={content.owner} width={4}>
+            <TwoColumnsRow title="Owner" tooltipContent={content.owner}>
                 <div className="flex items-start gap-3 mobile:flex-col mobile:gap-5 mobile:w-full">
                     <CopyTooltip value={valueStore['VSPreImage']['Owner']} content="Copy Address">
                         <p className="break-all">{`0x${valueStore['VSPreImage']['Owner']}`}</p>
@@ -40,7 +40,7 @@ export function TxViewValueStore({ valueStore }) {
                 </div>
             </TwoColumnsRow>
 
-            <TwoColumnsRow title="Transaction Index" tooltipContent={content.txIndex} width={4} lastRow>
+            <TwoColumnsRow title="Transaction Index" tooltipContent={content.txIndex} lastRow>
                 <CopyTooltip value={valueStore['VSPreImage']['TXOutIdx']} content="Copy Index">
                     <p className="break-all">{valueStore['VSPreImage']['TXOutIdx']}</p>
                 </CopyTooltip>

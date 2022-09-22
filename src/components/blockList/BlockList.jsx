@@ -37,7 +37,7 @@ export function BlockList({ blockInfo }) {
 
         <Grid className="break-words">
 
-            <TwoColumnsRow title="Block Height" tooltipContent={content.height}>
+            <TwoColumnsRow title="Block Height" tooltipContent={content.height} size={2}>
                 {height}
                 <div className="flex gap-2 mobile:hidden">
                     {height > 1 && <NavigationChevron height={height - 1} direction="left" />}
@@ -46,35 +46,35 @@ export function BlockList({ blockInfo }) {
 
             </TwoColumnsRow>
 
-            <TwoColumnsRow title="Transaction Count" tooltipContent={content.txCount}>
+            <TwoColumnsRow title="Transaction Count" tooltipContent={content.txCount} size={2}>
                 <p>{txCount ? txCount : 0}</p>
             </TwoColumnsRow>
 
-            <TwoColumnsRow title="Previous Block" tooltipContent={content.previousBlock}>
+            <TwoColumnsRow title="Previous Block" tooltipContent={content.previousBlock} size={2}>
                 <CopyTooltip value={prevBlock} content="Copy Hash">
                     <p className="break-all">{`0x${prevBlock}`}</p>
                 </CopyTooltip>
             </TwoColumnsRow>
 
-            <TwoColumnsRow title="Transaction Root" tooltipContent={content.txRoot}>
+            <TwoColumnsRow title="Transaction Root" tooltipContent={content.txRoot} size={2}>
                 <CopyTooltip value={txRoot} content="Copy Hash">
                     <p className="break-all">{`0x${txRoot}`}</p>
                 </CopyTooltip>
             </TwoColumnsRow>
 
-            <TwoColumnsRow title="State Root" tooltipContent={content.stateRoot}>
+            <TwoColumnsRow title="State Root" tooltipContent={content.stateRoot} size={2}>
                 <CopyTooltip value={stateRoot} content="Copy Hash">
                     <p className="break-all">{`0x${stateRoot}`}</p>
                 </CopyTooltip>
             </TwoColumnsRow>
 
-            <TwoColumnsRow title="Header Root" tooltipContent={content.headerRoot}>
+            <TwoColumnsRow title="Header Root" tooltipContent={content.headerRoot} size={2}>
                 <CopyTooltip value={headerRoot} content="Copy Hash">
                     <p className="break-all">{`0x${headerRoot}`}</p>
                 </CopyTooltip>
             </TwoColumnsRow>
 
-            <TwoColumnsRow title="Group Signature" tooltipContent={content.groupSignature}>
+            <TwoColumnsRow title="Group Signature" tooltipContent={content.groupSignature} size={2}>
                 <div className="p-0 pr-20 mobile:pr-0">
                     <CopyTooltip value={sigGroup} content="Copy Signature">
                         <p className="break-all">{`0x${sigGroup}`}</p>

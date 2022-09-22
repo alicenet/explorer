@@ -15,7 +15,7 @@ export function TxViewVin({ txInfo }) {
 
                     <Grid container className="break-words">
 
-                        <TwoColumnsRow title="Consumed Transaction" tooltipContent={content.consumedTx} width={4}>
+                        <TwoColumnsRow title="Consumed Transaction" tooltipContent={content.consumedTx}>
                             <CopyTooltip
                                 value={tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}
                                 content="Copy Hash"
@@ -32,7 +32,7 @@ export function TxViewVin({ txInfo }) {
                         <TwoColumnsRow
                             title="Consumed Transaction Index"
                             tooltipContent={content.consumedTxIndex}
-                            width={4}
+
                         >
                             <CopyTooltip
                                 value={tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx']}
@@ -42,7 +42,7 @@ export function TxViewVin({ txInfo }) {
                             </CopyTooltip>
                         </TwoColumnsRow>
 
-                        <TwoColumnsRow title="Signature" tooltipContent={content.signature} width={4} lastRow>
+                        <TwoColumnsRow title="Signature" tooltipContent={content.signature} lastRow>
                             <div className="p-0 pr-20 mobile:pr-0">
                                 <CopyTooltip value={tx['Signature']} content="Copy Hash">
                                     <p className="break-all">{`0x${tx['Signature']}`}</p>
