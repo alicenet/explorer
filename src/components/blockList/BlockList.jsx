@@ -1,6 +1,5 @@
 import React from "react";
-import { Grid } from "semantic-ui-react";
-import { IconButton } from "@mui/material";
+import { Grid, IconButton } from "@mui/material";
 import { content, CopyTooltip, TwoColumnsRow } from "components";
 import { useHistory } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
@@ -36,7 +35,7 @@ export function BlockList({ blockInfo }) {
 
     return (
 
-        <Grid padded="vertically" className="mx-0 break-words" columns={"equal"} stackable>
+        <Grid className="break-words">
 
             <TwoColumnsRow title="Block Height" tooltipContent={content.height}>
                 {height}

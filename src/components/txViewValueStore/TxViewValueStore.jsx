@@ -1,6 +1,5 @@
 import React from "react";
-import { Grid } from "semantic-ui-react";
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { content, CopyTooltip, TwoColumnsRow } from "components";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
@@ -11,7 +10,7 @@ export function TxViewValueStore({ valueStore }) {
 
     return (
 
-        <Grid padded="vertically" className="mx-0 break-words" columns={"equal"} stackable>
+        <Grid>
 
             <TwoColumnsRow title="Value" tooltipContent={content.value} width={4}>
                 <CopyTooltip

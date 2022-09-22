@@ -1,8 +1,8 @@
 import React from "react";
-import { Grid } from "semantic-ui-react";
 import { CollapsableCard, content, CopyTooltip, TwoColumnsRow } from "components";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { Link } from "react-router-dom";
+import { Grid } from "@mui/material";
 
 export function DatastoreView({ datastoreInfo }) {
 
@@ -18,7 +18,7 @@ export function DatastoreView({ datastoreInfo }) {
                     borderless
                 >
 
-                    <Grid padded="vertically" className="mx-0 break-words">
+                    <Grid className="break-words">
 
                         <TwoColumnsRow title="Index" tooltipContent={content.index}>
                             <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['Index']} content="Copy Index">

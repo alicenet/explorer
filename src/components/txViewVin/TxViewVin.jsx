@@ -1,6 +1,7 @@
 import React from "react";
 import { CollapsableCard, content, CopyTooltip, TwoColumnsRow } from "components";
 import { Grid } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export function TxViewVin({ txInfo }) {
 
@@ -19,7 +20,12 @@ export function TxViewVin({ txInfo }) {
                                 value={tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}
                                 content="Copy Hash"
                             >
-                                <p className="break-all text-neongreen">{`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}</p>
+                                <Link
+                                    className="text-neongreen hover:text-neongreen hover:opacity-80 break-all"
+                                    to={`/tx/${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}
+                                >
+                                    {`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}
+                                </Link>
                             </CopyTooltip>
                         </TwoColumnsRow>
 
