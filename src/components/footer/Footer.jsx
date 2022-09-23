@@ -1,7 +1,7 @@
 import React from "react";
-import { Container } from "semantic-ui-react";
 import { ReactComponent as DiscordIcon } from "assets/discord-icon.svg";
 import { ReactComponent as TwitterIcon } from "assets/twitter-icon.svg";
+import { Box } from "@mui/material";
 
 const MADHIVE_URL = process.env.REACT_APP_MADHIVE_URL;
 
@@ -11,7 +11,7 @@ export function Footer() {
 
     return (
 
-        <Container fluid className="flex justify-between py-10 mobile:flex-col mobile:text-2xl mobile:gap-5">
+        <Box className="flex justify-between py-10 mobile:flex-col mobile:text-2xl mobile:gap-5">
 
             <div className="flex gap-5">
 
@@ -54,7 +54,7 @@ export function Footer() {
 
             </div>
 
-        </Container>
+        </Box>
 
     );
 

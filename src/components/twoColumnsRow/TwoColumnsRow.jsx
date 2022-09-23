@@ -9,7 +9,7 @@ export function TwoColumnsRow({ title, tooltipContent, children, size= 3, lastRo
 
         <Grid container
               className={
-                  classNames("px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2",
+                  classNames("px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-3",
                       { 'rounded-b-md': lastRow }
                   )
               }

@@ -4,6 +4,7 @@ import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { HeaderDesktop } from "./HeaderDesktop";
 
 export function Header() {
+
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
