@@ -10,7 +10,7 @@ export function Header() {
 
     return (
 
-        <Box className="sticky top-0 bg-dark opacity-90 mobile:px-5">
+        <Box className="sticky top-0 bg-dark opacity-90 mobile:px-3">
 
             {isMobile ? <HeaderMobile /> : <HeaderDesktop />}
 
