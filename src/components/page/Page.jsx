@@ -10,11 +10,7 @@ export const Page = ({ children }) => {
 
                 <Header />
 
-                <div>
-
-                    {children}
-
-                </div>
+                {children}
 
             </div>
 
