@@ -1,6 +1,6 @@
 import React from "react";
 import { HeaderMobile } from "./HeaderMobile";
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { useMediaQuery, useTheme } from "@mui/material";
 import { HeaderDesktop } from "./HeaderDesktop";
 
 export function Header() {
@@ -10,11 +10,11 @@ export function Header() {
 
     return (
 
-        <Box className="sticky top-0 bg-dark opacity-90 mobile:px-3">
+        <>
 
             {isMobile ? <HeaderMobile /> : <HeaderDesktop />}
 
-        </Box>
+        </>
 
     );
 
