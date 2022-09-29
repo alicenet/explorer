@@ -1,18 +1,71 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Menu } from "semantic-ui-react";
-import { ArrowDropDown, ArrowDropUp } from '@mui/icons-material';
+import { ListItemIcon, ListItemText, MenuItem as MUIMenuItem, MenuList, Typography } from "@mui/material";
+import { useHistory } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faApple, faLinux, faWindows } from "@fortawesome/free-brands-svg-icons";
+import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
 import { classNames } from "utils";
 
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
 
-const WALLET_LINUX_URL = process.env.REACT_APP_WALLET_LINUX_URL;
 const WALLET_MAC_URL = process.env.REACT_APP_WALLET_MAC_URL;
+const WALLET_LINUX_URL = process.env.REACT_APP_WALLET_LINUX_URL;
 const WALLET_WINDOWS_URL = process.env.REACT_APP_WALLET_WINDOWS_URL;
 
-export function HeaderMobile() {
+const sections =
+    [
+        {
+            label: "Monitor",
+            location: "/",
+            displayCallback: ({ location, label }) => <MenuItem location={location} label={label} />
+        },
+        {
+            label: "About",
+            location: "/about",
+            displayCallback: ({ location, label }) => <MenuItem location={location} label={label} />
+        },
+        {
+            displayCallback: () => <MenuDropdown />
+        },
+        {
+            label: "GitHub",
+            location: GITHUB_URL,
+            displayCallback: ({ location, label }) => <MenuItem location={location} label={label} blank />
+        },
+        {
+            label: "White Paper",
+            location: WHITE_PAPER_URL,
+            displayCallback: ({ location, label }) => <MenuItem location={location} label={label} blank />
+        },
+    ];
 
+const subSections =
+    [
+        {
+            label: "iOS",
+            location: WALLET_MAC_URL,
+            icon: <FontAwesomeIcon icon={faApple} />,
+            displayCallback: ({ location, label, icon }) =>
+                <MenuItem icon={icon} location={location} label={label} blank />
+        },
+        {
+            label: "Linux",
+            location: WALLET_LINUX_URL,
+            icon: <FontAwesomeIcon icon={faLinux} />,
+            displayCallback: ({ location, label, icon }) =>
+                <MenuItem icon={icon} location={location} label={label} blank />
+        },
+        {
+            label: "Windows",
+            location: WALLET_WINDOWS_URL,
+            icon: <FontAwesomeIcon icon={faWindows} />,
+            displayCallback: ({ location, label, icon }) =>
+                <MenuItem icon={icon} location={location} label={label} blank />
+        },
+    ];
+
+const MenuDropdown = () => {
     const [walletMenuOpen, setWalletMenuOpen] = useState(false);
     const [showWalletOptions, setShowWalletOptions] = useState(false);
 
@@ -21,91 +74,58 @@ export function HeaderMobile() {
     }, [walletMenuOpen]);
 
     return (
-
-        <div className="px-10 my-5">
-
-            <Menu text vertical className="flex items gap-5">
-
-                <Menu.Item
-                    className="text-white text-2xl"
-                    as={Link}
-                    to="/"
-                    name="Monitor"
-                />
-
-                <Menu.Item
-                    className="text-white text-2xl"
-                    as={Link}
-                    to="/about"
-                    name="About"
-                />
-
-                <Menu.Item
-                    className="text-white text-2xl flex flex-row-reverse justify-end gap-2 items-center"
-                    position="left"
-                    icon={
-                        walletMenuOpen ?
-                            <ArrowDropDown className="text-3xl" /> :
-                            <ArrowDropUp className="text-3xl" />
-                    }
-                    name="Wallet Download"
-                    onClick={() => setWalletMenuOpen(prevState => !prevState)}
-                />
-
-                {
-                    walletMenuOpen &&
-                    <Menu.Item className={
-                        classNames(
-                            "px-5 transition-opacity py-0 my-0",
-                            { "opacity-100": showWalletOptions },
-                            { "opacity-0": !showWalletOptions },
-                        )
-                    }>
-
-                        {
-                            showWalletOptions &&
-                            <Menu text vertical>
-
-                                <Menu.Item
-                                    className="text-white text-xl"
-                                    onClick={() => window.open(WALLET_LINUX_URL, '_blank').focus()}
-                                    name="Linux"
-                                />
-
-                                <Menu.Item
-                                    className="text-white text-xl"
-                                    onClick={() => window.open(WALLET_MAC_URL, '_blank').focus()}
-                                    content="iOS"
-                                />
-
-                                <Menu.Item
-                                    className="text-white text-xl"
-                                    onClick={() => window.open(WALLET_WINDOWS_URL, '_blank').focus()}
-                                    name="Windows"
-                                />
-
-                            </Menu>
+        <MenuList className="p-0">
+            <MUIMenuItem className="py-5 px-10">
+                <ListItemText onClick={() => setWalletMenuOpen(prevState => !prevState)}>
+                    <Typography className="text-white text-2xl">
+                        Wallet Download
+                        {walletMenuOpen ?
+                            <ArrowDropUp className="text-3xl" /> :
+                            <ArrowDropDown className="text-3xl" />
                         }
-
-                    </Menu.Item>
-                }
-
-                <Menu.Item
-                    className="text-white text-2xl"
-                    onClick={() => window.open(GITHUB_URL, '_blank').focus()}
-                    name="Github"
-                />
-
-                <Menu.Item
-                    className="text-white text-2xl"
-                    onClick={() => window.open(WHITE_PAPER_URL, '_blank').focus()}
-                    name="White Paper"
-                />
-
-            </Menu>
-
-        </div>
-
+                    </Typography>
+                </ListItemText>
+            </MUIMenuItem>
+            <div
+                className={classNames(
+                    "px-5 transition-opacity py-0 my-0",
+                    { "opacity-100": showWalletOptions },
+                    { "opacity-0": !showWalletOptions },
+                )}
+            >
+                {showWalletOptions && subSections.map((section, index, { length }) => (
+                    section.displayCallback(section)
+                ))}
+            </div>
+        </MenuList>
     );
+}
 
+const MenuItem = ({ location, label, icon = null, blank = false }) => {
+    const history = useHistory();
+    return (
+        <MUIMenuItem key={`menu-item-${label}`} className="py-5 px-10">
+            {
+                icon &&
+                <ListItemIcon className="text-white text-2xl">
+                    {icon}
+                </ListItemIcon>
+            }
+            <ListItemText onClick={() => blank ? window.open(location, '_blank').focus() : history.push(location)}>
+                <Typography className="text-white text-2xl">
+                    {label}
+                </Typography>
+            </ListItemText>
+        </MUIMenuItem>
+    );
+}
+
+export function HeaderMobile() {
+    return (
+        <MenuList>
+            {sections.map((section, index, { length }) => (
+                section.displayCallback(section)
+            ))}
+        </MenuList>
+    );
 }
