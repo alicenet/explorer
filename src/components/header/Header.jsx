@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Logo from "assets/MadNetwork Logo Horizontal GRAYSCALE.png";
 import Image from "mui-image";
-import { AppBar, Box, Container, Drawer, IconButton, Link, Toolbar } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Box, Container, Drawer, IconButton, Link, Menu, MenuItem, Toolbar } from "@mui/material";
+import { ArrowDropDown, Menu as MenuIcon } from '@mui/icons-material';
 import { HeaderMobile } from "./HeaderMobile";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faApple, faLinux, faWindows } from "@fortawesome/free-brands-svg-icons";
 
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
@@ -31,6 +33,80 @@ const MenuLink = ({ location, label, blank = false }) => {
     }
 ;
 
+const MenuDropdown = ({ label }) => {
+        const [anchorEl, setAnchorEl] = React.useState(null);
+        const open = Boolean(anchorEl);
+        const handleClick = (event) => {
+            setAnchorEl(event.currentTarget);
+        };
+        const handleClose = () => {
+            setAnchorEl(null);
+        };
+
+        return (
+            <div>
+                <Link
+                    color="white"
+                    className="hover:text-neongreen cursor-pointer"
+                    underline="none"
+                    onClick={handleClick}
+                >
+                    {label}
+                    <ArrowDropDown />
+                </Link>
+                <Menu
+                    PaperProps={{ sx: { marginTop: 2 } }}
+
+                    disableAutoFocusItem={true}
+                    anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "right",
+                    }}
+                    transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                    }}
+                    id="demo-customized-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                >
+                    <MenuItem
+                        className="flex gap-3 px-10"
+                        onClick={() => {
+                            window.open(WALLET_MAC_URL, '_blank').focus();
+                            handleClose();
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faApple} />
+                        iOS
+                    </MenuItem>
+                    <MenuItem
+                        className="flex gap-3 px-10"
+                        onClick={() => {
+                            window.open(WALLET_LINUX_URL, '_blank').focus();
+                            handleClose();
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faLinux} />
+                        Linux
+                    </MenuItem>
+                    <MenuItem
+                        className="flex gap-3 px-10"
+                        onClick={() => {
+                            window.open(WALLET_WINDOWS_URL, '_blank').focus();
+                            handleClose();
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faWindows} />
+                        Windows
+                    </MenuItem>
+                </Menu>
+            </div>
+        );
+    }
+;
+
 const sections =
     [
         {
@@ -42,6 +118,10 @@ const sections =
             label: "About",
             location: "/about",
             displayCallback: ({ location, label }) => <MenuLink location={location} label={label} />
+        },
+        {
+            label: "Wallet Download",
+            displayCallback: ({ location, label }) => <MenuDropdown label={label} />
         },
         {
             label: "GitHub",
@@ -107,6 +187,7 @@ export function Header() {
             </AppBar>
 
             <Box component="nav">
+
                 <Drawer
                     variant="temporary"
                     open={mobileOpen}
@@ -114,9 +195,9 @@ export function Header() {
                     PaperProps={{ className: "bg-rowblack" }}
                     sx={{ display: { sm: 'block', md: 'none' } }}
                 >
-                    <Box>
-                        <HeaderMobile />
-                    </Box>
+
+                    <HeaderMobile />
+
                 </Drawer>
 
             </Box>
