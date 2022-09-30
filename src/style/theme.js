@@ -37,6 +37,29 @@ export const theme = createTheme({
                     backgroundColor: '#444444'
                 }
             }
+        },
+        MuiCssBaseline: {
+            styleOverrides: {
+                body: {
+                    "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
+                        "-webkit-appearance": "none",
+                        width: 10,
+                    },
+                    "&::-webkit-scrollbar-track, & *::-webkit-scrollbar-track": {
+                        backgroundColor: "rgba(0, 0, 0, 0.1)",
+                    },
+                    "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
+                        borderRadius: 8,
+                        backgroundColor: "rgba(0, 0, 0, 0.25)",
+                    },
+                    "&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
+                        backgroundColor: "rgba(0, 0, 0, 0.25)",
+                    },
+                    "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
+                        backgroundColor: "rgba(128, 135, 139, 0.8)",
+                    },
+                }
+            }
         }
     },
     props: {

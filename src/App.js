@@ -4,12 +4,13 @@ import { About, BlockExplorer, DataExplorer, Home, Test, TxExplorer } from "page
 import { StatusOverlay } from "components";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "./style/theme";
+import { CssBaseline } from "@mui/material";
 
 function App() {
 
     return (
-
         <ThemeProvider theme={theme}>
+            <CssBaseline enableColorScheme />
             <StatusOverlay />
             <Router>
                 <Switch>
@@ -22,7 +23,6 @@ function App() {
                 </Switch>
             </Router>
         </ThemeProvider>
-
     );
 }
 
