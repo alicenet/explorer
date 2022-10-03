@@ -1,104 +1,61 @@
 import React from "react";
-import { Container, Grid, Icon, Popup } from "semantic-ui-react";
-import { CollapsableCard, content, HelpTooltip } from "components";
-import { copyText } from "utils";
+import { CollapsableCard, content, CopyTooltip, TwoColumnsRow } from "components";
+import { Grid } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export function TxViewVin({ txInfo }) {
 
     return (
 
-        <Container className="bg-headerblack p-4 flex flex-col gap-4 rounded-b-md">
+        <div className="bg-headerblack p-4 flex flex-col gap-4 rounded-b-md">
 
             {txInfo.map((tx, index) =>
 
                 <CollapsableCard title={`Vin ${index + 1}`} open={true} borderless key={`collapsable-tx-vin-${index}`}>
 
-                    <Grid padded="vertically" className="mx-0 break-words" columns={"equal"}>
+                    <Grid container className="break-words">
 
-                        <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
+                        <TwoColumnsRow title="Consumed Transaction" tooltipContent={content.consumedTx}>
+                            <CopyTooltip
+                                value={tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}
+                                content="Copy Hash"
+                            >
+                                <Link
+                                    className="text-neongreen hover:text-neongreen hover:opacity-80 break-all"
+                                    to={`/tx/${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}
+                                >
+                                    {`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}
+                                </Link>
+                            </CopyTooltip>
+                        </TwoColumnsRow>
 
-                            <Grid.Column className="flex items-center gap-3 p-0" width={4}>
-                                <HelpTooltip content={content.consumedTx} />
-                                <p>Consumed Transaction</p>
-                            </Grid.Column>
+                        <TwoColumnsRow
+                            title="Consumed Transaction Index"
+                            tooltipContent={content.consumedTxIndex}
 
-                            <Grid.Column className="p-0">
-                                <div className="flex items-start gap-3">
-                                    <p>{`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}</p>
-                                    <Popup
-                                        trigger={
-                                            <Icon
-                                                name="copy outline"
-                                                className="cursor-pointer hover:opacity-80"
-                                                onClick={() => copyText(tx['TXInLinker']['TXInPreImage']['ConsumedTxHash'])}
-                                            />
-                                        }
-                                        basic
-                                        content="Copy Hash"
-                                    />
-                                </div>
-                            </Grid.Column>
+                        >
+                            <CopyTooltip
+                                value={tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx']}
+                                content="Copy Value"
+                            >
+                                <p className="break-all">{tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx']}</p>
+                            </CopyTooltip>
+                        </TwoColumnsRow>
 
-                        </Grid.Row>
-
-                        <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack" columns={2}>
-
-                            <Grid.Column className="flex items-center gap-3 p-0" width={4}>
-                                <HelpTooltip content={content.consumedTxIndex} />
-                                <p>Consumed Transaction Index</p>
-                            </Grid.Column>
-
-                            <Grid.Column className="p-0">
-                                <div className="flex items-start gap-3">
-                                    <p>{`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx'] ?? 0}`}</p>
-                                    <Popup
-                                        trigger={
-                                            <Icon
-                                                name="copy outline"
-                                                className="cursor-pointer hover:opacity-80"
-                                                onClick={() => copyText(tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx'] ?? 0)}
-                                            />
-                                        }
-                                        basic
-                                        content="Copy Hash"
-                                    />
-                                </div>
-                            </Grid.Column>
-
-                        </Grid.Row>
-
-                        <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack rounded-b-md" columns={2}>
-
-                            <Grid.Column className="flex items-center gap-3 p-0" width={4}>
-                                <HelpTooltip content={content.signature} />
-                                <p>Signature</p>
-                            </Grid.Column>
-
-                            <Grid.Column className="p-0 pr-20">
-                                <div className="flex items-start gap-3">
+                        <TwoColumnsRow title="Signature" tooltipContent={content.signature} lastRow>
+                            <div className="p-0 pr-20 mobile:pr-0">
+                                <CopyTooltip value={tx['Signature']} content="Copy Hash">
                                     <p className="break-all">{`0x${tx['Signature']}`}</p>
-                                    <Popup
-                                        trigger={
-                                            <Icon
-                                                name="copy outline"
-                                                className="cursor-pointer hover:opacity-80"
-                                                onClick={() => copyText(tx['Signature'])}
-                                            />
-                                        }
-                                        basic
-                                        content="Copy Signature"
-                                    />
-                                </div>
-                            </Grid.Column>
-
-                        </Grid.Row>
+                                </CopyTooltip>
+                            </div>
+                        </TwoColumnsRow>
 
                     </Grid>
 
                 </CollapsableCard>
             )}
 
-        </Container>
+        </div>
 
     );
 

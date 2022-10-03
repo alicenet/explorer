@@ -1,1 +1,1 @@
-export * from './TxExplorer'
+export * from './TxExplorer';

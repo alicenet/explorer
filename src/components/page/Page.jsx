@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Footer } from "components";
+import { Footer, Header } from "components";
 
 export const Page = ({ children }) => {
 
@@ -10,11 +10,7 @@ export const Page = ({ children }) => {
 
                 <Header />
 
-                <div>
-
-                    {children}
-
-                </div>
+                {children}
 
             </div>
 

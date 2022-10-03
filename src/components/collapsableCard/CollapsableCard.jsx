@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Accordion, Icon } from "semantic-ui-react";
 import { classNames as csx } from "utils";
+import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 
 export function CollapsableCard({
     children,
@@ -11,45 +12,45 @@ export function CollapsableCard({
     classNames = '',
     ...props
 }) {
-    const [isBlockOpen, toggleBlock] = useState(true);
+    const [isBlockOpen, toggleAccordion] = useState(true);
 
     return (
 
         <div
             className={
                 csx(
-                    "border-0 rounded-md bg-tableblack text-white",
+                    "border-0 rounded-md text-left",
                     { "border-t-2 border-neongreen": !borderless },
                     classNames
                 )
             }
         >
 
-            <Accordion className="m-0 text-left" {...props}>
+            <Accordion disableGutters className="bg-tableblack" {...props} defaultExpanded>
 
-                <Accordion.Title
-                    active={isBlockOpen}
-                    className={
-                        csx(
-                            "flex flex-row items-center text-white cursor-pointer gap-3 p-6",
-                            classNames
-                        )
-                    }
-                    onClick={() => toggleBlock(isOpen => !isOpen)}
+                <AccordionSummary
+                    className={csx("break-all px-0 py-2", classNames)}
+                    onClick={() => toggleAccordion(prevState => !prevState)}
                 >
-                    {icon}
-                    <h3>{title}</h3>
-                    {itemsCount && (
-                        <span className="bg-black rounded-md px-2">
+
+                    <div className="flex text-white cursor-pointer gap-3 px-6 mobile:justify-between">
+                        <div className="flex items-center gap-3">
+                            {icon}
+                            <h3>{title}</h3>
+                            {itemsCount && (
+                                <span className="bg-black rounded-md px-2">
                             {itemsCount}
                         </span>
-                    )}
-                    <Icon className="m-0 h-auto" name={`caret ${isBlockOpen ? 'down' : 'up'}`} />
-                </Accordion.Title>
+                            )}
+                        </div>
+                        {isBlockOpen ? <ArrowDropUp /> : <ArrowDropDown />}
+                    </div>
 
-                <Accordion.Content className="p-0" active={isBlockOpen}>
+                </AccordionSummary>
+
+                <AccordionDetails className="p-0 text-white">
                     {children}
-                </Accordion.Content>
+                </AccordionDetails>
 
             </Accordion>
 

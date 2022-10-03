@@ -1,50 +1,42 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Grid, Icon, Popup } from "semantic-ui-react";
-import { classNames, copyText } from "utils";
+import { classNames } from "utils";
+import { CopyTooltip } from "components";
+import { Grid } from "@mui/material";
 
 export function TxHashList({ txHshLst }) {
 
     return (
 
-        <Grid padded="vertically" className="mx-0 break-words" columns={"equal"}>
+        <Grid className="break-words">
 
             {txHshLst && txHshLst.map((hash, index) =>
 
-                <Grid.Row
+                <Grid
+                    container
                     key={`row-hash-${index}`}
                     className={classNames(
-                        "px-6 bg-rowblack border-0 border-t border-tableblack",
+                        "px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2",
                         { 'rounded-b-md': index + 1 === txHshLst.length }
                     )}
-                    columns={2}
                 >
 
-                    <Grid.Column className="flex items-center gap-5 p-0" width={3}>
+                    <Grid item sm={12} md={2} className="flex items-center gap-3 py-4 mobile:p-2">
                         Tx Hash
-                    </Grid.Column>
+                    </Grid>
 
-                    <Grid.Column className="p-0">
-                        <div className="flex items-start gap-5 cursor-pointer hover:opacity-80">
-                            <Link className="text-neongreen hover:text-neongreen hover:opacity-80" to={`/tx/${hash}`}>
+                    <Grid item sm={12} md={10} className="w-full flex items-center gap-5 py-4 mobile:p-2">
+                        <CopyTooltip value={hash} content="Copy Hash">
+                            <Link
+                                className="text-neongreen break-all hover:text-neongreen hover:opacity-80"
+                                to={`/tx/${hash}`}
+                            >
                                 {`0x${hash}`}
                             </Link>
-                            <Popup
-                            trigger={
-                                <Icon
-                                    name="copy outline"
-                                    className="cursor-pointer hover:opacity-80"
-                                    onClick={() => copyText(hash)}
-                                />
-                            }
-                            basic
-                            content="Copy Hash"
-                        />
-                        </div>
-                    </Grid.Column>
+                        </CopyTooltip>
+                    </Grid>
 
-                </Grid.Row>
-
+                </Grid>
             )}
 
         </Grid>

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container, Dropdown, Icon } from "semantic-ui-react";
+import { Button, FormControl, MenuItem, Select, TextField } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { classNames, curveTypes, isBN, searchTypes } from "utils";
 import { content, HelpTooltip } from "components";
+import { FiberManualRecord } from '@mui/icons-material';
 
 const options = [
     { text: 'Transactions', placeHolder: "Transactions Hash", value: searchTypes.TRANSACTIONS },
@@ -33,10 +34,10 @@ export function SearchBar({ currentSearch = null }) {
         }
     }, []);
 
-    const handleChange = (e, { value }) => {
+    const handleChange = (e) => {
         setTerm("");
         setOffset("");
-        setSelectedOption(options[value]);
+        setSelectedOption(options[e.target.value]);
     };
 
     const handleSearch = () => {
@@ -72,41 +73,50 @@ export function SearchBar({ currentSearch = null }) {
 
                     <div className="flex flex-row mobile:flex-col w-full mobile:gap-5">
 
-                        <Dropdown
-                            className="flex justify-center items-center text-black bg-cleargray rounded-md rounded-r-none font-bold flex-shrink-0 min-w-9 mobile:py-2 mobile:rounded-md mobile:text-xl"
-                            text={selectedOption.text}
-                        >
-                            <Dropdown.Menu className="bg-dropgray w-full">
+                        <FormControl variant="outlined" className="flex-shrink-0 text-center">
+                            <Select
+                                className="bg-cleargray rounded-md rounded-r-none font-bold min-w-9 mobile:rounded-md mobile:text-xl"
+                                labelId="search-type-selection"
+                                id="search-type-selection"
+                                value={selectedOption.value}
+                                onChange={handleChange}
+                                inputProps={{className: "py-3"}}
+                            >
                                 {options.map(option =>
-                                    <Dropdown.Item
+                                    <MenuItem
                                         key={`header-option-${option.value}`}
-                                        onClick={handleChange}
                                         value={option.value}
-                                        className="text-black font-bold mobile:text-xl"
-                                    >
-                                        {option.text}
-                                    </Dropdown.Item>
+                                        className="font-bold mobile:text-xl"
+                                    >{option.text}</MenuItem>
                                 )}
-                            </Dropdown.Menu>
-                        </Dropdown>
+                            </Select>
+                        </FormControl>
 
-                        <div className="flex flex-row mobile:flex-col w-full gap-3">
-                            <input
+                        <div className="flex flex-row items-center mobile:flex-col w-full gap-3">
+                            <TextField
+                                inputProps={{
+                                    placeholder: `${selectedOption.placeHolder}`,
+                                    className: "text-white py-3 mobile:text-xl"
+                                }}
+                                variant={"outlined"}
                                 className={classNames(
-                                    "px-4 bg-dark rounded-l-none rounded-md focus:outline-none focus:border-neongreen mobile:py-3 mobile:rounded-md  mobile:text-xl",
+                                    "bg-dark mobile:text-xl rounded-md rounded-l-none mobile:rounded-l-md",
                                     { "w-full": selectedOption.value !== searchTypes.DATASTORES },
                                     { "w-1/2 mobile:w-full": selectedOption.value === searchTypes.DATASTORES }
                                 )}
-                                placeholder={` ${selectedOption.placeHolder}`}
                                 value={term}
                                 onChange={(e) => setTerm(e.target.value)}
                             />
                             {
                                 selectedOption.value === searchTypes.DATASTORES &&
                                 <div className="flex items-center w-1/2 gap-2 mobile:w-full">
-                                    <input
-                                        className="px-4 bg-dark rounded-md w-full h-full focus:outline-none focus:border-neongreen mobile:py-3 mobile:text-xl"
-                                        placeholder=" Offset"
+                                    <TextField
+                                        inputProps={{
+                                            placeholder: "Offset",
+                                            className: "text-white py-3 mobile:text-xl"
+                                        }}
+                                        variant={"outlined"}
+                                        className="bg-dark w-full rounded-md"
                                         value={offset}
                                         onChange={e => setOffset(e.target.value)}
                                     />
@@ -118,17 +128,19 @@ export function SearchBar({ currentSearch = null }) {
                     </div>
 
                     <Button
-                        className="text-black bg-neongreen m-0 w-40 text-xl py-2 mobile:w-full"
+                        variant={"contained"}
+                        className="w-40 mobile:w-full text-xl mobile:py-2"
                         onClick={() => handleSearch(term)}
-                        content="Search"
-                    />
+                    >
+                        Search
+                    </Button>
 
                 </div>
 
                 <div className="flex">
                     {curveType && term && selectedOption.value === searchTypes.DATASTORES && (
                         <div className="flex items-center gap-3 w-1/2 mobile:w-full">
-                            <Icon name="circle" size="mini" className="text-neongreen m-0 h-auto" />
+                            <FiberManualRecord className="text-neongreen w-3" />
                             <h4>This is a {curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h4>
                             <HelpTooltip
                                 content={curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}
