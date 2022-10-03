@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { ContentCopy } from '@mui/icons-material';
 import { copyText } from "utils";
 import { Tooltip } from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCopy } from "@fortawesome/free-regular-svg-icons";
 
 export function CopyTooltip({ value, content, children }) {
 
@@ -18,7 +19,8 @@ export function CopyTooltip({ value, content, children }) {
             {children}
             <Tooltip placement={"top"} arrow title={contentMessage} onClose={() => setContentMessage(content)}>
                 <div>
-                    <ContentCopy
+                    <FontAwesomeIcon
+                        icon={faCopy}
                         className="cursor-pointer hover:opacity-80 mobile:hidden w-4"
                         onClick={() => handleClick(value)}
                     />
