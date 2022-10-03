@@ -15,6 +15,7 @@ export function TxHashList({ txHshLst }) {
                 <Grid
                     container
                     key={`row-hash-${index}`}
+                    columns={2}
                     className={classNames(
                         "px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2",
                         { 'rounded-b-md': index + 1 === txHshLst.length }
