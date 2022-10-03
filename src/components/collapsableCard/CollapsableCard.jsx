@@ -43,7 +43,7 @@ export function CollapsableCard({
                         </span>
                             )}
                         </div>
-                        {isBlockOpen ? <ArrowDropDown /> : <ArrowDropUp />}
+                        {isBlockOpen ? <ArrowDropUp /> : <ArrowDropDown />}
                     </div>
 
                 </AccordionSummary>

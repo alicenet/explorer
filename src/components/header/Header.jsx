@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import Logo from "assets/MadNetwork Logo Horizontal GRAYSCALE.png";
 import Image from "mui-image";
 import { AppBar, Box, Container, Drawer, IconButton, Link, Menu, MenuItem, Toolbar } from "@mui/material";
-import { ArrowDropDown, Menu as MenuIcon } from '@mui/icons-material';
+import { ArrowDropDown, ArrowDropUp, Menu as MenuIcon } from '@mui/icons-material';
 import { HeaderMobile } from "./HeaderMobile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faApple, faLinux, faWindows } from "@fortawesome/free-brands-svg-icons";
@@ -51,11 +51,11 @@ const MenuDropdown = () => {
                 onClick={handleClick}
             >
                 Wallet Download
-                <ArrowDropDown />
+                {open ? <ArrowDropUp /> : <ArrowDropDown />}
             </Link>
             <Menu
                 PaperProps={{ sx: { marginTop: 2 } }}
-                disableAutoFocusItem={true}
+                disableAutoFocusItem
                 anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                 transformOrigin={{ vertical: "top", horizontal: "right" }}
                 id="dropdown-wallet-menu"
