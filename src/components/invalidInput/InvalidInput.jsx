@@ -1,5 +1,6 @@
-import { Button, Container, Icon } from "semantic-ui-react";
 import React from "react";
+import { Error } from "@mui/icons-material";
+import { Box, Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
 
 export function InvalidInput({ term, suggestion }) {
@@ -8,46 +9,47 @@ export function InvalidInput({ term, suggestion }) {
 
     return (
 
-        <Container
-            className="border-0 border-t-4 border-neonred rounded-md bg-deeppurple text-white py-10 px-14 text-left flex flex-col gap-7">
+        <Box className="border-0 border-t-4 border-neonred rounded-md bg-deeppurple py-10 px-14 flex flex-col gap-7">
 
-            <Container className="flex flex-col font-bold text-left">
-                <Container className="flex flex-row items-center gap-3 text-5xl">
-                    <Icon className="m-0 h-auto" name="warning circle" />
+            <Box className="flex flex-col font-bold text-left">
+                <Box className="flex flex-row items-center gap-3 text-5xl">
+                    <Error className="text-5xl" />
                     <h2>OOPS!</h2>
-                </Container>
+                </Box>
                 <h3 className="text-2xl">Invalid Input</h3>
-            </Container>
+            </Box>
 
-            <Container className="flex flex-col break-all">
+            <Box className="flex flex-col break-all text-left">
                 <span>
                     The search data you entered was: <span className="font-bold">{term}</span>
                 </span>
                 <span>
                     Sorry! This is an invalid search entry.
                 </span>
-            </Container>
+            </Box>
 
             {suggestion && (
-                <Container className="flex flex-col">
+                <Box className="flex flex-col">
                 <span>
                     Instead please try:
                 </span>
                     <span className="text-neongreen">
                     {suggestion}
                 </span>
-                </Container>
+                </Box>
             )}
 
-            <Container>
+            <Box>
                 <Button
-                    className="bg-neongreen px-10"
-                    content="Back to Monitor"
+                    variant={"contained"}
+                    className="px-8"
                     onClick={() => history.push('/')}
-                />
-            </Container>
+                >
+                    Back to Monitor
+                </Button>
+            </Box>
 
-        </Container>
+        </Box>
 
     );
 

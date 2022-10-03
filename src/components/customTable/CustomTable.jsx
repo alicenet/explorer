@@ -1,60 +1,63 @@
-import { Table } from "semantic-ui-react";
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 
 export function CustomTable({ title, icon, headerCells, rows = [], key }) {
 
     return (
 
-        <Table
-            unstackable
-            padded
-            singleLine
-            key={key}
-            className="border-0 border-t-2 border-neongreen bg-tableblack text-white mobile:whitespace-normal"
-        >
-            <Table.Header>
+        <div className="border-t-2 rounded-md border-neongreen">
 
-                <Table.Row>
-                    <Table.HeaderCell
-                        className="bg-tableblack text-white text-xl font-semibold"
-                        colSpan={headerCells.length}
-                        key={`table-header-main`}
-                    >
-                        <div className="flex items-center gap-5">{icon}{title}</div>
-                    </Table.HeaderCell>
-                </Table.Row>
+            <Table key={key} className="bg-tableblack text-white mobile:whitespace-normal">
 
-                <Table.Row>
-                    {headerCells.map(header =>
-                        <Table.HeaderCell
-                            className="bg-rowblack text-white border-t-1 border-tableblack"
-                            key={`table-header-${header.id}`}
+                <TableHead>
+
+                    <TableRow>
+
+                        <TableCell
+                            className="bg-tableblack text-white text-xl font-semibold border-tableblack"
+                            colSpan={headerCells.length}
+                            key={`table-header-main`}
                         >
-                            {header.label}
-                        </Table.HeaderCell>
+                            <div className="flex items-center gap-5">{icon}{title}</div>
+                        </TableCell>
+
+                    </TableRow>
+
+                    <TableRow>
+                        {headerCells.map(header =>
+                            <TableCell
+                                className="bg-rowblack text-white text-lg font-semibold border-tableblack"
+                                key={`table-header-${header.id}`}
+                            >
+                                {header.label}
+                            </TableCell>
+                        )}
+                    </TableRow>
+
+                </TableHead>
+
+                <TableBody>
+
+                    {rows.map((row, rowIndex) =>
+                        (
+                            <TableRow className="bg-rowblack" key={`table-row-${rowIndex}`}>
+                                {headerCells.map((headerCell) =>
+
+                                    <TableCell
+                                        className="border-t-1 border-tableblack text-lg text-white"
+                                        key={`row-${headerCell.id}`}
+                                    >
+                                        {headerCell?.displayCallback ? headerCell.displayCallback(row) : row[headerCell.id]}
+                                    </TableCell>
+                                )}
+                            </TableRow>
+                        )
                     )}
-                </Table.Row>
 
-            </Table.Header>
+                </TableBody>
 
-            <Table.Body>
+            </Table>
 
-                {rows.map((row, rowIndex) =>
-                    (
-                        <Table.Row className="text-lg bg-rowblack" key={`table-row-${rowIndex}`}>
-                            {headerCells.map((headerCell) =>
-
-                                <Table.Cell className="border-t-1 border-tableblack" key={`row-${headerCell.id}`}>
-                                    {headerCell?.displayCallback ? headerCell.displayCallback(row) : row[headerCell.id]}
-                                </Table.Cell>
-                            )}
-                        </Table.Row>
-                    )
-                )}
-
-            </Table.Body>
-
-        </Table>
-
+        </div>
     );
 
 }

@@ -1,8 +1,23 @@
 import React from "react";
-import { Button, Grid, Icon } from "semantic-ui-react"
+import { Grid, IconButton } from "@mui/material";
 import { content, CopyTooltip, TwoColumnsRow } from "components";
 import { useHistory } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
+
+const NavigationChevron = ({ height, direction }) => {
+    const history = useHistory();
+    const handleBlockNav = (term) => history.push(`/block/${term}`);
+    return (
+        <IconButton
+            size={"small"}
+            className="bg-buttonblack rounded-md text-white hover:opacity-80 w-6 p-0"
+            onClick={() => handleBlockNav(height)}
+        >
+            {direction === "left" ? <ChevronLeft /> : <ChevronRight />}
+        </IconButton>
+    );
+}
 
 export function BlockList({ blockInfo }) {
 
@@ -16,77 +31,50 @@ export function BlockList({ blockInfo }) {
         HeaderRoot: headerRoot
     } = BClaims;
 
-    const history = useHistory();
-    const handleBlockNav = (term) => history.push(`/block/${term}`);
-
     const maxHeight = aliceNetAdapter.blocks[0]?.BClaims.Height;
 
     return (
 
-        <Grid padded="vertically" className="mx-0 break-words" columns={"equal"} stackable>
+        <Grid className="break-words">
 
-            <TwoColumnsRow title="Block Height" tooltipContent={content.height}>
+            <TwoColumnsRow title="Block Height" tooltipContent={content.height} size={2}>
                 {height}
                 <div className="flex gap-2 mobile:hidden">
-                    {height > 1 &&
-                    <Button
-                        icon
-                        className="flex items-center bg-buttonblack text-white px-1 py-2 m-0 hover:opacity-80"
-                        onClick={() => handleBlockNav(height - 1)}
-                    >
-                        <Icon
-                            className="m-0 p-0"
-                            name="chevron left"
-                            size="small"
-                        />
-                    </Button>
-                    }
-                    {(maxHeight > height) &&
-                    <Button
-                        icon
-                        className="flex items-center bg-buttonblack text-white px-1 py-2 m-0 hover:opacity-80"
-                        onClick={() => handleBlockNav(height + 1)}
-                    >
-                        <Icon
-                            className="m-0 p-0"
-                            name="chevron right"
-                            size="small"
-                        />
-                    </Button>
-                    }
+                    {height > 1 && <NavigationChevron height={height - 1} direction="left" />}
+                    {(maxHeight > height) && <NavigationChevron height={height + 1} direction="right" />}
                 </div>
 
             </TwoColumnsRow>
 
-            <TwoColumnsRow title="Transaction Count" tooltipContent={content.txCount}>
+            <TwoColumnsRow title="Transaction Count" tooltipContent={content.txCount} size={2}>
                 <p>{txCount ? txCount : 0}</p>
             </TwoColumnsRow>
 
-            <TwoColumnsRow title="Previous Block" tooltipContent={content.previousBlock}>
+            <TwoColumnsRow title="Previous Block" tooltipContent={content.previousBlock} size={2}>
                 <CopyTooltip value={prevBlock} content="Copy Hash">
                     <p className="break-all">{`0x${prevBlock}`}</p>
                 </CopyTooltip>
             </TwoColumnsRow>
 
-            <TwoColumnsRow title="Transaction Root" tooltipContent={content.txRoot}>
+            <TwoColumnsRow title="Transaction Root" tooltipContent={content.txRoot} size={2}>
                 <CopyTooltip value={txRoot} content="Copy Hash">
                     <p className="break-all">{`0x${txRoot}`}</p>
                 </CopyTooltip>
             </TwoColumnsRow>
 
-            <TwoColumnsRow title="State Root" tooltipContent={content.stateRoot}>
+            <TwoColumnsRow title="State Root" tooltipContent={content.stateRoot} size={2}>
                 <CopyTooltip value={stateRoot} content="Copy Hash">
                     <p className="break-all">{`0x${stateRoot}`}</p>
                 </CopyTooltip>
             </TwoColumnsRow>
 
-            <TwoColumnsRow title="Header Root" tooltipContent={content.headerRoot}>
+            <TwoColumnsRow title="Header Root" tooltipContent={content.headerRoot} size={2}>
                 <CopyTooltip value={headerRoot} content="Copy Hash">
                     <p className="break-all">{`0x${headerRoot}`}</p>
                 </CopyTooltip>
             </TwoColumnsRow>
 
-            <TwoColumnsRow title="Group Signature" tooltipContent={content.groupSignature}>
+            <TwoColumnsRow title="Group Signature" tooltipContent={content.groupSignature} size={2}>
                 <div className="p-0 pr-20 mobile:pr-0">
                     <CopyTooltip value={sigGroup} content="Copy Signature">
                         <p className="break-all">{`0x${sigGroup}`}</p>

@@ -1,5 +1,6 @@
 import React from "react";
-import { Icon, Popup } from "semantic-ui-react";
+import { HelpOutline } from '@mui/icons-material';
+import { Tooltip } from "@mui/material";
 
 export const content = {
     bn: "Barreto-Naehrig curve type account address",
@@ -36,16 +37,13 @@ export const content = {
 export function HelpTooltip({ content }) {
 
     return (
-        <Popup
-            trigger={
-                <Icon
-                    name="question circle outline"
-                    className="m-0 h-auto"
-                />
-            }
-            basic
-            content={content}
-        />
+
+        <Tooltip title={content} arrow placement={"top"}>
+            <div>
+                <HelpOutline fontSize={"small"} />
+            </div>
+        </Tooltip>
+
     );
 
 }

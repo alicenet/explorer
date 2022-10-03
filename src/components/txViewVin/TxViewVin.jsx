@@ -1,6 +1,7 @@
 import React from "react";
-import { Grid } from "semantic-ui-react";
 import { CollapsableCard, content, CopyTooltip, TwoColumnsRow } from "components";
+import { Grid } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export function TxViewVin({ txInfo }) {
 
@@ -12,21 +13,26 @@ export function TxViewVin({ txInfo }) {
 
                 <CollapsableCard title={`Vin ${index + 1}`} open={true} borderless key={`collapsable-tx-vin-${index}`}>
 
-                    <Grid padded="vertically" className="mx-0 break-words" columns={"equal"} stackable>
+                    <Grid container className="break-words">
 
-                        <TwoColumnsRow title="Consumed Transaction" tooltipContent={content.consumedTx} width={4}>
+                        <TwoColumnsRow title="Consumed Transaction" tooltipContent={content.consumedTx}>
                             <CopyTooltip
                                 value={tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}
                                 content="Copy Hash"
                             >
-                                <p className="break-all">{`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}</p>
+                                <Link
+                                    className="text-neongreen hover:text-neongreen hover:opacity-80 break-all"
+                                    to={`/tx/${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}
+                                >
+                                    {`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}
+                                </Link>
                             </CopyTooltip>
                         </TwoColumnsRow>
 
                         <TwoColumnsRow
                             title="Consumed Transaction Index"
                             tooltipContent={content.consumedTxIndex}
-                            width={4}
+
                         >
                             <CopyTooltip
                                 value={tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx']}
@@ -36,7 +42,7 @@ export function TxViewVin({ txInfo }) {
                             </CopyTooltip>
                         </TwoColumnsRow>
 
-                        <TwoColumnsRow title="Signature" tooltipContent={content.signature} width={4} lastRow>
+                        <TwoColumnsRow title="Signature" tooltipContent={content.signature} lastRow>
                             <div className="p-0 pr-20 mobile:pr-0">
                                 <CopyTooltip value={tx['Signature']} content="Copy Hash">
                                     <p className="break-all">{`0x${tx['Signature']}`}</p>
@@ -47,7 +53,6 @@ export function TxViewVin({ txInfo }) {
                     </Grid>
 
                 </CollapsableCard>
-
             )}
 
         </div>
