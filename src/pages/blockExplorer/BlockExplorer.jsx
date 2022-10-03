@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Dimmer, Grid, Loader } from "semantic-ui-react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { BlockList, CollapsableCard, InvalidInput, Page, SearchBar, SearchNotFound, TxHashList } from "components";
+import {
+    BlockList,
+    CollapsableCard,
+    InvalidInput,
+    Page,
+    SearchBar,
+    SearchNotFound,
+    TxHashList
+} from "components";
 import { ReactComponent as CubeIcon } from "assets/cube-icon.svg";
 import { ReactComponent as TxHashIcon } from "assets/tx-hash-icon.svg";
 import { isValidBlockHeight, searchTypes } from "utils";
@@ -40,15 +47,7 @@ export function BlockExplorer() {
     }, [height]);
 
     if (isLoading) {
-        return (
-            <Page>
-                <Grid>
-                    <Dimmer active>
-                        <Loader>Loading</Loader>
-                    </Dimmer>
-                </Grid>
-            </Page>
-        );
+        return null;
     }
 
     return (

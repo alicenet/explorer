@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { Button, Dimmer, Grid, Loader } from "semantic-ui-react";
+import { Button } from "@mui/material";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import {
     CollapsableCard,
@@ -39,15 +39,7 @@ export function TxExplorer() {
     }, [hash]);
 
     if (isLoading) {
-        return (
-            <Page>
-                <Grid>
-                    <Dimmer active>
-                        <Loader>Loading</Loader>
-                    </Dimmer>
-                </Grid>
-            </Page>
-        );
+        return null;
     }
 
     return (
@@ -95,10 +87,13 @@ export function TxExplorer() {
                                 </div>
 
                                 <Button
-                                    className="py-1 rounded-md mobile:w-full mobile:m-0 mobile:py-2 mobile:text-xl"
+                                    size={"small"}
+                                    variant={"contained"}
+                                    className="py-0 px-6 text-base mobile:w-full mobile:m-0 mobile:py-2 mobile:text-xl"
                                     onClick={() => history.push(`/block/${aliceNetAdapter.transactionHeight}`)}
-                                    content="View Block"
-                                />
+                                >
+                                    View Block
+                                </Button>
 
                             </div>
 

@@ -28,7 +28,7 @@ const headerCells =
             label: "Group Signature",
             displayCallback: ({ groupSignature }) =>
                 <CopyTooltip value={groupSignature} content="Copy Hash">
-                    <p className="break-all">{`0x${groupSignature.slice(0, 15)}...`}</p>
+                    <p className="break-all">{`0x${groupSignature.slice(0, 8)}...${groupSignature.slice(-8)}`}</p>
                 </CopyTooltip>
         }
     ]
@@ -37,7 +37,7 @@ const headerCells =
 export function LatestBlocks() {
 
     const history = useHistory();
-    useSelector(s => s.aliceNetAdapter); // Listen to aliceNetAdapter State
+    useSelector(s => s.aliceNetAdapter);
 
     useEffect(() => {
         if (aliceNetAdapter && !aliceNetAdapter.blocksStarted) {

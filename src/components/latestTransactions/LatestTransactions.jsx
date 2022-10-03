@@ -10,10 +10,7 @@ const headerCells =
             id: "value",
             label: "Value",
             displayCallback: ({ height }) =>
-                <span
-                    style={{ textUnderlineOffset: "0.3em" }}
-                    className="text-neongreen cursor-pointer hover:underline"
-                >
+                <span style={{ textUnderlineOffset: "0.3em" }}>
                 {height}
             </span>
         },
@@ -26,14 +23,14 @@ const headerCells =
             label: "Owner",
             displayCallback: ({ groupSignature }) =>
                 <CopyTooltip value={groupSignature} content="Copy Hash">
-                    <p className="break-all">{`0x${groupSignature.slice(0, 15)}...`}</p>
+                    <p className="break-all">{`0x${groupSignature.slice(0, 8)}...${groupSignature.slice(-8)}`}</p>
                 </CopyTooltip>
         }
     ];
 
 export function LatestTransactions() {
 
-    useSelector(s => s.aliceNetAdapter); // Listen to aliceNetAdapter State
+    useSelector(s => s.aliceNetAdapter);
 
     const rows = aliceNetAdapter.blocks?.slice(0, aliceNetAdapter.blocksMaxLen).map((row) => {
         return {

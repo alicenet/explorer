@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Grid } from "semantic-ui-react";
+import { Button, Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
-import { content, CopyTooltip, HelpTooltip } from "components";
+import { content, CopyTooltip, TwoColumnsRow } from "components";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 
 export function TxViewDataStore({ dataStore }) {
@@ -10,160 +10,90 @@ export function TxViewDataStore({ dataStore }) {
 
     return (
 
-        <Grid padded="vertically" className="mx-0 break-words" columns={"equal"} stackable>
+        <Grid className="break-words">
 
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
+            <TwoColumnsRow title="Index" tooltipContent={content.index}>
+                <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['Index']} content="Copy Value">
+                    <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['Index']}`}</p>
+                </CopyTooltip>
+            </TwoColumnsRow>
 
-                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
-                    <HelpTooltip content={content.index} />
-                    <p>Index</p>
-                </Grid.Column>
+            <TwoColumnsRow title="Raw Data" tooltipContent={content.rawData}>
+                <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['RawData']} content="Copy Data">
+                    <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['RawData']}`}</p>
+                </CopyTooltip>
+            </TwoColumnsRow>
 
-                <Grid.Column className="p-0">
-                    <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['Index']} content="Copy Value">
-                        <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['Index']}`}</p>
+            <TwoColumnsRow title="Owner" tooltipContent={content.owner}>
+                <div className="flex items-start gap-3 mobile:flex-col mobile:gap-5 mobile:w-full">
+                    <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['Owner']} content="Copy Address">
+                        <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['Owner']}`}</p>
                     </CopyTooltip>
-                </Grid.Column>
 
-            </Grid.Row>
+                    <Button
+                        size={"small"}
+                        variant={"contained"}
+                        className="px-3 py-0 ml-2 mobile:py-1 mobile:w-full mobile:m-0 mobile:text-base rounded-sm"
+                        onClick={() =>
+                            history.push(`/data/${dataStore['DSLinker']['DSPreImage']['Owner'].substr(4)}`)
+                        }
+                    >
+                        View Owner DataStores
+                    </Button>
+                </div>
+            </TwoColumnsRow>
 
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
+            <TwoColumnsRow title="Issued At" tooltipContent={content.epoch}>
+                <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['IssuedAt']} content="Copy Value">
+                    <p className="break-all">{dataStore['DSLinker']['DSPreImage']['IssuedAt']}</p>
+                </CopyTooltip>
+            </TwoColumnsRow>
 
-                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
-                    <HelpTooltip content={content.rawData} />
-                    <p>Raw Data</p>
-                </Grid.Column>
-
-                <Grid.Column className="p-0">
-                    <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['RawData']} content="Copy Data">
-                        <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['RawData']}`}</p>
-                    </CopyTooltip>
-                </Grid.Column>
-
-            </Grid.Row>
-
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
-
-                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
-                    <HelpTooltip content={content.owner} />
-                    <p>Owner</p>
-                </Grid.Column>
-
-                <Grid.Column className="p-0">
-                    <div className="flex items-start gap-3 mobile:flex-col mobile:gap-5">
-                        <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['Owner']} content="Copy Address">
-                            <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['Owner']}`}</p>
-                        </CopyTooltip>
-
-                        <Button
-                            className="text-xs px-3 py-1 ml-2 rounded-sm mobile:w-full mobile:m-0 mobile:text-base"
-                            onClick={() =>
-                                history.push(`/data/${dataStore['DSLinker']['DSPreImage']['Owner'].substr(4)}`)
-                            }
-                            content="View Owner DataStores"
-                        />
-                    </div>
-                </Grid.Column>
-
-            </Grid.Row>
-
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
-
-                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
-                    <HelpTooltip content={content.epoch} />
-                    <p>Issued At</p>
-                </Grid.Column>
-
-                <Grid.Column className="p-0">
-                    <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['IssuedAt']} content="Copy Value">
-                        <p className="break-all">{dataStore['DSLinker']['DSPreImage']['IssuedAt']}</p>
-                    </CopyTooltip>
-                </Grid.Column>
-
-            </Grid.Row>
-
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
-
-                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
-                    <HelpTooltip content={content.expires} />
-                    <p>Expires</p>
-                </Grid.Column>
-
-                <Grid.Column className="p-0">
-                    <CopyTooltip
-                        value={
+            <TwoColumnsRow title="Expires" tooltipContent={content.expires}>
+                <CopyTooltip
+                    value={
+                        aliceNetAdapter.getDSExp(
+                            dataStore['DSLinker']['DSPreImage']['RawData'],
+                            dataStore['DSLinker']['DSPreImage']['Deposit'],
+                            dataStore['DSLinker']['DSPreImage']['IssuedAt']
+                        )
+                    }
+                    content="Copy Value"
+                >
+                    <p className="break-all">
+                        {
                             aliceNetAdapter.getDSExp(
                                 dataStore['DSLinker']['DSPreImage']['RawData'],
                                 dataStore['DSLinker']['DSPreImage']['Deposit'],
                                 dataStore['DSLinker']['DSPreImage']['IssuedAt']
                             )
                         }
-                        content="Copy Value"
-                    >
-                        <p className="break-all">
-                            {
-                                aliceNetAdapter.getDSExp(
-                                    dataStore['DSLinker']['DSPreImage']['RawData'],
-                                    dataStore['DSLinker']['DSPreImage']['Deposit'],
-                                    dataStore['DSLinker']['DSPreImage']['IssuedAt']
-                                )
-                            }
-                        </p>
-                    </CopyTooltip>
-                </Grid.Column>
+                    </p>
+                </CopyTooltip>
+            </TwoColumnsRow>
 
-            </Grid.Row>
+            <TwoColumnsRow title="Deposit" tooltipContent={content.deposit}>
+                <CopyTooltip
+                    value={aliceNetAdapter.hexToInt(dataStore['DSLinker']['DSPreImage']['Deposit'])}
+                    content="Copy Value"
+                >
+                    <p className="break-all">{aliceNetAdapter.hexToInt(dataStore['DSLinker']['DSPreImage']['Deposit'])}</p>
+                </CopyTooltip>
+            </TwoColumnsRow>
 
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
+            <TwoColumnsRow title="Transaction Index" tooltipContent={content.txIndex}>
+                <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['TXOutIdx']} content="Copy Index">
+                    <p className="break-all">{dataStore['DSLinker']['DSPreImage']['TXOutIdx']}</p>
+                </CopyTooltip>
+            </TwoColumnsRow>
 
-                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
-                    <HelpTooltip content={content.deposit} />
-                    <p>Expires</p>
-                </Grid.Column>
-
-                <Grid.Column className="p-0">
-                    <CopyTooltip
-                        value={aliceNetAdapter.hexToInt(dataStore['DSLinker']['DSPreImage']['Deposit'])}
-                        content="Copy Value"
-                    >
-                        <p className="break-all">{aliceNetAdapter.hexToInt(dataStore['DSLinker']['DSPreImage']['Deposit'])}</p>
-                    </CopyTooltip>
-                </Grid.Column>
-
-            </Grid.Row>
-
-            <Grid.Row className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2" columns={2}>
-
-                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
-                    <HelpTooltip content={content.txIndex} />
-                    <p>Transaction Index</p>
-                </Grid.Column>
-
-                <Grid.Column className="p-0 pr-20">
-                    <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['TXOutIdx']} content="Copy Index">
-                        <p className="break-all">{dataStore['DSLinker']['DSPreImage']['TXOutIdx']}</p>
-                    </CopyTooltip>
-                </Grid.Column>
-
-            </Grid.Row>
-
-            <Grid.Row
-                className="px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2 rounded-b-md"
-                columns={2}
-            >
-
-                <Grid.Column className="flex items-center gap-3 p-0" width={4}>
-                    <HelpTooltip content={content.signature} />
-                    <p>Signature</p>
-                </Grid.Column>
-
-                <Grid.Column className="p-0 pr-20">
+            <TwoColumnsRow title="Signature" tooltipContent={content.signature} lastRow>
+                <div className="p-0 pr-20 mobile:pr-0">
                     <CopyTooltip value={dataStore['Signature']} content="Copy Signature">
                         <p className="break-all">{`0x${dataStore['Signature']}`}</p>
                     </CopyTooltip>
-                </Grid.Column>
-
-            </Grid.Row>
+                </div>
+            </TwoColumnsRow>
 
         </Grid>
     );

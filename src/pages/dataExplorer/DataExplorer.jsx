@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Dimmer, Grid, Loader } from "semantic-ui-react";
 import { useParams } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { CollapsableCard, DatastoreView, InvalidInput, Page, SearchBar, SearchNotFound } from "components";
@@ -26,17 +25,8 @@ export function DataExplorer() {
         getDataStores();
     }, [address, offset]);
 
-
     if (isLoading) {
-        return (
-            <Page>
-                <Grid>
-                    <Dimmer active>
-                        <Loader>Loading</Loader>
-                    </Dimmer>
-                </Grid>
-            </Page>
-        );
+        return null;
     }
 
     return (
