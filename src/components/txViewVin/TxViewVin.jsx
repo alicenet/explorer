@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 
 export function TxViewVin({ txInfo }) {
 
-    const history = useHistory();
-
     return (
 
         <div className="bg-headerblack p-4 flex flex-col gap-4 rounded-b-md">
