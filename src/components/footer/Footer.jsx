@@ -21,13 +21,13 @@ export function Footer() {
 
         <Box className="flex justify-between py-10 mobile:flex-col mobile:text-2xl mobile:gap-5">
 
-            <div className="flex gap-5">
-
+            <Box display="flex" gap={2} alignItems="center">
+    
                 <span>Follow us on:</span>
                 <FontAwesomeHoveredIcon icon={faTwitter} size="lg" className="cursor-pointer mobile:w-8" />
                 <FontAwesomeHoveredIcon icon={faDiscord} size="lg" className="cursor-pointer mobile:w-8" />
 
-            </div>
+            </Box>
 
             <div className="flex gap-3 mobile:flex-col mobile:text-left mobile:gap-1">
 
