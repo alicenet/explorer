@@ -14,8 +14,11 @@ export function ErrorContainer({ children }) {
             paddingY={4}
             paddingX={6}
             gap={3}
-            className="rounded-md bg-deeppurple"
-            sx={{ borderTop: `4px solid ${theme.palette.secondary.main}` }}
+            className="rounded-md"
+            sx={{
+                borderTop: `4px solid ${theme.palette.secondary.main}`,
+                backgroundColor: theme.palette.secondary.dark
+            }}
         >
 
             {children}
