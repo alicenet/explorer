@@ -6,14 +6,12 @@ import { BlockList, InvalidInput, Page, PrimaryAccordion, SearchBar, SearchNotFo
 import { ReactComponent as CubeIcon } from "assets/cube-icon.svg";
 import { ReactComponent as TxHashIcon } from "assets/tx-hash-icon.svg";
 import { isValidBlockHeight, searchTypes } from "utils";
-import { useTheme } from "@mui/material";
 
 export function BlockExplorer() {
 
     const [blockInfo, setBlockInfo] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    const theme = useTheme();
     const { height } = useParams();
 
     useSelector(s => s.aliceNetAdapter);

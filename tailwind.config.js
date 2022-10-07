@@ -8,7 +8,6 @@ module.exports = {
                 lightgray: '#A7A6A6',
                 cleargray: '#DEDEDE',
                 darkgray: '#2D2D2D',
-                neonred: '#FF006B',
                 deeppurple: '#3E3036',
                 dropgray: '#EEEEEE',
                 tableblack: '#444444',
@@ -24,9 +23,7 @@ module.exports = {
             }
         },
         screens: {
-            'mobile': { 'max': '767px' },
-            'tablet': { 'min': '768px', 'max': '992px' },
-            'computer': { 'min': '993px' },
+            'mobile': { 'max': '899px' },
         },
     },
     variants: {
