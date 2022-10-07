@@ -1,10 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, useTheme } from "@mui/material";
 
 export const CallToAction = () => {
 
+    const theme = useTheme();
     useSelector(s => s.aliceNetAdapter);
 
     if (aliceNetAdapter.blocks.length === 0) {
@@ -19,9 +20,9 @@ export const CallToAction = () => {
 
                 The Current Epoch is&nbsp;
 
-                <span className="text-neongreen">
-                        {Math.floor(aliceNetAdapter.blocks[0].BClaims.Height / 1024)}
-                    </span>
+                <Typography sx={{ color: theme.palette.primary.main }} variant={"span"}>
+                    {Math.floor(aliceNetAdapter.blocks[0].BClaims.Height / 1024)}
+                </Typography>
 
             </Typography>
 

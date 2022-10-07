@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Logo from "assets/MadNetwork Logo Horizontal GRAYSCALE.png";
 import Image from "mui-image";
-import { AppBar, Box, Container, Drawer, IconButton, Link, Menu, MenuItem, Toolbar } from "@mui/material";
+import { AppBar, Box, Container, Drawer, IconButton, Link, Menu, MenuItem, Toolbar, useTheme } from "@mui/material";
 import { ArrowDropDown, ArrowDropUp, Menu as MenuIcon } from '@mui/icons-material';
 import { HeaderMobile } from "./HeaderMobile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,12 +19,14 @@ const MenuDivider = () => <div className="border-r border-gray-700" />;
 
 const MenuLink = ({ location, label, blank = false }) => {
     const history = useHistory();
+    const theme = useTheme();
 
     return (
         <Link
             color={"white"}
-            className="hover:text-neongreen cursor-pointer"
+            className="cursor-pointer"
             underline="none"
+            sx={{ "&:hover": { color: theme.palette.primary.main } }}
             onClick={() => blank ? window.open(location, '_blank').focus() : history.push(location)}
         >
             {label}
@@ -35,9 +37,12 @@ const MenuLink = ({ location, label, blank = false }) => {
 const MenuDropdown = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+    const theme = useTheme();
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
     const handleClose = () => {
         setAnchorEl(null);
     };
@@ -46,7 +51,8 @@ const MenuDropdown = () => {
         <div>
             <Link
                 color="white"
-                className="hover:text-neongreen cursor-pointer"
+                sx={{ "&:hover": { color: theme.palette.primary.main } }}
+                className="cursor-pointer"
                 underline="none"
                 onClick={handleClick}
             >

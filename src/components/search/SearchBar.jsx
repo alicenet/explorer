@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, FormControl, MenuItem, Select, TextField } from "@mui/material";
+import { Button, FormControl, MenuItem, Select, TextField, useTheme } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { classNames, curveTypes, isBN, searchTypes } from "utils";
 import { content, HelpTooltip } from "components";
@@ -14,6 +14,7 @@ const options = [
 export function SearchBar({ currentSearch = null }) {
 
     const history = useHistory();
+    const theme = useTheme();
 
     const [offset, setOffset] = useState("");
 
@@ -80,7 +81,7 @@ export function SearchBar({ currentSearch = null }) {
                                 id="search-type-selection"
                                 value={selectedOption.value}
                                 onChange={handleChange}
-                                inputProps={{className: "py-3"}}
+                                inputProps={{ className: "py-3" }}
                             >
                                 {options.map(option =>
                                     <MenuItem
@@ -140,7 +141,7 @@ export function SearchBar({ currentSearch = null }) {
                 <div className="flex">
                     {curveType && term && selectedOption.value === searchTypes.DATASTORES && (
                         <div className="flex items-center gap-3 w-1/2 mobile:w-full">
-                            <FiberManualRecord className="text-neongreen w-3" />
+                            <FiberManualRecord className="w-3" sx={{ color: theme.palette.primary.main }} />
                             <h4>This is a {curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h4>
                             <HelpTooltip
                                 content={curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}

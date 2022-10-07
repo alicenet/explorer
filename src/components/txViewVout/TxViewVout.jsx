@@ -1,5 +1,5 @@
 import React from "react";
-import { CollapsableCard, TxViewDataStore, TxViewValueStore, } from "components";
+import { Accordion, TxViewDataStore, TxViewValueStore, } from "components";
 import { ReactComponent as DataStoreIcon } from "assets/datastore-icon.svg";
 import { ReactComponent as ValueStoreIcon } from "assets/valuestore-icon.svg";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
@@ -11,60 +11,56 @@ export function TxViewVout({ txInfo }) {
 
     return (
 
-        <div className="bg-headerblack p-4 flex flex-col gap-4 rounded-b-md">
+        <div className="bg-headerblack p-4 flex flex-col gap-4 rounded-md rounded-t-none">
 
             {
                 dataStores.length > 0 &&
-                <CollapsableCard
+                <Accordion
                     title="DataStores"
-                    borderless
                     itemsCount={dataStores.length}
                     icon={<DataStoreIcon />}
                 >
-                    <div className="bg-tableblack p-4 pt-0 flex flex-col gap-3 rounded-b-md">
+                    <div className="bg-tableblack p-4 pt-0 flex flex-col gap-3 rounded-md rounded-t-none">
 
                         {dataStores.map((dataStore, index) => (
-                                <CollapsableCard
-                                    classNames="bg-headerblack rounded-md"
-                                    borderless
+                                <Accordion
+                                    darkHeader
                                     key={`collapsable-tx-vout-ds-${index}`}
                                     title={`DataStore 0x${dataStore['DataStore']['DSLinker']['DSPreImage']['Index']}`}
                                 >
                                     <TxViewDataStore dataStore={dataStore?.DataStore} />
-                                </CollapsableCard>
+                                </Accordion>
                             )
                         )}
 
                     </div>
 
-                </CollapsableCard>
+                </Accordion>
             }
 
             {
                 valueStores.length > 0 &&
-                <CollapsableCard
+                <Accordion
                     title="ValueStores"
-                    borderless
                     itemsCount={valueStores.length}
                     icon={<ValueStoreIcon />}
                 >
-                    <div className="bg-tableblack p-4 pt-0 flex flex-col gap-3 rounded-b-md">
+                    <div className="bg-tableblack p-4 pt-0 flex flex-col gap-3 rounded-md rounded-t-none">
 
                         {valueStores.map((valueStore, index) => (
-                                <CollapsableCard
-                                    classNames="bg-headerblack rounded-md"
-                                    borderless
+                                <Accordion
+                                    darkHeader
                                     key={`collapsable-tx-vout-vs-${index}`}
                                     title={`ValueStore ${aliceNetAdapter.hexToInt(valueStore['ValueStore']['VSPreImage']['Value'])}`}
                                 >
                                     <TxViewValueStore valueStore={valueStore?.ValueStore} />
-                                </CollapsableCard>
+                                </Accordion>
                             )
                         )}
 
                     </div>
 
-                </CollapsableCard>
+                </Accordion>
             }
 
         </div>

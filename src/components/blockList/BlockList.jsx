@@ -74,7 +74,7 @@ export function BlockList({ blockInfo }) {
                 </CopyTooltip>
             </TwoColumnsRow>
 
-            <TwoColumnsRow title="Group Signature" tooltipContent={content.groupSignature} size={2}>
+            <TwoColumnsRow title="Group Signature" tooltipContent={content.groupSignature} size={2} lastRow>
                 <div className="p-0 pr-20 mobile:pr-0">
                     <CopyTooltip value={sigGroup} content="Copy Signature">
                         <p className="break-all">{`0x${sigGroup}`}</p>

@@ -2,24 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import {
-    BlockList,
-    CollapsableCard,
-    InvalidInput,
-    Page,
-    SearchBar,
-    SearchNotFound,
-    TxHashList
-} from "components";
+import { BlockList, InvalidInput, Page, PrimaryAccordion, SearchBar, SearchNotFound, TxHashList } from "components";
 import { ReactComponent as CubeIcon } from "assets/cube-icon.svg";
 import { ReactComponent as TxHashIcon } from "assets/tx-hash-icon.svg";
 import { isValidBlockHeight, searchTypes } from "utils";
+import { useTheme } from "@mui/material";
 
 export function BlockExplorer() {
 
     const [blockInfo, setBlockInfo] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
+    const theme = useTheme();
     const { height } = useParams();
 
     useSelector(s => s.aliceNetAdapter);
@@ -70,7 +64,7 @@ export function BlockExplorer() {
                         suggestion={
                             aliceNetAdapter.blocks[0]?.BClaims.Height &&
                             <Link
-                                className="hover:text-neongreen hover:opacity-80"
+                                className="hover:opacity-80"
                                 to={`/block/${aliceNetAdapter.blocks[0]?.BClaims.Height}`}
                             >
                                 {`Block Number (${aliceNetAdapter.blocks[0]?.BClaims.Height})`}
@@ -81,17 +75,17 @@ export function BlockExplorer() {
 
                 {
                     blockInfo && !blockInfo.error &&
-                    <CollapsableCard
+                    <PrimaryAccordion
                         title={`Block #${blockInfo.BClaims.Height}`}
                         icon={<CubeIcon />}
                     >
                         <BlockList blockInfo={blockInfo} />
-                    </CollapsableCard>
+                    </PrimaryAccordion>
                 }
 
                 {
                     blockInfo && !blockInfo.error && blockInfo.TxHshLst.length > 0 &&
-                    <CollapsableCard
+                    <PrimaryAccordion
                         title="Transaction Hash List"
                         icon={<TxHashIcon />}
                     >
@@ -99,7 +93,7 @@ export function BlockExplorer() {
                             txHshLst={blockInfo.TxHshLst}
                             txViewLink="/"
                         />
-                    </CollapsableCard>
+                    </PrimaryAccordion>
                 }
 
             </div>

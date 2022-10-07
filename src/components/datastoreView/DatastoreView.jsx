@@ -1,10 +1,12 @@
 import React from "react";
-import { CollapsableCard, content, CopyTooltip, TwoColumnsRow } from "components";
+import { Accordion, content, CopyTooltip, TwoColumnsRow } from "components";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { Link } from "react-router-dom";
-import { Grid } from "@mui/material";
+import { Grid, Typography, useTheme } from "@mui/material";
 
 export function DatastoreView({ datastoreInfo }) {
+
+    const theme = useTheme();
 
     return (
 
@@ -12,10 +14,9 @@ export function DatastoreView({ datastoreInfo }) {
 
             {datastoreInfo.map((dataStore, index) => (
 
-                <CollapsableCard
+                <Accordion
                     title={`Index: ${dataStore['DSLinker']['DSPreImage']['Index']}`}
                     key={`collapsable-datastore-${index}`}
-                    borderless
                 >
 
                     <Grid className="break-words">
@@ -54,18 +55,20 @@ export function DatastoreView({ datastoreInfo }) {
 
                         <TwoColumnsRow title="Transaction Hash" tooltipContent={content.txHash} lastRow>
                             <CopyTooltip value={dataStore['DSLinker']['TxHash']} content="Copy Hash">
-                                <Link
-                                    className="text-neongreen hover:text-neongreen hover:opacity-80 break-all"
-                                    to={`/tx/${dataStore['DSLinker']['TxHash']}`}
-                                >
-                                    {`0x${dataStore['DSLinker']['TxHash']}`}
-                                </Link>
+                                <Typography sx={{ color: theme.palette.primary.main }}>
+                                    <Link
+                                        className="hover:opacity-80 break-all"
+                                        to={`/tx/${dataStore['DSLinker']['TxHash']}`}
+                                    >
+                                        {`0x${dataStore['DSLinker']['TxHash']}`}
+                                    </Link>
+                                </Typography>
                             </CopyTooltip>
                         </TwoColumnsRow>
 
                     </Grid>
 
-                </CollapsableCard>
+                </Accordion>
 
             ))}
 

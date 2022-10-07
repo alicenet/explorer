@@ -10,10 +10,10 @@ const headerCells =
         {
             id: "height",
             label: "Height",
-            displayCallback: ({ height, history }) =>
+            displayCallback: ({ height, history, theme }) =>
                 <span
-                    style={{ textUnderlineOffset: "0.3em" }}
-                    className="text-neongreen cursor-pointer hover:underline"
+                    style={{ textUnderlineOffset: "0.3em", color: theme.palette.primary.main }}
+                    className="cursor-pointer hover:underline"
                     onClick={() => history.push(`/block/${height}`)}
                 >
                 {height}
