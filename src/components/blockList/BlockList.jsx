@@ -6,13 +6,16 @@ import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 
 const NavigationChevron = ({ height, direction }) => {
+
     const history = useHistory();
+    const theme = useTheme();
 
     const handleBlockNav = (term) => history.push(`/block/${term}`);
     return (
         <IconButton
             size="small"
-            className="bg-buttonblack rounded-md text-white hover:opacity-80 w-6 p-0"
+            sx={{ background: theme.palette.buttonBlack.main }}
+            className="rounded-md text-white hover:opacity-80 w-6 p-0"
             onClick={() => handleBlockNav(height)}
         >
             {direction === "left" ? <ChevronLeft /> : <ChevronRight />}

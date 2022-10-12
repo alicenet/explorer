@@ -9,7 +9,6 @@ module.exports = {
                 darkgray: '#2D2D2D',
                 rowblack: '#343333',
                 tableblack: '#444444',
-                buttonblack: '#494949',
                 lightgray: '#A7A6A6',
                 cleargray: '#DEDEDE',
                 dropgray: '#EEEEEE'

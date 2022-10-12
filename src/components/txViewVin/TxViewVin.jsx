@@ -1,5 +1,5 @@
 import React from "react";
-import { Accordion, content, CopyTooltip, TwoColumnsRow } from "components";
+import { content, CopyTooltip, SecondaryAccordion, TwoColumnsRow } from "components";
 import { Grid, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 
@@ -13,7 +13,7 @@ export function TxViewVin({ txInfo }) {
 
             {txInfo.map((tx, index) =>
 
-                <Accordion title={`Vin ${index + 1}`} key={`collapsable-tx-vin-${index}`}>
+                <SecondaryAccordion title={`Vin ${index + 1}`} key={`collapsable-tx-vin-${index}`}>
 
                     <Grid container className="break-words">
 
@@ -56,7 +56,7 @@ export function TxViewVin({ txInfo }) {
 
                     </Grid>
 
-                </Accordion>
+                </SecondaryAccordion>
             )}
 
         </div>

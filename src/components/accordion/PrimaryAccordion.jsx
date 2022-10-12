@@ -9,7 +9,13 @@ export function PrimaryAccordion(props) {
 
     return (
 
-        <Accordion sx={{ borderTop: `2px solid ${theme.palette.primary.main}` }} {...rest}>
+        <Accordion
+            sx={{
+                borderTop: `2px solid ${theme.palette.primary.main}`,
+                background: theme.palette.tableBlack.main
+            }}
+            {...rest}
+        >
             {children}
         </Accordion>
 

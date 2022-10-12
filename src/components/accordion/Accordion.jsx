@@ -3,7 +3,7 @@ import { classNames as csx } from "utils";
 import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
 import { Accordion as MUIAccordion, AccordionDetails, AccordionSummary } from "@mui/material";
 
-export function Accordion({ children, title, itemsCount, darkHeader = false, icon = false, sx }) {
+export function Accordion({ children, title, itemsCount, icon = false, sx }) {
 
     const [isBlockOpen, toggleAccordion] = useState(true);
 
@@ -12,17 +12,14 @@ export function Accordion({ children, title, itemsCount, darkHeader = false, ico
         <MUIAccordion
             disableGutters
             defaultExpanded
-            className={csx(
-                "text-left rounded-md bg-tableblack",
-            )}
+            className="text-left rounded-md"
             sx={sx}
         >
 
             <AccordionSummary
                 className={
                     csx(
-                        "rounded-md bg-tableblack break-all px-0 py-2",
-                        { "bg-headerblack": darkHeader },
+                        "rounded-md break-all px-0 py-2",
                         { "rounded-b-none": isBlockOpen }
                     )
                 }
