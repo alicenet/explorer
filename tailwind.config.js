@@ -4,15 +4,15 @@ module.exports = {
     theme: {
         extend: {
             colors: {
+                headerblack: '#171717',
                 dark: '#212121',
+                darkgray: '#2D2D2D',
+                rowblack: '#343333',
+                tableblack: '#444444',
+                buttonblack: '#494949',
                 lightgray: '#A7A6A6',
                 cleargray: '#DEDEDE',
-                darkgray: '#2D2D2D',
-                dropgray: '#EEEEEE',
-                tableblack: '#444444',
-                rowblack: '#343333',
-                buttonblack: '#494949',
-                headerblack: '#171717'
+                dropgray: '#EEEEEE'
             },
             height: {
                 '19/20': '95%',
