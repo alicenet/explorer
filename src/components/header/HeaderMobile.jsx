@@ -123,7 +123,7 @@ const MenuItem = ({ location, label, icon = null, blank = false }) => {
 export function HeaderMobile() {
     return (
         <MenuList>
-            {sections.map((section, index, { length }) => (
+            {sections.map((section) => (
                 section.displayCallback(section)
             ))}
         </MenuList>

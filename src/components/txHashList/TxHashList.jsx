@@ -16,11 +16,13 @@ export function TxHashList({ txHshLst }) {
 
                 <Grid
                     container
+                    paddingX={3}
                     key={`row-hash-${index}`}
                     columns={2}
+                    sx={{ backgroundColor: theme.palette.rowBlack.main }}
                     className={classNames(
-                        "px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-2",
-                        { 'rounded-b-md': index + 1 === txHshLst.length }
+                        "border-0 border-t border-tableblack mobile:p-2",
+                        { "rounded-b-md": index + 1 === txHshLst.length }
                     )}
                 >
 

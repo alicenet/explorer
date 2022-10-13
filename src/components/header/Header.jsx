@@ -132,6 +132,7 @@ const sections =
     ];
 
 export function Header() {
+    const theme = useTheme();
     const history = useHistory();
     const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -189,7 +190,7 @@ export function Header() {
                     variant="temporary"
                     open={mobileOpen}
                     onClose={handleDrawerToggle}
-                    PaperProps={{ className: "bg-rowblack", sx: { minWidth: "70%" } }}
+                    PaperProps={{ sx: { minWidth: "70%", backgroundColor: theme.palette.rowBlack.main } }}
                     sx={{ display: { sm: "block", md: "none" } }}
                 >
 

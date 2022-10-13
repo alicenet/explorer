@@ -28,7 +28,8 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                 <TableRow>
                     {headerCells.map(header =>
                         <TableCell
-                            className="bg-rowblack text-white text-lg font-semibold border-tableblack"
+                            sx={{ backgroundColor: theme.palette.rowBlack.main }}
+                            className="text-white text-lg font-semibold border-tableblack"
                             key={`table-header-${header.id}`}
                         >
                             {header.label}
@@ -42,7 +43,10 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
 
                 {rows.map((row, rowIndex) =>
                     (
-                        <TableRow className="bg-rowblack" key={`table-row-${rowIndex}`}>
+                        <TableRow
+                            sx={{ backgroundColor: theme.palette.rowBlack.main }}
+                            key={`table-row-${rowIndex}`}
+                        >
                             {headerCells.map((headerCell) =>
 
                                 <TableCell
