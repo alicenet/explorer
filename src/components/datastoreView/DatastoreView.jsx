@@ -1,5 +1,5 @@
 import React from "react";
-import { Accordion, content, CopyTooltip, TwoColumnsRow } from "components";
+import { content, CopyTooltip, SecondaryAccordion, TwoColumnsRow } from "components";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { Link } from "react-router-dom";
 import { Grid, Typography, useTheme } from "@mui/material";
@@ -10,11 +10,11 @@ export function DatastoreView({ datastoreInfo }) {
 
     return (
 
-        <div className="bg-headerblack p-4 flex flex-col gap-4 rounded-b-md">
+        <>
 
             {datastoreInfo.map((dataStore, index) => (
 
-                <Accordion
+                <SecondaryAccordion
                     title={`Index: ${dataStore['DSLinker']['DSPreImage']['Index']}`}
                     key={`collapsable-datastore-${index}`}
                 >
@@ -68,11 +68,11 @@ export function DatastoreView({ datastoreInfo }) {
 
                     </Grid>
 
-                </Accordion>
+                </SecondaryAccordion>
 
             ))}
 
-        </div>
+        </>
 
     );
 

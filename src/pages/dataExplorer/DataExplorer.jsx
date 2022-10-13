@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { Accordion, DatastoreView, InvalidInput, Page, SearchBar, SearchNotFound } from "components";
+import { DatastoreView, InvalidInput, Page, PrimaryAccordion, SearchBar, SearchNotFound } from "components";
 import { ReactComponent as FileIcon } from "assets/file-icon.svg";
 import { searchTypes } from "utils";
 
@@ -49,13 +49,14 @@ export function DataExplorer() {
 
                 {
                     datastoreInfo && !datastoreInfo.error && datastoreInfo.length > 0 &&
-                    <Accordion
+                    <PrimaryAccordion
+                        padded
                         title="Indexes from Offset"
                         icon={<FileIcon />}
                         itemsCount={datastoreInfo.length}
                     >
                         <DatastoreView datastoreInfo={datastoreInfo} />
-                    </Accordion>
+                    </PrimaryAccordion>
                 }
 
             </div>
