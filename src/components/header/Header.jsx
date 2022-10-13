@@ -141,7 +141,8 @@ export function Header() {
 
     return (
         <>
-            <AppBar component="nav" position="sticky" className="bg-dark shadow-none opacity-90">
+
+            <AppBar color="dark" component="nav" position="sticky" className="shadow-none opacity-90">
 
                 <Container className="px-0 py-1">
 
