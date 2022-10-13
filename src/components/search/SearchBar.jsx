@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, FormControl, MenuItem, Select, TextField, useTheme } from "@mui/material";
+import { Box, Button, FormControl, MenuItem, Select, TextField, useTheme } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { classNames, curveTypes, isBN, searchTypes } from "utils";
 import { content, HelpTooltip } from "components";
@@ -61,7 +61,15 @@ export function SearchBar({ currentSearch = null }) {
     };
 
     return (
-        <div className="flex flex-col text-left bg-darkgray rounded-md px-8 py-10 gap-3">
+        <Box
+            display={"flex"}
+            flexDirection={"column"}
+            sx={{ backgroundColor: theme.palette.darkGray.main }}
+            paddingY={4}
+            paddingX={4}
+            gap={2}
+            className="text-left rounded-md"
+        >
 
             <h3 className="m-0 text-2xl font-light">Explore the AliceNet Blockchain</h3>
 
@@ -86,7 +94,9 @@ export function SearchBar({ currentSearch = null }) {
                                         key={`header-option-${option.value}`}
                                         value={option.value}
                                         className="font-bold mobile:text-xl"
-                                    >{option.text}</MenuItem>
+                                    >
+                                        {option.text}
+                                    </MenuItem>
                                 )}
                             </Select>
                         </FormControl>
@@ -150,6 +160,6 @@ export function SearchBar({ currentSearch = null }) {
 
             </div>
 
-        </div>
+        </Box>
     );
 }
