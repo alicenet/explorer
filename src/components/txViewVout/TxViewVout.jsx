@@ -13,7 +13,7 @@ export function TxViewVout({ txInfo }) {
 
     return (
 
-        <div className="bg-headerblack p-4 flex flex-col gap-4 rounded-md rounded-t-none">
+        <>
 
             {
                 dataStores.length > 0 &&
@@ -63,7 +63,7 @@ export function TxViewVout({ txInfo }) {
                 </SecondaryAccordion>
             }
 
-        </div>
+        </>
     );
 
 }

@@ -100,6 +100,7 @@ export function TxExplorer() {
                         </div>
 
                         <PrimaryAccordion
+                            padded
                             title="Vins"
                             icon={<TreeIcon />}
                             itemsCount={txInfo[0].Vin.length}
@@ -108,6 +109,7 @@ export function TxExplorer() {
                         </PrimaryAccordion>
 
                         <PrimaryAccordion
+                            padded
                             title="Vouts"
                             icon={<ChoicesIcon />}
                             itemsCount={txInfo[0].Vout.length}

@@ -9,7 +9,7 @@ export function TxViewVin({ txInfo }) {
 
     return (
 
-        <div className="bg-headerblack p-4 flex flex-col gap-4 rounded-md rounded-t-none">
+        <>
 
             {txInfo.map((tx, index) =>
 
@@ -59,7 +59,7 @@ export function TxViewVin({ txInfo }) {
                 </SecondaryAccordion>
             )}
 
-        </div>
+        </>
 
     );
 
