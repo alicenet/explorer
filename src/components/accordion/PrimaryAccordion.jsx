@@ -29,7 +29,6 @@ export function PrimaryAccordion(props) {
 
         </Accordion>
 
-
     );
 
 }
