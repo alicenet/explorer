@@ -73,7 +73,8 @@ export function SearchBar({ currentSearch = null }) {
 
                         <FormControl variant="outlined" className="flex-shrink-0 text-center">
                             <Select
-                                className="bg-cleargray rounded-md rounded-r-none font-bold min-w-9 mobile:rounded-md mobile:text-xl"
+                                sx={{ backgroundColor: theme.palette.clearGray.main }}
+                                className="rounded-md rounded-r-none font-bold min-w-9 mobile:rounded-md mobile:text-xl"
                                 labelId="search-type-selection"
                                 id="search-type-selection"
                                 value={selectedOption.value}
