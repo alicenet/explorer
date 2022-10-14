@@ -3,10 +3,10 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import {
-    CollapsableCard,
     CopyTooltip,
     InvalidInput,
     Page,
+    PrimaryAccordion,
     SearchBar,
     SearchNotFound,
     TxViewVin,
@@ -60,7 +60,7 @@ export function TxExplorer() {
                     <InvalidInput
                         term={hash}
                         suggestion={
-                            <Link className="hover:text-neongreen hover:opacity-80" to="/">
+                            <Link className="hover:opacity-80" to="/">
                                 Going back to Block Monitor
                             </Link>
                         }
@@ -83,7 +83,7 @@ export function TxExplorer() {
 
                                 <div className="flex flex-row text-left gap-3 mobile:flex-col">
                                     <span className="font-bold">Height:</span>
-                                    <span className="">{aliceNetAdapter.transactionHeight}</span>
+                                    <span>{aliceNetAdapter.transactionHeight}</span>
                                 </div>
 
                                 <Button
@@ -99,21 +99,23 @@ export function TxExplorer() {
 
                         </div>
 
-                        <CollapsableCard
+                        <PrimaryAccordion
+                            padded
                             title="Vins"
                             icon={<TreeIcon />}
                             itemsCount={txInfo[0].Vin.length}
                         >
                             <TxViewVin txInfo={txInfo[0].Vin} />
-                        </CollapsableCard>
+                        </PrimaryAccordion>
 
-                        <CollapsableCard
+                        <PrimaryAccordion
+                            padded
                             title="Vouts"
                             icon={<ChoicesIcon />}
                             itemsCount={txInfo[0].Vout.length}
                         >
                             <TxViewVout txInfo={txInfo[0].Vout} />
-                        </CollapsableCard>
+                        </PrimaryAccordion>
 
                     </div>
                 }

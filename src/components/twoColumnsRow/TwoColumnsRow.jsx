@@ -1,18 +1,26 @@
 import React from "react";
 import { HelpTooltip } from "components";
 import { classNames } from "utils";
-import { Grid } from "@mui/material";
+import { Grid, useTheme } from "@mui/material";
 
-export function TwoColumnsRow({ title, tooltipContent, children, size= 3, lastRow = false }) {
+export function TwoColumnsRow({ title, tooltipContent, children, size = 3, lastRow = false }) {
+
+    const theme = useTheme();
 
     return (
 
-        <Grid container
-              className={
-                  classNames("px-6 bg-rowblack border-0 border-t border-tableblack mobile:p-3",
-                      { 'rounded-b-md': lastRow }
-                  )
-              }
+        <Grid
+            container
+            paddingX={3}
+            sx={{
+                backgroundColor: theme.palette.rowBlack.main,
+                borderColor: theme.palette.tableBlack.main,
+            }}
+            className={
+                classNames("border-0 border-t mobile:p-3",
+                    { "rounded-b-md": lastRow }
+                )
+            }
         >
             <Grid item sm={12} md={size} className="flex items-center gap-3 py-4 mobile:p-2">
                 <HelpTooltip content={tooltipContent} />

@@ -77,7 +77,7 @@ const MenuDropdown = () => {
         <MenuList className="p-0">
             <MUIMenuItem className="py-5 px-10">
                 <ListItemText onClick={() => setWalletMenuOpen(prevState => !prevState)}>
-                    <Typography className="text-white text-2xl">
+                    <Typography className="text-2xl">
                         Wallet Download
                         {walletMenuOpen ?
                             <ArrowDropUp className="text-3xl" /> :
@@ -107,12 +107,12 @@ const MenuItem = ({ location, label, icon = null, blank = false }) => {
         <MUIMenuItem key={`menu-item-${label}`} className="py-5 px-10">
             {
                 icon &&
-                <ListItemIcon className="text-white text-2xl">
+                <ListItemIcon className="text-2xl">
                     {icon}
                 </ListItemIcon>
             }
             <ListItemText onClick={() => blank ? window.open(location, '_blank').focus() : history.push(location)}>
-                <Typography className="text-white text-2xl">
+                <Typography className="text-2xl">
                     {label}
                 </Typography>
             </ListItemText>
@@ -123,7 +123,7 @@ const MenuItem = ({ location, label, icon = null, blank = false }) => {
 export function HeaderMobile() {
     return (
         <MenuList>
-            {sections.map((section, index, { length }) => (
+            {sections.map((section) => (
                 section.displayCallback(section)
             ))}
         </MenuList>

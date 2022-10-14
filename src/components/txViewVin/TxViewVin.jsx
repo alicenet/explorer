@@ -1,17 +1,19 @@
 import React from "react";
-import { CollapsableCard, content, CopyTooltip, TwoColumnsRow } from "components";
-import { Grid } from "@mui/material";
+import { content, CopyTooltip, SecondaryAccordion, TwoColumnsRow } from "components";
+import { Grid, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export function TxViewVin({ txInfo }) {
 
+    const theme = useTheme();
+
     return (
 
-        <div className="bg-headerblack p-4 flex flex-col gap-4 rounded-b-md">
+        <>
 
             {txInfo.map((tx, index) =>
 
-                <CollapsableCard title={`Vin ${index + 1}`} open={true} borderless key={`collapsable-tx-vin-${index}`}>
+                <SecondaryAccordion title={`Vin ${index + 1}`} key={`collapsable-tx-vin-${index}`}>
 
                     <Grid container className="break-words">
 
@@ -20,12 +22,14 @@ export function TxViewVin({ txInfo }) {
                                 value={tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}
                                 content="Copy Hash"
                             >
-                                <Link
-                                    className="text-neongreen hover:text-neongreen hover:opacity-80 break-all"
-                                    to={`/tx/${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}
-                                >
-                                    {`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}
-                                </Link>
+                                <Typography sx={{ color: theme.palette.primary.main }}>
+                                    <Link
+                                        className="break-all hover:opacity-80"
+                                        to={`/tx/${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}
+                                    >
+                                        {`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}
+                                    </Link>
+                                </Typography>
                             </CopyTooltip>
                         </TwoColumnsRow>
 
@@ -52,10 +56,10 @@ export function TxViewVin({ txInfo }) {
 
                     </Grid>
 
-                </CollapsableCard>
+                </SecondaryAccordion>
             )}
 
-        </div>
+        </>
 
     );
 
