@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, FormControl, MenuItem, Select, TextField, useTheme } from "@mui/material";
+import { Box, Button, FormControl, MenuItem, Select, TextField, useMediaQuery, useTheme } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { classNames, curveTypes, isBN, searchTypes } from "utils";
 import { content, HelpTooltip } from "components";
@@ -15,6 +15,7 @@ export function SearchBar({ currentSearch = null }) {
 
     const history = useHistory();
     const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up("md"));
 
     const [offset, setOffset] = useState("");
 
@@ -151,7 +152,7 @@ export function SearchBar({ currentSearch = null }) {
                                         value={offset}
                                         onChange={e => setOffset(e.target.value)}
                                     />
-                                    <HelpTooltip content={content.offset} />
+                                    {matches && <HelpTooltip content={content.offset} />}
                                 </div>
                             }
                         </div>
