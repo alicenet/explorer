@@ -3,12 +3,6 @@ module.exports = {
     important: true,
     theme: {
         extend: {
-            colors: {
-                tableblack: '#444444',
-            },
-            height: {
-                '19/20': '95%',
-            },
             minWidth: {
                 '9': '9em'
             }
@@ -17,8 +11,4 @@ module.exports = {
             'mobile': { 'max': '899px' },
         },
     },
-    variants: {
-        extend: {},
-    },
-    plugins: [],
 }
