@@ -163,7 +163,6 @@ export function Header() {
                                 aria-controls="menu-appbar"
                                 aria-haspopup="true"
                                 onClick={handleDrawerToggle}
-                                className="text-white"
                             >
                                 <MenuIcon fontSize={"large"} />
                             </IconButton>

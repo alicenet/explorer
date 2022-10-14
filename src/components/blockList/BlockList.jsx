@@ -15,7 +15,7 @@ const NavigationChevron = ({ height, direction }) => {
         <IconButton
             size="small"
             sx={{ background: theme.palette.buttonBlack.main }}
-            className="rounded-md text-white hover:opacity-80 w-6 p-0"
+            className="rounded-md hover:opacity-80 w-6 p-0"
             onClick={() => handleBlockNav(height)}
         >
             {direction === "left" ? <ChevronLeft /> : <ChevronRight />}

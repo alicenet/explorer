@@ -26,7 +26,7 @@ export function Accordion({ children, title, itemsCount, icon = false, sx }) {
                 onClick={() => toggleAccordion(prevState => !prevState)}
             >
 
-                <div className="flex text-white cursor-pointer gap-3 px-6 mobile:justify-between">
+                <div className="flex cursor-pointer gap-3 px-6 mobile:justify-between">
                     <div className="flex items-center gap-3">
                         {icon}
                         <h3>{title}</h3>
@@ -41,7 +41,7 @@ export function Accordion({ children, title, itemsCount, icon = false, sx }) {
 
             </AccordionSummary>
 
-            <AccordionDetails className="p-0 text-white">
+            <AccordionDetails className="p-0">
                 {children}
             </AccordionDetails>
 

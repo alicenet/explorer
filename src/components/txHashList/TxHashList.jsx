@@ -19,9 +19,12 @@ export function TxHashList({ txHshLst }) {
                     paddingX={3}
                     key={`row-hash-${index}`}
                     columns={2}
-                    sx={{ backgroundColor: theme.palette.rowBlack.main }}
+                    sx={{
+                        backgroundColor: theme.palette.rowBlack.main,
+                        borderColor: theme.palette.tableBlack.main,
+                    }}
                     className={classNames(
-                        "border-0 border-t border-tableblack mobile:p-2",
+                        "border-0 border-t mobile:p-2",
                         { "rounded-b-md": index + 1 === txHshLst.length }
                     )}
                 >

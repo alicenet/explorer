@@ -65,9 +65,9 @@ export function SearchBar({ currentSearch = null }) {
             display={"flex"}
             flexDirection={"column"}
             sx={{ backgroundColor: theme.palette.darkGray.main }}
-            paddingY={4}
-            paddingX={4}
-            gap={2}
+            paddingY={4.5}
+            paddingX={3.5}
+            gap={1.5}
             className="text-left rounded-md"
         >
 
@@ -81,19 +81,39 @@ export function SearchBar({ currentSearch = null }) {
 
                         <FormControl variant="outlined" className="flex-shrink-0 text-center">
                             <Select
-                                sx={{ backgroundColor: theme.palette.clearGray.main }}
-                                className="rounded-md rounded-r-none font-bold min-w-9 mobile:rounded-md mobile:text-xl"
+                                sx={{
+                                    backgroundColor: theme.palette.clearGray.main,
+                                    "& .MuiSvgIcon-root": {
+                                        color: "black"
+                                    }
+                                }}
+                                className="rounded-md rounded-r-none text-black font-bold min-w-9 mobile:rounded-md mobile:text-xl"
                                 labelId="search-type-selection"
                                 id="search-type-selection"
                                 value={selectedOption.value}
                                 onChange={handleChange}
                                 inputProps={{ className: "py-3" }}
+                                MenuProps={{
+                                    sx: {
+                                        "& .MuiPaper-root": {
+                                            backgroundColor: "white",
+                                        },
+                                        "&& .Mui-selected": {
+                                            backgroundColor: theme.palette.primary.light
+                                        }
+                                    }
+                                }}
                             >
                                 {options.map(option =>
                                     <MenuItem
                                         key={`header-option-${option.value}`}
                                         value={option.value}
-                                        className="font-bold mobile:text-xl"
+                                        className="text-black font-bold mobile:text-xl"
+                                        sx={{
+                                            "&:hover": {
+                                                backgroundColor: theme.palette.dark.light,
+                                            }
+                                        }}
                                     >
                                         {option.text}
                                     </MenuItem>
@@ -106,7 +126,7 @@ export function SearchBar({ currentSearch = null }) {
                                 sx={{ backgroundColor: theme.palette.dark.main }}
                                 inputProps={{
                                     placeholder: `${selectedOption.placeHolder}`,
-                                    className: "text-white py-3 mobile:text-xl"
+                                    className: "py-3 mobile:text-xl"
                                 }}
                                 variant={"outlined"}
                                 className={classNames(
@@ -124,7 +144,7 @@ export function SearchBar({ currentSearch = null }) {
                                         sx={{ backgroundColor: theme.palette.dark.main }}
                                         inputProps={{
                                             placeholder: "Offset",
-                                            className: "text-white py-3 mobile:text-xl"
+                                            className: "py-3 mobile:text-xl"
                                         }}
                                         variant={"outlined"}
                                         className="w-full rounded-md"
@@ -140,7 +160,7 @@ export function SearchBar({ currentSearch = null }) {
 
                     <Button
                         variant={"contained"}
-                        className="w-40 mobile:w-full text-xl mobile:py-2"
+                        className="text-black w-40 mobile:w-full text-xl mobile:py-2"
                         onClick={() => handleSearch(term)}
                     >
                         Search

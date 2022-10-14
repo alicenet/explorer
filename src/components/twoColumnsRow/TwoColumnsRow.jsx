@@ -12,9 +12,12 @@ export function TwoColumnsRow({ title, tooltipContent, children, size = 3, lastR
         <Grid
             container
             paddingX={3}
-            sx={{ backgroundColor: theme.palette.rowBlack.main }}
+            sx={{
+                backgroundColor: theme.palette.rowBlack.main,
+                borderColor: theme.palette.tableBlack.main,
+            }}
             className={
-                classNames("border-0 border-t border-tableblack mobile:p-3",
+                classNames("border-0 border-t mobile:p-3",
                     { "rounded-b-md": lastRow }
                 )
             }

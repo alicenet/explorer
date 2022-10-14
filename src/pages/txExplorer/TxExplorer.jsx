@@ -83,7 +83,7 @@ export function TxExplorer() {
 
                                 <div className="flex flex-row text-left gap-3 mobile:flex-col">
                                     <span className="font-bold">Height:</span>
-                                    <span className="">{aliceNetAdapter.transactionHeight}</span>
+                                    <span>{aliceNetAdapter.transactionHeight}</span>
                                 </div>
 
                                 <Button

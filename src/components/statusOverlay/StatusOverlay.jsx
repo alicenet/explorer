@@ -31,11 +31,11 @@ export const StatusOverlay = () => {
             </Backdrop>
 
             <Dialog open={!!error}>
-                <DialogTitle className="text-white text-2xl">
+                <DialogTitle className="text-2xl">
                     Error!
                 </DialogTitle>
                 <DialogContent dividers>
-                    <DialogContentText className="text-white">
+                    <DialogContentText>
                         {error}
                     </DialogContentText>
                 </DialogContent>

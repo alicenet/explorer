@@ -6,17 +6,18 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
 
     return (
 
-        <Table
-            key={key}
-            className="bg-tableblack text-white mobile:whitespace-normal rounded-md rounded-b-none overflow-hidden"
-        >
+        <Table key={key} className="mobile:whitespace-normal rounded-md rounded-b-none overflow-hidden">
 
             <TableHead>
 
                 <TableRow sx={{ borderTop: `2px solid ${theme.palette.primary.main}` }}>
 
                     <TableCell
-                        className="bg-tableblack text-white text-xl font-semibold border-tableblack"
+                        sx={{
+                            background: theme.palette.tableBlack.main,
+                            borderColor: theme.palette.tableBlack.main,
+                        }}
+                        className="text-xl font-semibold"
                         colSpan={headerCells.length}
                         key={`table-header-main`}
                     >
@@ -28,8 +29,11 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                 <TableRow>
                     {headerCells.map(header =>
                         <TableCell
-                            sx={{ backgroundColor: theme.palette.rowBlack.main }}
-                            className="text-white text-lg font-semibold border-tableblack"
+                            sx={{
+                                backgroundColor: theme.palette.rowBlack.main,
+                                borderColor: theme.palette.tableBlack.main,
+                            }}
+                            className="text-lg font-semibold"
                             key={`table-header-${header.id}`}
                         >
                             {header.label}
@@ -50,7 +54,8 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                             {headerCells.map((headerCell) =>
 
                                 <TableCell
-                                    className="border-t-1 border-tableblack text-lg text-white"
+                                    sx={{ borderColor: theme.palette.tableBlack.main }}
+                                    className="border-t-1 text-lg"
                                     key={`row-${headerCell.id}`}
                                 >
                                     {headerCell?.displayCallback ? headerCell.displayCallback({ theme, ...row }) : row[headerCell.id]}
