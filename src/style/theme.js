@@ -39,6 +39,9 @@ export const theme = createTheme({
         dropGray: {
             main: '#EEEEEE',
         },
+        background: {
+            default: '#212121',
+        }
     },
     typography: {
         fontFamily: 'Ubuntu Mono',

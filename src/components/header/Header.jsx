@@ -143,7 +143,14 @@ export function Header() {
     return (
         <>
 
-            <AppBar color="dark" component="nav" position="sticky" className="shadow-none opacity-90">
+            <AppBar
+                component="nav"
+                position="sticky"
+                color={"dark"}
+                sx={{ backgroundImage: "none" }}
+                enableColorOnDark
+                className="shadow-none opacity-90"
+            >
 
                 <Container className="px-0 py-1">
 
