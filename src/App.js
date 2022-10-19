@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { About, BlockExplorer, DataExplorer, Home, Test, TxExplorer } from "pages";
 import { StatusOverlay } from "components";
-import { theme } from "./style/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
+import { theme } from "alice-mui";
 
 function App() {
 
