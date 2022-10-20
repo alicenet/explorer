@@ -14,7 +14,7 @@ export const CallToAction = () => {
 
     return (
 
-        <Container>
+        <Container className="text-center">
 
             <Typography className="text-2xl font-bold">
 
