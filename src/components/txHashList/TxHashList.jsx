@@ -9,7 +9,7 @@ export function TxHashList({ txHshLst }) {
 
     return (
 
-        <Grid className="break-words">
+        <Grid>
 
             {txHshLst && txHshLst.map((hash, index, { length }) =>
 
@@ -17,9 +17,15 @@ export function TxHashList({ txHshLst }) {
 
                     <CopyTooltip value={hash} content="Copy Hash">
 
-                        <Typography sx={{ color: theme.palette.primary.main }}>
+                        <Typography sx={{
+                            color: theme.palette.primary.main,
+                            wordBreak: "break-all",
+                            ":hover": {
+                                color: theme.palette.primary.dark
+                            }
+                        }}>
 
-                            <Link className="break-all hover:opacity-80" to={`/tx/${hash}`}>
+                            <Link to={`/tx/${hash}`}>
                                 {`0x${hash}`}
                             </Link>
 
@@ -28,7 +34,6 @@ export function TxHashList({ txHshLst }) {
                     </CopyTooltip>
 
                 </TwoColumnsRow>
-                
             )}
 
         </Grid>

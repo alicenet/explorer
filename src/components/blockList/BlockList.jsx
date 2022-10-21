@@ -41,7 +41,7 @@ export function BlockList({ blockInfo }) {
 
     return (
 
-        <Grid className="break-words">
+        <Grid>
 
             <TwoColumnsRow title="Block Height" tooltipContent={content.height} size={2}>
                 {height}
