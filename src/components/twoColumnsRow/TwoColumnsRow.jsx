@@ -23,7 +23,7 @@ export function TwoColumnsRow({ title, tooltipContent, children, size = 3, lastR
             }
         >
             <Grid item sm={12} md={size} className="flex items-center gap-3 py-4 mobile:p-2">
-                <HelpTooltip content={tooltipContent} />
+                {tooltipContent && <HelpTooltip content={tooltipContent} />}
                 <p>{title}</p>
             </Grid>
             <Grid item sm={12} md={12 - size} className="w-full flex items-center gap-5 py-4 mobile:p-2">

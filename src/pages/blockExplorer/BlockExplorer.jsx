@@ -73,24 +73,15 @@ export function BlockExplorer() {
 
                 {
                     blockInfo && !blockInfo.error &&
-                    <PrimaryAccordion
-                        title={`Block #${blockInfo.BClaims.Height}`}
-                        icon={<CubeIcon />}
-                    >
+                    <PrimaryAccordion title={`Block #${blockInfo.BClaims.Height}`} icon={<CubeIcon />}>
                         <BlockList blockInfo={blockInfo} />
                     </PrimaryAccordion>
                 }
 
                 {
                     blockInfo && !blockInfo.error && blockInfo.TxHshLst.length > 0 &&
-                    <PrimaryAccordion
-                        title="Transaction Hash List"
-                        icon={<TxHashIcon />}
-                    >
-                        <TxHashList
-                            txHshLst={blockInfo.TxHshLst}
-                            txViewLink="/"
-                        />
+                    <PrimaryAccordion title="Transaction Hash List" icon={<TxHashIcon />}>
+                        <TxHashList txHshLst={blockInfo.TxHshLst} txViewLink="/" />
                     </PrimaryAccordion>
                 }
 
