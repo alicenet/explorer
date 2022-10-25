@@ -32,10 +32,10 @@ export const StatusOverlay = () => {
 
             <Dialog open={!!error}>
                 <DialogTitle className="text-2xl">
-                    Error!
+                    Error
                 </DialogTitle>
                 <DialogContent dividers>
-                    <DialogContentText>
+                    <DialogContentText sx={{ whiteSpace: "pre" }}>
                         {error}
                     </DialogContentText>
                 </DialogContent>
