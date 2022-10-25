@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { copyText } from "utils";
-import { Tooltip, useMediaQuery, useTheme } from "@mui/material";
+import { Icon, Tooltip, useMediaQuery, useTheme } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-regular-svg-icons";
 
@@ -22,13 +22,21 @@ export function CopyTooltip({ value, content, children }) {
             {
                 matches &&
                 <Tooltip placement={"top"} arrow title={contentMessage} onClose={() => setContentMessage(content)}>
-                    <div>
-                        <FontAwesomeIcon
-                            icon={faCopy}
-                            className="cursor-pointer hover:opacity-80 w-4"
-                            onClick={() => handleClick(value)}
-                        />
-                    </div>
+                    <Icon
+                        onClick={() => handleClick(value)}
+                        fontSize={"small"}
+                        sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            cursor: "pointer",
+                            "&:hover": {
+                                opacity: 0.8
+                            }
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faCopy} size={"xs"} />
+                    </Icon>
                 </Tooltip>
             }
         </div>
