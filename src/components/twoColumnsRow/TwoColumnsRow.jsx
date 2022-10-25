@@ -12,6 +12,7 @@ export function TwoColumnsRow({ title, tooltipContent, children, size = 3, lastR
         <Grid
             container
             paddingX={3}
+            paddingY={2}
             sx={{
                 backgroundColor: theme.palette.rowBlack.main,
                 borderColor: theme.palette.tableBlack.main,
@@ -22,11 +23,11 @@ export function TwoColumnsRow({ title, tooltipContent, children, size = 3, lastR
                 )
             }
         >
-            <Grid item sm={12} md={size} className="flex items-center gap-3 py-4 mobile:p-2">
+            <Grid item sm={12} md={size} display="flex" alignItems="center" gap={1} className="mobile:p-2">
                 {tooltipContent && <HelpTooltip content={tooltipContent} />}
                 <p>{title}</p>
             </Grid>
-            <Grid item sm={12} md={12 - size} className="w-full flex items-center gap-5 py-4 mobile:p-2">
+            <Grid item sm={12} md={12 - size} display="flex" alignItems="center" gap={1} className="w-full mobile:p-2">
                 {children}
             </Grid>
         </Grid>
