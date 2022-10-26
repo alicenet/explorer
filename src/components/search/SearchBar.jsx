@@ -69,16 +69,28 @@ export function SearchBar({ currentSearch = null }) {
             paddingY={4.5}
             paddingX={3.5}
             gap={1.5}
-            className="text-left rounded-md"
+            borderRadius={1}
         >
 
             <h3 className="m-0 text-2xl font-light">Explore the AliceNet Blockchain</h3>
 
-            <div className="flex flex-col justify-between gap-2">
+            <Box display="flex" flexDirection="column" justifyContent="space-between" gap={1}>
 
-                <div className="flex flex-row mobile:flex-col justify-between gap-5">
+                <Box
+                    display="flex"
+                    flexDirection="row"
+                    justifyContent="space-between"
+                    gap={2}
+                    className="mobile:flex-col"
+                >
 
-                    <div className="flex flex-row mobile:flex-col w-full mobile:gap-5">
+                    <Box
+                        display="flex"
+                        flexDirection="row"
+                        justifyContent="space-between"
+                        flexGrow={1}
+                        className="mobile:flex-col mobile:gap-5"
+                    >
 
                         <FormControl variant="outlined" className="flex-shrink-0 text-center">
                             <Select
@@ -122,7 +134,14 @@ export function SearchBar({ currentSearch = null }) {
                             </Select>
                         </FormControl>
 
-                        <div className="flex flex-row items-center mobile:flex-col w-full gap-3">
+                        <Box
+                            display="flex"
+                            flexDirection="row"
+                            alignItems="center"
+                            flexGrow={1}
+                            gap={1}
+                            className="mobile:flex-col mobile:gap-3"
+                        >
                             <TextField
                                 sx={{ backgroundColor: theme.palette.dark.main }}
                                 inputProps={{
@@ -140,7 +159,7 @@ export function SearchBar({ currentSearch = null }) {
                             />
                             {
                                 selectedOption.value === searchTypes.DATASTORES &&
-                                <div className="flex items-center w-1/2 gap-2 mobile:w-full">
+                                <Box display="flex" alignItems="center" gap={1} className="w-1/2 mobile:w-full">
                                     <TextField
                                         sx={{ backgroundColor: theme.palette.dark.main }}
                                         inputProps={{
@@ -153,11 +172,11 @@ export function SearchBar({ currentSearch = null }) {
                                         onChange={e => setOffset(e.target.value)}
                                     />
                                     {matches && <HelpTooltip content={content.offset} />}
-                                </div>
+                                </Box>
                             }
-                        </div>
+                        </Box>
 
-                    </div>
+                    </Box>
 
                     <Button
                         variant={"contained"}
@@ -167,21 +186,21 @@ export function SearchBar({ currentSearch = null }) {
                         Search
                     </Button>
 
-                </div>
+                </Box>
 
-                <div className="flex">
+                <Box display="flex">
                     {curveType && term && selectedOption.value === searchTypes.DATASTORES && (
-                        <div className="flex items-center gap-3 w-1/2 mobile:w-full">
+                        <Box display="flex" alignItems="center" gap={1} className="w-1/2 mobile:w-full">
                             <FiberManualRecord className="w-3" sx={{ color: theme.palette.primary.main }} />
                             <h4>This is a {curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h4>
                             <HelpTooltip
                                 content={curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}
                             />
-                        </div>
+                        </Box>
                     )}
-                </div>
+                </Box>
 
-            </div>
+            </Box>
 
         </Box>
     );

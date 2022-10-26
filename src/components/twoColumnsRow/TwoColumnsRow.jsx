@@ -27,7 +27,7 @@ export function TwoColumnsRow({ title, tooltipContent, children, size = 3, lastR
                 {tooltipContent && <HelpTooltip content={tooltipContent} />}
                 <p>{title}</p>
             </Grid>
-            <Grid item sm={12} md={12 - size} display="flex" alignItems="center" gap={1} className="w-full mobile:p-2">
+            <Grid item sm={12} md={12 - size} display="flex" alignItems="center" gap={1} className="mobile:p-2">
                 {children}
             </Grid>
         </Grid>
