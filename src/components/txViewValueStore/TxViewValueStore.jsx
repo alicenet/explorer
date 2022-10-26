@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { content, CopyTooltip, TwoColumnsRow } from "components";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
@@ -22,7 +22,12 @@ export function TxViewValueStore({ valueStore }) {
             </TwoColumnsRow>
 
             <TwoColumnsRow title="Owner" tooltipContent={content.owner}>
-                <div className="flex items-start gap-3 mobile:flex-col mobile:gap-5 mobile:w-full">
+                <Box
+                    display="flex"
+                    alignItems="flex-start"
+                    gap={1}
+                    className="mobile:flex-col mobile:gap-5 mobile:w-full"
+                >
                     <CopyTooltip value={valueStore['VSPreImage']['Owner']} content="Copy Address">
                         <p className="break-all">{`0x${valueStore['VSPreImage']['Owner']}`}</p>
                     </CopyTooltip>
@@ -37,7 +42,7 @@ export function TxViewValueStore({ valueStore }) {
                     >
                         View Owner DataStores
                     </Button>
-                </div>
+                </Box>
             </TwoColumnsRow>
 
             <TwoColumnsRow title="Transaction Index" tooltipContent={content.txIndex} lastRow>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { content, CopyTooltip, TwoColumnsRow } from "components";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
@@ -25,7 +25,12 @@ export function TxViewDataStore({ dataStore }) {
             </TwoColumnsRow>
 
             <TwoColumnsRow title="Owner" tooltipContent={content.owner}>
-                <div className="flex items-start gap-3 mobile:flex-col mobile:gap-5 mobile:w-full">
+                <Box
+                    display="flex"
+                    alignItems="flex-start"
+                    gap={1}
+                    className="mobile:flex-col mobile:gap-5 mobile:w-full"
+                >
                     <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['Owner']} content="Copy Address">
                         <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['Owner']}`}</p>
                     </CopyTooltip>
@@ -40,7 +45,7 @@ export function TxViewDataStore({ dataStore }) {
                     >
                         View Owner DataStores
                     </Button>
-                </div>
+                </Box>
             </TwoColumnsRow>
 
             <TwoColumnsRow title="Issued At" tooltipContent={content.epoch}>
@@ -88,11 +93,11 @@ export function TxViewDataStore({ dataStore }) {
             </TwoColumnsRow>
 
             <TwoColumnsRow title="Signature" tooltipContent={content.signature} lastRow>
-                <div className="p-0 pr-20 mobile:pr-0">
+                <Box padding={0} paddingRight={8} className="mobile:pr-0">
                     <CopyTooltip value={dataStore['Signature']} content="Copy Signature">
                         <p className="break-all">{`0x${dataStore['Signature']}`}</p>
                     </CopyTooltip>
-                </div>
+                </Box>
             </TwoColumnsRow>
 
         </Grid>
