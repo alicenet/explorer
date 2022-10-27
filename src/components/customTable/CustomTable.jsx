@@ -7,21 +7,35 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
 
     return (
 
-        <Table key={key} className="mobile:whitespace-normal rounded-md rounded-b-none overflow-hidden">
+        <Table key={key} className="mobile:whitespace-normal">
 
             <TableHead>
 
-                <TableRow sx={{ borderTop: `2px solid ${theme.palette.primary.main}` }}>
+                <TableRow>
 
                     <TableCell
-                        sx={{
-                            background: theme.palette.tableBlack.main,
-                            borderColor: theme.palette.tableBlack.main,
-                        }}
+                        sx={{ border: 0 }}
                         colSpan={headerCells.length}
                         key={`table-header-main`}
+                        padding="none"
                     >
-                        <Box display="flex" alignItems="center" gap={3}>
+                        <Box
+                            display="flex"
+                            alignItems="center"
+                            gap={2}
+                            padding={2}
+                            border={2}
+                            borderColor={theme.palette.primary.main}
+                            borderBottom={0}
+                            borderLeft={0}
+                            borderRight={0}
+                            borderRadius={1}
+                            sx={{
+                                backgroundColor: theme.palette.tableBlack.main,
+                                borderBottomLeftRadius: 0,
+                                borderBottomRightRadius: 0,
+                            }}
+                        >
                             {icon}
                             <Typography sx={{ fontSize: '1.25rem', fontWeight: 600 }}>
                                 {title}
