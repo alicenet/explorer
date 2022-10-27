@@ -180,7 +180,8 @@ export function SearchBar({ currentSearch = null }) {
 
                     <Button
                         variant={"contained"}
-                        className="text-black w-40 mobile:w-full text-xl mobile:py-2"
+                        sx={{ paddingX: 5 }}
+                        className="text-black mobile:w-full text-xl mobile:py-2"
                         onClick={() => handleSearch(term)}
                     >
                         Search

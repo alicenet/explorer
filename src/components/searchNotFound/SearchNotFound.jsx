@@ -13,24 +13,27 @@ export function SearchNotFound({ term }) {
 
         <ErrorContainer>
 
-            <Box className="flex flex-col font-bold">
-                <Box className="flex flex-row items-center gap-3 text-5xl">
+            <Box display="flex" flexDirection="column" className="font-bold">
+                <Box display="flex" flexDirection="row" alignItems="center" gap={1} className="text-5xl">
                     <Error className="text-5xl" />
                     <h2>OOPS!</h2>
                 </Box>
                 <h3 className="text-2xl">Search not found</h3>
             </Box>
 
-            <Box className="flex flex-col">
+            <Box display="flex" flexDirection="column">
                 <span>
-                    The search data you entered was: <span className="font-bold break-all">{term}</span>
+                    The search data you entered was:&nbsp;
+                    <Typography sx={{ wordBreak: "break-all" }} variant={"span"} className="font-bold">
+                        {term}
+                    </Typography>
                 </span>
                 <span>
                     Sorry! This is an invalid search entry.
                 </span>
             </Box>
 
-            <Box className="flex flex-col">
+            <Box display="flex" flexDirection="column">
                 <span>
                     Instead please try:
                 </span>
@@ -39,11 +42,11 @@ export function SearchNotFound({ term }) {
                 </Typography>
             </Box>
 
-            <Box className="text-left">
+            <Box>
                 <Button
                     variant={"contained"}
-                    className="px-8"
                     onClick={() => history.push('/')}
+                    sx={{ paddingX: 4 }}
                 >
                     Back to Monitor
                 </Button>

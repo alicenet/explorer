@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { content, CopyTooltip, TwoColumnsRow } from "components";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
@@ -10,17 +10,21 @@ export function TxViewDataStore({ dataStore }) {
 
     return (
 
-        <Grid className="break-words">
+        <Grid>
 
             <TwoColumnsRow title="Index" tooltipContent={content.index}>
                 <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['Index']} content="Copy Value">
-                    <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['Index']}`}</p>
+                    <Typography sx={{ wordBreak: "break-all" }}>
+                        {`0x${dataStore['DSLinker']['DSPreImage']['Index']}`}
+                    </Typography>
                 </CopyTooltip>
             </TwoColumnsRow>
 
             <TwoColumnsRow title="Raw Data" tooltipContent={content.rawData}>
                 <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['RawData']} content="Copy Data">
-                    <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['RawData']}`}</p>
+                    <Typography sx={{ wordBreak: "break-all" }}>
+                        {`0x${dataStore['DSLinker']['DSPreImage']['RawData']}`}
+                    </Typography>
                 </CopyTooltip>
             </TwoColumnsRow>
 
@@ -28,13 +32,14 @@ export function TxViewDataStore({ dataStore }) {
                 <Box
                     display="flex"
                     alignItems="flex-start"
-                    gap={1}
+                    gap={2}
                     className="mobile:flex-col mobile:gap-5 mobile:w-full"
                 >
                     <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['Owner']} content="Copy Address">
-                        <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['Owner']}`}</p>
+                        <Typography sx={{ wordBreak: "break-all" }}>
+                            {`0x${dataStore['DSLinker']['DSPreImage']['Owner']}`}
+                        </Typography>
                     </CopyTooltip>
-
                     <Button
                         size={"small"}
                         variant={"contained"}
@@ -50,7 +55,9 @@ export function TxViewDataStore({ dataStore }) {
 
             <TwoColumnsRow title="Issued At" tooltipContent={content.epoch}>
                 <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['IssuedAt']} content="Copy Value">
-                    <p className="break-all">{dataStore['DSLinker']['DSPreImage']['IssuedAt']}</p>
+                    <Typography sx={{ wordBreak: "break-all" }}>
+                        {dataStore['DSLinker']['DSPreImage']['IssuedAt']}
+                    </Typography>
                 </CopyTooltip>
             </TwoColumnsRow>
 
@@ -65,7 +72,7 @@ export function TxViewDataStore({ dataStore }) {
                     }
                     content="Copy Value"
                 >
-                    <p className="break-all">
+                    <Typography sx={{ wordBreak: "break-all" }}>
                         {
                             aliceNetAdapter.getDSExp(
                                 dataStore['DSLinker']['DSPreImage']['RawData'],
@@ -73,7 +80,7 @@ export function TxViewDataStore({ dataStore }) {
                                 dataStore['DSLinker']['DSPreImage']['IssuedAt']
                             )
                         }
-                    </p>
+                    </Typography>
                 </CopyTooltip>
             </TwoColumnsRow>
 
@@ -82,25 +89,32 @@ export function TxViewDataStore({ dataStore }) {
                     value={aliceNetAdapter.hexToInt(dataStore['DSLinker']['DSPreImage']['Deposit'])}
                     content="Copy Value"
                 >
-                    <p className="break-all">{aliceNetAdapter.hexToInt(dataStore['DSLinker']['DSPreImage']['Deposit'])}</p>
+                    <Typography sx={{ wordBreak: "break-all" }}>
+                        {aliceNetAdapter.hexToInt(dataStore['DSLinker']['DSPreImage']['Deposit'])}
+                    </Typography>
                 </CopyTooltip>
             </TwoColumnsRow>
 
             <TwoColumnsRow title="Transaction Index" tooltipContent={content.txIndex}>
                 <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['TXOutIdx']} content="Copy Index">
-                    <p className="break-all">{dataStore['DSLinker']['DSPreImage']['TXOutIdx']}</p>
+                    <Typography sx={{ wordBreak: "break-all" }}>
+                        {dataStore['DSLinker']['DSPreImage']['TXOutIdx']}
+                    </Typography>
                 </CopyTooltip>
             </TwoColumnsRow>
 
             <TwoColumnsRow title="Signature" tooltipContent={content.signature} lastRow>
                 <Box padding={0} paddingRight={8} className="mobile:pr-0">
                     <CopyTooltip value={dataStore['Signature']} content="Copy Signature">
-                        <p className="break-all">{`0x${dataStore['Signature']}`}</p>
+                        <Typography sx={{ wordBreak: "break-all" }}>
+                            {`0x${dataStore['Signature']}`}
+                        </Typography>
                     </CopyTooltip>
                 </Box>
             </TwoColumnsRow>
 
         </Grid>
+        
     );
 
 }

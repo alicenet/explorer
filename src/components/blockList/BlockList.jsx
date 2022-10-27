@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, IconButton, useMediaQuery, useTheme } from "@mui/material";
+import { Grid, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { content, CopyTooltip, TwoColumnsRow } from "components";
 import { useHistory } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
@@ -61,32 +61,42 @@ export function BlockList({ blockInfo }) {
 
             <TwoColumnsRow title="Previous Block" tooltipContent={content.previousBlock} size={2}>
                 <CopyTooltip value={prevBlock} content="Copy Hash">
-                    <p className="break-all">{`0x${prevBlock}`}</p>
+                    <Typography sx={{ wordBreak: "break-all" }}>
+                        {`0x${prevBlock}`}
+                    </Typography>
                 </CopyTooltip>
             </TwoColumnsRow>
 
             <TwoColumnsRow title="Transaction Root" tooltipContent={content.txRoot} size={2}>
                 <CopyTooltip value={txRoot} content="Copy Hash">
-                    <p className="break-all">{`0x${txRoot}`}</p>
+                    <Typography sx={{ wordBreak: "break-all" }}>
+                        {`0x${txRoot}`}
+                    </Typography>
                 </CopyTooltip>
             </TwoColumnsRow>
 
             <TwoColumnsRow title="State Root" tooltipContent={content.stateRoot} size={2}>
                 <CopyTooltip value={stateRoot} content="Copy Hash">
-                    <p className="break-all">{`0x${stateRoot}`}</p>
+                    <Typography sx={{ wordBreak: "break-all" }}>
+                        {`0x${stateRoot}`}
+                    </Typography>
                 </CopyTooltip>
             </TwoColumnsRow>
 
             <TwoColumnsRow title="Header Root" tooltipContent={content.headerRoot} size={2}>
                 <CopyTooltip value={headerRoot} content="Copy Hash">
-                    <p className="break-all">{`0x${headerRoot}`}</p>
+                    <Typography sx={{ wordBreak: "break-all" }}>
+                        {`0x${headerRoot}`}
+                    </Typography>
                 </CopyTooltip>
             </TwoColumnsRow>
 
             <TwoColumnsRow title="Group Signature" tooltipContent={content.groupSignature} size={2} lastRow>
                 <div className="p-0 pr-20 mobile:pr-0">
                     <CopyTooltip value={sigGroup} content="Copy Signature">
-                        <p className="break-all">{`0x${sigGroup}`}</p>
+                        <Typography sx={{ wordBreak: "break-all" }}>
+                            {`0x${sigGroup}`}
+                        </Typography>
                     </CopyTooltip>
                 </div>
             </TwoColumnsRow>

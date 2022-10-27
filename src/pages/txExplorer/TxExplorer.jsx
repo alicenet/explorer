@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import {
     CopyTooltip,
@@ -75,7 +75,9 @@ export function TxExplorer() {
                             <div className="flex flex-row text-left gap-3 mobile:flex-col">
                                 <span className="font-bold">Tx Hash:</span>
                                 <CopyTooltip value={hash} content="Copy Hash">
-                                    <p className="break-all">{`0x${hash}`}</p>
+                                    <Typography sx={{ wordBreak: "break-all" }}>
+                                        {`0x${hash}`}
+                                    </Typography>
                                 </CopyTooltip>
                             </div>
 

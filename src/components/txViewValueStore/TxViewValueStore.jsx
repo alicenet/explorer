@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { content, CopyTooltip, TwoColumnsRow } from "components";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
@@ -17,7 +17,9 @@ export function TxViewValueStore({ valueStore }) {
                     value={aliceNetAdapter.hexToInt(valueStore['VSPreImage']['Value'])}
                     content="Copy Value"
                 >
-                    <p className="break-all">{aliceNetAdapter.hexToInt(valueStore['VSPreImage']['Value'])}</p>
+                    <Typography sx={{ wordBreak: "break-all" }}>
+                        {aliceNetAdapter.hexToInt(valueStore['VSPreImage']['Value'])}
+                    </Typography>
                 </CopyTooltip>
             </TwoColumnsRow>
 
@@ -25,11 +27,13 @@ export function TxViewValueStore({ valueStore }) {
                 <Box
                     display="flex"
                     alignItems="flex-start"
-                    gap={1}
+                    gap={2}
                     className="mobile:flex-col mobile:gap-5 mobile:w-full"
                 >
                     <CopyTooltip value={valueStore['VSPreImage']['Owner']} content="Copy Address">
-                        <p className="break-all">{`0x${valueStore['VSPreImage']['Owner']}`}</p>
+                        <Typography sx={{ wordBreak: "break-all" }}>
+                            {`0x${valueStore['VSPreImage']['Owner']}`}
+                        </Typography>
                     </CopyTooltip>
 
                     <Button
@@ -47,7 +51,9 @@ export function TxViewValueStore({ valueStore }) {
 
             <TwoColumnsRow title="Transaction Index" tooltipContent={content.txIndex} lastRow>
                 <CopyTooltip value={valueStore['VSPreImage']['TXOutIdx']} content="Copy Index">
-                    <p className="break-all">{valueStore['VSPreImage']['TXOutIdx']}</p>
+                    <Typography sx={{ wordBreak: "break-all" }}>
+                        {valueStore['VSPreImage']['TXOutIdx']}
+                    </Typography>
                 </CopyTooltip>
             </TwoColumnsRow>
 

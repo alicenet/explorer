@@ -23,7 +23,9 @@ export function DatastoreView({ datastoreInfo }) {
 
                         <TwoColumnsRow title="Index" tooltipContent={content.index}>
                             <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['Index']} content="Copy Index">
-                                <p className="break-all">{dataStore['DSLinker']['DSPreImage']['Index']}</p>
+                                <Typography sx={{ wordBreak: "break-all" }}>
+                                    {dataStore['DSLinker']['DSPreImage']['Index']}
+                                </Typography>
                             </CopyTooltip>
                         </TwoColumnsRow>
 
@@ -32,7 +34,9 @@ export function DatastoreView({ datastoreInfo }) {
                                 value={dataStore['DSLinker']['DSPreImage']['RawData']}
                                 content="Copy Value"
                             >
-                                <p className="break-all">{`0x${dataStore['DSLinker']['DSPreImage']['RawData']}`}</p>
+                                <Typography sx={{ wordBreak: "break-all" }}>
+                                    {`0x${dataStore['DSLinker']['DSPreImage']['RawData']}`}
+                                </Typography>
                             </CopyTooltip>
                         </TwoColumnsRow>
 
@@ -55,11 +59,14 @@ export function DatastoreView({ datastoreInfo }) {
 
                         <TwoColumnsRow title="Transaction Hash" tooltipContent={content.txHash} lastRow>
                             <CopyTooltip value={dataStore['DSLinker']['TxHash']} content="Copy Hash">
-                                <Typography sx={{ color: theme.palette.primary.main }}>
-                                    <Link
-                                        className="hover:opacity-80 break-all"
-                                        to={`/tx/${dataStore['DSLinker']['TxHash']}`}
-                                    >
+                                <Typography sx={{
+                                    color: theme.palette.primary.main,
+                                    wordBreak: "break-all",
+                                    ":hover": {
+                                        color: theme.palette.primary.dark
+                                    }
+                                }}>
+                                    <Link to={`/tx/${dataStore['DSLinker']['TxHash']}`}>
                                         {`0x${dataStore['DSLinker']['TxHash']}`}
                                     </Link>
                                 </Typography>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { copyText } from "utils";
-import { Icon, Tooltip, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Icon, Tooltip, useMediaQuery, useTheme } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-regular-svg-icons";
 
@@ -17,7 +17,7 @@ export function CopyTooltip({ value, content, children }) {
 
     return (
 
-        <div className="flex items-start gap-3">
+        <Box display="flex" alignItems="flex-start" gap={1}>
             {children}
             {
                 matches &&
@@ -39,7 +39,7 @@ export function CopyTooltip({ value, content, children }) {
                     </Icon>
                 </Tooltip>
             }
-        </div>
+        </Box>
 
     );
 

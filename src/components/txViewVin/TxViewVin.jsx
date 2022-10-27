@@ -22,11 +22,14 @@ export function TxViewVin({ txInfo }) {
                                 value={tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}
                                 content="Copy Hash"
                             >
-                                <Typography sx={{ color: theme.palette.primary.main }}>
-                                    <Link
-                                        className="break-all hover:opacity-80"
-                                        to={`/tx/${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}
-                                    >
+                                <Typography sx={{
+                                    color: theme.palette.primary.main,
+                                    wordBreak: "break-all",
+                                    ":hover": {
+                                        color: theme.palette.primary.dark
+                                    }
+                                }}>
+                                    <Link to={`/tx/${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}>
                                         {`0x${tx['TXInLinker']['TXInPreImage']['ConsumedTxHash']}`}
                                     </Link>
                                 </Typography>
@@ -42,14 +45,18 @@ export function TxViewVin({ txInfo }) {
                                 value={tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx']}
                                 content="Copy Value"
                             >
-                                <p className="break-all">{tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx']}</p>
+                                <Typography sx={{ wordBreak: "break-all" }}>
+                                    {tx['TXInLinker']['TXInPreImage']['ConsumedTxIdx']}
+                                </Typography>
                             </CopyTooltip>
                         </TwoColumnsRow>
 
                         <TwoColumnsRow title="Signature" tooltipContent={content.signature} lastRow>
                             <div className="p-0 pr-20 mobile:pr-0">
                                 <CopyTooltip value={tx['Signature']} content="Copy Hash">
-                                    <p className="break-all">{`0x${tx['Signature']}`}</p>
+                                    <Typography sx={{ wordBreak: "break-all" }}>
+                                        {`0x${tx['Signature']}`}
+                                    </Typography>
                                 </CopyTooltip>
                             </div>
                         </TwoColumnsRow>

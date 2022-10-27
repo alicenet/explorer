@@ -3,21 +3,29 @@ import { CopyTooltip, CustomTable } from "components";
 import { ReactComponent as BlocksIcon } from "assets/blocks-icon.svg";
 import { useSelector } from "react-redux";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Typography } from "@mui/material";
 
 const headerCells =
     [
         {
             id: "height",
             label: "Height",
-            displayCallback: ({ height, history, theme }) =>
-                <span
-                    style={{ textUnderlineOffset: "0.3em", color: theme.palette.primary.main }}
-                    className="cursor-pointer hover:underline"
-                    onClick={() => history.push(`/block/${height}`)}
-                >
-                {height}
-            </span>
+            displayCallback: ({ height, theme }) =>
+                <Typography sx={{
+                    color: theme.palette.primary.main,
+                    textUnderlineOffset: "0.3em",
+                    fontSize: '1.15rem',
+                    cursor: "pointer",
+                    ":hover": {
+                        textDecoration: "underline",
+                        color: theme.palette.primary.dark
+                    }
+                }}>
+                    <Link to={`/block/${height}`}>
+                        {height}
+                    </Link>
+                </Typography>
         },
         {
             id: "txCount",
@@ -28,7 +36,9 @@ const headerCells =
             label: "Group Signature",
             displayCallback: ({ groupSignature }) =>
                 <CopyTooltip value={groupSignature} content="Copy Hash">
-                    <p className="break-all">{`0x${groupSignature.slice(0, 8)}...${groupSignature.slice(-8)}`}</p>
+                    <Typography sx={{ fontSize: '1.15rem', wordBreak: "break-all" }}>
+                        {`0x${groupSignature.slice(0, 8)}...${groupSignature.slice(-8)}`}
+                    </Typography>
                 </CopyTooltip>
         }
     ]
@@ -36,7 +46,6 @@ const headerCells =
 
 export function LatestBlocks() {
 
-    const history = useHistory();
     useSelector(s => s.aliceNetAdapter);
 
     useEffect(() => {
@@ -47,7 +56,6 @@ export function LatestBlocks() {
 
     const rows = aliceNetAdapter.blocks?.slice(0, aliceNetAdapter.blocksMaxLen).map((row) => {
         return {
-            history,
             height: row['BClaims']['Height'],
             txCount: row['BClaims']['TxCount'] ? row['BClaims']['TxCount'] : 0,
             groupSignature: row['SigGroup']
