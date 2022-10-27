@@ -15,7 +15,7 @@ const headerCells =
                 <Typography sx={{
                     color: theme.palette.primary.main,
                     textUnderlineOffset: "0.3em",
-                    fontSize: '1.15rem',
+                    fontSize: "1.15rem",
                     cursor: "pointer",
                     ":hover": {
                         textDecoration: "underline",

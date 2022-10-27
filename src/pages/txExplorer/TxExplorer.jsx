@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import {
     CopyTooltip,
@@ -46,7 +46,7 @@ export function TxExplorer() {
 
         <Page>
 
-            <div className="flex flex-col gap-10">
+            <Box display="flex" flexDirection="column" gap={4}>
 
                 <SearchBar currentSearch={{ type: searchTypes.TRANSACTIONS }} />
 
@@ -68,38 +68,39 @@ export function TxExplorer() {
                 }
                 {
                     txInfo && !txInfo.error && txInfo[0] !== undefined &&
-                    <div className="flex flex-col gap-10">
+                    <Box display="flex" flexDirection="column" gap={4}>
 
-                        <div className="flex flex-col px-3 gap-3 mobile:text-xl mobile:gap-6">
+                        <Box display="flex" flexDirection="column" paddingX={2} gap={2} className="mobile:text-xl mobile:gap-6">
 
-                            <div className="flex flex-row text-left gap-3 mobile:flex-col">
+                            <Box display="flex" flexDirection="row" gap={1} className="mobile:flex-col">
                                 <span className="font-bold">Tx Hash:</span>
                                 <CopyTooltip value={hash} content="Copy Hash">
                                     <Typography sx={{ wordBreak: "break-all" }}>
                                         {`0x${hash}`}
                                     </Typography>
                                 </CopyTooltip>
-                            </div>
+                            </Box>
 
-                            <div className="flex items-start gap-3 mobile:flex-col mobile:gap-6">
+                            <Box display="flex" alignItems="center" gap={1} className="mobile:flex-col mobile:gap-6">
 
-                                <div className="flex flex-row text-left gap-3 mobile:flex-col">
+                                <Box display="flex" flexDirection="row" gap={1} className="mobile:flex-col">
                                     <span className="font-bold">Height:</span>
                                     <span>{aliceNetAdapter.transactionHeight}</span>
-                                </div>
+                                </Box>
 
                                 <Button
                                     size={"small"}
                                     variant={"contained"}
-                                    className="py-0 px-6 text-base mobile:w-full mobile:m-0 mobile:py-2 mobile:text-xl"
+                                    sx={{ paddingX: 2.5, paddingY: 0, fontSize: "0.95rem" }}
+                                    className="mobile:w-full mobile:m-0 mobile:py-2 mobile:text-xl"
                                     onClick={() => history.push(`/block/${aliceNetAdapter.transactionHeight}`)}
                                 >
                                     View Block
                                 </Button>
 
-                            </div>
+                            </Box>
 
-                        </div>
+                        </Box>
 
                         <PrimaryAccordion
                             padded
@@ -119,10 +120,10 @@ export function TxExplorer() {
                             <TxViewVout txInfo={txInfo[0].Vout} />
                         </PrimaryAccordion>
 
-                    </div>
+                    </Box>
                 }
 
-            </div>
+            </Box>
 
         </Page>
 
