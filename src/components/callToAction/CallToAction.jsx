@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { Container, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 
 export const CallToAction = () => {
 
@@ -14,23 +14,21 @@ export const CallToAction = () => {
 
     return (
 
-        <Container className="text-center">
+        <Box textAlign="center">
 
-            <Typography className="text-2xl font-bold">
-
+            <Typography fontSize={"x-large"} fontWeight={"bold"}>
                 The Current Epoch is&nbsp;
-
                 <Typography sx={{ color: theme.palette.primary.main }} variant={"span"}>
                     {Math.floor(aliceNetAdapter.blocks[0].BClaims.Height / 1024)}
                 </Typography>
 
             </Typography>
 
-            <Typography className="text-xl">
+            <Typography fontSize={"large"}>
                 {`${1024 - Math.floor(aliceNetAdapter.blocks[0].BClaims.Height % 1024)} Blocks Remain`}
             </Typography>
 
-        </Container>
+        </Box>
 
     );
 

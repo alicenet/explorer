@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, FormControl, MenuItem, Select, TextField, useMediaQuery, useTheme } from "@mui/material";
+import {
+    Box,
+    Button,
+    FormControl,
+    MenuItem,
+    Select,
+    TextField,
+    Typography,
+    useMediaQuery,
+    useTheme
+} from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { classNames, curveTypes, isBN, searchTypes } from "utils";
 import { content, HelpTooltip } from "components";
@@ -72,7 +82,7 @@ export function SearchBar({ currentSearch = null }) {
             borderRadius={1}
         >
 
-            <h3 className="m-0 text-2xl font-light">Explore the AliceNet Blockchain</h3>
+            <Typography fontSize="x-large">Explore the AliceNet Blockchain</Typography>
 
             <Box display="flex" flexDirection="column" justifyContent="space-between" gap={1}>
 
