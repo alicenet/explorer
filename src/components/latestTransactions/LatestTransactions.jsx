@@ -11,7 +11,7 @@ const headerCells =
             id: "value",
             label: "Value",
             displayCallback: ({ height }) =>
-                <Typography sx={{ fontSize: '1.15rem' }}>
+                <Typography variant="span">
                     {height}
                 </Typography>
         },
@@ -24,7 +24,7 @@ const headerCells =
             label: "Owner",
             displayCallback: ({ groupSignature }) =>
                 <CopyTooltip value={groupSignature} content="Copy Hash">
-                    <Typography sx={{ fontSize: '1.15rem', wordBreak: "break-all" }}>
+                    <Typography variant="span" sx={{ wordBreak: "break-all" }}>
                         {`0x${groupSignature.slice(0, 8)}...${groupSignature.slice(-8)}`}
                     </Typography>
                 </CopyTooltip>

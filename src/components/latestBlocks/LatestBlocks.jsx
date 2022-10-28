@@ -12,16 +12,18 @@ const headerCells =
             id: "height",
             label: "Height",
             displayCallback: ({ height, theme }) =>
-                <Typography sx={{
-                    color: theme.palette.primary.main,
-                    textUnderlineOffset: "0.3em",
-                    fontSize: "1.15rem",
-                    cursor: "pointer",
-                    ":hover": {
-                        textDecoration: "underline",
-                        color: theme.palette.primary.dark
-                    }
-                }}>
+                <Typography
+                    variant="span"
+                    sx={{
+                        color: theme.palette.primary.main,
+                        textUnderlineOffset: "0.3em",
+                        cursor: "pointer",
+                        ":hover": {
+                            textDecoration: "underline",
+                            color: theme.palette.primary.dark
+                        }
+                    }}
+                >
                     <Link to={`/block/${height}`}>
                         {height}
                     </Link>
@@ -36,7 +38,7 @@ const headerCells =
             label: "Group Signature",
             displayCallback: ({ groupSignature }) =>
                 <CopyTooltip value={groupSignature} content="Copy Hash">
-                    <Typography sx={{ fontSize: '1.15rem', wordBreak: "break-all" }}>
+                    <Typography variant="span" sx={{ wordBreak: "break-all" }}>
                         {`0x${groupSignature.slice(0, 8)}...${groupSignature.slice(-8)}`}
                     </Typography>
                 </CopyTooltip>

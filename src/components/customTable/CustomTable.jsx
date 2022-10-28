@@ -16,7 +16,7 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                     <TableCell
                         sx={{ border: 0 }}
                         colSpan={headerCells.length}
-                        key={`table-header-main`}
+                        key="table-header-main"
                         padding="none"
                     >
                         <Box
@@ -37,7 +37,7 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                             }}
                         >
                             {icon}
-                            <Typography sx={{ fontSize: '1.25rem', fontWeight: 600 }}>
+                            <Typography fontWeight="bold" fontSize="medium">
                                 {title}
                             </Typography>
                         </Box>
@@ -54,7 +54,7 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                             }}
                             key={`table-header-${header.id}`}
                         >
-                            <Typography sx={{ fontSize: '1.15rem', fontWeight: 600 }}>
+                            <Typography fontWeight="bold" fontSize="medium">
                                 {header.label}
                             </Typography>
                         </TableCell>
@@ -77,7 +77,7 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                                     sx={{ borderColor: theme.palette.tableBlack.main }}
                                     key={`row-${headerCell.id}`}
                                 >
-                                    <Typography sx={{ fontSize: '1.15rem' }} variant={"span"}>
+                                    <Typography fontSize={"medium"} variant={"span"}>
                                         {headerCell?.displayCallback ? headerCell.displayCallback({ theme, ...row }) : row[headerCell.id]}
                                     </Typography>
                                 </TableCell>
