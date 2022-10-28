@@ -77,7 +77,7 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                                     sx={{ borderColor: theme.palette.tableBlack.main }}
                                     key={`row-${headerCell.id}`}
                                 >
-                                    <Typography sx={{ fontSize: '1.15rem' }}>
+                                    <Typography sx={{ fontSize: '1.15rem' }} variant={"span"}>
                                         {headerCell?.displayCallback ? headerCell.displayCallback({ theme, ...row }) : row[headerCell.id]}
                                     </Typography>
                                 </TableCell>
