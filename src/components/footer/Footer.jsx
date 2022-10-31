@@ -19,7 +19,7 @@ const MenuDivider = () => {
             marginY={0.5}
             border={1}
             borderColor={theme.palette.tableBlack.main}
-            sx={{ borderStyle: ["none", "none", "solid"] }}
+            sx={{ borderStyle: { xs: "none", md: "solid" } }}
         />
     );
 }
@@ -36,8 +36,8 @@ export function Footer() {
             paddingY={4}
             gap={3}
             sx={{
-                flexDirection: ["column", "column", "row"],
-                fontSize: ["large", "large", "inherit"],
+                flexDirection: { xs: "column", md: "row" },
+                fontSize: { xs: "large", md: "inherit" },
             }}
         >
 
@@ -49,7 +49,7 @@ export function Footer() {
 
             </Box>
 
-            <Box display="flex" sx={{ flexDirection: ["column", "column", "row"], gap: [0, 0, 1.5] }}>
+            <Box display="flex" sx={{ flexDirection: { xs: "column", md: "row" }, gap: { xs: 0, md: 1.5 } }}>
 
                 <Typography
                     onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
@@ -81,7 +81,7 @@ export function Footer() {
 
                 <MenuDivider />
 
-                <Typography variant={"span"} sx={{ opacity: 0.7 }}>
+                <Typography variant={"span"} sx={{ opacity: 0.7 }} paddingTop={{ xs: 2, md: 0 }}>
                     AliceNet Inc © {new Date().getFullYear()}
                 </Typography>
 
