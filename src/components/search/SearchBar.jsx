@@ -88,18 +88,17 @@ export function SearchBar({ currentSearch = null }) {
 
                 <Box
                     display="flex"
-                    flexDirection="row"
                     justifyContent="space-between"
                     gap={2}
-                    className="mobile:flex-col"
+                    sx={{ flexDirection: { xs: "column", md: "row" } }}
                 >
 
                     <Box
                         display="flex"
-                        flexDirection="row"
                         justifyContent="space-between"
                         flexGrow={1}
-                        className="mobile:flex-col mobile:gap-5"
+                        sx={{ flexDirection: { xs: "column", md: "row" } }}
+                        className="mobile:gap-5"
                     >
 
                         <FormControl variant="outlined" className="flex-shrink-0 text-center">
@@ -150,7 +149,8 @@ export function SearchBar({ currentSearch = null }) {
                             alignItems="center"
                             flexGrow={1}
                             gap={1}
-                            className="mobile:flex-col mobile:gap-3"
+                            sx={{ flexDirection: { xs: "column", md: "row" } }}
+                            className="mobile:gap-3"
                         >
                             <TextField
                                 sx={{ backgroundColor: theme.palette.dark.main }}
@@ -169,15 +169,20 @@ export function SearchBar({ currentSearch = null }) {
                             />
                             {
                                 selectedOption.value === searchTypes.DATASTORES &&
-                                <Box display="flex" alignItems="center" gap={1} className="w-1/2 mobile:w-full">
+                                <Box
+                                    display="flex"
+                                    alignItems="center"
+                                    gap={1}
+                                    sx={{ width: { xs: "100%", md: "50%" } }}
+                                >
                                     <TextField
-                                        sx={{ backgroundColor: theme.palette.dark.main }}
+                                        sx={{ backgroundColor: theme.palette.dark.main, width: "100%" }}
                                         inputProps={{
                                             placeholder: "Offset",
                                             className: "py-3 mobile:text-xl"
                                         }}
-                                        variant={"outlined"}
-                                        className="w-full rounded-md"
+                                        variant="outlined"
+                                        className="rounded-md"
                                         value={offset}
                                         onChange={e => setOffset(e.target.value)}
                                     />
@@ -201,12 +206,15 @@ export function SearchBar({ currentSearch = null }) {
 
                 <Box display="flex">
                     {curveType && term && selectedOption.value === searchTypes.DATASTORES && (
-                        <Box display="flex" alignItems="center" gap={1} className="w-1/2 mobile:w-full">
+                        <Box display="flex" alignItems="center" gap={1} sx={{ width: { xs: "100%", md: "50%" } }}>
                             <FiberManualRecord className="w-3" sx={{ color: theme.palette.primary.main }} />
                             <h4>This is a {curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h4>
-                            <HelpTooltip
-                                content={curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}
-                            />
+                            {
+                                matches &&
+                                <HelpTooltip
+                                    content={curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}
+                                />
+                            }
                         </Box>
                     )}
                 </Box>
