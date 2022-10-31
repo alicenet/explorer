@@ -7,7 +7,7 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
 
     return (
 
-        <Table key={key} className="mobile:whitespace-normal">
+        <Table key={key}>
 
             <TableHead>
 
