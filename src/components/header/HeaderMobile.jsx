@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Box, ListItemIcon, ListItemText, MenuItem as MUIMenuItem, MenuList, Typography } from "@mui/material";
+import {
+    Box,
+    Collapse,
+    ListItemIcon,
+    ListItemText,
+    MenuItem as MUIMenuItem,
+    MenuList,
+    Typography
+} from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faApple, faLinux, faWindows } from "@fortawesome/free-brands-svg-icons";
 import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
-import { classNames } from "utils";
 
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
@@ -77,29 +84,22 @@ const MenuDropdown = () => {
         <MenuList disablePadding>
             <MUIMenuItem sx={{ paddingX: 4, paddingY: 2 }}>
                 <ListItemText onClick={() => setWalletMenuOpen(prevState => !prevState)}>
-                    <Typography className="text-2xl">
+                    <Typography fontSize={"x-large"}>
                         Wallet Download
                         {walletMenuOpen ?
-                            <ArrowDropUp className="text-3xl" /> :
-                            <ArrowDropDown className="text-3xl" />
+                            <ArrowDropUp /> :
+                            <ArrowDropDown />
                         }
                     </Typography>
                 </ListItemText>
             </MUIMenuItem>
-            <Box
-                paddingX={3}
-                paddingY={0}
-                marginY={0}
-                className={classNames(
-                    "transition-opacity",
-                    { "opacity-100": showWalletOptions },
-                    { "opacity-0": !showWalletOptions },
-                )}
-            >
-                {showWalletOptions && subSections.map((section, index, { length }) => (
-                    section.displayCallback(section)
-                ))}
-            </Box>
+            <Collapse in={showWalletOptions}>
+                <Box paddingX={3}>
+                    {subSections.map((section) => (
+                        section.displayCallback(section)
+                    ))}
+                </Box>
+            </Collapse>
         </MenuList>
     );
 }
@@ -110,12 +110,12 @@ const MenuItem = ({ location, label, icon = null, blank = false }) => {
         <MUIMenuItem key={`menu-item-${label}`} sx={{ paddingX: 4, paddingY: 2 }}>
             {
                 icon &&
-                <ListItemIcon className="text-2xl">
+                <ListItemIcon sx={{ fontSize: "x-large" }}>
                     {icon}
                 </ListItemIcon>
             }
             <ListItemText onClick={() => blank ? window.open(location, '_blank').focus() : history.push(location)}>
-                <Typography className="text-2xl">
+                <Typography fontSize={"x-large"}>
                     {label}
                 </Typography>
             </ListItemText>
