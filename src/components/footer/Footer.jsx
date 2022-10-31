@@ -3,13 +3,14 @@ import { faDiscord, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Box, styled, Typography, useTheme } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+const MADHIVE_URL = process.env.REACT_APP_MADHIVE_URL;
+
 const FontAwesomeHoveredIcon = styled(FontAwesomeIcon)(({ theme }) => ({
+    cursor: "pointer",
     '&:hover': {
         color: theme.palette.primary.main,
     },
 }));
-
-const MADHIVE_URL = process.env.REACT_APP_MADHIVE_URL;
 
 const MenuDivider = () => <div className="border-r border-gray-700 my-1" />;
 
@@ -19,22 +20,26 @@ export function Footer() {
 
     return (
 
-        <Box className="flex justify-between py-10 mobile:flex-col mobile:text-2xl mobile:gap-5">
+        <Box
+            display="flex"
+            justifyContent="space-between"
+            paddingY={4}
+            className="mobile:flex-col mobile:text-2xl mobile:gap-5"
+        >
 
             <Box display="flex" gap={2} alignItems="center">
 
                 <span>Follow us on:</span>
-                <FontAwesomeHoveredIcon icon={faTwitter} size="lg" className="cursor-pointer mobile:w-8" />
-                <FontAwesomeHoveredIcon icon={faDiscord} size="lg" className="cursor-pointer mobile:w-8" />
+                <FontAwesomeHoveredIcon icon={faTwitter} size="lg" className="mobile:w-8" />
+                <FontAwesomeHoveredIcon icon={faDiscord} size="lg" className="mobile:w-8" />
 
             </Box>
 
-            <div className="flex gap-3 mobile:flex-col mobile:text-left mobile:gap-1">
+            <Box display="flex" gap={1.5} className="mobile:flex-col mobile:text-left mobile:gap-1">
 
                 <Typography
-                    className="cursor-pointer"
                     onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
-                    sx={{ "&:hover": { color: theme.palette.primary.main } }}
+                    sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
                     variant={"span"}
                 >
                     About
@@ -43,9 +48,8 @@ export function Footer() {
                 <MenuDivider />
 
                 <Typography
-                    className="cursor-pointer"
                     onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
-                    sx={{ "&:hover": { color: theme.palette.primary.main } }}
+                    sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
                     variant={"span"}
                 >
                     Legal
@@ -56,7 +60,7 @@ export function Footer() {
                 <Typography
                     className="cursor-pointer"
                     onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
-                    sx={{ "&:hover": { color: theme.palette.primary.main } }}
+                    sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
                     variant={"span"}
                 >
                     Terms of service
@@ -64,9 +68,11 @@ export function Footer() {
 
                 <MenuDivider />
 
-                <span className="mobile:text-xl opacity-60">AliceNet Inc © {new Date().getFullYear()}</span>
+                <Typography variant={"span"} sx={{ opacity: 0.7 }} className="mobile:text-xl">
+                    AliceNet Inc © {new Date().getFullYear()}
+                </Typography>
 
-            </div>
+            </Box>
 
         </Box>
 
