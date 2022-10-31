@@ -9,16 +9,19 @@ export const Page = ({ children }) => {
             display={"flex"}
             flexDirection={"column"}
             justifyContent={"space-between"}
-            className="min-h-screen max-w-7xl px-4 mx-auto"
+            maxWidth="80rem"
+            paddingX={2}
+            marginX={"auto"}
+            minHeight={"100vh"}
         >
 
-            <div>
+            <Box>
 
                 <Header />
 
                 {children}
 
-            </div>
+            </Box>
 
             <Footer />
 
