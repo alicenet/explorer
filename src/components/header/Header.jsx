@@ -22,7 +22,7 @@ const MenuLink = ({ location, label, blank = false }) => {
 
     return (
         <Link
-            color={"white"}
+            color="white"
             underline="none"
             sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
             onClick={() => blank ? window.open(location, '_blank').focus() : history.push(location)}
@@ -50,7 +50,6 @@ const MenuDropdown = () => {
             <Link
                 color="white"
                 sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
-                className="cursor-pointer"
                 underline="none"
                 onClick={handleClick}
             >
@@ -68,7 +67,7 @@ const MenuDropdown = () => {
                 onClose={handleClose}
             >
                 <MenuItem
-                    className="flex gap-3 px-10"
+                    sx={{ display: "flex", gap: 1, paddingX: 5 }}
                     onClick={() => {
                         window.open(WALLET_MAC_URL, '_blank').focus();
                         handleClose();
@@ -78,7 +77,7 @@ const MenuDropdown = () => {
                     iOS
                 </MenuItem>
                 <MenuItem
-                    className="flex gap-3 px-10"
+                    sx={{ display: "flex", gap: 1, paddingX: 5 }}
                     onClick={() => {
                         window.open(WALLET_LINUX_URL, '_blank').focus();
                         handleClose();
@@ -88,7 +87,7 @@ const MenuDropdown = () => {
                     Linux
                 </MenuItem>
                 <MenuItem
-                    className="flex gap-3 px-10"
+                    sx={{ display: "flex", gap: 1, paddingX: 5 }}
                     onClick={() => {
                         window.open(WALLET_WINDOWS_URL, '_blank').focus();
                         handleClose();
@@ -145,12 +144,11 @@ export function Header() {
                 component="nav"
                 position="sticky"
                 color="dark"
-                sx={{ backgroundImage: "none" }}
+                sx={{ backgroundImage: "none", opacity: 0.9, boxShadow: "none" }}
                 enableColorOnDark
-                className="shadow-none opacity-90"
             >
 
-                <Container className="px-0 py-1">
+                <Container disableGutters sx={{ paddingY: 1 }}>
 
                     <Toolbar disableGutters>
 
