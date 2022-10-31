@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ListItemIcon, ListItemText, MenuItem as MUIMenuItem, MenuList, Typography } from "@mui/material";
+import { Box, ListItemIcon, ListItemText, MenuItem as MUIMenuItem, MenuList, Typography } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faApple, faLinux, faWindows } from "@fortawesome/free-brands-svg-icons";
@@ -74,8 +74,8 @@ const MenuDropdown = () => {
     }, [walletMenuOpen]);
 
     return (
-        <MenuList className="p-0">
-            <MUIMenuItem className="py-5 px-10">
+        <MenuList disablePadding>
+            <MUIMenuItem sx={{ paddingX: 4, paddingY: 2 }}>
                 <ListItemText onClick={() => setWalletMenuOpen(prevState => !prevState)}>
                     <Typography className="text-2xl">
                         Wallet Download
@@ -86,9 +86,12 @@ const MenuDropdown = () => {
                     </Typography>
                 </ListItemText>
             </MUIMenuItem>
-            <div
+            <Box
+                paddingX={3}
+                paddingY={0}
+                marginY={0}
                 className={classNames(
-                    "px-5 transition-opacity py-0 my-0",
+                    "transition-opacity",
                     { "opacity-100": showWalletOptions },
                     { "opacity-0": !showWalletOptions },
                 )}
@@ -96,7 +99,7 @@ const MenuDropdown = () => {
                 {showWalletOptions && subSections.map((section, index, { length }) => (
                     section.displayCallback(section)
                 ))}
-            </div>
+            </Box>
         </MenuList>
     );
 }
@@ -104,7 +107,7 @@ const MenuDropdown = () => {
 const MenuItem = ({ location, label, icon = null, blank = false }) => {
     const history = useHistory();
     return (
-        <MUIMenuItem key={`menu-item-${label}`} className="py-5 px-10">
+        <MUIMenuItem key={`menu-item-${label}`} sx={{ paddingX: 4, paddingY: 2 }}>
             {
                 icon &&
                 <ListItemIcon className="text-2xl">
