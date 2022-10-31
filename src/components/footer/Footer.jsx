@@ -12,7 +12,17 @@ const FontAwesomeHoveredIcon = styled(FontAwesomeIcon)(({ theme }) => ({
     },
 }));
 
-const MenuDivider = () => <div className="border-r border-gray-700 my-1" />;
+const MenuDivider = () => {
+    const theme = useTheme();
+    return (
+        <Box
+            marginY={0.5}
+            border={1}
+            borderColor={theme.palette.tableBlack.main}
+            sx={{ borderStyle: ["none", "none", "solid"] }}
+        />
+    );
+}
 
 export function Footer() {
 
@@ -24,18 +34,22 @@ export function Footer() {
             display="flex"
             justifyContent="space-between"
             paddingY={4}
-            className="mobile:flex-col mobile:text-2xl mobile:gap-5"
+            gap={3}
+            sx={{
+                flexDirection: ["column", "column", "row"],
+                fontSize: ["large", "large", "inherit"],
+            }}
         >
 
             <Box display="flex" gap={2} alignItems="center">
 
                 <span>Follow us on:</span>
-                <FontAwesomeHoveredIcon icon={faTwitter} size="lg" className="mobile:w-8" />
-                <FontAwesomeHoveredIcon icon={faDiscord} size="lg" className="mobile:w-8" />
+                <FontAwesomeHoveredIcon icon={faTwitter} size="lg" />
+                <FontAwesomeHoveredIcon icon={faDiscord} size="lg" />
 
             </Box>
 
-            <Box display="flex" gap={1.5} className="mobile:flex-col mobile:text-left mobile:gap-1">
+            <Box display="flex" sx={{ flexDirection: ["column", "column", "row"], gap: [0, 0, 1.5] }}>
 
                 <Typography
                     onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
@@ -58,7 +72,6 @@ export function Footer() {
                 <MenuDivider />
 
                 <Typography
-                    className="cursor-pointer"
                     onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
                     sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
                     variant={"span"}
@@ -68,7 +81,7 @@ export function Footer() {
 
                 <MenuDivider />
 
-                <Typography variant={"span"} sx={{ opacity: 0.7 }} className="mobile:text-xl">
+                <Typography variant={"span"} sx={{ opacity: 0.7 }}>
                     AliceNet Inc © {new Date().getFullYear()}
                 </Typography>
 
