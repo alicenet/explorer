@@ -7,6 +7,7 @@ import { ArrowDropDown, ArrowDropUp, Menu as MenuIcon } from '@mui/icons-materia
 import { HeaderMobile } from "./HeaderMobile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faApple, faLinux, faWindows } from "@fortawesome/free-brands-svg-icons";
+import { MenuDivider } from "components";
 
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
@@ -15,8 +16,6 @@ const WALLET_MAC_URL = process.env.REACT_APP_WALLET_MAC_URL;
 const WALLET_LINUX_URL = process.env.REACT_APP_WALLET_LINUX_URL;
 const WALLET_WINDOWS_URL = process.env.REACT_APP_WALLET_WINDOWS_URL;
 
-const MenuDivider = () => <div className="border-r border-gray-700" />;
-
 const MenuLink = ({ location, label, blank = false }) => {
     const history = useHistory();
     const theme = useTheme();
@@ -24,9 +23,8 @@ const MenuLink = ({ location, label, blank = false }) => {
     return (
         <Link
             color={"white"}
-            className="cursor-pointer"
             underline="none"
-            sx={{ "&:hover": { color: theme.palette.primary.main } }}
+            sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
             onClick={() => blank ? window.open(location, '_blank').focus() : history.push(location)}
         >
             {label}
@@ -48,10 +46,10 @@ const MenuDropdown = () => {
     };
 
     return (
-        <div>
+        <Box>
             <Link
                 color="white"
-                sx={{ "&:hover": { color: theme.palette.primary.main } }}
+                sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
                 className="cursor-pointer"
                 underline="none"
                 onClick={handleClick}
@@ -100,7 +98,7 @@ const MenuDropdown = () => {
                     Windows
                 </MenuItem>
             </Menu>
-        </div>
+        </Box>
     );
 };
 
@@ -146,7 +144,7 @@ export function Header() {
             <AppBar
                 component="nav"
                 position="sticky"
-                color={"dark"}
+                color="dark"
                 sx={{ backgroundImage: "none" }}
                 enableColorOnDark
                 className="shadow-none opacity-90"
@@ -159,13 +157,12 @@ export function Header() {
                         <Image
                             duration={0}
                             onClick={() => history.push(`/`)}
-                            className="cursor-pointer"
                             src={Logo}
                             width="205px"
-                            style={{ filter: "invert(100%)" }}
+                            style={{ filter: "invert(100%)", cursor: "pointer" }}
                         />
 
-                        <Box justifyContent={"end"} flexGrow={1} sx={{ display: { xs: 'flex', md: 'none' } }}>
+                        <Box justifyContent="end" flexGrow={1} sx={{ display: { xs: "flex", md: "none" } }}>
                             <IconButton
                                 aria-controls="menu-appbar"
                                 aria-haspopup="true"
@@ -175,7 +172,7 @@ export function Header() {
                             </IconButton>
                         </Box>
 
-                        <Box gap={2} justifyContent={"end"} flexGrow={1} sx={{ display: { xs: 'none', md: 'flex' } }}>
+                        <Box gap={2} justifyContent="end" flexGrow={1} sx={{ display: { xs: "none", md: "flex" } }}>
                             {sections.map((section, index, { length }) => (
                                 <React.Fragment key={`menu-link-${index}`}>
                                     {section.displayCallback(section)}

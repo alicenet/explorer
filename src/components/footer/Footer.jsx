@@ -2,6 +2,7 @@ import React from "react";
 import { faDiscord, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Box, styled, Typography, useTheme } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { MenuDivider } from "components";
 
 const MADHIVE_URL = process.env.REACT_APP_MADHIVE_URL;
 
@@ -11,18 +12,6 @@ const FontAwesomeHoveredIcon = styled(FontAwesomeIcon)(({ theme }) => ({
         color: theme.palette.primary.main,
     },
 }));
-
-const MenuDivider = () => {
-    const theme = useTheme();
-    return (
-        <Box
-            marginY={0.5}
-            border={1}
-            borderColor={theme.palette.tableBlack.main}
-            sx={{ borderStyle: { xs: "none", md: "solid" } }}
-        />
-    );
-}
 
 export function Footer() {
 
