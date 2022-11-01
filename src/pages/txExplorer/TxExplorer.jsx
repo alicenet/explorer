@@ -60,9 +60,11 @@ export function TxExplorer() {
                     <InvalidInput
                         term={hash}
                         suggestion={
-                            <Link className="hover:opacity-80" to="/">
-                                Going back to Block Monitor
-                            </Link>
+                            <Typography variant={"span"} sx={{ ":hover": { opacity: 0.8 } }}>
+                                <Link to="/">
+                                    Going back to Block Monitor
+                                </Link>
+                            </Typography>
                         }
                     />
                 }
@@ -70,7 +72,8 @@ export function TxExplorer() {
                     txInfo && !txInfo.error && txInfo[0] !== undefined &&
                     <Box display="flex" flexDirection="column" gap={4}>
 
-                        <Box display="flex" flexDirection="column" paddingX={2} gap={2} className="mobile:text-xl mobile:gap-6">
+                        <Box display="flex" flexDirection="column" paddingX={2} gap={2}
+                             className="mobile:text-xl mobile:gap-6">
 
                             <Box display="flex" flexDirection="row" gap={1} className="mobile:flex-col">
                                 <span className="font-bold">Tx Hash:</span>
