@@ -11,14 +11,14 @@ import {
     useTheme
 } from "@mui/material";
 import { useHistory } from "react-router-dom";
-import { classNames, curveTypes, isBN, searchTypes } from "utils";
+import { curveTypes, isBN, searchTypes } from "utils";
 import { content, HelpTooltip } from "components";
-import { FiberManualRecord } from '@mui/icons-material';
+import { FiberManualRecord } from "@mui/icons-material";
 
 const options = [
-    { text: 'Transactions', placeHolder: "Transactions Hash", value: searchTypes.TRANSACTIONS },
-    { text: 'Blocks', placeHolder: "Block Height", value: searchTypes.BLOCKS },
-    { text: 'DataStores', placeHolder: "Address", value: searchTypes.DATASTORES },
+    { text: "Transactions", placeHolder: "Transactions Hash", value: searchTypes.TRANSACTIONS },
+    { text: "Blocks", placeHolder: "Block Height", value: searchTypes.BLOCKS },
+    { text: "DataStores", placeHolder: "Address", value: searchTypes.DATASTORES },
 ];
 
 export function SearchBar({ currentSearch = null }) {
@@ -97,24 +97,33 @@ export function SearchBar({ currentSearch = null }) {
                         display="flex"
                         justifyContent="space-between"
                         flexGrow={1}
-                        sx={{ flexDirection: { xs: "column", md: "row" } }}
-                        className="mobile:gap-5"
+                        sx={{
+                            flexDirection: { xs: "column", md: "row" },
+                            gap: { xs: 1.5, md: "unset" },
+                        }}
                     >
 
-                        <FormControl variant="outlined" className="flex-shrink-0 text-center">
+                        <FormControl variant="outlined">
                             <Select
                                 sx={{
+                                    textAlign: "center",
+                                    minWidth: "10em",
                                     backgroundColor: theme.palette.clearGray.main,
+                                    color: "black",
+                                    fontWeight: "bold",
+                                    borderTopRightRadius: { xs: theme.spacing, md: 0 },
+                                    borderBottomRightRadius: { xs: theme.spacing, md: 0 },
                                     "& .MuiSvgIcon-root": {
                                         color: "black"
                                     }
                                 }}
-                                className="rounded-md rounded-r-none text-black font-bold min-w-9 mobile:rounded-md mobile:text-xl"
-                                labelId="search-type-selection"
-                                id="search-type-selection"
                                 value={selectedOption.value}
                                 onChange={handleChange}
-                                inputProps={{ className: "py-3" }}
+                                inputProps={{
+                                    sx: {
+                                        paddingY: 1.5,
+                                    }
+                                }}
                                 MenuProps={{
                                     sx: {
                                         "& .MuiPaper-root": {
@@ -130,8 +139,9 @@ export function SearchBar({ currentSearch = null }) {
                                     <MenuItem
                                         key={`header-option-${option.value}`}
                                         value={option.value}
-                                        className="text-black font-bold mobile:text-xl"
                                         sx={{
+                                            color: "black",
+                                            fontWeight: "bold",
                                             "&:hover": {
                                                 backgroundColor: theme.palette.dark.light,
                                             }
@@ -150,20 +160,25 @@ export function SearchBar({ currentSearch = null }) {
                             flexGrow={1}
                             gap={1}
                             sx={{ flexDirection: { xs: "column", md: "row" } }}
-                            className="mobile:gap-3"
                         >
                             <TextField
-                                sx={{ backgroundColor: theme.palette.dark.main }}
+                                sx={{
+                                    width: selectedOption.value === searchTypes.DATASTORES ? {
+                                        xs: "100%",
+                                        md: "50%"
+                                    } : "100%",
+                                    backgroundColor: theme.palette.dark.main,
+                                    '& fieldset': {
+                                        borderBottomLeftRadius: { xs: theme.spacing, md: 0 },
+                                        borderTopLeftRadius: { xs: theme.spacing, md: 0 },
+                                    }
+                                }}
+
                                 inputProps={{
                                     placeholder: `${selectedOption.placeHolder}`,
-                                    className: "py-3 mobile:text-xl"
+                                    sx: { paddingY: 1.5 }
                                 }}
                                 variant={"outlined"}
-                                className={classNames(
-                                    "mobile:text-xl rounded-md rounded-l-none mobile:rounded-l-md",
-                                    { "w-full": selectedOption.value !== searchTypes.DATASTORES },
-                                    { "w-1/2 mobile:w-full": selectedOption.value === searchTypes.DATASTORES }
-                                )}
                                 value={term}
                                 onChange={(e) => setTerm(e.target.value)}
                             />
@@ -179,10 +194,9 @@ export function SearchBar({ currentSearch = null }) {
                                         sx={{ backgroundColor: theme.palette.dark.main, width: "100%" }}
                                         inputProps={{
                                             placeholder: "Offset",
-                                            className: "py-3 mobile:text-xl"
+                                            sx: { paddingY: 1.5 }
                                         }}
                                         variant="outlined"
-                                        className="rounded-md"
                                         value={offset}
                                         onChange={e => setOffset(e.target.value)}
                                     />
@@ -195,9 +209,9 @@ export function SearchBar({ currentSearch = null }) {
 
                     <Button
                         variant={"contained"}
-                        sx={{ paddingX: 5 }}
-                        className="text-black mobile:w-full text-xl mobile:py-2"
+                        sx={{ paddingX: 5, fontSize: "larger" }}
                         onClick={() => handleSearch(term)}
+
                     >
                         Search
                     </Button>
@@ -207,8 +221,10 @@ export function SearchBar({ currentSearch = null }) {
                 <Box display="flex">
                     {curveType && term && selectedOption.value === searchTypes.DATASTORES && (
                         <Box display="flex" alignItems="center" gap={1} sx={{ width: { xs: "100%", md: "50%" } }}>
-                            <FiberManualRecord className="w-3" sx={{ color: theme.palette.primary.main }} />
-                            <h4>This is a {curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h4>
+                            <FiberManualRecord sx={{ color: theme.palette.primary.main, width: "0.5em" }} />
+                            <Typography>
+                                This is a {curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}
+                            </Typography>
                             {
                                 matches &&
                                 <HelpTooltip
