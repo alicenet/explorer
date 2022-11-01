@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Grid, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { content, CopyTooltip, TwoColumnsRow } from "components";
 import { useHistory } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
@@ -11,11 +11,15 @@ const NavigationChevron = ({ height, direction }) => {
     const theme = useTheme();
 
     const handleBlockNav = (term) => history.push(`/block/${term}`);
+
     return (
         <IconButton
             size="small"
-            sx={{ background: theme.palette.buttonBlack.main }}
-            className="rounded-md hover:opacity-80 w-6 p-0"
+            sx={{
+                padding: 0,
+                background: theme.palette.buttonBlack.main,
+                borderRadius: 1
+            }}
             onClick={() => handleBlockNav(height)}
         >
             {direction === "left" ? <ChevronLeft /> : <ChevronRight />}
@@ -44,14 +48,16 @@ export function BlockList({ blockInfo }) {
         <Grid>
 
             <TwoColumnsRow title="Block Height" tooltipContent={content.height} size={2}>
-                {height}
-                {
-                    matches &&
-                    <div className="flex gap-2">
-                        {height > 1 && <NavigationChevron height={height - 1} direction="left" />}
-                        {(maxHeight > height) && <NavigationChevron height={height + 1} direction="right" />}
-                    </div>
-                }
+                <Box display="flex" gap={2}>
+                    {height}
+                    {
+                        matches &&
+                        <Box display="flex" gap={0.5}>
+                            {height > 1 && <NavigationChevron height={height - 1} direction="left" />}
+                            {(maxHeight > height) && <NavigationChevron height={height + 1} direction="right" />}
+                        </Box>
+                    }
+                </Box>
 
             </TwoColumnsRow>
 
@@ -92,13 +98,13 @@ export function BlockList({ blockInfo }) {
             </TwoColumnsRow>
 
             <TwoColumnsRow title="Group Signature" tooltipContent={content.groupSignature} size={2} lastRow>
-                <div className="p-0 pr-20 mobile:pr-0">
+                <Box sx={{ paddingRight: { xs: 0, md: 6 } }}>
                     <CopyTooltip value={sigGroup} content="Copy Signature">
                         <Typography sx={{ wordBreak: "break-all" }}>
                             {`0x${sigGroup}`}
                         </Typography>
                     </CopyTooltip>
-                </div>
+                </Box>
             </TwoColumnsRow>
 
         </Grid>

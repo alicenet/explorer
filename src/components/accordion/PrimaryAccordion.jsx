@@ -18,9 +18,17 @@ export function PrimaryAccordion(props) {
         >
             {padded ?
                 <Box
-                    padding={2} gap={2} display={"flex"} flexDirection={"column"}
-                    className="rounded-md rounded-t-none"
-                    sx={{ background: theme.palette.headerBlack.main }}
+                    padding={2}
+                    gap={2}
+                    display={"flex"}
+                    flexDirection={"column"}
+                    borderTop={0}
+                    borderRadius={1}
+                    sx={{
+                        borderTopLeftRadius: 0,
+                        borderTopRightRadius: 0,
+                        background: theme.palette.headerBlack.main
+                    }}
                 >
                     {children}
                 </Box>
