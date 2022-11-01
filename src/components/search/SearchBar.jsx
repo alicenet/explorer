@@ -1,18 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {
-    Box,
-    Button,
-    FormControl,
-    MenuItem,
-    Select,
-    TextField,
-    Typography,
-    useMediaQuery,
-    useTheme
-} from "@mui/material";
+import { Box, Button, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { curveTypes, isBN, searchTypes } from "utils";
-import { content, HelpTooltip } from "components";
+import { content, HelpTooltip, SearchBarMenu } from "components";
 import { FiberManualRecord } from "@mui/icons-material";
 
 const options = [
@@ -103,55 +93,11 @@ export function SearchBar({ currentSearch = null }) {
                         }}
                     >
 
-                        <FormControl variant="outlined">
-                            <Select
-                                sx={{
-                                    textAlign: "center",
-                                    minWidth: "10em",
-                                    backgroundColor: theme.palette.clearGray.main,
-                                    color: "black",
-                                    fontWeight: "bold",
-                                    borderTopRightRadius: { xs: theme.spacing, md: 0 },
-                                    borderBottomRightRadius: { xs: theme.spacing, md: 0 },
-                                    "& .MuiSvgIcon-root": {
-                                        color: "black"
-                                    }
-                                }}
-                                value={selectedOption.value}
-                                onChange={handleChange}
-                                inputProps={{
-                                    sx: {
-                                        paddingY: 1.5,
-                                    }
-                                }}
-                                MenuProps={{
-                                    sx: {
-                                        "& .MuiPaper-root": {
-                                            backgroundColor: "white",
-                                        },
-                                        "&& .Mui-selected": {
-                                            backgroundColor: theme.palette.primary.light
-                                        }
-                                    }
-                                }}
-                            >
-                                {options.map(option =>
-                                    <MenuItem
-                                        key={`header-option-${option.value}`}
-                                        value={option.value}
-                                        sx={{
-                                            color: "black",
-                                            fontWeight: "bold",
-                                            "&:hover": {
-                                                backgroundColor: theme.palette.dark.light,
-                                            }
-                                        }}
-                                    >
-                                        {option.text}
-                                    </MenuItem>
-                                )}
-                            </Select>
-                        </FormControl>
+                        <SearchBarMenu
+                            options={options}
+                            selectedOption={selectedOption}
+                            handleChange={handleChange}
+                        />
 
                         <Box
                             display="flex"

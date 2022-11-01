@@ -75,13 +75,13 @@ export function TxExplorer() {
                             <Box display="flex" flexDirection="row" gap={1} className="mobile:flex-col">
                                 <span className="font-bold">Tx Hash:</span>
                                 <CopyTooltip value={hash} content="Copy Hash">
-                                    <Typography sx={{ wordBreak: "break-all" }}>
+                                    <Typography variant={"span"} sx={{ wordBreak: "break-all" }}>
                                         {`0x${hash}`}
                                     </Typography>
                                 </CopyTooltip>
                             </Box>
 
-                            <Box display="flex" alignItems="center" gap={1} className="mobile:flex-col mobile:gap-6">
+                            <Box display="flex" gap={1} className="mobile:flex-col mobile:gap-6">
 
                                 <Box display="flex" flexDirection="row" gap={1} className="mobile:flex-col">
                                     <span className="font-bold">Height:</span>
