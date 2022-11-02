@@ -20,8 +20,8 @@ export function PrimaryAccordion(props) {
                 <Box
                     padding={2}
                     gap={2}
-                    display={"flex"}
-                    flexDirection={"column"}
+                    display="flex"
+                    flexDirection="column"
                     borderTop={0}
                     borderRadius={1}
                     sx={{

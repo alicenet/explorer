@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { content, CopyTooltip, TwoColumnsRow } from "components";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
@@ -10,7 +10,7 @@ export function TxViewDataStore({ dataStore }) {
 
     return (
 
-        <Grid>
+        <>
 
             <TwoColumnsRow title="Index" tooltipContent={content.index}>
                 <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['Index']} content="Copy Value">
@@ -104,7 +104,7 @@ export function TxViewDataStore({ dataStore }) {
             </TwoColumnsRow>
 
             <TwoColumnsRow title="Signature" tooltipContent={content.signature} lastRow>
-                <Box padding={0} paddingRight={8} className="mobile:pr-0">
+                <Box sx={{ paddingRight: { xs: 0, md: 6 } }}>
                     <CopyTooltip value={dataStore['Signature']} content="Copy Signature">
                         <Typography sx={{ wordBreak: "break-all" }}>
                             {`0x${dataStore['Signature']}`}
@@ -113,8 +113,8 @@ export function TxViewDataStore({ dataStore }) {
                 </Box>
             </TwoColumnsRow>
 
-        </Grid>
-        
+        </>
+
     );
 
 }

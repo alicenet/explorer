@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { content, CopyTooltip, TwoColumnsRow } from "components";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
@@ -10,7 +10,7 @@ export function TxViewValueStore({ valueStore }) {
 
     return (
 
-        <Grid>
+        <>
 
             <TwoColumnsRow title="Value" tooltipContent={content.value}>
                 <CopyTooltip
@@ -57,7 +57,7 @@ export function TxViewValueStore({ valueStore }) {
                 </CopyTooltip>
             </TwoColumnsRow>
 
-        </Grid>
+        </>
 
     );
 
