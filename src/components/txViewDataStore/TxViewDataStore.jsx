@@ -31,19 +31,28 @@ export function TxViewDataStore({ dataStore }) {
             <TwoColumnsRow title="Owner" tooltipContent={content.owner}>
                 <Box
                     display="flex"
-                    alignItems="flex-start"
                     gap={2}
-                    className="mobile:flex-col mobile:gap-5 mobile:w-full"
+                    sx={{
+                        flexDirection: { xs: "column", md: "row" },
+                        alignItems: { xs: "flex-start", md: "center" },
+                        width: { xs: "100%", md: "inherit" }
+                    }}
                 >
                     <CopyTooltip value={dataStore['DSLinker']['DSPreImage']['Owner']} content="Copy Address">
                         <Typography sx={{ wordBreak: "break-all" }}>
                             {`0x${dataStore['DSLinker']['DSPreImage']['Owner']}`}
                         </Typography>
                     </CopyTooltip>
+
                     <Button
                         size={"small"}
                         variant={"contained"}
-                        className="px-3 py-0 ml-2 mobile:py-1 mobile:w-full mobile:m-0 mobile:text-base rounded-sm"
+                        sx={{
+                            width: { xs: "100%", md: "inherit" },
+                            paddingY: 0.25,
+                            borderRadius: 1,
+                            fontSize: "small"
+                        }}
                         onClick={() =>
                             history.push(`/data/${dataStore['DSLinker']['DSPreImage']['Owner'].substr(4)}`)
                         }

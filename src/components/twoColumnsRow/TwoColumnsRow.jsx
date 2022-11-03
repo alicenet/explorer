@@ -1,17 +1,18 @@
 import React from "react";
 import { HelpTooltip } from "components";
 import { classNames } from "utils";
-import { Grid, useTheme } from "@mui/material";
+import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 export function TwoColumnsRow({ title, tooltipContent, children, size = 3, lastRow = false }) {
 
     const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up("md"));
 
     return (
 
         <Grid
             container
-            paddingX={3}
+            paddingX={4}
             paddingY={2}
             sx={{
                 backgroundColor: theme.palette.rowBlack.main,
@@ -23,11 +24,28 @@ export function TwoColumnsRow({ title, tooltipContent, children, size = 3, lastR
                 )
             }
         >
-            <Grid item sm={12} md={size} display="flex" alignItems="center" gap={1} className="mobile:p-2">
-                {tooltipContent && <HelpTooltip content={tooltipContent} />}
-                <p>{title}</p>
+            <Grid
+                item
+                xs={12}
+                md={size}
+                display="flex"
+                alignItems="center"
+                gap={1}
+                sx={{ padding: { xs: 1, md: 0 } }}
+            >
+                {matches && tooltipContent && <HelpTooltip content={tooltipContent} />}
+                <Typography variant="span">{title}</Typography>
             </Grid>
-            <Grid item sm={12} md={12 - size} display="flex" alignItems="center" gap={1} className="mobile:p-2">
+
+            <Grid
+                item
+                xs={12}
+                md={12 - size}
+                display="flex"
+                alignItems="center"
+                gap={1}
+                sx={{ padding: { xs: 1, md: 0 } }}
+            >
                 {children}
             </Grid>
         </Grid>
