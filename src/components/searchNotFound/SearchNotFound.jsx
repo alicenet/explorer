@@ -13,18 +13,18 @@ export function SearchNotFound({ term }) {
 
         <ErrorContainer>
 
-            <Box display="flex" flexDirection="column" className="font-bold">
-                <Box display="flex" flexDirection="row" alignItems="center" gap={1} className="text-5xl">
-                    <Error className="text-5xl" />
+            <Box display="flex" flexDirection="column" fontWeight="bold">
+                <Box display="flex" flexDirection="row" alignItems="center" gap={1} fontSize="xxx-large">
+                    <Error fontSize="x-large" />
                     <h2>OOPS!</h2>
                 </Box>
-                <h3 className="text-2xl">Search not found</h3>
+                <Typography variant="span" fontWeight="bold" fontSize="x-large">Search not found</Typography>
             </Box>
 
             <Box display="flex" flexDirection="column">
                 <span>
                     The search data you entered was:&nbsp;
-                    <Typography sx={{ wordBreak: "break-all" }} variant="span" className="font-bold">
+                    <Typography sx={{ wordBreak: "break-all" }} variant="span" fontWeight="bold">
                         {term}
                     </Typography>
                 </span>
