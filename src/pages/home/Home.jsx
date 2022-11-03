@@ -12,10 +12,10 @@ export const Home = () => {
                 <Box display="flex" flexDirection="column" gap={4}>
                     <CallToAction />
                     <Grid container spacing={3}>
-                        <Grid item sm={12} md={6} width={"100%"}>
+                        <Grid item sm={12} md={6} width="100%">
                             <LatestBlocks />
                         </Grid>
-                        <Grid item sm={12} md={6} width={"100%"}>
+                        <Grid item sm={12} md={6} width="100%">
                             <LatestTransactions />
                         </Grid>
                     </Grid>

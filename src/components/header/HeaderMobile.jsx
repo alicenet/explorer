@@ -84,7 +84,7 @@ const MenuDropdown = () => {
         <MenuList disablePadding>
             <MUIMenuItem sx={{ paddingX: 4, paddingY: 2 }}>
                 <ListItemText onClick={() => setWalletMenuOpen(prevState => !prevState)}>
-                    <Typography fontSize={"x-large"}>
+                    <Typography fontSize="x-large">
                         Wallet Download
                         {walletMenuOpen ?
                             <ArrowDropUp /> :
@@ -115,7 +115,7 @@ const MenuItem = ({ location, label, icon = null, blank = false }) => {
                 </ListItemIcon>
             }
             <ListItemText onClick={() => blank ? window.open(location, '_blank').focus() : history.push(location)}>
-                <Typography fontSize={"x-large"}>
+                <Typography fontSize="x-large">
                     {label}
                 </Typography>
             </ListItemText>

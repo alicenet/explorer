@@ -6,13 +6,13 @@ export const Page = ({ children }) => {
 
     return (
         <Box
-            display={"flex"}
-            flexDirection={"column"}
-            justifyContent={"space-between"}
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-between"
             maxWidth="80rem"
             paddingX={2}
-            marginX={"auto"}
-            minHeight={"100vh"}
+            marginX="auto"
+            minHeight="100vh"
         >
 
             <Box>

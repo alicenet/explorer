@@ -43,7 +43,7 @@ export function Footer() {
                 <Typography
                     onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
                     sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
-                    variant={"span"}
+                    variant="span"
                 >
                     About
                 </Typography>
@@ -53,7 +53,7 @@ export function Footer() {
                 <Typography
                     onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
                     sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
-                    variant={"span"}
+                    variant="span"
                 >
                     Legal
                 </Typography>
@@ -63,14 +63,14 @@ export function Footer() {
                 <Typography
                     onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
                     sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
-                    variant={"span"}
+                    variant="span"
                 >
                     Terms of service
                 </Typography>
 
                 <MenuDivider />
 
-                <Typography variant={"span"} sx={{ opacity: 0.7 }} paddingTop={{ xs: 2, md: 0 }}>
+                <Typography variant="span" sx={{ opacity: 0.7 }} paddingTop={{ xs: 2, md: 0 }}>
                     AliceNet Inc © {new Date().getFullYear()}
                 </Typography>
 

@@ -24,7 +24,7 @@ export function InvalidInput({ term, suggestion }) {
             <Box display="flex" flexDirection="column">
                 <span>
                     The search data you entered was:&nbsp;
-                    <Typography sx={{ wordBreak: "break-all" }} variant={"span"} className="font-bold">
+                    <Typography sx={{ wordBreak: "break-all" }} variant="span" className="font-bold">
                         {term}
                     </Typography>
                 </span>
@@ -38,7 +38,7 @@ export function InvalidInput({ term, suggestion }) {
                     <span>
                         Instead please try:
                     </span>
-                    <Typography sx={{ color: theme.palette.primary.main }} variant={"span"}>
+                    <Typography sx={{ color: theme.palette.primary.main }} variant="span">
                         {suggestion}
                     </Typography>
                 </Box>
@@ -46,7 +46,7 @@ export function InvalidInput({ term, suggestion }) {
 
             <Box>
                 <Button
-                    variant={"contained"}
+                    variant="contained"
                     onClick={() => history.push('/')}
                     sx={{ paddingX: 4 }}
                 >

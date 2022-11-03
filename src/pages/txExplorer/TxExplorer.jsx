@@ -60,7 +60,7 @@ export function TxExplorer() {
                     <InvalidInput
                         term={hash}
                         suggestion={
-                            <Typography variant={"span"} sx={{ ":hover": { opacity: 0.8 } }}>
+                            <Typography variant="span" sx={{ ":hover": { opacity: 0.8 } }}>
                                 <Link to="/">
                                     Going back to Block Monitor
                                 </Link>
@@ -77,7 +77,7 @@ export function TxExplorer() {
                             flexDirection="column"
                             paddingX={2}
                             gap={2}
-                            fontSize={"larger"}
+                            fontSize="larger"
                         >
 
                             <Box
@@ -87,7 +87,7 @@ export function TxExplorer() {
                             >
                                 <Typography fontWeight="bold" variant="span">Tx Hash:</Typography>
                                 <CopyTooltip value={hash} content="Copy Hash">
-                                    <Typography variant={"span"} sx={{ wordBreak: "break-all" }}>
+                                    <Typography variant="span" sx={{ wordBreak: "break-all" }}>
                                         {`0x${hash}`}
                                     </Typography>
                                 </CopyTooltip>
@@ -108,8 +108,8 @@ export function TxExplorer() {
                                 </Box>
 
                                 <Button
-                                    size={"small"}
-                                    variant={"contained"}
+                                    size="small"
+                                    variant="contained"
                                     sx={{
                                         paddingX: 2.5,
                                         paddingY: { xs: 0.5, md: 0 },

@@ -40,7 +40,7 @@ export const StatusOverlay = () => {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus variant={"contained"} onClick={() => document.location.reload(true)}>
+                    <Button autoFocus variant="contained" onClick={() => document.location.reload(true)}>
                         Try Again
                     </Button>
                 </DialogActions>

@@ -24,7 +24,7 @@ export function SearchNotFound({ term }) {
             <Box display="flex" flexDirection="column">
                 <span>
                     The search data you entered was:&nbsp;
-                    <Typography sx={{ wordBreak: "break-all" }} variant={"span"} className="font-bold">
+                    <Typography sx={{ wordBreak: "break-all" }} variant="span" className="font-bold">
                         {term}
                     </Typography>
                 </span>
@@ -37,14 +37,14 @@ export function SearchNotFound({ term }) {
                 <span>
                     Instead please try:
                 </span>
-                <Typography sx={{ color: theme.palette.primary.main }} variant={"span"}>
+                <Typography sx={{ color: theme.palette.primary.main }} variant="span">
                     Block | Transaction | DataStores
                 </Typography>
             </Box>
 
             <Box>
                 <Button
-                    variant={"contained"}
+                    variant="contained"
                     onClick={() => history.push('/')}
                     sx={{ paddingX: 4 }}
                 >

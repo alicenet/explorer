@@ -62,7 +62,7 @@ export function BlockExplorer() {
                         term={height}
                         suggestion={
                             aliceNetAdapter.blocks[0]?.BClaims.Height &&
-                            <Typography variant={"span"} sx={{ ":hover": { opacity: 0.8 } }}>
+                            <Typography variant="span" sx={{ ":hover": { opacity: 0.8 } }}>
                                 <Link to={`/block/${aliceNetAdapter.blocks[0]?.BClaims.Height}`}>
                                     {`Block Number (${aliceNetAdapter.blocks[0]?.BClaims.Height})`}
                                 </Link>

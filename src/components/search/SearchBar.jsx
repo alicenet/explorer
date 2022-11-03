@@ -63,8 +63,8 @@ export function SearchBar({ currentSearch = null }) {
 
     return (
         <Box
-            display={"flex"}
-            flexDirection={"column"}
+            display="flex"
+            flexDirection="column"
             sx={{ backgroundColor: theme.palette.darkGray.main }}
             paddingY={4.5}
             paddingX={3.5}
@@ -124,7 +124,7 @@ export function SearchBar({ currentSearch = null }) {
                                     placeholder: `${selectedOption.placeHolder}`,
                                     sx: { paddingY: 1.5 }
                                 }}
-                                variant={"outlined"}
+                                variant="outlined"
                                 value={term}
                                 onChange={(e) => setTerm(e.target.value)}
                             />
@@ -154,7 +154,7 @@ export function SearchBar({ currentSearch = null }) {
                     </Box>
 
                     <Button
-                        variant={"contained"}
+                        variant="contained"
                         sx={{ paddingX: 5, fontSize: "larger" }}
                         onClick={() => handleSearch(term)}
 

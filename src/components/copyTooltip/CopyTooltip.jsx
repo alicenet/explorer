@@ -21,10 +21,10 @@ export function CopyTooltip({ value, content, children }) {
             {children}
             {
                 matches &&
-                <Tooltip placement={"top"} arrow title={contentMessage} onClose={() => setContentMessage(content)}>
+                <Tooltip placement="top" arrow title={contentMessage} onClose={() => setContentMessage(content)}>
                     <Icon
                         onClick={() => handleClick(value)}
-                        fontSize={"small"}
+                        fontSize="small"
                         sx={{
                             display: "flex",
                             flexDirection: "column",
@@ -35,7 +35,7 @@ export function CopyTooltip({ value, content, children }) {
                             }
                         }}
                     >
-                        <FontAwesomeIcon icon={faCopy} size={"xs"} />
+                        <FontAwesomeIcon icon={faCopy} size="xs" />
                     </Icon>
                 </Tooltip>
             }

@@ -16,15 +16,15 @@ export const CallToAction = () => {
 
         <Box textAlign="center">
 
-            <Typography fontSize={"x-large"} fontWeight={"bold"}>
+            <Typography fontSize="x-large" fontWeight="bold">
                 The Current Epoch is&nbsp;
-                <Typography sx={{ color: theme.palette.primary.main }} variant={"span"}>
+                <Typography sx={{ color: theme.palette.primary.main }} variant="span">
                     {Math.floor(aliceNetAdapter.blocks[0].BClaims.Height / 1024)}
                 </Typography>
 
             </Typography>
 
-            <Typography fontSize={"large"}>
+            <Typography fontSize="large">
                 {`${1024 - Math.floor(aliceNetAdapter.blocks[0].BClaims.Height % 1024)} Blocks Remain`}
             </Typography>
 

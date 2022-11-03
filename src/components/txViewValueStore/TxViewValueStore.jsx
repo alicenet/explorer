@@ -40,8 +40,8 @@ export function TxViewValueStore({ valueStore }) {
                     </CopyTooltip>
 
                     <Button
-                        size={"small"}
-                        variant={"contained"}
+                        size="small"
+                        variant="contained"
                         sx={{
                             width: { xs: "100%", md: "inherit" },
                             paddingY: 0.25,
