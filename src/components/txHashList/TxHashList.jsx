@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { CopyTooltip, TwoColumnsRow } from "components";
-import { Grid, Typography, useTheme } from "@mui/material";
+import { Typography, useTheme } from "@mui/material";
 
 export function TxHashList({ txHshLst }) {
 
@@ -9,11 +9,11 @@ export function TxHashList({ txHshLst }) {
 
     return (
 
-        <Grid>
+        <>
 
             {txHshLst && txHshLst.map((hash, index, { length }) =>
 
-                <TwoColumnsRow title="Tx Hash" size={2} lastRow={index + 1 === length}>
+                <TwoColumnsRow title="Tx Hash" size={2} lastRow={index + 1 === length} key={`tx-hash-item-${index}`}>
 
                     <CopyTooltip value={hash} content="Copy Hash">
 
@@ -36,7 +36,7 @@ export function TxHashList({ txHshLst }) {
                 </TwoColumnsRow>
             )}
 
-        </Grid>
+        </>
 
     );
 

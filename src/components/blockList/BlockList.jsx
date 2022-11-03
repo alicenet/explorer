@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { content, CopyTooltip, TwoColumnsRow } from "components";
 import { useHistory } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
@@ -45,7 +45,7 @@ export function BlockList({ blockInfo }) {
 
     return (
 
-        <Grid>
+        <>
 
             <TwoColumnsRow title="Block Height" tooltipContent={content.height} size={2}>
                 <Box display="flex" gap={2}>
@@ -107,7 +107,7 @@ export function BlockList({ blockInfo }) {
                 </Box>
             </TwoColumnsRow>
 
-        </Grid>
+        </>
 
     );
 

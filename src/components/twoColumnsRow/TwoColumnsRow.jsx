@@ -12,7 +12,7 @@ export function TwoColumnsRow({ title, tooltipContent, children, size = 3, lastR
 
         <Grid
             container
-            paddingX={4}
+            paddingX={3}
             paddingY={2}
             sx={{
                 backgroundColor: theme.palette.rowBlack.main,
