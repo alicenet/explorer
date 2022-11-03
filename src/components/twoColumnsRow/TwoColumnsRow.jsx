@@ -1,6 +1,5 @@
 import React from "react";
 import { HelpTooltip } from "components";
-import { classNames } from "utils";
 import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 export function TwoColumnsRow({ title, tooltipContent, children, size = 3, lastRow = false }) {
@@ -12,17 +11,15 @@ export function TwoColumnsRow({ title, tooltipContent, children, size = 3, lastR
 
         <Grid
             container
-            paddingX={3}
-            paddingY={2}
+            borderTop={1}
             sx={{
                 backgroundColor: theme.palette.rowBlack.main,
                 borderColor: theme.palette.tableBlack.main,
+                paddingX: { xs: 1, md: 3 },
+                paddingY: { xs: 1, md: 2 },
+                borderBottomLeftRadius: lastRow ? 4 : 0,
+                borderBottomRightRadius: lastRow ? 4 : 0,
             }}
-            className={
-                classNames("border-0 border-t mobile:p-3",
-                    { "rounded-b-md": lastRow }
-                )
-            }
         >
             <Grid
                 item
