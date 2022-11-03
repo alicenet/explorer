@@ -72,11 +72,20 @@ export function TxExplorer() {
                     txInfo && !txInfo.error && txInfo[0] !== undefined &&
                     <Box display="flex" flexDirection="column" gap={4}>
 
-                        <Box display="flex" flexDirection="column" paddingX={2} gap={2}
-                             className="mobile:text-xl mobile:gap-6">
+                        <Box
+                            display="flex"
+                            flexDirection="column"
+                            paddingX={2}
+                            gap={2}
+                            fontSize={"larger"}
+                        >
 
-                            <Box display="flex" flexDirection="row" gap={1} className="mobile:flex-col">
-                                <span className="font-bold">Tx Hash:</span>
+                            <Box
+                                display="flex"
+                                gap={1}
+                                sx={{ flexDirection: { xs: "column", md: "row" } }}
+                            >
+                                <Typography fontWeight="bold" variant="span">Tx Hash:</Typography>
                                 <CopyTooltip value={hash} content="Copy Hash">
                                     <Typography variant={"span"} sx={{ wordBreak: "break-all" }}>
                                         {`0x${hash}`}
@@ -84,18 +93,29 @@ export function TxExplorer() {
                                 </CopyTooltip>
                             </Box>
 
-                            <Box display="flex" gap={1} className="mobile:flex-col mobile:gap-6">
+                            <Box
+                                display="flex"
+                                sx={{
+                                    alignItems: { xs: "flex-start", md: "center" },
+                                    flexDirection: { xs: "column", md: "row" },
+                                    gap: { xs: 2, md: 1 },
+                                }}
+                            >
 
-                                <Box display="flex" flexDirection="row" gap={1} className="mobile:flex-col">
-                                    <span className="font-bold">Height:</span>
-                                    <span>{aliceNetAdapter.transactionHeight}</span>
+                                <Box display="flex" gap={1} sx={{ flexDirection: { xs: "column", md: "row" } }}>
+                                    <Typography fontWeight="bold" variant="span">Height:</Typography>
+                                    <Typography variant="span">{aliceNetAdapter.transactionHeight}</Typography>
                                 </Box>
 
                                 <Button
                                     size={"small"}
                                     variant={"contained"}
-                                    sx={{ paddingX: 2.5, paddingY: 0, fontSize: "0.95rem" }}
-                                    className="mobile:w-full mobile:m-0 mobile:py-2 mobile:text-xl"
+                                    sx={{
+                                        paddingX: 2.5,
+                                        paddingY: { xs: 0.5, md: 0 },
+                                        fontSize: { xs: "medium", md: "small" },
+                                        width: { xs: "100%", md: "inherit" }
+                                    }}
                                     onClick={() => history.push(`/block/${aliceNetAdapter.transactionHeight}`)}
                                 >
                                     View Block
