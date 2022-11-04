@@ -31,7 +31,7 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                             borderRight={0}
                             borderRadius={1}
                             sx={{
-                                backgroundColor: theme.palette.tableBlack.main,
+                                background: theme.palette.tableBlack.main,
                                 borderBottomLeftRadius: 0,
                                 borderBottomRightRadius: 0,
                             }}
@@ -49,7 +49,7 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                     {headerCells.map(header =>
                         <TableCell
                             sx={{
-                                backgroundColor: theme.palette.rowBlack.main,
+                                background: theme.palette.rowBlack.main,
                                 borderColor: theme.palette.tableBlack.main,
                             }}
                             key={`table-header-${header.id}`}
@@ -68,7 +68,7 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                 {rows.map((row, rowIndex) =>
                     (
                         <TableRow
-                            sx={{ backgroundColor: theme.palette.rowBlack.main }}
+                            sx={{ background: theme.palette.rowBlack.main }}
                             key={`table-row-${rowIndex}`}
                         >
                             {headerCells.map((headerCell) =>

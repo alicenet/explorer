@@ -65,7 +65,7 @@ export function SearchBar({ currentSearch = null }) {
         <Box
             display="flex"
             flexDirection="column"
-            sx={{ backgroundColor: theme.palette.darkGray.main }}
+            sx={{ background: theme.palette.darkGray.main }}
             paddingY={3}
             paddingX={3.5}
             gap={1.5}
@@ -113,7 +113,7 @@ export function SearchBar({ currentSearch = null }) {
                                         xs: "100%",
                                         md: "50%"
                                     } : "100%",
-                                    backgroundColor: theme.palette.dark.main,
+                                    background: theme.palette.dark.main,
                                     '& fieldset': {
                                         borderBottomLeftRadius: { xs: theme.spacing, md: 0 },
                                         borderTopLeftRadius: { xs: theme.spacing, md: 0 },
@@ -137,7 +137,7 @@ export function SearchBar({ currentSearch = null }) {
                                     sx={{ width: { xs: "100%", md: "50%" } }}
                                 >
                                     <TextField
-                                        sx={{ backgroundColor: theme.palette.dark.main, width: "100%" }}
+                                        sx={{ background: theme.palette.dark.main, width: "100%" }}
                                         inputProps={{
                                             placeholder: "Offset",
                                             sx: { paddingY: 1.5 }

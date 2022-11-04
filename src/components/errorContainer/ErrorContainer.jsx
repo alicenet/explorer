@@ -17,7 +17,7 @@ export function ErrorContainer({ children }) {
             borderRadius={2}
             sx={{
                 borderTop: `4px solid ${theme.palette.secondary.main}`,
-                backgroundColor: theme.palette.secondary.dark
+                background: theme.palette.secondary.dark
             }}
         >
 

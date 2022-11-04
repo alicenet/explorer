@@ -11,7 +11,7 @@ export function SearchBarMenu({ options, selectedOption, handleChange }) {
                 sx={{
                     textAlign: "center",
                     minWidth: "10em",
-                    backgroundColor: theme.palette.clearGray.main,
+                    background: theme.palette.clearGray.main,
                     color: "black",
                     fontWeight: "bold",
                     borderTopRightRadius: { xs: theme.spacing, md: 0 },
@@ -30,10 +30,10 @@ export function SearchBarMenu({ options, selectedOption, handleChange }) {
                 MenuProps={{
                     sx: {
                         "& .MuiPaper-root": {
-                            backgroundColor: "white",
+                            background: "white",
                         },
                         "&& .Mui-selected": {
-                            backgroundColor: theme.palette.primary.light
+                            background: theme.palette.primary.light
                         }
                     }
                 }}
@@ -46,7 +46,7 @@ export function SearchBarMenu({ options, selectedOption, handleChange }) {
                             color: "black",
                             fontWeight: "bold",
                             "&:hover": {
-                                backgroundColor: theme.palette.dark.light,
+                                background: theme.palette.dark.light,
                             }
                         }}
                     >

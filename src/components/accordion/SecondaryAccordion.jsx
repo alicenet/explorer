@@ -18,8 +18,12 @@ export function SecondaryAccordion(props) {
                     display="flex"
                     flexDirection="column"
                     paddingTop={0}
-                    className="rounded-md rounded-t-none"
-                    sx={{ background: theme.palette.tableBlack.main }}
+                    borderTop={0}
+                    borderRadius={1}
+                    sx={{
+                        borderTopLeftRadius: 0,
+                        borderTopRightRadius: 0,
+                    }}
                 >
                     {children}
                 </Box>

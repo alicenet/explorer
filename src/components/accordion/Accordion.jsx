@@ -25,7 +25,7 @@ export function Accordion({ children, title, itemsCount, icon = false, sx }) {
                         <h3>{title}</h3>
                         {
                             itemsCount &&
-                            <Typography variant="span" sx={{ backgroundColor: "black", paddingX: 1, borderRadius: 1 }}>
+                            <Typography variant="span" sx={{ background: "black", paddingX: 1, borderRadius: 1 }}>
                                 {itemsCount}
                             </Typography>
                         }
