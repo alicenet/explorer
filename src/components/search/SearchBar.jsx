@@ -66,7 +66,7 @@ export function SearchBar({ currentSearch = null }) {
             display="flex"
             flexDirection="column"
             sx={{ backgroundColor: theme.palette.darkGray.main }}
-            paddingY={4.5}
+            paddingY={3}
             paddingX={3.5}
             gap={1.5}
             borderRadius={1}
@@ -157,7 +157,6 @@ export function SearchBar({ currentSearch = null }) {
                         variant="contained"
                         sx={{ paddingX: 5, fontSize: "larger" }}
                         onClick={() => handleSearch(term)}
-
                     >
                         Search
                     </Button>
