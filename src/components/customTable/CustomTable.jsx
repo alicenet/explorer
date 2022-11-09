@@ -1,4 +1,5 @@
-import { Table, TableBody, TableCell, TableHead, TableRow, useTheme } from "@mui/material";
+import { Box, Table, TableBody, TableCell, TableHead, TableRow, Typography, useTheme } from "@mui/material";
+import React from "react";
 
 export function CustomTable({ title, icon, headerCells, rows = [], key }) {
 
@@ -6,22 +7,40 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
 
     return (
 
-        <Table key={key} className="mobile:whitespace-normal rounded-md rounded-b-none overflow-hidden">
+        <Table key={key}>
 
             <TableHead>
 
-                <TableRow sx={{ borderTop: `2px solid ${theme.palette.primary.main}` }}>
+                <TableRow>
 
                     <TableCell
-                        sx={{
-                            background: theme.palette.tableBlack.main,
-                            borderColor: theme.palette.tableBlack.main,
-                        }}
-                        className="text-xl font-semibold"
+                        sx={{ border: 0 }}
                         colSpan={headerCells.length}
-                        key={`table-header-main`}
+                        key="table-header-main"
+                        padding="none"
                     >
-                        <div className="flex items-center gap-5">{icon}{title}</div>
+                        <Box
+                            display="flex"
+                            alignItems="center"
+                            gap={2}
+                            padding={2}
+                            border={2}
+                            borderColor={theme.palette.primary.main}
+                            borderBottom={0}
+                            borderLeft={0}
+                            borderRight={0}
+                            borderRadius={1}
+                            sx={{
+                                background: theme.palette.tableBlack.main,
+                                borderBottomLeftRadius: 0,
+                                borderBottomRightRadius: 0,
+                            }}
+                        >
+                            {icon}
+                            <Typography fontWeight="bold" fontSize="medium">
+                                {title}
+                            </Typography>
+                        </Box>
                     </TableCell>
 
                 </TableRow>
@@ -30,13 +49,14 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                     {headerCells.map(header =>
                         <TableCell
                             sx={{
-                                backgroundColor: theme.palette.rowBlack.main,
+                                background: theme.palette.rowBlack.main,
                                 borderColor: theme.palette.tableBlack.main,
                             }}
-                            className="text-lg font-semibold"
                             key={`table-header-${header.id}`}
                         >
-                            {header.label}
+                            <Typography fontWeight="bold" fontSize="medium">
+                                {header.label}
+                            </Typography>
                         </TableCell>
                     )}
                 </TableRow>
@@ -48,17 +68,18 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                 {rows.map((row, rowIndex) =>
                     (
                         <TableRow
-                            sx={{ backgroundColor: theme.palette.rowBlack.main }}
+                            sx={{ background: theme.palette.rowBlack.main }}
                             key={`table-row-${rowIndex}`}
                         >
                             {headerCells.map((headerCell) =>
 
                                 <TableCell
                                     sx={{ borderColor: theme.palette.tableBlack.main }}
-                                    className="border-t-1 text-lg"
                                     key={`row-${headerCell.id}`}
                                 >
-                                    {headerCell?.displayCallback ? headerCell.displayCallback({ theme, ...row }) : row[headerCell.id]}
+                                    <Typography fontSize="medium" variant="span">
+                                        {headerCell?.displayCallback ? headerCell.displayCallback({ theme, ...row }) : row[headerCell.id]}
+                                    </Typography>
                                 </TableCell>
                             )}
                         </TableRow>

@@ -1,26 +1,26 @@
 import React from "react";
 import { CallToAction, LatestBlocks, LatestTransactions, Page, SearchBar } from "components";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 export const Home = () => {
 
     return (
 
         <Page>
-            <div className="flex flex-col gap-10">
+            <Box display="flex" flexDirection="column" gap={4}>
                 <SearchBar />
-                <div className="flex flex-col gap-10">
+                <Box display="flex" flexDirection="column" gap={4}>
                     <CallToAction />
                     <Grid container spacing={3}>
-                        <Grid item sm={12} md={6} className="w-full">
+                        <Grid item sm={12} md={6} width="100%">
                             <LatestBlocks />
                         </Grid>
-                        <Grid item sm={12} md={6} className="w-full">
+                        <Grid item sm={12} md={6} width="100%">
                             <LatestTransactions />
                         </Grid>
                     </Grid>
-                </div>
-            </div>
+                </Box>
+            </Box>
         </Page>
 
     );

@@ -12,15 +12,23 @@ export function PrimaryAccordion(props) {
         <Accordion
             sx={{
                 borderTop: `2px solid ${theme.palette.primary.main}`,
-                background: theme.palette.tableBlack.main
+                background: theme.palette.tableBlack.main,
             }}
             {...rest}
         >
             {padded ?
                 <Box
-                    padding={2} gap={2} display={"flex"} flexDirection={"column"}
-                    className="rounded-md rounded-t-none"
-                    sx={{ background: theme.palette.headerBlack.main }}
+                    padding={2}
+                    gap={2}
+                    display="flex"
+                    flexDirection="column"
+                    borderTop={0}
+                    borderRadius={1}
+                    sx={{
+                        borderTopLeftRadius: 0,
+                        borderTopRightRadius: 0,
+                        background: theme.palette.headerBlack.main,
+                    }}
                 >
                     {children}
                 </Box>

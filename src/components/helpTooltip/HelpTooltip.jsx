@@ -38,10 +38,8 @@ export function HelpTooltip({ content }) {
 
     return (
 
-        <Tooltip title={content} arrow placement={"top"}>
-            <div>
-                <HelpOutline fontSize={"small"} />
-            </div>
+        <Tooltip title={content} arrow placement="top">
+            <HelpOutline fontSize="small" sx={{ "&:hover": { opacity: 0.8 } }} />
         </Tooltip>
 
     );

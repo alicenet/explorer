@@ -13,37 +13,40 @@ export function SearchNotFound({ term }) {
 
         <ErrorContainer>
 
-            <Box className="flex flex-col font-bold">
-                <Box className="flex flex-row items-center gap-3 text-5xl">
-                    <Error className="text-5xl" />
+            <Box display="flex" flexDirection="column" fontWeight="bold">
+                <Box display="flex" flexDirection="row" alignItems="center" gap={1} fontSize="xxx-large">
+                    <Error fontSize="x-large" />
                     <h2>OOPS!</h2>
                 </Box>
-                <h3 className="text-2xl">Search not found</h3>
+                <Typography variant="span" fontWeight="bold" fontSize="x-large">Search not found</Typography>
             </Box>
 
-            <Box className="flex flex-col">
+            <Box display="flex" flexDirection="column">
                 <span>
-                    The search data you entered was: <span className="font-bold break-all">{term}</span>
+                    The search data you entered was:&nbsp;
+                    <Typography sx={{ wordBreak: "break-all" }} variant="span" fontWeight="bold">
+                        {term}
+                    </Typography>
                 </span>
                 <span>
                     Sorry! This is an invalid search entry.
                 </span>
             </Box>
 
-            <Box className="flex flex-col">
+            <Box display="flex" flexDirection="column">
                 <span>
                     Instead please try:
                 </span>
-                <Typography sx={{ color: theme.palette.primary.main }} variant={"span"}>
+                <Typography sx={{ color: theme.palette.primary.main }} variant="span">
                     Block | Transaction | DataStores
                 </Typography>
             </Box>
 
-            <Box className="text-left">
+            <Box>
                 <Button
-                    variant={"contained"}
-                    className="px-8"
+                    variant="contained"
                     onClick={() => history.push('/')}
+                    sx={{ paddingX: 4 }}
                 >
                     Back to Monitor
                 </Button>

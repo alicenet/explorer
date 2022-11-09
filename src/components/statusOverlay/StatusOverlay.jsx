@@ -24,23 +24,23 @@ export const StatusOverlay = () => {
     return (
         <>
             <Backdrop open={!!busy} sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-                <Box display={"flex"} flexDirection={"column"} alignItems={"center"} gap={3}>
-                    <Typography className="text-2xl">{busy}</Typography>
+                <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
+                    <Typography variant="span" fontSize="x-large">{busy}</Typography>
                     <CircularProgress />
                 </Box>
             </Backdrop>
 
             <Dialog open={!!error}>
-                <DialogTitle className="text-2xl">
-                    Error!
+                <DialogTitle>
+                    <Typography variant="span" fontSize="x-large">Error</Typography>
                 </DialogTitle>
                 <DialogContent dividers>
                     <DialogContentText>
-                        {error}
+                        <Typography variant="span">{error}</Typography>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus variant={"contained"} onClick={() => document.location.reload(true)}>
+                    <Button autoFocus variant="contained" onClick={() => document.location.reload(true)}>
                         Try Again
                     </Button>
                 </DialogActions>

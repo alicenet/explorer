@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { classNames as csx } from "utils";
 import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
-import { Accordion as MUIAccordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import { Accordion as MUIAccordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
 
 export function Accordion({ children, title, itemsCount, icon = false, sx }) {
 
@@ -12,36 +11,31 @@ export function Accordion({ children, title, itemsCount, icon = false, sx }) {
         <MUIAccordion
             disableGutters
             defaultExpanded
-            className="text-left rounded-md"
-            sx={sx}
+            sx={{ ...sx, borderRadius: 1 }}
         >
 
             <AccordionSummary
-                className={
-                    csx(
-                        "rounded-md break-all px-0 py-2",
-                        { "rounded-b-none": isBlockOpen }
-                    )
-                }
+                sx={{ wordBreak: "break-all", paddingX: 0, paddingY: 1 }}
                 onClick={() => toggleAccordion(prevState => !prevState)}
             >
 
-                <div className="flex cursor-pointer gap-3 px-6 mobile:justify-between">
-                    <div className="flex items-center gap-3">
+                <Box display="flex" sx={{ cursor: "pointer" }} gap={1} paddingX={3}>
+                    <Box display="flex" alignItems="center" gap={1}>
                         {icon}
                         <h3>{title}</h3>
-                        {itemsCount && (
-                            <span className="bg-black rounded-md px-2">
-                            {itemsCount}
-                        </span>
-                        )}
-                    </div>
+                        {
+                            itemsCount &&
+                            <Typography variant="span" sx={{ background: "black", paddingX: 1, borderRadius: 1 }}>
+                                {itemsCount}
+                            </Typography>
+                        }
+                    </Box>
                     {isBlockOpen ? <ArrowDropUp /> : <ArrowDropDown />}
-                </div>
+                </Box>
 
             </AccordionSummary>
 
-            <AccordionDetails className="p-0">
+            <AccordionDetails sx={{ padding: 0 }}>
                 {children}
             </AccordionDetails>
 

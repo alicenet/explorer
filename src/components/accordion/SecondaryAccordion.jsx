@@ -13,9 +13,17 @@ export function SecondaryAccordion(props) {
 
             {padded ?
                 <Box
-                    padding={2} gap={2} display={"flex"} flexDirection={"column"} paddingTop={0}
-                    className="rounded-md rounded-t-none"
-                    sx={{ background: theme.palette.tableBlack.main }}
+                    padding={2}
+                    gap={2}
+                    display="flex"
+                    flexDirection="column"
+                    paddingTop={0}
+                    borderTop={0}
+                    borderRadius={1}
+                    sx={{
+                        borderTopLeftRadius: 0,
+                        borderTopRightRadius: 0,
+                    }}
                 >
                     {children}
                 </Box>

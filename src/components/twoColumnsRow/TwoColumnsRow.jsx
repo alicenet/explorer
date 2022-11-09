@@ -1,32 +1,48 @@
 import React from "react";
 import { HelpTooltip } from "components";
-import { classNames } from "utils";
-import { Grid, useTheme } from "@mui/material";
+import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 export function TwoColumnsRow({ title, tooltipContent, children, size = 3, lastRow = false }) {
 
     const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up("md"));
 
     return (
 
         <Grid
             container
-            paddingX={3}
+            borderTop={1}
             sx={{
-                backgroundColor: theme.palette.rowBlack.main,
+                background: theme.palette.rowBlack.main,
                 borderColor: theme.palette.tableBlack.main,
+                paddingX: { xs: 1, md: 3 },
+                paddingY: { xs: 1, md: 2 },
+                borderBottomLeftRadius: lastRow ? 4 : 0,
+                borderBottomRightRadius: lastRow ? 4 : 0,
             }}
-            className={
-                classNames("border-0 border-t mobile:p-3",
-                    { "rounded-b-md": lastRow }
-                )
-            }
         >
-            <Grid item sm={12} md={size} className="flex items-center gap-3 py-4 mobile:p-2">
-                <HelpTooltip content={tooltipContent} />
-                <p>{title}</p>
+            <Grid
+                item
+                xs={12}
+                md={size}
+                display="flex"
+                alignItems="center"
+                gap={1}
+                sx={{ padding: { xs: 1, md: 0 } }}
+            >
+                {matches && tooltipContent && <HelpTooltip content={tooltipContent} />}
+                <Typography variant="span">{title}</Typography>
             </Grid>
-            <Grid item sm={12} md={12 - size} className="w-full flex items-center gap-5 py-4 mobile:p-2">
+
+            <Grid
+                item
+                xs={12}
+                md={12 - size}
+                display="flex"
+                alignItems="center"
+                gap={1}
+                sx={{ padding: { xs: 1, md: 0 } }}
+            >
                 {children}
             </Grid>
         </Grid>

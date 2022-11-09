@@ -14,10 +14,10 @@ export function ErrorContainer({ children }) {
             paddingY={4}
             paddingX={6}
             gap={3}
-            className="rounded-md"
+            borderRadius={2}
             sx={{
                 borderTop: `4px solid ${theme.palette.secondary.main}`,
-                backgroundColor: theme.palette.secondary.dark
+                background: theme.palette.secondary.dark
             }}
         >
 

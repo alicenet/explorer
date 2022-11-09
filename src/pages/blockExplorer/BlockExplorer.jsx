@@ -6,6 +6,7 @@ import { BlockList, InvalidInput, Page, PrimaryAccordion, SearchBar, SearchNotFo
 import { ReactComponent as CubeIcon } from "assets/cube-icon.svg";
 import { ReactComponent as TxHashIcon } from "assets/tx-hash-icon.svg";
 import { isValidBlockHeight, searchTypes } from "utils";
+import { Box, Typography } from "@mui/material";
 
 export function BlockExplorer() {
 
@@ -46,7 +47,7 @@ export function BlockExplorer() {
 
         <Page>
 
-            <div className="flex flex-col gap-10">
+            <Box display="flex" flexDirection="column" gap={4}>
 
                 <SearchBar currentSearch={{ type: searchTypes.BLOCKS }} />
 
@@ -61,40 +62,30 @@ export function BlockExplorer() {
                         term={height}
                         suggestion={
                             aliceNetAdapter.blocks[0]?.BClaims.Height &&
-                            <Link
-                                className="hover:opacity-80"
-                                to={`/block/${aliceNetAdapter.blocks[0]?.BClaims.Height}`}
-                            >
-                                {`Block Number (${aliceNetAdapter.blocks[0]?.BClaims.Height})`}
-                            </Link>
+                            <Typography variant="span" sx={{ ":hover": { opacity: 0.8 } }}>
+                                <Link to={`/block/${aliceNetAdapter.blocks[0]?.BClaims.Height}`}>
+                                    {`Block Number (${aliceNetAdapter.blocks[0]?.BClaims.Height})`}
+                                </Link>
+                            </Typography>
                         }
                     />
                 }
 
                 {
                     blockInfo && !blockInfo.error &&
-                    <PrimaryAccordion
-                        title={`Block #${blockInfo.BClaims.Height}`}
-                        icon={<CubeIcon />}
-                    >
+                    <PrimaryAccordion title={`Block #${blockInfo.BClaims.Height}`} icon={<CubeIcon />}>
                         <BlockList blockInfo={blockInfo} />
                     </PrimaryAccordion>
                 }
 
                 {
                     blockInfo && !blockInfo.error && blockInfo.TxHshLst.length > 0 &&
-                    <PrimaryAccordion
-                        title="Transaction Hash List"
-                        icon={<TxHashIcon />}
-                    >
-                        <TxHashList
-                            txHshLst={blockInfo.TxHshLst}
-                            txViewLink="/"
-                        />
+                    <PrimaryAccordion title="Transaction Hash List" icon={<TxHashIcon />}>
+                        <TxHashList txHshLst={blockInfo.TxHshLst} txViewLink="/" />
                     </PrimaryAccordion>
                 }
 
-            </div>
+            </Box>
 
         </Page>
 
