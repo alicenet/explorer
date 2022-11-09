@@ -48,7 +48,7 @@ export function LatestTransactions() {
             icon={<TxIcon />}
             headerCells={headerCells}
             rows={rows}
-            title="Latest Transactions"
+            title="Latest Blocks"
         />
     );
 
