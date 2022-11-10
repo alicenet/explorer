@@ -11,6 +11,7 @@ export * from './helpTooltip';
 export * from './invalidInput';
 export * from './latestBlocks';
 export * from './latestTransactions';
+export * from './logo';
 export * from './menuDivider';
 export * from './page';
 export * from './search';

@@ -1,20 +1,13 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Logo from "assets/MadNetwork Logo Horizontal GRAYSCALE.png";
-import Image from "mui-image";
-import { AppBar, Box, Container, Drawer, IconButton, Link, Menu, MenuItem, Toolbar, useTheme } from "@mui/material";
-import { ArrowDropDown, ArrowDropUp, Menu as MenuIcon } from '@mui/icons-material';
+import { AppBar, Box, Container, Drawer, IconButton, Link, Toolbar, useTheme } from "@mui/material";
+import { Menu as MenuIcon } from '@mui/icons-material';
 import { HeaderMobile } from "./HeaderMobile";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faApple, faLinux, faWindows } from "@fortawesome/free-brands-svg-icons";
-import { MenuDivider } from "components";
+import { WalletDropdown } from "./WalletDropdown";
+import { Logo, MenuDivider } from "components";
 
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
-
-const WALLET_MAC_URL = process.env.REACT_APP_WALLET_MAC_URL;
-const WALLET_LINUX_URL = process.env.REACT_APP_WALLET_LINUX_URL;
-const WALLET_WINDOWS_URL = process.env.REACT_APP_WALLET_WINDOWS_URL;
 
 const MenuLink = ({ location, label, blank = false }) => {
     const history = useHistory();
@@ -32,75 +25,6 @@ const MenuLink = ({ location, label, blank = false }) => {
     );
 };
 
-const MenuDropdown = () => {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
-    const theme = useTheme();
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    return (
-        <Box>
-            <Link
-                color="white"
-                sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
-                underline="none"
-                onClick={handleClick}
-            >
-                Wallet Download
-                {open ? <ArrowDropUp /> : <ArrowDropDown />}
-            </Link>
-            <Menu
-                PaperProps={{ sx: { marginTop: 2 } }}
-                disableAutoFocusItem
-                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                transformOrigin={{ vertical: "top", horizontal: "right" }}
-                id="dropdown-wallet-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-            >
-                <MenuItem
-                    sx={{ display: "flex", gap: 1, paddingX: 5 }}
-                    onClick={() => {
-                        window.open(WALLET_MAC_URL, '_blank').focus();
-                        handleClose();
-                    }}
-                >
-                    <FontAwesomeIcon icon={faApple} />
-                    iOS
-                </MenuItem>
-                <MenuItem
-                    sx={{ display: "flex", gap: 1, paddingX: 5 }}
-                    onClick={() => {
-                        window.open(WALLET_LINUX_URL, '_blank').focus();
-                        handleClose();
-                    }}
-                >
-                    <FontAwesomeIcon icon={faLinux} />
-                    Linux
-                </MenuItem>
-                <MenuItem
-                    sx={{ display: "flex", gap: 1, paddingX: 5 }}
-                    onClick={() => {
-                        window.open(WALLET_WINDOWS_URL, '_blank').focus();
-                        handleClose();
-                    }}
-                >
-                    <FontAwesomeIcon icon={faWindows} />
-                    Windows
-                </MenuItem>
-            </Menu>
-        </Box>
-    );
-};
-
 const sections =
     [
         {
@@ -114,7 +38,7 @@ const sections =
             displayCallback: ({ location, label }) => <MenuLink location={location} label={label} />
         },
         {
-            displayCallback: () => <MenuDropdown />
+            displayCallback: () => <WalletDropdown />
         },
         {
             label: "GitHub",
@@ -152,13 +76,14 @@ export function Header() {
 
                     <Toolbar disableGutters>
 
-                        <Image
-                            duration={0}
+                        <Link
+                            color="white"
+                            underline="none"
+                            sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
                             onClick={() => history.push(`/`)}
-                            src={Logo}
-                            width="205px"
-                            style={{ filter: "invert(100%)", cursor: "pointer" }}
-                        />
+                        >
+                            <Logo />
+                        </Link>
 
                         <Box justifyContent="end" flexGrow={1} sx={{ display: { xs: "flex", md: "none" } }}>
                             <IconButton
