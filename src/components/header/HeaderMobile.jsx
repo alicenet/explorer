@@ -25,25 +25,29 @@ const sections =
         {
             label: "Monitor",
             location: "/",
-            displayCallback: ({ location, label }) => <MenuItem location={location} label={label} />
+            displayCallback: ({ location, label }) =>
+                <MenuItem key={`header-mobile-${label}`} location={location} label={label} />
         },
         {
             label: "About",
             location: "/about",
-            displayCallback: ({ location, label }) => <MenuItem location={location} label={label} />
+            displayCallback: ({ location, label }) =>
+                <MenuItem key={`header-mobile-${label}`} location={location} label={label} />
         },
         {
-            displayCallback: () => <MenuDropdown />
+            displayCallback: () => <WalletDropdown key="header-mobile-wallets" />
         },
         {
             label: "GitHub",
             location: GITHUB_URL,
-            displayCallback: ({ location, label }) => <MenuItem location={location} label={label} blank />
+            displayCallback: ({ location, label }) =>
+                <MenuItem key={`header-mobile-${label}`} location={location} label={label} />
         },
         {
             label: "White Paper",
             location: WHITE_PAPER_URL,
-            displayCallback: ({ location, label }) => <MenuItem location={location} label={label} blank />
+            displayCallback: ({ location, label }) =>
+                <MenuItem key={`header-mobile-${label}`} location={location} label={label} />
         },
     ];
 
@@ -54,25 +58,25 @@ const subSections =
             location: WALLET_MAC_URL,
             icon: <FontAwesomeIcon icon={faApple} />,
             displayCallback: ({ location, label, icon }) =>
-                <MenuItem icon={icon} location={location} label={label} blank />
+                <MenuItem key={`wallet-section-${label}`} icon={icon} location={location} label={label} blank />
         },
         {
             label: "Linux",
             location: WALLET_LINUX_URL,
             icon: <FontAwesomeIcon icon={faLinux} />,
             displayCallback: ({ location, label, icon }) =>
-                <MenuItem icon={icon} location={location} label={label} blank />
+                <MenuItem key={`wallet-section-${label}`} icon={icon} location={location} label={label} blank />
         },
         {
             label: "Windows",
             location: WALLET_WINDOWS_URL,
             icon: <FontAwesomeIcon icon={faWindows} />,
             displayCallback: ({ location, label, icon }) =>
-                <MenuItem icon={icon} location={location} label={label} blank />
+                <MenuItem key={`wallet-section-${label}`} icon={icon} location={location} label={label} blank />
         },
     ];
 
-const MenuDropdown = () => {
+const WalletDropdown = () => {
     const [walletMenuOpen, setWalletMenuOpen] = useState(false);
     const [showWalletOptions, setShowWalletOptions] = useState(false);
 
@@ -107,7 +111,7 @@ const MenuDropdown = () => {
 const MenuItem = ({ location, label, icon = null, blank = false }) => {
     const history = useHistory();
     return (
-        <MUIMenuItem key={`menu-item-${label}`} sx={{ paddingX: 4, paddingY: 2 }}>
+        <MUIMenuItem sx={{ paddingX: 4, paddingY: 2 }}>
             {
                 icon &&
                 <ListItemIcon sx={{ fontSize: "x-large" }}>
