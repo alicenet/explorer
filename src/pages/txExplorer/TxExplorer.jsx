@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import {
-    CollapsableCard,
     CopyTooltip,
     InvalidInput,
     Page,
+    PrimaryAccordion,
     SearchBar,
     SearchNotFound,
     TxViewVin,
@@ -46,7 +46,7 @@ export function TxExplorer() {
 
         <Page>
 
-            <div className="flex flex-col gap-10">
+            <Box display="flex" flexDirection="column" gap={4}>
 
                 <SearchBar currentSearch={{ type: searchTypes.TRANSACTIONS }} />
 
@@ -60,65 +60,93 @@ export function TxExplorer() {
                     <InvalidInput
                         term={hash}
                         suggestion={
-                            <Link className="hover:text-neongreen hover:opacity-80" to="/">
-                                Going back to Block Monitor
-                            </Link>
+                            <Typography variant="span" sx={{ ":hover": { opacity: 0.8 } }}>
+                                <Link to="/">
+                                    Going back to Block Monitor
+                                </Link>
+                            </Typography>
                         }
                     />
                 }
                 {
                     txInfo && !txInfo.error && txInfo[0] !== undefined &&
-                    <div className="flex flex-col gap-10">
+                    <Box display="flex" flexDirection="column" gap={4}>
 
-                        <div className="flex flex-col px-3 gap-3 mobile:text-xl mobile:gap-6">
+                        <Box
+                            display="flex"
+                            flexDirection="column"
+                            paddingX={2}
+                            gap={2}
+                            fontSize="medium"
+                        >
 
-                            <div className="flex flex-row text-left gap-3 mobile:flex-col">
-                                <span className="font-bold">Tx Hash:</span>
+                            <Box
+                                display="flex"
+                                gap={1}
+                                sx={{ flexDirection: { xs: "column", md: "row" } }}
+                            >
+                                <Typography fontWeight="bold" variant="span">Tx Hash:</Typography>
                                 <CopyTooltip value={hash} content="Copy Hash">
-                                    <p className="break-all">{`0x${hash}`}</p>
+                                    <Typography variant="span" sx={{ wordBreak: "break-all" }}>
+                                        {`0x${hash}`}
+                                    </Typography>
                                 </CopyTooltip>
-                            </div>
+                            </Box>
 
-                            <div className="flex items-start gap-3 mobile:flex-col mobile:gap-6">
+                            <Box
+                                display="flex"
+                                sx={{
+                                    alignItems: { xs: "flex-start", md: "center" },
+                                    flexDirection: { xs: "column", md: "row" },
+                                    gap: { xs: 2, md: 1 },
+                                }}
+                            >
 
-                                <div className="flex flex-row text-left gap-3 mobile:flex-col">
-                                    <span className="font-bold">Height:</span>
-                                    <span className="">{aliceNetAdapter.transactionHeight}</span>
-                                </div>
+                                <Box display="flex" gap={1} sx={{ flexDirection: { xs: "column", md: "row" } }}>
+                                    <Typography fontWeight="bold" variant="span">Height:</Typography>
+                                    <Typography variant="span">{aliceNetAdapter.transactionHeight}</Typography>
+                                </Box>
 
                                 <Button
-                                    size={"small"}
-                                    variant={"contained"}
-                                    className="py-0 px-6 text-base mobile:w-full mobile:m-0 mobile:py-2 mobile:text-xl"
+                                    size="small"
+                                    variant="contained"
+                                    sx={{
+                                        paddingX: 2.5,
+                                        paddingY: { xs: 0.5, md: 0 },
+                                        fontSize: { xs: "medium", md: "small" },
+                                        width: { xs: "100%", md: "inherit" }
+                                    }}
                                     onClick={() => history.push(`/block/${aliceNetAdapter.transactionHeight}`)}
                                 >
                                     View Block
                                 </Button>
 
-                            </div>
+                            </Box>
 
-                        </div>
+                        </Box>
 
-                        <CollapsableCard
+                        <PrimaryAccordion
+                            padded
                             title="Vins"
                             icon={<TreeIcon />}
                             itemsCount={txInfo[0].Vin.length}
                         >
                             <TxViewVin txInfo={txInfo[0].Vin} />
-                        </CollapsableCard>
+                        </PrimaryAccordion>
 
-                        <CollapsableCard
+                        <PrimaryAccordion
+                            padded
                             title="Vouts"
                             icon={<ChoicesIcon />}
                             itemsCount={txInfo[0].Vout.length}
                         >
                             <TxViewVout txInfo={txInfo[0].Vout} />
-                        </CollapsableCard>
+                        </PrimaryAccordion>
 
-                    </div>
+                    </Box>
                 }
 
-            </div>
+            </Box>
 
         </Page>
 

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
-import { CollapsableCard, DatastoreView, InvalidInput, Page, SearchBar, SearchNotFound } from "components";
+import { DatastoreView, InvalidInput, Page, PrimaryAccordion, SearchBar, SearchNotFound } from "components";
 import { ReactComponent as FileIcon } from "assets/file-icon.svg";
 import { searchTypes } from "utils";
+import { Box } from "@mui/material";
 
 export function DataExplorer() {
 
@@ -33,7 +34,7 @@ export function DataExplorer() {
 
         <Page>
 
-            <div className="flex flex-col gap-10">
+            <Box display="flex" flexDirection="column" gap={4}>
 
                 <SearchBar currentSearch={{ type: searchTypes.DATASTORES }} />
 
@@ -49,16 +50,17 @@ export function DataExplorer() {
 
                 {
                     datastoreInfo && !datastoreInfo.error && datastoreInfo.length > 0 &&
-                    <CollapsableCard
+                    <PrimaryAccordion
+                        padded
                         title="Indexes from Offset"
                         icon={<FileIcon />}
                         itemsCount={datastoreInfo.length}
                     >
                         <DatastoreView datastoreInfo={datastoreInfo} />
-                    </CollapsableCard>
+                    </PrimaryAccordion>
                 }
 
-            </div>
+            </Box>
 
         </Page>
 

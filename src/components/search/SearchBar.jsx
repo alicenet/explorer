@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Button, FormControl, MenuItem, Select, TextField } from "@mui/material";
+import { Box, Button, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useHistory } from "react-router-dom";
-import { classNames, curveTypes, isBN, searchTypes } from "utils";
-import { content, HelpTooltip } from "components";
-import { FiberManualRecord } from '@mui/icons-material';
+import { curveTypes, isBN, searchTypes } from "utils";
+import { content, HelpTooltip, SearchBarMenu } from "components";
+import { FiberManualRecord } from "@mui/icons-material";
 
 const options = [
-    { text: 'Transactions', placeHolder: "Transactions Hash", value: searchTypes.TRANSACTIONS },
-    { text: 'Blocks', placeHolder: "Block Height", value: searchTypes.BLOCKS },
-    { text: 'DataStores', placeHolder: "Address", value: searchTypes.DATASTORES },
+    { text: "Transactions", placeHolder: "Transactions Hash", value: searchTypes.TRANSACTIONS },
+    { text: "Blocks", placeHolder: "Block Height", value: searchTypes.BLOCKS },
+    { text: "DataStores", placeHolder: "Address", value: searchTypes.DATASTORES },
 ];
 
 export function SearchBar({ currentSearch = null }) {
 
     const history = useHistory();
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up("md"));
 
     const [offset, setOffset] = useState("");
 
@@ -60,97 +62,126 @@ export function SearchBar({ currentSearch = null }) {
     };
 
     return (
-        <div className="flex flex-col text-left bg-darkgray rounded-md px-8 py-10 gap-3">
+        <Box
+            display="flex"
+            flexDirection="column"
+            sx={{ background: theme.palette.darkGray.main }}
+            paddingY={3}
+            paddingX={3.5}
+            gap={1.5}
+            borderRadius={1}
+        >
 
-            <div>
-                <h3 className="m-0 text-2xl font-light">Explore the <span className="mobile:hidden">AliceNet </span>blockchain
-                </h3>
-            </div>
+            <Typography fontSize="x-large">Explore the AliceNet Blockchain</Typography>
 
-            <div className="flex flex-col justify-between gap-2">
+            <Box display="flex" flexDirection="column" justifyContent="space-between" gap={1}>
 
-                <div className="flex flex-row mobile:flex-col justify-between gap-5">
+                <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    gap={2}
+                    sx={{ flexDirection: { xs: "column", md: "row" } }}
+                >
 
-                    <div className="flex flex-row mobile:flex-col w-full mobile:gap-5">
+                    <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        flexGrow={1}
+                        sx={{
+                            flexDirection: { xs: "column", md: "row" },
+                            gap: { xs: 1.5, md: "unset" },
+                        }}
+                    >
 
-                        <FormControl variant="outlined" className="flex-shrink-0 text-center">
-                            <Select
-                                className="bg-cleargray rounded-md rounded-r-none font-bold min-w-9 mobile:rounded-md mobile:text-xl"
-                                labelId="search-type-selection"
-                                id="search-type-selection"
-                                value={selectedOption.value}
-                                onChange={handleChange}
-                                inputProps={{className: "py-3"}}
-                            >
-                                {options.map(option =>
-                                    <MenuItem
-                                        key={`header-option-${option.value}`}
-                                        value={option.value}
-                                        className="font-bold mobile:text-xl"
-                                    >{option.text}</MenuItem>
-                                )}
-                            </Select>
-                        </FormControl>
+                        <SearchBarMenu
+                            options={options}
+                            selectedOption={selectedOption}
+                            handleChange={handleChange}
+                        />
 
-                        <div className="flex flex-row items-center mobile:flex-col w-full gap-3">
+                        <Box
+                            display="flex"
+                            flexDirection="row"
+                            alignItems="center"
+                            flexGrow={1}
+                            gap={1}
+                            sx={{ flexDirection: { xs: "column", md: "row" } }}
+                        >
                             <TextField
+                                sx={{
+                                    width: selectedOption.value === searchTypes.DATASTORES ? {
+                                        xs: "100%",
+                                        md: "50%"
+                                    } : "100%",
+                                    background: theme.palette.dark.main,
+                                    '& fieldset': {
+                                        borderBottomLeftRadius: { xs: theme.spacing, md: 0 },
+                                        borderTopLeftRadius: { xs: theme.spacing, md: 0 },
+                                    }
+                                }}
+
                                 inputProps={{
                                     placeholder: `${selectedOption.placeHolder}`,
-                                    className: "text-white py-3 mobile:text-xl"
+                                    sx: { paddingY: 1.5 }
                                 }}
-                                variant={"outlined"}
-                                className={classNames(
-                                    "bg-dark mobile:text-xl rounded-md rounded-l-none mobile:rounded-l-md",
-                                    { "w-full": selectedOption.value !== searchTypes.DATASTORES },
-                                    { "w-1/2 mobile:w-full": selectedOption.value === searchTypes.DATASTORES }
-                                )}
+                                variant="outlined"
                                 value={term}
                                 onChange={(e) => setTerm(e.target.value)}
                             />
                             {
                                 selectedOption.value === searchTypes.DATASTORES &&
-                                <div className="flex items-center w-1/2 gap-2 mobile:w-full">
+                                <Box
+                                    display="flex"
+                                    alignItems="center"
+                                    gap={1}
+                                    sx={{ width: { xs: "100%", md: "50%" } }}
+                                >
                                     <TextField
+                                        sx={{ background: theme.palette.dark.main, width: "100%" }}
                                         inputProps={{
                                             placeholder: "Offset",
-                                            className: "text-white py-3 mobile:text-xl"
+                                            sx: { paddingY: 1.5 }
                                         }}
-                                        variant={"outlined"}
-                                        className="bg-dark w-full rounded-md"
+                                        variant="outlined"
                                         value={offset}
                                         onChange={e => setOffset(e.target.value)}
                                     />
-                                    <HelpTooltip content={content.offset} />
-                                </div>
+                                    {matches && <HelpTooltip content={content.offset} />}
+                                </Box>
                             }
-                        </div>
+                        </Box>
 
-                    </div>
+                    </Box>
 
                     <Button
-                        variant={"contained"}
-                        className="w-40 mobile:w-full text-xl mobile:py-2"
+                        variant="contained"
+                        sx={{ paddingX: 5, fontSize: "larger" }}
                         onClick={() => handleSearch(term)}
                     >
                         Search
                     </Button>
 
-                </div>
+                </Box>
 
-                <div className="flex">
+                <Box display="flex">
                     {curveType && term && selectedOption.value === searchTypes.DATASTORES && (
-                        <div className="flex items-center gap-3 w-1/2 mobile:w-full">
-                            <FiberManualRecord className="text-neongreen w-3" />
-                            <h4>This is a {curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}</h4>
-                            <HelpTooltip
-                                content={curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}
-                            />
-                        </div>
+                        <Box display="flex" alignItems="center" gap={1} sx={{ width: { xs: "100%", md: "50%" } }}>
+                            <FiberManualRecord sx={{ color: theme.palette.primary.main, width: "0.5em" }} />
+                            <Typography>
+                                This is a {curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}
+                            </Typography>
+                            {
+                                matches &&
+                                <HelpTooltip
+                                    content={curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}
+                                />
+                            }
+                        </Box>
                     )}
-                </div>
+                </Box>
 
-            </div>
+            </Box>
 
-        </div>
+        </Box>
     );
 }
