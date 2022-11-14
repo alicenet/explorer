@@ -1,58 +1,80 @@
 import React from "react";
-import { ReactComponent as DiscordIcon } from "assets/discord-icon.svg";
-import { ReactComponent as TwitterIcon } from "assets/twitter-icon.svg";
-import { Box } from "@mui/material";
+import { faDiscord, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { Box, styled, Typography, useTheme } from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { MenuDivider } from "components";
 
 const MADHIVE_URL = process.env.REACT_APP_MADHIVE_URL;
 
-const MenuDivider = () => <div className="border-r border-gray-700 my-1" />;
+const FontAwesomeHoveredIcon = styled(FontAwesomeIcon)(({ theme }) => ({
+    cursor: "pointer",
+    '&:hover': {
+        color: theme.palette.primary.main,
+    },
+}));
 
 export function Footer() {
 
+    const theme = useTheme();
+
     return (
 
-        <Box className="flex justify-between py-10 mobile:flex-col mobile:text-2xl mobile:gap-5">
+        <Box
+            display="flex"
+            justifyContent="space-between"
+            paddingY={4}
+            gap={3}
+            sx={{
+                flexDirection: { xs: "column", md: "row" },
+                fontSize: { xs: "large", md: "inherit" },
+            }}
+        >
 
-            <div className="flex gap-5">
+            <Box display="flex" gap={2} alignItems="center">
 
                 <span>Follow us on:</span>
-                <TwitterIcon className="w-5 cursor-pointer hover:text-neongreen fill-current text-white mobile:w-8" />
-                <DiscordIcon className="w-5 cursor-pointer hover:text-neongreen fill-current text-white mobile:w-8" />
+                <FontAwesomeHoveredIcon icon={faTwitter} size="lg" />
+                <FontAwesomeHoveredIcon icon={faDiscord} size="lg" />
 
-            </div>
+            </Box>
 
-            <div className="flex gap-3 mobile:flex-col mobile:text-left mobile:gap-1">
+            <Box display="flex" sx={{ flexDirection: { xs: "column", md: "row" }, gap: { xs: 0, md: 1.5 } }}>
 
-                <span
-                    className="cursor-pointer hover:text-neongreen"
+                <Typography
                     onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
+                    sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
+                    variant="span"
                 >
                     About
-                </span>
+                </Typography>
 
                 <MenuDivider />
 
-                <span
-                    className="cursor-pointer hover:text-neongreen"
+                <Typography
                     onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
+                    sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
+                    variant="span"
                 >
                     Legal
-                </span>
+                </Typography>
 
                 <MenuDivider />
 
-                <span
-                    className="cursor-pointer hover:text-neongreen"
+                <Typography
                     onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
+                    sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
+                    variant="span"
                 >
                     Terms of service
-                </span>
+                </Typography>
 
                 <MenuDivider />
 
-                <span className="text-lightgray mobile:text-xl">AliceNet Inc © {new Date().getFullYear()}</span>
+                <Typography variant="span" sx={{ opacity: 0.7 }} paddingTop={{ xs: 2, md: 0 }}>
+                    AliceNet Inc © {new Date().getFullYear()}
+                </Typography>
 
-            </div>
+            </Box>
 
         </Box>
 

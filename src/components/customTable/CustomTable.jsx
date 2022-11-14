@@ -1,63 +1,95 @@
-import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { Box, Table, TableBody, TableCell, TableHead, TableRow, Typography, useTheme } from "@mui/material";
+import React from "react";
 
 export function CustomTable({ title, icon, headerCells, rows = [], key }) {
 
+    const theme = useTheme();
+
     return (
 
-        <div className="border-t-2 rounded-md border-neongreen">
+        <Table key={key}>
 
-            <Table key={key} className="bg-tableblack text-white mobile:whitespace-normal">
+            <TableHead>
 
-                <TableHead>
+                <TableRow>
 
-                    <TableRow>
-
-                        <TableCell
-                            className="bg-tableblack text-white text-xl font-semibold border-tableblack"
-                            colSpan={headerCells.length}
-                            key={`table-header-main`}
+                    <TableCell
+                        sx={{ border: 0 }}
+                        colSpan={headerCells.length}
+                        key="table-header-main"
+                        padding="none"
+                    >
+                        <Box
+                            display="flex"
+                            alignItems="center"
+                            gap={2}
+                            padding={2}
+                            border={2}
+                            borderColor={theme.palette.primary.main}
+                            borderBottom={0}
+                            borderLeft={0}
+                            borderRight={0}
+                            borderRadius={1}
+                            sx={{
+                                background: theme.palette.tableBlack.main,
+                                borderBottomLeftRadius: 0,
+                                borderBottomRightRadius: 0,
+                            }}
                         >
-                            <div className="flex items-center gap-5">{icon}{title}</div>
-                        </TableCell>
+                            {icon}
+                            <Typography fontWeight="bold" fontSize="medium">
+                                {title}
+                            </Typography>
+                        </Box>
+                    </TableCell>
 
-                    </TableRow>
+                </TableRow>
 
-                    <TableRow>
-                        {headerCells.map(header =>
-                            <TableCell
-                                className="bg-rowblack text-white text-lg font-semibold border-tableblack"
-                                key={`table-header-${header.id}`}
-                            >
+                <TableRow>
+                    {headerCells.map(header =>
+                        <TableCell
+                            sx={{
+                                background: theme.palette.rowBlack.main,
+                                borderColor: theme.palette.tableBlack.main,
+                            }}
+                            key={`table-header-${header.id}`}
+                        >
+                            <Typography fontWeight="bold" fontSize="medium">
                                 {header.label}
-                            </TableCell>
-                        )}
-                    </TableRow>
-
-                </TableHead>
-
-                <TableBody>
-
-                    {rows.map((row, rowIndex) =>
-                        (
-                            <TableRow className="bg-rowblack" key={`table-row-${rowIndex}`}>
-                                {headerCells.map((headerCell) =>
-
-                                    <TableCell
-                                        className="border-t-1 border-tableblack text-lg text-white"
-                                        key={`row-${headerCell.id}`}
-                                    >
-                                        {headerCell?.displayCallback ? headerCell.displayCallback(row) : row[headerCell.id]}
-                                    </TableCell>
-                                )}
-                            </TableRow>
-                        )
+                            </Typography>
+                        </TableCell>
                     )}
+                </TableRow>
 
-                </TableBody>
+            </TableHead>
 
-            </Table>
+            <TableBody>
 
-        </div>
+                {rows.map((row, rowIndex) =>
+                    (
+                        <TableRow
+                            sx={{ background: theme.palette.rowBlack.main }}
+                            key={`table-row-${rowIndex}`}
+                        >
+                            {headerCells.map((headerCell) =>
+
+                                <TableCell
+                                    sx={{ borderColor: theme.palette.tableBlack.main }}
+                                    key={`row-${headerCell.id}`}
+                                >
+                                    <Typography fontSize="medium" variant="span">
+                                        {headerCell?.displayCallback ? headerCell.displayCallback({ theme, ...row }) : row[headerCell.id]}
+                                    </Typography>
+                                </TableCell>
+                            )}
+                        </TableRow>
+                    )
+                )}
+
+            </TableBody>
+
+        </Table>
+
     );
 
 }

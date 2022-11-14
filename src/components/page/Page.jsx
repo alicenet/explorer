@@ -1,21 +1,30 @@
 import React from "react";
 import { Footer, Header } from "components";
+import { Box } from "@mui/material";
 
 export const Page = ({ children }) => {
 
     return (
-        <div className="flex flex-col justify-between min-h-screen max-w-7xl px-4 mx-auto">
+        <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-between"
+            maxWidth="80rem"
+            paddingX={2}
+            marginX="auto"
+            minHeight="100vh"
+        >
 
-            <div>
+            <Box>
 
                 <Header />
 
                 {children}
 
-            </div>
+            </Box>
 
             <Footer />
 
-        </div>
+        </Box>
     );
 };

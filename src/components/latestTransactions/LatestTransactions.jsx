@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { CopyTooltip, CustomTable } from "components";
 import { ReactComponent as TxIcon } from "assets/tx-icon.svg";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
+import { Typography } from "@mui/material";
 
 const headerCells =
     [
@@ -10,9 +11,9 @@ const headerCells =
             id: "value",
             label: "Value",
             displayCallback: ({ height }) =>
-                <span style={{ textUnderlineOffset: "0.3em" }}>
-                {height}
-            </span>
+                <Typography variant="span">
+                    {height}
+                </Typography>
         },
         {
             id: "txIndex",
@@ -23,7 +24,9 @@ const headerCells =
             label: "Owner",
             displayCallback: ({ groupSignature }) =>
                 <CopyTooltip value={groupSignature} content="Copy Hash">
-                    <p className="break-all">{`0x${groupSignature.slice(0, 8)}...${groupSignature.slice(-8)}`}</p>
+                    <Typography variant="span" sx={{ wordBreak: "break-all" }}>
+                        {`0x${groupSignature.slice(0, 8)}...${groupSignature.slice(-8)}`}
+                    </Typography>
                 </CopyTooltip>
         }
     ];
@@ -45,7 +48,7 @@ export function LatestTransactions() {
             icon={<TxIcon />}
             headerCells={headerCells}
             rows={rows}
-            title="Latest Transactions"
+            title="Latest Blocks"
         />
     );
 
