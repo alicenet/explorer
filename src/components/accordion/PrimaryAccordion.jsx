@@ -11,7 +11,7 @@ export function PrimaryAccordion(props) {
 
         <Accordion
             sx={{
-                borderTop: `2px solid ${theme.palette.primary.main}`,
+                borderTop: `2px solid ${theme.palette.primary.dark}`,
             }}
             {...rest}
         >
