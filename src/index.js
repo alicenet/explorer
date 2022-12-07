@@ -4,10 +4,15 @@ import App from "./App";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import "./style/index.scss";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { theme } from "./style/theme";
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <ThemeProvider theme={theme}>
+            <CssBaseline enableColorScheme />
+            <App />
+        </ThemeProvider>
     </Provider>,
     document.getElementById('root')
 );
