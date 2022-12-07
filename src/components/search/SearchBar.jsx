@@ -73,7 +73,7 @@ export function SearchBar({ currentSearch = null }) {
                 gap={1.5}
                 borderRadius={1}
             >
-                <Typography fontSize="x-large">Explore the AliceNet Blockchain</Typography>
+                <Typography variant="h5">Explore the AliceNet Blockchain</Typography>
 
                 <Box display="flex" flexDirection="column" justifyContent="space-between" gap={1}>
 
@@ -156,7 +156,7 @@ export function SearchBar({ currentSearch = null }) {
 
                         <Button
                             variant="contained"
-                            sx={{ paddingX: 5, fontSize: "larger" }}
+                            sx={{ paddingX: 5, fontWeight: "bold" }}
                             onClick={() => handleSearch(term)}
                         >
                             Search
