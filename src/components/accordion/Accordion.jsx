@@ -9,7 +9,7 @@ export function Accordion({ children, title, itemsCount, icon = false, sx }) {
         <MUIAccordion
             disableGutters
             defaultExpanded
-            sx={sx}
+            sx={{ ...sx, borderRadius: 1 }}
         >
 
             <AccordionSummary
