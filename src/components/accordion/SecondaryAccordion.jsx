@@ -9,7 +9,7 @@ export function SecondaryAccordion(props) {
 
     return (
 
-        <Accordion sx={{ background: theme.palette.tableBlack.main }} {...rest}>
+        <Accordion {...rest}>
 
             {padded ?
                 <Box
@@ -17,7 +17,6 @@ export function SecondaryAccordion(props) {
                     gap={2}
                     display="flex"
                     flexDirection="column"
-                    paddingTop={0}
                     borderTop={0}
                     borderRadius={1}
                     sx={{

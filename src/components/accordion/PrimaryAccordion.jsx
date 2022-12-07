@@ -9,16 +9,11 @@ export function PrimaryAccordion(props) {
 
     return (
 
-        <Accordion
-            sx={{
-                borderTop: `2px solid ${theme.palette.primary.dark}`,
-            }}
-            {...rest}
-        >
+        <Accordion sx={{ borderTop: `2px solid ${theme.palette.primary.dark}` }} {...rest}>
+
             {padded ?
                 <Box
                     padding={2}
-                    paddingTop={0}
                     gap={2}
                     display="flex"
                     flexDirection="column"

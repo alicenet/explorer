@@ -14,8 +14,9 @@ export function ErrorContainer({ children }) {
                 paddingY={4}
                 paddingX={6}
                 gap={3}
-                borderRadius={2}
-                borderTop={`4px solid ${theme.palette.secondary.main}`}
+                borderRadius={1}
+                borderTop={2}
+                borderColor={theme.palette.secondary.main}
             >
                 {children}
             </Box>
