@@ -68,7 +68,9 @@ export function Header() {
             <AppBar
                 component="nav"
                 position="sticky"
+                color="dark"
                 sx={{ backgroundImage: "none", opacity: 0.9, boxShadow: "none" }}
+                enableColorOnDark
             >
 
                 <Container disableGutters sx={{ paddingY: 1 }}>
