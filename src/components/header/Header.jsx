@@ -36,7 +36,7 @@ const sections =
         {
             label: "About",
             location: ALICENET_URL,
-            displayCallback: ({ location, label }) => <MenuLink location={location} label={label} />
+            displayCallback: ({ location, label }) => <MenuLink location={location} label={label} blank />
         },
         {
             displayCallback: () => <WalletDropdown />
