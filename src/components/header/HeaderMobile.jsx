@@ -33,7 +33,7 @@ const sections =
             label: "About",
             location: ALICENET_URL,
             displayCallback: ({ location, label }) =>
-                <MenuItem key={`header-mobile-${label}`} location={location} label={label} />
+                <MenuItem key={`header-mobile-${label}`} location={location} label={label} blank />
         },
         {
             displayCallback: () => <WalletDropdown key="header-mobile-wallets" />
@@ -42,13 +42,13 @@ const sections =
             label: "GitHub",
             location: GITHUB_URL,
             displayCallback: ({ location, label }) =>
-                <MenuItem key={`header-mobile-${label}`} location={location} label={label} />
+                <MenuItem key={`header-mobile-${label}`} location={location} label={label} blank />
         },
         {
             label: "White Paper",
             location: WHITE_PAPER_URL,
             displayCallback: ({ location, label }) =>
-                <MenuItem key={`header-mobile-${label}`} location={location} label={label} />
+                <MenuItem key={`header-mobile-${label}`} location={location} label={label} blank />
         },
     ];
 
