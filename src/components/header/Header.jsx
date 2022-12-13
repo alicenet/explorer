@@ -7,6 +7,7 @@ import { WalletDropdown } from "./WalletDropdown";
 import { Logo, MenuDivider } from "components";
 
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
+const ALICENET_URL = process.env.REACT_APP_ALICENET_URL;
 const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
 
 const MenuLink = ({ location, label, blank = false }) => {
@@ -34,7 +35,7 @@ const sections =
         },
         {
             label: "About",
-            location: "/about",
+            location: ALICENET_URL,
             displayCallback: ({ location, label }) => <MenuLink location={location} label={label} />
         },
         {
@@ -67,9 +68,7 @@ export function Header() {
             <AppBar
                 component="nav"
                 position="sticky"
-                color="dark"
                 sx={{ backgroundImage: "none", opacity: 0.9, boxShadow: "none" }}
-                enableColorOnDark
             >
 
                 <Container disableGutters sx={{ paddingY: 1 }}>
