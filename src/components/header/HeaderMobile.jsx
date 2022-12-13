@@ -14,6 +14,7 @@ import { faApple, faLinux, faWindows } from "@fortawesome/free-brands-svg-icons"
 import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
 
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
+const ALICENET_URL = process.env.REACT_APP_ALICENET_URL;
 const WHITE_PAPER_URL = process.env.REACT_APP_WHITE_PAPER_URL;
 
 const WALLET_MAC_URL = process.env.REACT_APP_WALLET_MAC_URL;
@@ -30,7 +31,7 @@ const sections =
         },
         {
             label: "About",
-            location: "/about",
+            location: ALICENET_URL,
             displayCallback: ({ location, label }) =>
                 <MenuItem key={`header-mobile-${label}`} location={location} label={label} />
         },

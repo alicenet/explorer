@@ -4,7 +4,7 @@ import { Box, styled, Typography, useTheme } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MenuDivider } from "components";
 
-const MADHIVE_URL = process.env.REACT_APP_MADHIVE_URL;
+const ALICENET_URL = process.env.REACT_APP_ALICENET_URL;
 
 const FontAwesomeHoveredIcon = styled(FontAwesomeIcon)(({ theme }) => ({
     cursor: "pointer",
@@ -41,7 +41,7 @@ export function Footer() {
             <Box display="flex" sx={{ flexDirection: { xs: "column", md: "row" }, gap: { xs: 0, md: 1.5 } }}>
 
                 <Typography
-                    onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
+                    onClick={() => window.open(ALICENET_URL, '_blank').focus()}
                     sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
                     variant="span"
                 >
@@ -51,7 +51,7 @@ export function Footer() {
                 <MenuDivider />
 
                 <Typography
-                    onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
+                    onClick={() => window.open(`${ALICENET_URL}/terms-of-use`, '_blank').focus()}
                     sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
                     variant="span"
                 >
@@ -61,7 +61,7 @@ export function Footer() {
                 <MenuDivider />
 
                 <Typography
-                    onClick={() => window.open(MADHIVE_URL, '_blank').focus()}
+                    onClick={() => window.open(`${ALICENET_URL}/terms-of-use`, '_blank').focus()}
                     sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
                     variant="span"
                 >
