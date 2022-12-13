@@ -12,4 +12,4 @@ REACT_APP_ALICENET_URL="https://www.alice.net"
 
 REACT_APP_WALLET_LINUX_URL="https://github.com/alicenet/wallet/releases/download/v1.0.4-alpha/linux_alicenetwallet_x64.zip"
 REACT_APP_WALLET_MAC_URL="https://github.com/alicenet/wallet/releases/download/v1.0.4-alpha/mac_alicenetwallet.dmg"
-REACT_APP_WALLiguaET_WINDOWS_URL="https://github.com/alicenet/wallet/releases/download/v1.0.4-alpha/windows_alicenetwallet_x64.exe"
+REACT_APP_WALLET_WINDOWS_URL="https://github.com/alicenet/wallet/releases/download/v1.0.4-alpha/windows_alicenetwallet_x64.exe"
