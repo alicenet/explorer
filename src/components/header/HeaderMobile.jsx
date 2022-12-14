@@ -36,9 +36,6 @@ const sections =
                 <MenuItem key={`header-mobile-${label}`} location={location} label={label} blank />
         },
         {
-            displayCallback: () => <WalletDropdown key="header-mobile-wallets" />
-        },
-        {
             label: "GitHub",
             location: GITHUB_URL,
             displayCallback: ({ location, label }) =>
