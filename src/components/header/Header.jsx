@@ -39,9 +39,6 @@ const sections =
             displayCallback: ({ location, label }) => <MenuLink location={location} label={label} blank />
         },
         {
-            displayCallback: () => <WalletDropdown />
-        },
-        {
             label: "GitHub",
             location: GITHUB_URL,
             displayCallback: ({ location, label }) => <MenuLink location={location} label={label} blank />
