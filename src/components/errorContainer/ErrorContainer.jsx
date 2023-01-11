@@ -6,7 +6,7 @@ export function ErrorContainer({ children }) {
     const theme = useTheme();
 
     return (
-        <Paper>
+        <Paper elevation="1">
             <Box
                 display="flex"
                 flexDirection="column"
@@ -14,7 +14,7 @@ export function ErrorContainer({ children }) {
                 paddingY={4}
                 paddingX={6}
                 gap={3}
-                borderRadius={1}
+                borderRadius={2}
                 borderTop={2}
                 borderColor={theme.palette.secondary.main}
             >
