@@ -9,7 +9,8 @@ export const Page = ({ children }) => {
             display="flex"
             flexDirection="column"
             justifyContent="space-between"
-            marginX="5%"
+            maxWidth="70rem"
+            marginX="auto"
             minHeight="100vh"
         >
 
