@@ -37,7 +37,7 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                             }}
                         >
                             {icon}
-                            <Typography fontWeight="bold" fontSize="medium">
+                            <Typography fontWeight="bold">
                                 {title}
                             </Typography>
                         </Box>
@@ -54,7 +54,7 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                             }}
                             key={`table-header-${header.id}`}
                         >
-                            <Typography fontWeight="bold" fontSize="medium">
+                            <Typography fontWeight="bold">
                                 {header.label}
                             </Typography>
                         </TableCell>
@@ -74,10 +74,13 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                             {headerCells.map((headerCell) =>
 
                                 <TableCell
-                                    sx={{ borderColor: theme.palette.tableBlack.main }}
+                                    sx={{
+                                        borderColor: theme.palette.tableBlack.main,
+                                        fontSize: "small"
+                                    }}
                                     key={`row-${headerCell.id}`}
                                 >
-                                    <Typography fontSize="medium" variant="span">
+                                    <Typography variant="span">
                                         {headerCell?.displayCallback ? headerCell.displayCallback({ theme, ...row }) : row[headerCell.id]}
                                     </Typography>
                                 </TableCell>
