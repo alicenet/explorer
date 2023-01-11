@@ -156,7 +156,7 @@ export function SearchBar({ currentSearch = null }) {
 
                         <Button
                             variant="contained"
-                            sx={{ paddingX: 5, fontWeight: "bold" }}
+                            sx={{ paddingX: 5, fontSize: "medium" }}
                             onClick={() => handleSearch(term)}
                         >
                             Search
