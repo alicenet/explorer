@@ -28,9 +28,6 @@ export const theme = createTheme({
             dark: '#00B272',
             light: '#81C784',
         },
-        headerBlack: {
-            main: '#171717',
-        },
         dark: {
             main: '#212121',
             light: '#0000000A',

@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import { ExpandLess } from "@mui/icons-material";
 import { Accordion as MUIAccordion, AccordionDetails, AccordionSummary, Box, Paper, Typography } from "@mui/material";
 
-export function Accordion({ children, title, itemsCount, icon = false, sx }) {
+export function Accordion({
+      children,
+      title,
+      itemsCount,
+      icon = false,
+      sx,
+      summaryElevation = 24,
+      detailsElevation = 1
+    }) {
 
     const [isBlockOpen, toggleAccordion] = useState(true);
 
@@ -14,7 +22,14 @@ export function Accordion({ children, title, itemsCount, icon = false, sx }) {
             sx={{ ...sx, borderRadius: 1 }}
         >
 
-            <Paper elevation={8} square={isBlockOpen} sx={{ boxShadow: "unset" }}>
+            <Paper
+                elevation={summaryElevation}
+                sx={{
+                    boxShadow: "unset",
+                    borderBottomRightRadius: isBlockOpen ? 0 : 3,
+                    borderBottomLeftRadius: isBlockOpen ? 0 : 3
+                }}
+            >
                 <AccordionSummary
                     onClick={() => toggleAccordion(prevState => !prevState)}
                     expandIcon={<ExpandLess />}
@@ -43,7 +58,14 @@ export function Accordion({ children, title, itemsCount, icon = false, sx }) {
                 </AccordionSummary>
             </Paper>
 
-            <Paper elevation={2} square={isBlockOpen} sx={{ boxShadow: "unset" }}>
+            <Paper
+                elevation={detailsElevation}
+                sx={{
+                    boxShadow: "unset",
+                    borderBottomRightRadius: isBlockOpen ? 0 : 3,
+                    borderBottomLeftRadius: isBlockOpen ? 0 : 3
+                }}
+            >
                 <AccordionDetails sx={{ padding: 0 }}>
                     {children}
                 </AccordionDetails>

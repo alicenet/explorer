@@ -1,15 +1,14 @@
 import React from "react";
 import { Accordion } from "./Accordion";
-import { Box, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 
 export function SecondaryAccordion(props) {
 
     const { padded, children, ...rest } = props;
-    const theme = useTheme();
 
     return (
 
-        <Accordion {...rest}>
+        <Accordion {...rest} detailsElevation={5}>
 
             {padded ?
                 <Box
