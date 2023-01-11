@@ -77,7 +77,7 @@ export function TxExplorer() {
                             flexDirection="column"
                             paddingX={2}
                             gap={2}
-                            fontSize={"larger"}
+                            fontSize="larger"
                         >
 
                             <Box
