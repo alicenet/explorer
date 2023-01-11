@@ -9,9 +9,10 @@ export const Page = ({ children }) => {
             display="flex"
             flexDirection="column"
             justifyContent="space-between"
-            maxWidth="70rem"
+            maxWidth="72rem"
             marginX="auto"
             minHeight="100vh"
+            paddingX={2}
         >
 
             <Box>
