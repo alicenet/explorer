@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import "./style/index.scss";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { theme } from "./style/theme";
+import { theme } from "alice-mui-provider";
 
 ReactDOM.render(
     <Provider store={store}>
