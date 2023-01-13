@@ -17,7 +17,7 @@ const NavigationChevron = ({ height, direction }) => {
             size="small"
             sx={{
                 padding: 0,
-                background: theme.palette.buttonBlack.main,
+                background: theme.palette.tableBlack.main,
                 borderRadius: 1,
             }}
             onClick={() => handleBlockNav(height)}

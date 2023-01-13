@@ -11,10 +11,7 @@ export function TwoColumnsRow({ title, tooltipContent, children, size = 3, lastR
 
         <Grid
             container
-            borderTop={1}
             sx={{
-                background: theme.palette.rowBlack.main,
-                borderColor: theme.palette.tableBlack.main,
                 paddingX: { xs: 1, md: 3 },
                 paddingY: { xs: 1, md: 2 },
                 borderBottomLeftRadius: lastRow ? 4 : 0,

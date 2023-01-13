@@ -77,7 +77,6 @@ export function TxExplorer() {
                             flexDirection="column"
                             paddingX={2}
                             gap={2}
-                            fontSize="medium"
                         >
 
                             <Box
@@ -102,7 +101,11 @@ export function TxExplorer() {
                                 }}
                             >
 
-                                <Box display="flex" gap={1} sx={{ flexDirection: { xs: "column", md: "row" } }}>
+                                <Box
+                                    display="flex"
+                                    gap={1}
+                                    sx={{ flexDirection: { xs: "column", md: "row" } }}
+                                >
                                     <Typography fontWeight="bold" variant="span">Height:</Typography>
                                     <Typography variant="span">{aliceNetAdapter.transactionHeight}</Typography>
                                 </Box>

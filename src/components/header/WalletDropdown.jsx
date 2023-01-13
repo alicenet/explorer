@@ -25,6 +25,7 @@ export const WalletDropdown = () => {
     return (
         <Box>
             <Link
+                display="flex"
                 color="white"
                 sx={{ cursor: "pointer", "&:hover": { color: theme.palette.primary.main } }}
                 underline="none"
