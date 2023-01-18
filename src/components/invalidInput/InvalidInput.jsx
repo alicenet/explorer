@@ -38,7 +38,7 @@ export function InvalidInput({ term, suggestion }) {
                     <span>
                         Instead please try:
                     </span>
-                    <Typography sx={{ color: theme.palette.primary.main }} variant="span">
+                    <Typography sx={{ color: theme.palette.secondary.main }} variant="span">
                         {suggestion}
                     </Typography>
                 </Box>
@@ -46,9 +46,10 @@ export function InvalidInput({ term, suggestion }) {
 
             <Box>
                 <Button
+                    color="secondary"
                     variant="contained"
                     onClick={() => history.push('/')}
-                    sx={{ paddingX: 4 }}
+                    sx={{ paddingX: 4, fontSize: "small" }}
                 >
                     Back to Monitor
                 </Button>
