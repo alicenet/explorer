@@ -26,7 +26,8 @@ export function Footer() {
             gap={3}
             sx={{
                 flexDirection: { xs: "column", md: "row" },
-                fontSize: { xs: "large", md: "inherit" },
+                fontSize: { xs: "larger", md: "inherit" },
+                paddingX: { xs: 2, md: 0 }
             }}
         >
 

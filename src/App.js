@@ -2,14 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { About, BlockExplorer, DataExplorer, Home, Test, TxExplorer } from "pages";
 import { StatusOverlay } from "components";
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import { theme } from "alice-mui-provider";
 
 function App() {
 
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline enableColorScheme />
+        <>
             <StatusOverlay />
             <Router>
                 <Switch>
@@ -21,7 +18,7 @@ function App() {
                     <Route exact path="/tx/:hash" component={TxExplorer} />
                 </Switch>
             </Router>
-        </ThemeProvider>
+        </>
     );
 }
 

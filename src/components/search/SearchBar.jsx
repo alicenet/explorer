@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Button, Paper, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { curveTypes, isBN, searchTypes } from "utils";
 import { content, HelpTooltip, SearchBarMenu } from "components";
@@ -62,126 +62,127 @@ export function SearchBar({ currentSearch = null }) {
     };
 
     return (
-        <Box
-            display="flex"
-            flexDirection="column"
-            sx={{ background: theme.palette.darkGray.main }}
-            paddingY={3}
-            paddingX={3.5}
-            gap={1.5}
-            borderRadius={1}
-        >
 
-            <Typography fontSize="x-large">Explore the AliceNet Blockchain</Typography>
+        <Paper elevation={2}>
 
-            <Box display="flex" flexDirection="column" justifyContent="space-between" gap={1}>
+            <Box
+                display="flex"
+                flexDirection="column"
+                paddingY={3}
+                paddingX={3.5}
+                gap={1.5}
+                borderRadius={1}
+            >
+                <Typography variant="h5">Explore the AliceNet Blockchain</Typography>
 
-                <Box
-                    display="flex"
-                    justifyContent="space-between"
-                    gap={2}
-                    sx={{ flexDirection: { xs: "column", md: "row" } }}
-                >
+                <Box display="flex" flexDirection="column" justifyContent="space-between" gap={1}>
 
                     <Box
                         display="flex"
                         justifyContent="space-between"
-                        flexGrow={1}
-                        sx={{
-                            flexDirection: { xs: "column", md: "row" },
-                            gap: { xs: 1.5, md: "unset" },
-                        }}
+                        gap={2}
+                        sx={{ flexDirection: { xs: "column", md: "row" } }}
                     >
-
-                        <SearchBarMenu
-                            options={options}
-                            selectedOption={selectedOption}
-                            handleChange={handleChange}
-                        />
 
                         <Box
                             display="flex"
-                            flexDirection="row"
-                            alignItems="center"
+                            justifyContent="space-between"
                             flexGrow={1}
-                            gap={1}
-                            sx={{ flexDirection: { xs: "column", md: "row" } }}
+                            sx={{
+                                flexDirection: { xs: "column", md: "row" },
+                                gap: { xs: 1.5, md: "unset" },
+                            }}
                         >
-                            <TextField
-                                sx={{
-                                    width: selectedOption.value === searchTypes.DATASTORES ? {
-                                        xs: "100%",
-                                        md: "50%"
-                                    } : "100%",
-                                    background: theme.palette.dark.main,
-                                    '& fieldset': {
-                                        borderBottomLeftRadius: { xs: theme.spacing, md: 0 },
-                                        borderTopLeftRadius: { xs: theme.spacing, md: 0 },
-                                    }
-                                }}
 
-                                inputProps={{
-                                    placeholder: `${selectedOption.placeHolder}`,
-                                    sx: { paddingY: 1.5 }
-                                }}
-                                variant="outlined"
-                                value={term}
-                                onChange={(e) => setTerm(e.target.value)}
+                            <SearchBarMenu
+                                options={options}
+                                selectedOption={selectedOption}
+                                handleChange={handleChange}
                             />
-                            {
-                                selectedOption.value === searchTypes.DATASTORES &&
-                                <Box
-                                    display="flex"
-                                    alignItems="center"
-                                    gap={1}
-                                    sx={{ width: { xs: "100%", md: "50%" } }}
-                                >
-                                    <TextField
-                                        sx={{ background: theme.palette.dark.main, width: "100%" }}
-                                        inputProps={{
-                                            placeholder: "Offset",
-                                            sx: { paddingY: 1.5 }
-                                        }}
-                                        variant="outlined"
-                                        value={offset}
-                                        onChange={e => setOffset(e.target.value)}
-                                    />
-                                    {matches && <HelpTooltip content={content.offset} />}
-                                </Box>
-                            }
+
+                            <Box
+                                display="flex"
+                                flexDirection="row"
+                                alignItems="center"
+                                flexGrow={1}
+                                gap={1}
+                                sx={{ flexDirection: { xs: "column", md: "row" } }}
+                            >
+                                <TextField
+                                    sx={{
+                                        width: selectedOption.value === searchTypes.DATASTORES ? {
+                                            xs: "100%",
+                                            md: "50%"
+                                        } : "100%",
+                                        background: theme.palette.background.paper,
+                                        '& fieldset': {
+                                            borderBottomLeftRadius: { xs: theme.spacing, md: 0 },
+                                            borderTopLeftRadius: { xs: theme.spacing, md: 0 },
+                                        }
+                                    }}
+
+                                    inputProps={{
+                                        placeholder: `${selectedOption.placeHolder}`,
+                                        sx: { paddingY: 1.5 }
+                                    }}
+                                    variant="outlined"
+                                    value={term}
+                                    onChange={(e) => setTerm(e.target.value)}
+                                />
+                                {
+                                    selectedOption.value === searchTypes.DATASTORES &&
+                                    <Box
+                                        display="flex"
+                                        alignItems="center"
+                                        gap={1}
+                                        sx={{ width: { xs: "100%", md: "50%" } }}
+                                    >
+                                        <TextField
+                                            sx={{ background: theme.palette.background.paper, width: "100%" }}
+                                            inputProps={{
+                                                placeholder: "Offset",
+                                                sx: { paddingY: 1.5 }
+                                            }}
+                                            variant="outlined"
+                                            value={offset}
+                                            onChange={e => setOffset(e.target.value)}
+                                        />
+                                        {matches && <HelpTooltip content={content.offset} />}
+                                    </Box>
+                                }
+                            </Box>
+
                         </Box>
+
+                        <Button variant="contained" sx={{ paddingX: 4 }} onClick={() => handleSearch(term)}>
+                            <Typography variant="span" fontSize={"medium"}>
+                                Search
+                            </Typography>
+                        </Button>
 
                     </Box>
 
-                    <Button
-                        variant="contained"
-                        sx={{ paddingX: 5, fontSize: "larger" }}
-                        onClick={() => handleSearch(term)}
-                    >
-                        Search
-                    </Button>
+                    <Box display="flex">
+                        {curveType && term && selectedOption.value === searchTypes.DATASTORES && (
+                            <Box display="flex" alignItems="center" gap={1} sx={{ width: { xs: "100%", md: "50%" } }}>
+                                <FiberManualRecord sx={{ color: theme.palette.primary.main, width: "0.5em" }} />
+                                <Typography>
+                                    This is a {curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}
+                                </Typography>
+                                {
+                                    matches &&
+                                    <HelpTooltip
+                                        content={curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}
+                                    />
+                                }
+                            </Box>
+                        )}
+                    </Box>
 
-                </Box>
-
-                <Box display="flex">
-                    {curveType && term && selectedOption.value === searchTypes.DATASTORES && (
-                        <Box display="flex" alignItems="center" gap={1} sx={{ width: { xs: "100%", md: "50%" } }}>
-                            <FiberManualRecord sx={{ color: theme.palette.primary.main, width: "0.5em" }} />
-                            <Typography>
-                                This is a {curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}
-                            </Typography>
-                            {
-                                matches &&
-                                <HelpTooltip
-                                    content={curveType === curveTypes.BARRETO_NAEHRIG ? content.bn : content.secp}
-                                />
-                            }
-                        </Box>
-                    )}
                 </Box>
 
             </Box>
 
-        </Box>
+        </Paper>
     );
 }

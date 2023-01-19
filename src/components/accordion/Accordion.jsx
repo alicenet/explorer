@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
-import { Accordion as MUIAccordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
+import { ExpandLess } from "@mui/icons-material";
+import { Accordion as MUIAccordion, AccordionDetails, AccordionSummary, Box, Paper, Typography } from "@mui/material";
 
-export function Accordion({ children, title, itemsCount, icon = false, sx }) {
+export function Accordion({
+      children,
+      title,
+      itemsCount,
+      icon = false,
+      sx,
+      summaryElevation = 24,
+      detailsElevation = 1
+    }) {
 
     const [isBlockOpen, toggleAccordion] = useState(true);
 
@@ -14,30 +22,54 @@ export function Accordion({ children, title, itemsCount, icon = false, sx }) {
             sx={{ ...sx, borderRadius: 1 }}
         >
 
-            <AccordionSummary
-                sx={{ wordBreak: "break-all", paddingX: 0, paddingY: 1 }}
-                onClick={() => toggleAccordion(prevState => !prevState)}
+            <Paper
+                elevation={summaryElevation}
+                sx={{
+                    boxShadow: "unset",
+                    borderBottomRightRadius: isBlockOpen ? 0 : 3,
+                    borderBottomLeftRadius: isBlockOpen ? 0 : 3
+                }}
             >
+                <AccordionSummary
+                    onClick={() => toggleAccordion(prevState => !prevState)}
+                    expandIcon={<ExpandLess />}
+                >
 
-                <Box display="flex" sx={{ cursor: "pointer" }} gap={1} paddingX={3}>
-                    <Box display="flex" alignItems="center" gap={1}>
-                        {icon}
-                        <h3>{title}</h3>
-                        {
-                            itemsCount &&
-                            <Typography variant="span" sx={{ background: "black", paddingX: 1, borderRadius: 1 }}>
-                                {itemsCount}
-                            </Typography>
-                        }
+                    <Box display="flex"
+                         sx={{
+                             cursor: "pointer",
+                             wordBreak: "break-all",
+                             padding: 1
+                         }}
+                         gap={1}
+                    >
+                        <Box display="flex" alignItems="center" gap={1}>
+                            {icon}
+                            <h3>{title}</h3>
+                            {
+                                itemsCount &&
+                                <Typography variant="span" sx={{ background: "black", paddingX: 1, borderRadius: 1 }}>
+                                    {itemsCount}
+                                </Typography>
+                            }
+                        </Box>
                     </Box>
-                    {isBlockOpen ? <ArrowDropUp /> : <ArrowDropDown />}
-                </Box>
 
-            </AccordionSummary>
+                </AccordionSummary>
+            </Paper>
 
-            <AccordionDetails sx={{ padding: 0 }}>
-                {children}
-            </AccordionDetails>
+            <Paper
+                elevation={detailsElevation}
+                sx={{
+                    boxShadow: "unset",
+                    borderBottomRightRadius: isBlockOpen ? 0 : 3,
+                    borderBottomLeftRadius: isBlockOpen ? 0 : 3
+                }}
+            >
+                <AccordionDetails sx={{ padding: 0 }}>
+                    {children}
+                </AccordionDetails>
+            </Paper>
 
         </MUIAccordion>
 

@@ -112,7 +112,7 @@ export function Header() {
                     variant="temporary"
                     open={mobileOpen}
                     onClose={handleDrawerToggle}
-                    PaperProps={{ sx: { minWidth: "70%", background: theme.palette.rowBlack.main } }}
+                    PaperProps={{ sx: { minWidth: "70%" } }}
                     sx={{ display: { sm: "block", md: "none" } }}
                 >
 

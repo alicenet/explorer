@@ -18,6 +18,9 @@ export function SearchBarMenu({ options, selectedOption, handleChange }) {
                     borderBottomRightRadius: { xs: theme.spacing, md: 0 },
                     "& .MuiSvgIcon-root": {
                         color: "black"
+                    },
+                    "&& .MuiOutlinedInput-notchedOutline": {
+                        border: 0
                     }
                 }}
                 value={selectedOption.value}
