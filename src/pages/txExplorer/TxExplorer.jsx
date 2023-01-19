@@ -72,18 +72,9 @@ export function TxExplorer() {
                     txInfo && !txInfo.error && txInfo[0] !== undefined &&
                     <Box display="flex" flexDirection="column" gap={4}>
 
-                        <Box
-                            display="flex"
-                            flexDirection="column"
-                            paddingX={2}
-                            gap={2}
-                        >
+                        <Box display="flex" flexDirection="column" paddingX={2} gap={2}>
 
-                            <Box
-                                display="flex"
-                                gap={1}
-                                sx={{ flexDirection: { xs: "column", md: "row" } }}
-                            >
+                            <Box display="flex" gap={1} sx={{ flexDirection: { xs: "column", md: "row" } }}>
                                 <Typography fontWeight="bold" variant="span">Tx Hash:</Typography>
                                 <CopyTooltip value={hash} content="Copy Hash">
                                     <Typography variant="span" sx={{ wordBreak: "break-all" }}>
@@ -101,11 +92,7 @@ export function TxExplorer() {
                                 }}
                             >
 
-                                <Box
-                                    display="flex"
-                                    gap={1}
-                                    sx={{ flexDirection: { xs: "column", md: "row" } }}
-                                >
+                                <Box display="flex" gap={1} sx={{ flexDirection: { xs: "column", md: "row" } }}>
                                     <Typography fontWeight="bold" variant="span">Height:</Typography>
                                     <Typography variant="span">{aliceNetAdapter.transactionHeight}</Typography>
                                 </Box>
