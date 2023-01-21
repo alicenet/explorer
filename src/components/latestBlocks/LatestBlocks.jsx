@@ -39,7 +39,7 @@ const headerCells =
             displayCallback: ({ groupSignature }) =>
                 <CopyTooltip value={groupSignature} content="Copy Hash">
                     <Typography variant="span" sx={{ wordBreak: "break-all" }}>
-                        {`0x${groupSignature.slice(0, 8)}...${groupSignature.slice(-8)}`}
+                        {`0x${groupSignature.slice(0, 50)}...${groupSignature.slice(-50)}`}
                     </Typography>
                 </CopyTooltip>
         }

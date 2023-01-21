@@ -7,98 +7,91 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
 
     return (
 
-        <Table key={key}>
+        <Paper elevation={2} square sx={{ boxShadow: "unset" }}>
+            <Table key={key}>
 
-            <TableHead>
+                <TableHead>
 
-                <TableRow>
+                    <TableRow>
 
-                    <TableCell
-                        sx={{ border: 0 }}
-                        colSpan={headerCells.length}
-                        key="table-header-main"
-                        padding="none"
-                    >
+                        <TableCell
+                            sx={{ border: 0 }}
+                            colSpan={headerCells.length}
+                            key="table-header-main"
+                            padding="none"
+                        >
 
-                        <Paper elevation={8} sx={{ boxShadow: "unset" }} square>
+                            <Paper elevation={8} sx={{ boxShadow: "unset" }} square>
 
-                            <Box
-                                display="flex"
-                                alignItems="center"
-                                gap={2}
-                                padding={2}
-                                border={2}
-                                borderColor={theme.palette.primary.main}
-                                borderBottom={0}
-                                borderLeft={0}
-                                borderRight={0}
-                                borderRadius={1}
-                            >
-                                {icon}
-                                <Typography fontWeight="bold">
-                                    {title}
-                                </Typography>
-                            </Box>
+                                <Box
+                                    display="flex"
+                                    alignItems="center"
+                                    gap={2}
+                                    padding={2}
+                                    border={2}
+                                    borderColor={theme.palette.primary.main}
+                                    borderBottom={0}
+                                    borderLeft={0}
+                                    borderRight={0}
+                                    borderRadius={1}
+                                >
+                                    {icon}
+                                    <Typography fontWeight="bold">
+                                        {title}
+                                    </Typography>
+                                </Box>
 
-                        </Paper>
+                            </Paper>
 
-                    </TableCell>
+                        </TableCell>
 
-                </TableRow>
+                    </TableRow>
 
-                <TableRow>
+                    <TableRow>
 
-                    {headerCells.map(header =>
-                        <TableCell key={`table-header-${header.id}`} padding="none" sx={{ border: 0 }}>
-
-                            <Paper elevation={2} square sx={{ boxShadow: "unset", padding: 2 }}>
+                        {headerCells.map(header =>
+                            <TableCell key={`table-header-${header.id}`} sx={{ border: 0 }}>
 
                                 <Typography fontWeight="bold">
                                     {header.label}
                                 </Typography>
 
-                            </Paper>
+                            </TableCell>
+                        )}
 
-                        </TableCell>
-                    )}
+                    </TableRow>
 
-                </TableRow>
+                </TableHead>
 
-            </TableHead>
+                <TableBody>
 
-            <TableBody>
+                    {rows.map((row, rowIndex) =>
+                        (
+                            <TableRow key={`table-row-${rowIndex}`}>
 
-                {rows.map((row, rowIndex) =>
-                    (
-                        <TableRow key={`table-row-${rowIndex}`}>
+                                {headerCells.map((headerCell) =>
 
-                            {headerCells.map((headerCell) =>
-
-                                <TableCell
-                                    padding="none"
-                                    sx={{ border: 0, fontSize: "small" }}
-                                    key={`row-${headerCell.id}`}
-                                >
-
-                                    <Paper elevation={2} square sx={{ boxShadow: "unset", padding: 2 }}>
+                                    <TableCell
+                                        sx={{ border: 0, fontSize: "small" }}
+                                        key={`row-${headerCell.id}`}
+                                    >
 
                                         <Typography variant="span">
                                             {headerCell?.displayCallback ? headerCell.displayCallback({ theme, ...row }) : row[headerCell.id]}
                                         </Typography>
 
-                                    </Paper>
+                                    </TableCell>
+                                )}
 
-                                </TableCell>
-                            )}
+                            </TableRow>
+                        )
+                    )}
 
-                        </TableRow>
-                    )
-                )}
+                </TableBody>
 
-            </TableBody>
+            </Table>
 
-        </Table>
-
+        </Paper>
     );
 
 }
