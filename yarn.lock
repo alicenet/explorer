@@ -2990,7 +2990,7 @@ ajv@^8.0.1:
 
 "alicenetjs-adapter@git+https://github.com/alicenet/alicenetjs-adapter.git":
   version "1.0.0"
-  resolved "git+https://github.com/alicenet/alicenetjs-adapter.git#5c4c1a949806d9e8f4cdfe786b0da51139bd568e"
+  resolved "git+https://github.com/alicenet/alicenetjs-adapter.git#d6e45c605c58eaf752dfb870ef3739aa9ce8bff7"
   dependencies:
     "@alicenet_/alicenetjs-legacy" "^1.0.3"
     big-integer "1.6.51"
