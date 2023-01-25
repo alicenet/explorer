@@ -4,7 +4,7 @@ import { ReactComponent as BlocksIcon } from "assets/blocks-icon.svg";
 import { useSelector } from "react-redux";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { Link } from "react-router-dom";
-import { Typography } from "@mui/material";
+import { Typography, useMediaQuery, useTheme } from "@mui/material";
 
 const headerCells =
     [
@@ -48,7 +48,9 @@ const headerCells =
 
 export function LatestBlocks() {
 
+    const theme = useTheme();
     useSelector(s => s.aliceNetAdapter);
+    const matches = useMediaQuery(theme.breakpoints.up("md"));
 
     useEffect(() => {
         if (aliceNetAdapter && !aliceNetAdapter.blocksStarted) {
@@ -70,6 +72,7 @@ export function LatestBlocks() {
             headerCells={headerCells}
             rows={rows}
             title="Latest Blocks"
+            double={matches}
         />
     );
 

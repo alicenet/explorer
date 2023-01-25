@@ -1,10 +1,10 @@
 import { Box, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography, useTheme } from "@mui/material";
 import React from "react";
 
-export function CustomTable({ title, icon, headerCells, rows = [], key }) {
+export function CustomTable({ title, icon, headerCells, rows = [], key, double }) {
 
     const theme = useTheme();
-    const doubleHeaderCells = headerCells.concat(headerCells);
+    const doubleHeaderCells = headerCells.concat(double ? headerCells : []);
 
     return (
 
@@ -67,7 +67,7 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                 <TableBody>
 
                     {rows.map((row, rowIndex) => {
-                        if (rowIndex % 2 !== 0) {
+                        if (rowIndex % 2 !== 0 && double) {
                             return null;
                         }
                         return (
