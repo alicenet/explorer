@@ -4,10 +4,12 @@ import React from "react";
 export function CustomTable({ title, icon, headerCells, rows = [], key }) {
 
     const theme = useTheme();
+    const doubleHeaderCells = headerCells.concat(headerCells);
 
     return (
 
         <Paper elevation={2} square sx={{ boxShadow: "unset" }}>
+
             <Table key={key}>
 
                 <TableHead>
@@ -16,7 +18,7 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
 
                         <TableCell
                             sx={{ border: 0 }}
-                            colSpan={headerCells.length}
+                            colSpan={doubleHeaderCells.length}
                             key="table-header-main"
                             padding="none"
                         >
@@ -33,7 +35,6 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
                                     borderBottom={0}
                                     borderLeft={0}
                                     borderRight={0}
-                                    borderRadius={1}
                                 >
                                     {icon}
                                     <Typography fontWeight="bold">
@@ -49,8 +50,8 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
 
                     <TableRow>
 
-                        {headerCells.map(header =>
-                            <TableCell key={`table-header-${header.id}`} sx={{ border: 0 }}>
+                        {doubleHeaderCells.map((header, headerIndex) =>
+                            <TableCell key={`table-header-${header.id}-${headerIndex}`} sx={{ border: 0 }}>
 
                                 <Typography fontWeight="bold">
                                     {header.label}
@@ -65,27 +66,33 @@ export function CustomTable({ title, icon, headerCells, rows = [], key }) {
 
                 <TableBody>
 
-                    {rows.map((row, rowIndex) =>
-                        (
+                    {rows.map((row, rowIndex) => {
+                        if (rowIndex % 2 !== 0) {
+                            return null;
+                        }
+                        return (
                             <TableRow key={`table-row-${rowIndex}`}>
 
-                                {headerCells.map((headerCell) =>
+                                {doubleHeaderCells.map((headerCell, headerCellIndex) => {
+                                        const selectedRow = headerCellIndex >= headerCells.length ? rows[rowIndex + 1] : row;
+                                        return (
+                                            <TableCell
+                                                sx={{ border: 0, fontSize: "small" }}
+                                                key={`row-${headerCell.id}-${headerCellIndex}`}
+                                            >
 
-                                    <TableCell
-                                        sx={{ border: 0, fontSize: "small" }}
-                                        key={`row-${headerCell.id}`}
-                                    >
+                                                <Typography variant="span">
+                                                    {headerCell?.displayCallback ? headerCell.displayCallback({ theme, ...selectedRow }) : selectedRow[headerCell.id]}
+                                                </Typography>
 
-                                        <Typography variant="span">
-                                            {headerCell?.displayCallback ? headerCell.displayCallback({ theme, ...row }) : row[headerCell.id]}
-                                        </Typography>
-
-                                    </TableCell>
+                                            </TableCell>
+                                        );
+                                    }
                                 )}
 
                             </TableRow>
-                        )
-                    )}
+                        );
+                    })}
 
                 </TableBody>
 

@@ -39,7 +39,7 @@ const headerCells =
             displayCallback: ({ groupSignature }) =>
                 <CopyTooltip value={groupSignature} content="Copy Hash">
                     <Typography variant="span" sx={{ wordBreak: "break-all" }}>
-                        {`0x${groupSignature.slice(0, 50)}...${groupSignature.slice(-50)}`}
+                        {`0x${groupSignature.slice(0, 8)}...${groupSignature.slice(-8)}`}
                     </Typography>
                 </CopyTooltip>
         }
@@ -56,7 +56,7 @@ export function LatestBlocks() {
         }
     }, [aliceNetAdapter]);
 
-    const rows = aliceNetAdapter.blocks?.slice(0, aliceNetAdapter.blocksMaxLen).map((row) => {
+    const rows = aliceNetAdapter.blocks?.map((row) => {
         return {
             height: row['BClaims']['Height'],
             txCount: row['BClaims']['TxCount'] ? row['BClaims']['TxCount'] : 0,
