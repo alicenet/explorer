@@ -1,104 +1,104 @@
 import { Box, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography, useTheme } from "@mui/material";
 import React from "react";
 
-export function CustomTable({ title, icon, headerCells, rows = [], key }) {
+export function CustomTable({ title, icon, headerCells, rows = [], key, double }) {
 
     const theme = useTheme();
+    const doubleHeaderCells = headerCells.concat(double ? headerCells : []);
 
     return (
 
-        <Table key={key}>
+        <Paper elevation={2} square sx={{ boxShadow: "unset" }}>
 
-            <TableHead>
+            <Table key={key}>
 
-                <TableRow>
+                <TableHead>
 
-                    <TableCell
-                        sx={{ border: 0 }}
-                        colSpan={headerCells.length}
-                        key="table-header-main"
-                        padding="none"
-                    >
+                    <TableRow>
 
-                        <Paper elevation={8} sx={{ boxShadow: "unset" }} square>
+                        <TableCell
+                            sx={{ border: 0 }}
+                            colSpan={doubleHeaderCells.length}
+                            key="table-header-main"
+                            padding="none"
+                        >
 
-                            <Box
-                                display="flex"
-                                alignItems="center"
-                                gap={2}
-                                padding={2}
-                                border={2}
-                                borderColor={theme.palette.primary.main}
-                                borderBottom={0}
-                                borderLeft={0}
-                                borderRight={0}
-                                borderRadius={1}
-                            >
-                                {icon}
-                                <Typography fontWeight="bold">
-                                    {title}
-                                </Typography>
-                            </Box>
+                            <Paper elevation={8} sx={{ boxShadow: "unset" }} square>
 
-                        </Paper>
+                                <Box
+                                    display="flex"
+                                    alignItems="center"
+                                    gap={2}
+                                    padding={2}
+                                    border={2}
+                                    borderColor={theme.palette.primary.main}
+                                    borderBottom={0}
+                                    borderLeft={0}
+                                    borderRight={0}
+                                >
+                                    {icon}
+                                    <Typography fontWeight="bold">
+                                        {title}
+                                    </Typography>
+                                </Box>
 
-                    </TableCell>
+                            </Paper>
 
-                </TableRow>
+                        </TableCell>
 
-                <TableRow>
+                    </TableRow>
 
-                    {headerCells.map(header =>
-                        <TableCell key={`table-header-${header.id}`} padding="none" sx={{ border: 0 }}>
+                    <TableRow>
 
-                            <Paper elevation={2} square sx={{ boxShadow: "unset", padding: 2 }}>
+                        {doubleHeaderCells.map((header, headerIndex) =>
+                            <TableCell key={`table-header-${header.id}-${headerIndex}`} sx={{ border: 0 }}>
 
                                 <Typography fontWeight="bold">
                                     {header.label}
                                 </Typography>
 
-                            </Paper>
+                            </TableCell>
+                        )}
 
-                        </TableCell>
-                    )}
+                    </TableRow>
 
-                </TableRow>
+                </TableHead>
 
-            </TableHead>
+                <TableBody>
 
-            <TableBody>
+                    {rows.map((row, rowIndex) => {
+                        if (rowIndex % 2 !== 0 && double) {
+                            return null;
+                        }
+                        return (
+                            <TableRow key={`table-row-${rowIndex}`}>
 
-                {rows.map((row, rowIndex) =>
-                    (
-                        <TableRow key={`table-row-${rowIndex}`}>
+                                {doubleHeaderCells.map((headerCell, headerCellIndex) => {
+                                        const selectedRow = headerCellIndex >= headerCells.length ? rows[rowIndex + 1] : row;
+                                        return (
+                                            <TableCell
+                                                sx={{ border: 0, fontSize: "small" }}
+                                                key={`row-${headerCell.id}-${headerCellIndex}`}
+                                            >
 
-                            {headerCells.map((headerCell) =>
+                                                <Typography variant="span">
+                                                    {headerCell?.displayCallback ? headerCell.displayCallback({ theme, ...selectedRow }) : selectedRow[headerCell.id]}
+                                                </Typography>
 
-                                <TableCell
-                                    padding="none"
-                                    sx={{ border: 0, fontSize: "small" }}
-                                    key={`row-${headerCell.id}`}
-                                >
+                                            </TableCell>
+                                        );
+                                    }
+                                )}
 
-                                    <Paper elevation={2} square sx={{ boxShadow: "unset", padding: 2 }}>
+                            </TableRow>
+                        );
+                    })}
 
-                                        <Typography variant="span">
-                                            {headerCell?.displayCallback ? headerCell.displayCallback({ theme, ...row }) : row[headerCell.id]}
-                                        </Typography>
+                </TableBody>
 
-                                    </Paper>
+            </Table>
 
-                                </TableCell>
-                            )}
-
-                        </TableRow>
-                    )
-                )}
-
-            </TableBody>
-
-        </Table>
-
+        </Paper>
     );
 
 }
