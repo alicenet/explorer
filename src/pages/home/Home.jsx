@@ -1,6 +1,6 @@
 import React from "react";
 import { CallToAction, LatestBlocks, Page, SearchBar } from "components";
-import { Box, Grid } from "@mui/material";
+import { Box } from "@mui/material";
 
 export const Home = () => {
 
@@ -11,11 +11,7 @@ export const Home = () => {
                 <SearchBar />
                 <Box display="flex" flexDirection="column" gap={4}>
                     <CallToAction />
-                    <Grid container spacing={3}>
-                        <Grid item width="100%">
-                            <LatestBlocks />
-                        </Grid>
-                    </Grid>
+                    <LatestBlocks />
                 </Box>
             </Box>
         </Page>
