@@ -16,7 +16,7 @@ export function DataExplorer() {
     useEffect(() => {
         const getDataStores = async () => {
             if (address) {
-                const [dataStores] = await aliceNetAdapter.getDataStoresForAddres(address);
+                const [dataStores] = await aliceNetAdapter.getDataStoresForAddress(address);
                 setDatastoreInfo(dataStores);
             } else {
                 setDatastoreInfo({ error: "Invalid address" });
