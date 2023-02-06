@@ -40,7 +40,7 @@ export const Test = () => {
     }
 
     const printDataStoresForAddress = async (address, curve = 1) => {
-        let dstores = await aliceNetAdapter.getDataStoresForAddres(address, curve);
+        let dstores = await aliceNetAdapter.getDataStoresForAddress(address, curve);
         console.log(dstores);
     }
 
