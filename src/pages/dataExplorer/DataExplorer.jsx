@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { aliceNetAdapter } from "adapter/alicenetadapter";
 import { DatastoreView, InvalidInput, Page, PrimaryAccordion, SearchBar, SearchNotFound } from "components";
 import { ReactComponent as FileIcon } from "assets/file-icon.svg";
-import { searchTypes } from "utils";
+import { curveTypes, searchTypes } from "utils";
 import { Box } from "@mui/material";
 
 export function DataExplorer() {
@@ -16,7 +16,7 @@ export function DataExplorer() {
     useEffect(() => {
         const getDataStores = async () => {
             if (address) {
-                const [dataStores] = await aliceNetAdapter.getDataStoresForAddress(address);
+                const [dataStores] = await aliceNetAdapter.getDataStoresForAddress(address, curveTypes.SECP256K1, offset);
                 setDatastoreInfo(dataStores);
             } else {
                 setDatastoreInfo({ error: "Invalid address" });
