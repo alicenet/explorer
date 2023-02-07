@@ -6,7 +6,7 @@ export function ErrorContainer({ children }) {
     const theme = useTheme();
 
     return (
-        <Paper elevation="1">
+        <Paper elevation="1" sx={{ boxShadow: "unset" }}>
             <Box
                 display="flex"
                 flexDirection="column"

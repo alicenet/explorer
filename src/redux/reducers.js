@@ -13,7 +13,7 @@ const appSlice = createSlice({
             aliceNetProvider: aliceNetProvider,
         },
         loading: false,
-        currentSearch: { type: searchTypes.TRANSACTIONS, term: null, offset: null }
+        currentSearch: { type: searchTypes.TRANSACTIONS, term: null, index: null }
     },
     reducers: {
         setLoading: (state, action) => {
