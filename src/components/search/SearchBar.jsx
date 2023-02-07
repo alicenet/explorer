@@ -17,7 +17,7 @@ export function SearchBar({ currentSearch = null }) {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up("md"));
 
-    const [offset, setOffset] = useState("");
+    const [index, setIndex] = useState("");
 
     const [term, setTerm] = useState("");
     const [selectedOption, setSelectedOption] = useState(options[0]);
@@ -38,7 +38,7 @@ export function SearchBar({ currentSearch = null }) {
 
     const handleChange = (e) => {
         setTerm("");
-        setOffset("");
+        setIndex("");
         setSelectedOption(options[e.target.value]);
     };
 
@@ -54,7 +54,7 @@ export function SearchBar({ currentSearch = null }) {
                 history.push(`/tx/${term}`);
                 break;
             case searchTypes.DATASTORES:
-                history.push(`/data/${term}/${offset}`);
+                history.push(`/data/${term}/${index}`);
                 break;
             default:
                 alert('Invalid option');
@@ -63,7 +63,7 @@ export function SearchBar({ currentSearch = null }) {
 
     return (
 
-        <Paper elevation={2}>
+        <Paper elevation={2} sx={{ boxShadow: "unset" }}>
 
             <Box
                 display="flex"
@@ -140,14 +140,14 @@ export function SearchBar({ currentSearch = null }) {
                                         <TextField
                                             sx={{ background: theme.palette.background.paper, width: "100%" }}
                                             inputProps={{
-                                                placeholder: "Offset",
+                                                placeholder: "Index",
                                                 sx: { paddingY: 1.5 }
                                             }}
                                             variant="outlined"
-                                            value={offset}
-                                            onChange={e => setOffset(e.target.value)}
+                                            value={index}
+                                            onChange={e => setIndex(e.target.value)}
                                         />
-                                        {matches && <HelpTooltip content={content.offset} />}
+                                        {matches && <HelpTooltip content={content.index} />}
                                     </Box>
                                 }
                             </Box>
