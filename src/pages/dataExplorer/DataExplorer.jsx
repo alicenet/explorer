@@ -11,20 +11,24 @@ export function DataExplorer() {
     const [datastoreInfo, setDatastoreInfo] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    const { address, offset } = useParams();
+    const { address, index: index } = useParams();
 
     useEffect(() => {
         const getDataStores = async () => {
-            if (address) {
-                const [dataStores] = await aliceNetAdapter.getDataStoresForAddress(address, curveTypes.SECP256K1, offset || 1);
-                setDatastoreInfo(dataStores);
-            } else {
+            try {
+                const [dataStores] = await aliceNetAdapter.getDataStoresForAddress(address, curveTypes.SECP256K1, index || 1);
+                if (index && dataStores.length > 1) {
+                    setDatastoreInfo(dataStores.slice(0, 1));
+                } else {
+                    setDatastoreInfo(dataStores);
+                }
+            } catch (e) {
                 setDatastoreInfo({ error: "Invalid address" });
             }
             setIsLoading(false);
         }
         getDataStores();
-    }, [address, offset]);
+    }, [address, index]);
 
     if (isLoading) {
         return null;
@@ -52,7 +56,7 @@ export function DataExplorer() {
                     datastoreInfo && !datastoreInfo.error && datastoreInfo.length > 0 &&
                     <PrimaryAccordion
                         padded
-                        title="Indexes from Offset"
+                        title="Indexes"
                         icon={<FileIcon />}
                         itemsCount={datastoreInfo.length}
                     >

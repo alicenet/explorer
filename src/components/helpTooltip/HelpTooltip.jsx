@@ -16,7 +16,6 @@ export const content = {
     headerRoot: "The root hash of the header tree",
     height: "The block height",
     index: "Index where the data is stored",
-    offset: "The offset of the transaction, length is 64",
     owner: "The account that owns the UTXO",
     previousBlock: "The hash of the previous block's BClaims",
     rawData: "The hex representation of the stored data",

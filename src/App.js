@@ -14,7 +14,7 @@ function App() {
                     <Route exact path="/about" component={About} />
                     <Route exact path="/test" component={Test} />
                     <Route exact path="/block/:height" component={BlockExplorer} />
-                    <Route exact path="/data/:address/:offset?" component={DataExplorer} />
+                    <Route exact path="/data/:address/:index?" component={DataExplorer} />
                     <Route exact path="/tx/:hash" component={TxExplorer} />
                 </Switch>
             </Router>
