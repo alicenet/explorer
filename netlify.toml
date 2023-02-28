@@ -1,7 +1,7 @@
 [build.environment]
     REACT_APP_DEPLOYMENT_TYPE="STAGING"
     REACT_APP_ALICENET_RPC_ENDPOINT_LOCAL="http://localhost:8887/v1/"
-    REACT_APP_ALICENET_RPC_ENDPOINT_STAGING="https://edge.staging.alice.net/v1/"
+    REACT_APP_ALICENET_RPC_ENDPOINT_STAGING="http://34.28.51.52:4348/v1/"
     REACT_APP_ALICENET_RPC_ENDPOINT_PRODUCTION="https://edge.alice.net/v1/"
 
     REACT_APP_GITHUB_URL="https://github.com/alicenet"
